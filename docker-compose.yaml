@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  frontend:
+    build: .
+    ports:
+      - target: 8080
+        published: 8080
+    volumes:
+      - type: bind
+        source: .
+        target: /app
