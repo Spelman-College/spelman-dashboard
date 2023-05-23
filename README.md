@@ -3,10 +3,10 @@
 ## Setting up your dev environment
 [Follow these steps](https://docs.docker.com/engine/install/) to install Docker. If you are using a Chromebook or Pixelbook, you may need to [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/).
 
-Clone this repo and cd into the directory containing the Dockerfile (this should be the top level repo).
+Clone this repo and cd into the directory containing the Dockerfile for the frontend (the `frontend` folder in the repo).
 
 Run 
-`./copy-node-modules-to-local.sh`.
+`./run-after-changing-packages.sh`.
 
 To verify that your image built successfully, run 
 `docker image ls`
