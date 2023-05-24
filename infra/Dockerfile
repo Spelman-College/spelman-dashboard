@@ -23,4 +23,6 @@ FROM hashicorp/terraform:1.4
 
 RUN apk --no-cache add groff
 
+WORKDIR /infra
+
 COPY --from=builder /opt/aws-cli/ /opt/aws-cli/
