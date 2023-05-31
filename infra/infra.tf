@@ -17,7 +17,7 @@ provider "aws" {
 
 resource "aws_amplify_app" "spelman_dashboard_frontend" {
   name       = "spelman-dashboard-frontend"
-  repository = "https://github.com/Spelman-College/spelman-dashboard/tree/main"
+  repository = "https://github.com/Spelman-College/spelman-dashboard"
 
   build_spec = <<-EOT
     version: 1
@@ -42,7 +42,18 @@ resource "aws_amplify_app" "spelman_dashboard_frontend" {
 
   custom_rule {
     source = "/<*>"
-    status = "404"
+    status = "404-200"
     target = "/index.html"
+  }
+
+  custom_rule {
+    source = "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>"
+    status = "200"
+    target = "/index.html"
+  }
+
+  environment_variables = {
+    AMPLIFY_DIFF_DEPLOY       = "false"
+    AMPLIFY_MONOREPO_APP_ROOT = "frontend"
   }
 }
