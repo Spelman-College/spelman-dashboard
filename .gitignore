@@ -28,6 +28,6 @@ coverage
 *.sw?
 
 # Secrets
-.env_creds
+.aws_credentials
 
 .terraform

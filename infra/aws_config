@@ -1,0 +1,7 @@
+[default]
+region = us-east-1
+
+[profile driftctlrole]
+role_arn = arn:aws:iam::410061848734:role/ReadOnlyAccess
+source_profile=default
+region = us-east-1
