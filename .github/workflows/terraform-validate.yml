@@ -2,6 +2,10 @@ name: Terraform Validate
 
 on:
   pull_request:
+    branches:
+      - main
+    paths:
+      - "infra/**"
 
 jobs:
   validate:
