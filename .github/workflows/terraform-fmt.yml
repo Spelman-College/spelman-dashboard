@@ -29,13 +29,13 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-            })
+            });
             const botComment = comments.find(comment => {
               return comment.user.type === 'Bot' && comment.body.includes('Terraform Format and Style')
-            })
+            });
 
             // 2. Prepare format of the comment
-            const output = `#### Terraform Format and Style 🖌 \`${{ steps.fmt.outcome }}\`;
+            const output = `#### Terraform Format and Style 🖌 \`${{ steps.fmt.outcome }}\``;
 
             // 3. Delete previous comment so PR timeline makes sense
             if (botComment) {
