@@ -33,9 +33,9 @@ jobs:
             const botComment = comments.find(comment => {
               return comment.user.type === 'Bot' && comment.body.includes('Terraform Validation')
             })
-      
+
             // 2. Prepare format of the comment
-            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            const output = `#### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             <details><summary>Validation Output</summary>
       
             \`\`\`\n
@@ -43,7 +43,8 @@ jobs:
             \`\`\`
       
             </details>
-      
+            `;
+
             // 3. Delete previous comment so PR timeline makes sense
             if (botComment) {
               github.rest.issues.deleteComment({
