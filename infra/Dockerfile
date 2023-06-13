@@ -19,8 +19,21 @@ RUN apk add --no-cache \
     && make \
     && make install
 
-FROM hashicorp/terraform:1.4
+FROM alpine:latest
 
-RUN apk --no-cache add groff
+RUN apk --no-cache add terraform=~1.4
+# Download binary and checksum.
+RUN wget https://github.com/snyk/driftctl/releases/latest/download/driftctl_linux_amd64 -O driftctl_linux_amd64 \
+    # The checksum file contains multiple checksums, so extract the one for the file we downloaded.
+    && wget https://github.com/snyk/driftctl/releases/latest/download/driftctl_SHA256SUMS -O - | grep driftctl_linux_amd64 > driftctl_SHA256SUM_linux_amd64 \
+    # Verify checksum
+    && sha256sum -c driftctl_SHA256SUM_linux_amd64 \
+    && chmod +x driftctl_linux_amd64 \
+    && mv driftctl_linux_amd64 /usr/local/bin/driftctl
+
+
+WORKDIR /infra
+
+COPY driftctl_profile.txt /root/.aws/config
 
 COPY --from=builder /opt/aws-cli/ /opt/aws-cli/
