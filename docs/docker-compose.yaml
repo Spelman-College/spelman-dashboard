@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  frontend:
+    build: .
+    ports:
+      - target: 4627
+        published: 4627
+    volumes:
+      - type: bind
+        source: .
+        target: /docs
