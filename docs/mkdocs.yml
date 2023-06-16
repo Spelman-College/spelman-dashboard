@@ -3,3 +3,5 @@ repo_url: https://github.com/Spelman-College/spelman-dashboard
 edit_uri: edit/main/docs
 theme: material
 dev_addr: '0.0.0.0:4627'
+markdown_extensions:
+  - admonition
