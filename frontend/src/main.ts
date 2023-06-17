@@ -1,6 +1,10 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
+import PrimeVue from 'primevue/config';
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import SpeedDial from 'primevue/speeddial';
+
+const app = createApp(App)
+app.use(PrimeVue)
+app.component('SpeedDial', SpeedDial)
+app.mount('#app')
