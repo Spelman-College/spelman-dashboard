@@ -4,7 +4,6 @@ import Example from './components/Example.vue'
 
 <template>
   Hello! Here is an example:
-  <span class="material-symbols-outlined">search</span>
   <Example></Example>
 </template>
 

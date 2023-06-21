@@ -2,9 +2,9 @@ import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import App from './App.vue'
 
-import SpeedDial from 'primevue/speeddial';
+import Button from 'primevue/button';
 
 const app = createApp(App)
 app.use(PrimeVue)
-app.component('SpeedDial', SpeedDial)
+app.component('Button', Button)
 app.mount('#app')
