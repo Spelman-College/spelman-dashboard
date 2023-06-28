@@ -6,7 +6,8 @@ fi
 
 docker run \
 -it \
--v $(pwd):/infra \
--v $(pwd)/.terraform.d:/root/.terraform.d \
+--mount type=bind,source="$(pwd)",target=/infra \
+-e "AWS_PROFILE=driftctlrole" \
+-e "AWS_CONFIG_FILE=/infra/aws_config" \
 -e "AWS_SHARED_CREDENTIALS_FILE=/infra/.aws_credentials" \
-infra terraform "$@"
+infra aws "$@"

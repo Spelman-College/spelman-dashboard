@@ -31,3 +31,4 @@ coverage
 .aws_credentials
 
 .terraform
+.terraform.d
