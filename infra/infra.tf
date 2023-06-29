@@ -66,6 +66,28 @@ resource "aws_amplify_app" "spelman_dashboard_frontend" {
   }
 }
 
+resource "aws_amplify_branch" "latest" {
+  app_id = aws_amplify_app.spelman_dashboard_frontend.id
+  branch_name = "latest"
+  display_name = "latest"
+  enable_auto_build = "true"
+  enable_basic_auth = "false"
+  enable_notification = "false"
+  framework = "Vue"
+  stage = "PRODUCTION"
+}
+
+resource "aws_amplify_branch" "main" {
+  app_id = aws_amplify_app.spelman_dashboard_frontend.id
+  branch_name = "main"
+  display_name = "main"
+  enable_auto_build = "true"
+  enable_basic_auth = "false"
+  enable_notification = "false"
+  framework = "Vue"
+  stage = "DEVELOPMENT"
+}
+
 resource "aws_iam_access_key" "mattcs_cli" {
   user = "mattcs-cli"
 }
