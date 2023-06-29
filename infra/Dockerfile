@@ -19,7 +19,7 @@ RUN apk add --no-cache \
     && make \
     && make install
 
-FROM alpine:latest
+FROM python:alpine
 
 RUN apk --no-cache add terraform=~1.4
 # Download binary and checksum.
@@ -31,9 +31,8 @@ RUN wget https://github.com/snyk/driftctl/releases/latest/download/driftctl_linu
     && chmod +x driftctl_linux_amd64 \
     && mv driftctl_linux_amd64 /usr/local/bin/driftctl
 
-
 WORKDIR /infra
 
-COPY driftctl_profile.txt /root/.aws/config
-
+RUN apk --no-cache add groff
 COPY --from=builder /opt/aws-cli/ /opt/aws-cli/
+RUN ln -s /opt/aws-cli/lib/aws-cli/bin/aws /usr/local/bin/aws
