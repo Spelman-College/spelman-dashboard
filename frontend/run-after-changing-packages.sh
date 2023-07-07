@@ -8,7 +8,7 @@ docker compose build >> /dev/null
 echo "Done."
 
 echo -n "Creating temporary container..."
-container_id=$(docker create spelman-dashboard-frontend)
+container_id=$(docker create $(basename $(pwd))-frontend)
 echo "Done."
 echo -n "Copying node_modules..." 
 docker cp $container_id:/app/node_modules . >> /dev/null

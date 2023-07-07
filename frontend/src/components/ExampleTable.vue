@@ -1,40 +1,39 @@
 <script setup lang="ts">
-import { VDataTable } from 'vuetify/labs/VDataTable'
-</script>
+import { ref, onMounted } from 'vue';
 
-<script lang="ts">
-export default {
-    data() {
-        return {
-            headers: [
-                {
-                    title: "Date",
-                    key: "date"
-                },
-                {
-                    title: "Rainfall",
-                    key: "value"
-                }
-            ],
-            tableItems: []
-        }
-    },
-    methods: {
-        async getData() {
-            // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
-            const res = await fetch("https://api.datacommons.org/v1/observations/series/wikidataId/Q987/Mean_Rainfall?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI");
-            const finalRes = await res.json();
-            this.tableItems = finalRes.observations;
+const tableItems = ref(Array.from({ length: 5 }));
+const tableCols = ref();
 
-            this.headers[1].title = "Rainfall (" + finalRes.facet.unit + ")";
-        }
-    },
-    mounted() {
-        this.getData()
-    }
+tableCols.value = [
+  {
+    field: "date",
+    header: "Date"
+  },
+  {
+    field: "value",
+    header: ""
+  }
+]
+
+async function getData() {
+  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
+  const res = await fetch("https://api.datacommons.org/v1/observations/series/wikidataId/Q987/Mean_Rainfall?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI");
+  const finalRes = await res.json();
+  tableItems.value = finalRes.observations;
+
+  tableCols.value[1].header = "Rainfall (" + finalRes.facet.unit + ")";
 }
+
+onMounted(() => {
+  getData();
+});
+
 </script>
 
 <template>
-    <v-data-table items-per-page="10" :headers="headers" :items="tableItems"></v-data-table>
+  <div class="card">
+    <DataTable :value="tableItems" tableStyle="min-width: 50rem">
+      <Column v-for="col of tableCols" :key="col.field" :field="col.field" :header="col.header"></Column>
+    </DataTable>
+  </div>
 </template>
