@@ -317,6 +317,15 @@ resource "aws_iam_user" "mattcs_cli" {
   }
 }
 
+resource "aws_iam_user" "drumsound" {
+  name = "drumsound"
+}
+
+resource "aws_iam_user_policy_attachment" "drumsound_change_password" {
+  user       = aws_iam_user.drumsound.name
+  policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
+}
+
 resource "aws_iam_user" "terraform" {
   name = "terraform"
 
