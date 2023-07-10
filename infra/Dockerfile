@@ -31,6 +31,8 @@ RUN wget https://github.com/snyk/driftctl/releases/latest/download/driftctl_linu
     && chmod +x driftctl_linux_amd64 \
     && mv driftctl_linux_amd64 /usr/local/bin/driftctl
 
+RUN apk --no-cache add gnupg
+
 WORKDIR /infra
 
 RUN apk --no-cache add groff
