@@ -138,10 +138,11 @@ resource "aws_iam_group" "terraform_full_permissions" {
 }
 
 resource "aws_iam_group_membership" "terraform_full_permissions" {
-  name = "TerraformFullPermissions"
+  name = "terraform_full_permissions_membership"
   users = [
     aws_iam_user.terraform.name
   ]
+  group = aws_iam_group.terraform_full_permissions.name
 }
 
 resource "aws_iam_policy" "force_mfa" {
