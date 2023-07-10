@@ -101,7 +101,7 @@ resource "aws_iam_group" "admins" {
 }
 
 resource "aws_iam_group_membership" "admins" {
-  name = "Admins"
+  name = "admins_membership"
   users = [
     aws_iam_user.amiers.name,
     aws_iam_user.cernst.name,
@@ -110,6 +110,7 @@ resource "aws_iam_group_membership" "admins" {
     aws_iam_user.mattcs.name,
     aws_iam_user.drumsound.name,
   ]
+  group = aws_iam_group.admins.name
 }
 
 resource "aws_iam_group_policy_attachment" "admins_force_mfa" {
