@@ -1,6 +1,6 @@
 # Development and Release Process
 
-AWS Amplify provides a Git-based workflow for hosting serverless web apps with continous deployment. Amplify supports a [multi-environment feature](https://docs.amplify.aws/cli/teams/overview/) which leverages distinct Git branches for prod and dev. We maintain distinct dev and prod feature brances to use this feature. The release process is as follows:
+AWS Amplify provides a Git-based workflow for hosting serverless web apps with continous deployment. Amplify supports a [multi-environment feature](https://docs.amplify.aws/cli/teams/overview/) which leverages distinct Git branches for prod and dev. We maintain distinct dev and prod feature branches to use this feature. The release process is as follows:
 
 1. `latest` contains the latest prod version. This will be renamed to a version number when the new prod version is released.
 1. `main` is the core dev branch. Feature branches should be named descriptively. These will get merged into `main` before being cut into the prod release.
