@@ -67,25 +67,25 @@ resource "aws_amplify_app" "spelman_dashboard_frontend" {
 }
 
 resource "aws_amplify_branch" "latest" {
-  app_id = aws_amplify_app.spelman_dashboard_frontend.id
-  branch_name = "latest"
-  display_name = "latest"
-  enable_auto_build = "true"
-  enable_basic_auth = "false"
+  app_id              = aws_amplify_app.spelman_dashboard_frontend.id
+  branch_name         = "latest"
+  display_name        = "latest"
+  enable_auto_build   = "true"
+  enable_basic_auth   = "false"
   enable_notification = "false"
-  framework = "Vue"
-  stage = "PRODUCTION"
+  framework           = "Vue"
+  stage               = "PRODUCTION"
 }
 
 resource "aws_amplify_branch" "main" {
-  app_id = aws_amplify_app.spelman_dashboard_frontend.id
-  branch_name = "main"
-  display_name = "main"
-  enable_auto_build = "true"
-  enable_basic_auth = "false"
+  app_id              = aws_amplify_app.spelman_dashboard_frontend.id
+  branch_name         = "main"
+  display_name        = "main"
+  enable_auto_build   = "true"
+  enable_basic_auth   = "false"
   enable_notification = "false"
-  framework = "Vue"
-  stage = "DEVELOPMENT"
+  framework           = "Vue"
+  stage               = "DEVELOPMENT"
 }
 
 resource "aws_iam_access_key" "mattcs_cli" {
@@ -98,6 +98,19 @@ resource "aws_iam_access_key" "terraform" {
 
 resource "aws_iam_group" "admins" {
   name = "Admins"
+}
+
+resource "aws_iam_group_membership" "admins" {
+  name = "admins_membership"
+  users = [
+    aws_iam_user.amiers.name,
+    aws_iam_user.cernst.name,
+    aws_iam_user.kirkmcallister.name,
+    aws_iam_user.chasecummings.name,
+    aws_iam_user.mattcs.name,
+    aws_iam_user.drumsound.name,
+  ]
+  group = aws_iam_group.admins.name
 }
 
 resource "aws_iam_group_policy_attachment" "admins_force_mfa" {
@@ -122,6 +135,14 @@ resource "aws_iam_group_policy_attachment" "admins_billing" {
 
 resource "aws_iam_group" "terraform_full_permissions" {
   name = "TerraformFullPermissions"
+}
+
+resource "aws_iam_group_membership" "terraform_full_permissions" {
+  name = "terraform_full_permissions_membership"
+  users = [
+    aws_iam_user.terraform.name
+  ]
+  group = aws_iam_group.terraform_full_permissions.name
 }
 
 resource "aws_iam_policy" "force_mfa" {
@@ -319,6 +340,15 @@ resource "aws_iam_user" "mattcs_cli" {
 
 resource "aws_iam_user" "drumsound" {
   name = "drumsound"
+}
+
+resource "aws_iam_user_login_profile" "drumsound" {
+  user = aws_iam_user.drumsound.name
+  pgp_key = file("public.pgp")
+}
+
+output "drumsound_password" {
+  value = aws_iam_user_login_profile.drumsound.encrypted_password
 }
 
 resource "aws_iam_user_policy_attachment" "drumsound_change_password" {
