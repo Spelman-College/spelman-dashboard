@@ -2,6 +2,8 @@
  import Example from './components/Example.vue'
  import ExampleTable from './components/ExampleTable.vue'
  import Organizations from './components/Organizations.vue'
+ import DataDashboard from './components/DataDashboard.vue'
+ 
 </script>
 
 <template>
@@ -20,9 +22,9 @@
 		    <Organizations></Organizations>
 		</p>
             </TabPanel>
-            <TabPanel header="Contact">
+            <TabPanel header="Data Dashboard">
 		<p>
-		    TBD
+		    <DataDashboard></DataDashboard>
 		</p>
             </TabPanel>
 	</TabView>
