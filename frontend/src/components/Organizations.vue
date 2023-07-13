@@ -7,7 +7,7 @@
  const orgs = ref([]);
 
  async function getData() {
-     const res = Papa.parse(OrgURI, {
+     const res = await Papa.parse(OrgURI, {
 	 header: true,
 	 download: true,
 	 worker: true,
