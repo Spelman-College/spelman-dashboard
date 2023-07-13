@@ -15,6 +15,8 @@ tableCols.value = [
   }
 ]
 
+const gender = ref();
+
 async function getData() {
   // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
 
@@ -36,39 +38,40 @@ onMounted(() => {
   getData();
 });
 
-let dcidMap = new Map<string, string>([
+function genderToDcid(gender: string): string {
+  let dcidMap = new Map<string, string>([
     ["Males", "Count_Person_25OrMoreYears_EducationalAttainmentBachelorsDegree_Male"],
     ["Females", "Count_Person_25OrMoreYears_EducationalAttainmentBachelorsDegree_Female"]
-    ]);
+  ]);
+
+  let dcid = dcidMap.get(gender);
+  return dcid == undefined ? "" : dcid;
+}
 
 
 </script>
 
 
 <template>
+  <span>Show US Population with a Bachelor's Degree for: {{ gender }}</span>
 
-  <span>Show US Population with a Bachelor's Degree for: {{gender}}</span>
+  <div class="p-field-radiobutton">
+    <RadioButton id="gender" name="gender" value="Males" v-model="gender" />
+    <label for="gender">Males</label>
+  </div>
+  <div class="p-field-radiobutton">
+    <RadioButton id="gender2" name="gender" value="Females" v-model="gender" />
+    <label for="gender2">Females</label>
+  </div>
 
-    <div class="p-field-radiobutton">
-      <RadioButton id="gender" name="gender" value="Males" v-model="gender" />
-      <label for="gender">Males</label>
-    </div>
-    <div class="p-field-radiobutton">
-      <RadioButton id="gender2" name="gender" value="Females" v-model="gender" />
-      <label for="gender2">Females</label>
-    </div>
+  <!-- Want to pull the variable from the dcidMap above based on {{gender}} -->
+  <span>dcid to query: {{ genderToDcid(gender) }}</span>
 
-    <!-- Want to pull the variable from the dcidMap above based on {{gender}} -->
-    <span>dcid to query: {{dcid}}</span>
-
-      <div class="card">
+  <div class="card">
     <DataTable :value="tableItems" tableStyle="min-width: 50rem">
       <Column v-for="col of tableCols" :key="col.field" :field="col.field" :header="col.header"></Column>
     </DataTable>
   </div>
-
-
-
 </template>
 
 <script lang="ts">
