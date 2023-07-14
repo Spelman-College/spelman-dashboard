@@ -75,9 +75,6 @@ resource "aws_amplify_branch" "latest" {
   enable_notification = "false"
   framework           = "Vue"
   stage               = "PRODUCTION"
-  environment_variables = {
-    VITE_ORGANIZATIONS_CONTENT_SHEET_ID = "1Vp57HDXod3FgP2aZzDNvYYRBNgPbvNsqqxNJ2b-daoc"
-  }
 }
 
 resource "aws_amplify_branch" "main" {
