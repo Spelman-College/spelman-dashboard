@@ -2,6 +2,7 @@
  import Example from './components/Example.vue'
  import ExampleTable from './components/ExampleTable.vue'
  import Organizations from './components/Organizations.vue'
+ import Women from './components/Women.vue'
 </script>
 
 <template>
@@ -18,6 +19,11 @@
 	    <TabPanel header="Organizations">
 		<p>
 		    <Organizations></Organizations>
+		</p>
+            </TabPanel>
+	    <TabPanel header="Women">
+		<p>
+		    <Women></Women>
 		</p>
             </TabPanel>
             <TabPanel header="Contact">
