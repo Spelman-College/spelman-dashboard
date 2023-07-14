@@ -5,9 +5,11 @@
  const sid = import.meta.env.VITE_ORGANIZATIONS_CONTENT_SHEET_ID
  const OrgURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
  const orgs = ref([]);
-
+ const downloadOrgs = () => {
+     window.open(OrgURI);
+ }
  async function getData() {
-     const res = Papa.parse(OrgURI, {
+     const res = await Papa.parse(OrgURI, {
 	 header: true,
 	 download: true,
 	 worker: true,
@@ -20,10 +22,12 @@
  onMounted(() => {
      getData();
  });
+
 </script>
 
 <template>
-  <div v-for="(row, idx) in orgs">
-      <Organization :org="row" :idx="idx.toString()"></Organization>
-  </div>
+    <div><Button label="Download CSV" @click=downloadOrgs /></div>
+    <div v-for="(row, idx) in orgs">
+	<Organization :org="row" :idx="idx.toString()"></Organization>
+    </div>
 </template>
