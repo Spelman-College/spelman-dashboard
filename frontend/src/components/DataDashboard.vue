@@ -11,32 +11,17 @@ tableCols.value = [
   },
   {
     field: "value",
-    header: ""
+    header: "Population"
   }
 ]
 
 const gender = ref();
 
-async function getData() {
-  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
-
-  // Replace Mean_Rainfall with the dcid from the dcidMap below that corresponds to the selected radio button. 
-  // How can we use the {{gender}} var from the template below here?
-  // e.g. 
-  // let dcid  = dcidMap.get({{gender}});
-  // let request = "https://api.datacommons.org/v1/observations/series/country/USA/" + {{dcid}} + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
-
-  let request = ""
+async function getData(request : string) {
   const res = await fetch(request);
   const finalRes = await res.json();
   tableItems.value = finalRes.observations;
-
-  tableCols.value[1].header = "Rainfall (" + finalRes.facet.unit + ")";
 }
-
-onMounted(() => {
-  getData();
-});
 
 function genderToDcid(gender: string): string {
   let dcidMap = new Map<string, string>([
@@ -48,6 +33,10 @@ function genderToDcid(gender: string): string {
   return dcid == undefined ? "" : dcid;
 }
 
+function buildRequest(dcid: string): string {
+  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
+  return "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
+}
 
 </script>
 
@@ -64,8 +53,11 @@ function genderToDcid(gender: string): string {
     <label for="gender2">Females</label>
   </div>
 
-  <!-- Want to pull the variable from the dcidMap above based on {{gender}} -->
-  <span>dcid to query: {{ genderToDcid(gender) }}</span>
+  <!-- Debugging info 
+  <span> dcid to query: {{ genderToDcid(gender) }}</span>
+  <span> request: {{  buildRequest(genderToDcid(gender)) }} </span>
+  -->
+  {{ getData(buildRequest(genderToDcid(gender))) }}
 
   <div class="card">
     <DataTable :value="tableItems" tableStyle="min-width: 50rem">
