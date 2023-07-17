@@ -3,7 +3,7 @@
  import ExampleTable from './components/ExampleTable.vue'
  import Organizations from './components/Organizations.vue'
  import DataDashboard from './components/DataDashboard.vue'
- 
+ import Women from './components/Women.vue'
 </script>
 
 <template>
@@ -22,7 +22,13 @@
 		    <Organizations></Organizations>
 		</p>
             </TabPanel>
-            <TabPanel header="Data Dashboard">
+
+	    <TabPanel header="Women">
+		<p>
+		    <Women></Women>
+		</p>
+            </TabPanel>
+      <TabPanel header="Data Dashboard">      
 		<p>
 		    <DataDashboard></DataDashboard>
 		</p>
