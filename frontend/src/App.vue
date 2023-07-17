@@ -3,9 +3,12 @@
  import ExampleTable from './components/ExampleTable.vue'
  import Organizations from './components/Organizations.vue'
  import Women from './components/Women.vue'
+ import "../node_modules/primeflex/primeflex.css"
 </script>
 
 <template>
+
+
     <div class="card">
 	<TabView>
             <TabPanel header="Home">
@@ -22,15 +25,11 @@
 		</p>
             </TabPanel>
 	    <TabPanel header="Women">
-		<p>
-		    <Women></Women>
-		</p>
+ 		<Women></Women>
             </TabPanel>
             <TabPanel header="Contact">
-		<p>
-		    TBD
-		</p>
-            </TabPanel>
+	    TBD
+	    </TabPanel>
 	</TabView>
     </div>
 
