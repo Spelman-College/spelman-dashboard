@@ -10,6 +10,7 @@ import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import Tree from 'primevue/tree';
 import RadioButton from 'primevue/radiobutton';
+import Card from 'primevue/card';
 
 
 const app = createApp(App)
@@ -22,4 +23,5 @@ app.component('TabView', TabView)
 app.component('TabPanel', TabPanel)
 app.component('Tree', Tree)
 app.component('RadioButton', RadioButton)
+app.component('Card', Card)
 app.mount('#app')

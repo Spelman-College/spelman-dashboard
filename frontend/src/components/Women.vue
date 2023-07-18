@@ -27,7 +27,11 @@
 
 <template>
     <div><Button label="Download CSV" @click=downloadCSV /></div>
-    <div v-for="(row, idx) in rows">
-	<Woman :row="row" :idx="idx.toString()"></Woman>
+    <div class="grid">
+	<div v-for="(row, idx) in rows">
+    	    <div class="row-3">
+		<Woman :row="row" :idx="idx.toString()"></Woman>
+	    </div>
+	</div>
     </div>
 </template>

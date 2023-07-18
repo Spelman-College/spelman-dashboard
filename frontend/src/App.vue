@@ -4,9 +4,12 @@
  import Organizations from './components/Organizations.vue'
  import DataDashboard from './components/DataDashboard.vue'
  import Women from './components/Women.vue'
+ import "../node_modules/primeflex/primeflex.css"
 </script>
 
 <template>
+
+
     <div class="card">
 	<TabView>
             <TabPanel header="Home">
@@ -24,9 +27,7 @@
             </TabPanel>
 
 	    <TabPanel header="Women">
-		<p>
-		    <Women></Women>
-		</p>
+ 		<Women></Women>
             </TabPanel>
       <TabPanel header="Data Dashboard">      
 		<p>
