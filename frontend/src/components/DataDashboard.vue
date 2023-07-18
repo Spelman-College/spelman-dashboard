@@ -22,8 +22,8 @@ async function getData(dcid : string) {
   // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
   let request = "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
 
-  if (this.apiCache.recordExists(request)) {
-    tableItems.value = this.apiCache.get(request).observations;
+  if (apiCache.recordExists(request)) {
+    tableItems.value = apiCache.get(request).observations;
     console.log("Cache accessed");
   }
 
@@ -31,7 +31,7 @@ async function getData(dcid : string) {
     const res = await fetch(request);
     const finalRes = await res.json();
     tableItems.value = finalRes.observations;
-    this.apiCache.set(request, finalRes);
+    apiCache.set(request, finalRes);
     console.log("Cache set");
   }
 }
