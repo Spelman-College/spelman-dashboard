@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 
 const tableItems = ref(Array.from({ length: 5 }));
 const tableCols = ref();
-const gender = ref();
+const gender = ref("Males");
 
 tableCols.value = [
   {
@@ -18,7 +18,11 @@ tableCols.value = [
 
 let apiCache = new ApiCache();
 
-async function getData(request : string) {
+async function getData(dcid : string) {
+
+  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
+  let request = "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
+
   if (this.apiCache.recordExists(request)) {
     tableItems.value = this.apiCache.get(request).observations;
     console.log("Cache accessed");
@@ -42,12 +46,6 @@ function genderToDcid(gender: string): string {
   let dcid = dcidMap.get(gender);
   return dcid == undefined ? "" : dcid;
 }
-
-function buildRequest(dcid: string): string {
-  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
-  return "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
-}
-
 </script>
 
 
@@ -65,9 +63,8 @@ function buildRequest(dcid: string): string {
 
   <!-- Debugging info 
   <span> dcid to query: {{ genderToDcid(gender) }}</span>
-  <span> request: {{  buildRequest(genderToDcid(gender)) }} </span>
   -->
-  {{ getData(buildRequest(genderToDcid(gender))) }}
+  {{ getData(genderToDcid(gender)) }}
 
   <div class="card">
     <DataTable :value="tableItems" tableStyle="min-width: 50rem">
@@ -91,40 +88,21 @@ type CacheResult = any;
  
 export class ApiCache {
     private static instance: ApiCache;
-    private cache: { url: string; result: CacheResult }[] = [];
- 
-    constructor() {
-        if (!!ApiCache.instance) {
-          return ApiCache.instance;
-        }
-        ApiCache.instance = this;
-        return this;
-    }
+    private cache: Map<string, any> = new Map();
  
     public set = (url: string, result: any): void => {
         if (!this.recordExists(url)) {
-          this.cache.push({
-            url,
-            result
-          });
+          this.cache.set(url, result);
         }
     }
  
     public get = (url: string): CacheResult | null => {
-        const cacheRecord = this.cache.find(_ => { 
-          return _.url === url;
-        });
- 
-        
-        if (cacheRecord) {
-          return cacheRecord.result;
-        }
- 
-        return null;
+        return this.cache.get(url);
+
     }
     
     public recordExists = (url: string): boolean => {
-        return !!this.get(url);
+        return !!this.cache.has(url);
     }
 }
 </script>
