@@ -2,10 +2,9 @@
 import { ref, onMounted } from 'vue';
 
 const tableItems = ref(Array.from({ length: 5 }));
-const tableCols = ref();
 const gender = ref("Males");
 
-tableCols.value = [
+const tableCols = [
   {
     field: "date",
     header: "Date"
