@@ -48,10 +48,7 @@
 	<TabView v-model:activeIndex="active" @tab-change="tabChange">
             <TabPanel header="Home" >
 		<p>
-		    Hello! Here is an example:<br />
-		    <Example></Example><br />
-		    And here is a nice table!<br />
-		    <ExampleTable></ExampleTable>
+		    Hello! Use the tabs above to navigate through the demo.
 		</p>
 	    </TabPanel>
 	    <TabPanel header="Organizations" >
