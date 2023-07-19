@@ -24,7 +24,6 @@ async function getData(dcid : string) {
 
   if (apiCache.recordExists(request)) {
     tableItems.value = apiCache.get(request).observations;
-    console.log("Cache accessed");
   }
 
   else {
@@ -32,7 +31,6 @@ async function getData(dcid : string) {
     const finalRes = await res.json();
     tableItems.value = finalRes.observations;
     apiCache.set(request, finalRes);
-    console.log("Cache set");
   }
 }
 
