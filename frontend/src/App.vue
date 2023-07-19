@@ -15,13 +15,13 @@
      "#home": 0,
      "#organizations": 1,
      "#women": 2,
-     "#contact": 3
+     "#data": 3
  }
  const index2name = {
      0: "home",
      1: "organizations",
      2: "women",
-     3: "contact"
+     3: "data"
  }
 
  // A callback fired on a TabView tab change. Update the anchor text.
