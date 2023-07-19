@@ -3,6 +3,7 @@
  import Example from './components/Example.vue'
  import ExampleTable from './components/ExampleTable.vue'
  import Organizations from './components/Organizations.vue'
+ import DataDashboard from './components/DataDashboard.vue'
  import Women from './components/Women.vue'
  import "../node_modules/primeflex/primeflex.css"
 
@@ -58,12 +59,17 @@
 		    <Organizations></Organizations>
 		</p>
             </TabPanel>
-	    <TabPanel header="Women" >
+
+	    <TabPanel header="Women">
  		<Women></Women>
             </TabPanel>
-            <TabPanel header="Contact" >
-	    TBD
-	    </TabPanel>
+      <TabPanel header="Data Dashboard">      
+		<p>
+		    <DataDashboard></DataDashboard>
+		</p>
+            </TabPanel>
+            
+
 	</TabView>
     </div>
 
