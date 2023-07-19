@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 const tableItems = ref(Array.from({ length: 5 }));
 const gender = ref("Males");
@@ -45,6 +45,10 @@ function genderToDcid(gender: string): string {
   let dcid = dcidMap.get(gender);
   return dcid == undefined ? "" : dcid;
 }
+
+ watchEffect(async () => {                                                                                                                                                                                           
+     getData(genderToDcid(gender.value))                                                                                                                                                                             
+ }) 
 </script>
 
 
@@ -59,11 +63,6 @@ function genderToDcid(gender: string): string {
     <RadioButton id="gender2" name="gender" value="Females" v-model="gender" />
     <label for="gender2">Females</label>
   </div>
-
-  <!-- Debugging info 
-  <span> dcid to query: {{ genderToDcid(gender) }}</span>
-  -->
-  {{ getData(genderToDcid(gender)) }}
 
   <div class="card">
     <DataTable :value="tableItems" tableStyle="min-width: 50rem">
