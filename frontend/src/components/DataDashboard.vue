@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
 import { Parser } from '@json2csv/plainjs';
+import { setMaxIdleHTTPParsers } from 'http';
 
 const tableItems = ref(Array.from({ length: 5 }));
 const gender = ref("Males");
@@ -16,7 +17,10 @@ const tableCols = [
   }
 ]
 
-const downloadCSV = (gender) => {
+const loading_download = ref(false);
+
+const downloadCSV = async (gender) => {
+  loading_download.value = true;
   try {
     const parser_opts = {};
     const parser = new Parser(parser_opts);
@@ -30,6 +34,7 @@ const downloadCSV = (gender) => {
   } catch (err) {
     console.log(err);
   }
+  loading_download.value = false;
 }
 
 let apiCache = new ApiCache();
@@ -68,7 +73,7 @@ watchEffect(async () => {
 
 
 <template>
-  <div><Button label="Download CSV" @click=downloadCSV(gender) /></div>
+  <div><Button label="Download CSV" @click=downloadCSV(gender) :loading="loading_download" /></div>
   <span>Show US Population with a Bachelor's Degree for: {{ gender }}</span>
 
   <div class="p-field-radiobutton">
