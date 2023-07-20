@@ -19,7 +19,7 @@ const tableCols = [
 
 const loading_download = ref(false);
 
-const downloadCSV = async (gender) => {
+const downloadCSV = (gender) => {
   loading_download.value = true;
   try {
     const parser_opts = {};
