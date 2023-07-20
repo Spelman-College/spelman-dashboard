@@ -5,3 +5,6 @@ theme: material
 dev_addr: '0.0.0.0:4627'
 markdown_extensions:
   - admonition
+  - pymdownx.highlight
+  - pymdownx.keys
+  - pymdownx.superfences
