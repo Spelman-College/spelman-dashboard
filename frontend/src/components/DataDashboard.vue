@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
+import { Parser } from '@json2csv/plainjs';
 
 const tableItems = ref(Array.from({ length: 5 }));
 const gender = ref("Males");
@@ -15,9 +16,25 @@ const tableCols = [
   }
 ]
 
+const downloadCSV = (gender) => {
+  try {
+    const parser_opts = {};
+    const parser = new Parser(parser_opts);
+    const csv = parser.parse(tableItems.value);
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', genderToDcid(gender) + '.csv');
+    a.click();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 let apiCache = new ApiCache();
 
-async function getData(dcid : string) {
+async function getData(dcid: string) {
 
   // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
   let request = "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
@@ -44,13 +61,14 @@ function genderToDcid(gender: string): string {
   return dcid == undefined ? "" : dcid;
 }
 
- watchEffect(async () => {                                                                                                                                                                                           
-     getData(genderToDcid(gender.value))                                                                                                                                                                             
- }) 
+watchEffect(async () => {
+  getData(genderToDcid(gender.value))
+}) 
 </script>
 
 
 <template>
+  <div><Button label="Download CSV" @click=downloadCSV(gender) /></div>
   <span>Show US Population with a Bachelor's Degree for: {{ gender }}</span>
 
   <div class="p-field-radiobutton">
@@ -81,24 +99,24 @@ export default {
 };
 
 type CacheResult = any;
- 
-export class ApiCache {
-    private static instance: ApiCache;
-    private cache: Map<string, any> = new Map();
- 
-    public set = (url: string, result: any): void => {
-        if (!this.recordExists(url)) {
-          this.cache.set(url, result);
-        }
-    }
- 
-    public get = (url: string): CacheResult | null => {
-        return this.cache.get(url);
 
+export class ApiCache {
+  private static instance: ApiCache;
+  private cache: Map<string, any> = new Map();
+
+  public set = (url: string, result: any): void => {
+    if (!this.recordExists(url)) {
+      this.cache.set(url, result);
     }
-    
-    public recordExists = (url: string): boolean => {
-        return !!this.cache.has(url);
-    }
+  }
+
+  public get = (url: string): CacheResult | null => {
+    return this.cache.get(url);
+
+  }
+
+  public recordExists = (url: string): boolean => {
+    return !!this.cache.has(url);
+  }
 }
 </script>
