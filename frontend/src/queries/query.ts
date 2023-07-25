@@ -8,11 +8,7 @@ export type CategoryType = {
 
 export class Query {
     category: string
-<<<<<<< HEAD
     dimensions: Set<string>;
-=======
-    dimensions: Set<string>
->>>>>>> 2aa268c (add dcid query logic)
 
     constructor(category: string, ...dimensions: string[]) {
         this.category = category
@@ -22,23 +18,9 @@ export class Query {
         })
     }
 
-<<<<<<< HEAD
     compile(): Array<Set<string>> {
         const out: Array<Set<string>> = []
         this.dimensions.forEach((dim) => {
-=======
-    compile(categoryDimensions: Set<string>): Array<Set<string>> {
-        // Check if all dimensions are included in this query.
-        let dimensions = new Set([...this.dimensions])
-        const included = setsUtil.setIntersection(categoryDimensions, dimensions)
-        if (setsUtil.setEqual(included, categoryDimensions)) {
-            // If all are included, query all dimensions.
-            // Zero dimensions means query all dimensions in this category.
-            dimensions = new Set<string>([])
-        }
-        const out = []
-        dimensions.forEach((dim) => {
->>>>>>> 2aa268c (add dcid query logic)
             out.push(new Set<string>([dim]))
         })
         return out
@@ -48,7 +30,6 @@ export class Query {
 export class QuerySet {
     queries: Query[]
 
-<<<<<<< HEAD
     // TODO: replace with CategoryType
     partialQueries: Array<Query>
     partialCategories: Set<string>;
@@ -151,42 +132,14 @@ export class QuerySet {
         const dimensions = this.selectQueryDimensions()
         console.log('dimensions', dimensions)
         return setsUtil.setsProduct(...dimensions)
-=======
-    constructor(...queries: Query[]) {
-        this.queries = queries
-    }
-
-    compile(allCategories: CategoryType): Array<Set<string>> {
-        const nonZeroQueries = this.queries.filter((query) => {
-            return query.dimensions.size > 0
-        })
-        const valid = []
-        const categories = new Set([...Object.keys(allCategories)])
-        nonZeroQueries.forEach((q) => {
-            valid.push(q.compile(allCategories[q.category]))
-            categories.delete(q.category)
-
-        })
-        categories.forEach((cat) => {
-            valid.push([new Set([`${cat}:`])])
-        })
-
-        return setsUtil.setsProduct(...valid)
->>>>>>> 2aa268c (add dcid query logic)
     }
 }
 
 
-<<<<<<< HEAD
 export const query2dcids = (dcids: Array<Dcid>,
                             categories: CategoryType,
                             categoryDependencies: [string, string][],
                             ...queries: Array<Query>): Array<string> => {
-=======
-export const query2dcids = (dcids: Array<Dcid>, categories: CategoryType, ...queries: Array<Query>): Array<string> => {
-
-
->>>>>>> 2aa268c (add dcid query logic)
     // Sanity checks
     const catNames = new Set<string>()
     queries.forEach((query) => {
@@ -212,7 +165,6 @@ export const query2dcids = (dcids: Array<Dcid>, categories: CategoryType, ...que
             throw new Error(`missing dimensions for category query: ${query.category}`)
         }
     })
-<<<<<<< HEAD
     // console.log(queries)
     const qs = new QuerySet(categories, categoryDependencies, ...queries)
     const out = new Array<string>()
@@ -220,13 +172,6 @@ export const query2dcids = (dcids: Array<Dcid>, categories: CategoryType, ...que
         // console.log('queryDimensions', queryDimensions)
         dcids.forEach((dcid) => {
             // console.log('dcid.dimensions', dcid.dimensions)
-=======
-
-    const qs = new QuerySet(...queries)
-    const out = new Array<string>()
-    qs.compile(categories).forEach((queryDimensions) => {
-        dcids.forEach((dcid) => {
->>>>>>> 2aa268c (add dcid query logic)
             const intersection = setsUtil.setIntersection(dcid.dimensions, queryDimensions)
             if (setsUtil.setEqual(queryDimensions, intersection)) {
                 out.push(dcid.dcid)
