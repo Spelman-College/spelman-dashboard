@@ -11,7 +11,11 @@ import TabPanel from 'primevue/tabpanel';
 import Tree from 'primevue/tree';
 import RadioButton from 'primevue/radiobutton';
 import Card from 'primevue/card';
+import VueAnalytics from 'vue-analytics';
 
+Vue.use(VueAnalytics, {
+  id: 'G-30X50JL2XS'
+});
 
 const app = createApp(App)
 app.use(PrimeVue)
