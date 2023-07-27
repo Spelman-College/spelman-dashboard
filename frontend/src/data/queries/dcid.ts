@@ -1,3 +1,6 @@
+export type CategoryType = {
+    [key: string]: Set<string>
+}
 
 export interface DcidFilter {
     ignorePrefix: string
