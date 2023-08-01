@@ -1,5 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
-import { Query, QuerySet, CategoryType } from './query'
+import { CategoryType } from './dcid'
+import { Query, QuerySet, validateQueries } from './query'
 
 const categoryDimensions: CategoryType = {
     'pets': new Set<string>([
@@ -109,4 +110,55 @@ describe('QuerySet compile method', () => {
         expect(out[3].has('pets:dog')).toEqual(true)
         expect(out[3].has('tools:ruler')).toEqual(true)
     })
+})
+
+describe('validateQueries', () => {
+    const categories: CategoryType = {
+        'pets': new Set<string>([
+            'cat',
+            'dog'
+        ]),
+        'cars': new Set<string>([
+            'fast',
+            'red'
+        ])
+    }
+
+    const annotatedDimensions = new Set(['pets:cat', 'pets:dog', 'cars:fast', 'cars:red'])
+
+    test('duplicate categories returns error', () => {
+        const q1 = new Query('pets', 'cat')
+        const q2 = new Query('pets', 'dog')
+        const err = validateQueries(categories, annotatedDimensions, q1, q2)
+        expect(err).toEqual("query has duplicate category: pets")
+    })
+
+    test('missing category returns error', () => {
+        const q1 = new Query('pets', 'cat')
+        const q2 = new Query('missing', 'unknown')
+        const err = validateQueries(categories, annotatedDimensions, q1, q2)
+        expect(err).toEqual("unknown category: missing")
+    })
+
+    test('unknown category dimensions return error', () => {
+        const q1 = new Query('pets', 'cat', 'TRUCK')
+        const err = validateQueries(categories, annotatedDimensions, q1)
+        expect(err).toEqual("query category has unknown dimensions: pets:TRUCK")
+    })
+
+    test('query without dimensions return error', () => {
+        const q1 = new Query('pets')
+        const err = validateQueries(categories, annotatedDimensions, q1)
+        expect(err).toEqual("missing dimensions for category query: pets")
+    })
+
+    test('valid queries return empty string', () => {
+        const q1 = new Query('pets', 'cat', 'dog')
+        const q2 = new Query('cars', 'fast', 'red')
+        let err = validateQueries(categories, annotatedDimensions, q1, q2)
+        expect(err).toEqual('')
+        err = validateQueries(categories, annotatedDimensions, q1)
+        expect(err).toEqual('')
+    })
+
 })

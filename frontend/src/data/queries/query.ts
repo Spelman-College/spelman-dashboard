@@ -1,9 +1,9 @@
 import * as setsUtil from "./sets"
-import { Dcid } from "./dcids"
+import { CategoryType } from "./dcid"
 
-
-export type CategoryType = {
-    [key: string]: Set<string>
+export type QueryResult = {
+    error: string
+    results: Array<string>
 }
 
 export class Query {
@@ -37,6 +37,11 @@ export class QuerySet {
     fullQueries: Array<Query>
 
     allCategories: CategoryType
+
+    // categoryDependencies are subset dependencies. When a target category query
+    // contains a subset of dimensions, AND a dependency category query contains
+    // all dimensions, we need to query each of the dependencies dimensions individually.
+    // These dependencies are defined as [<target>, <dependency>] pairs.
     categoryDependencies: [string, string][]
 
     annotatedDimensions: CategoryType
@@ -84,8 +89,14 @@ export class QuerySet {
         remaining.forEach((cat) => {
             this.fullQueries.push(new Query(cat, ''))
         })
+    }
 
-        // TODO: put sanity checks here
+    logQuery(): string {
+        const out = []
+        this.queries.forEach((q) => {
+            out.push(`<${[...q.dimensions].join(' ')}>`)
+        })
+        return [...out].join(', ')
     }
 
     selectQueryDimensions() {
@@ -93,8 +104,6 @@ export class QuerySet {
         const includeAllDimensions = new Set()
         this.categoryDependencies.forEach((deps) => {
             const [target, dependency] = deps
-            console.log('target', target, 'dependency', dependency)
-
             if (includeAllDimensions.has(dependency)) {
                 return
             }
@@ -112,7 +121,7 @@ export class QuerySet {
                 includeAllDimensions.add(dependency)
             }
         })
-        console.log('includeAllDimensions', includeAllDimensions)
+
         // Once we've marked all category dependencies, we can iterate over all queries,
         // adding the full set of dimensions to category queries that require it.
         const querySets = []
@@ -130,53 +139,62 @@ export class QuerySet {
 
     compile(): Array<Set<string>> {
         const dimensions = this.selectQueryDimensions()
-        console.log('dimensions', dimensions)
         return setsUtil.setsProduct(...dimensions)
     }
 }
 
+export const validateQueries = (categories: CategoryType,
+                                annotatedDimensions: Set<string>,
+                                ...queries: Array<Query>): string => {
+    const catNames = new Set<string>()
+    try {
+        queries.forEach((query) => {
+            if (catNames.has(query.category)) {
+                throw new Error(`query has duplicate category: ${query.category}`)
+            }
+            catNames.add(query.category)
+            const catDimensions = categories[query.category]
+            if (catDimensions === undefined) {
+                throw new Error(`unknown category: ${query.category}`)
+            }
+            if (query.dimensions.size == 0) {
+                throw new Error(`missing dimensions for category query: ${query.category}`)
+            }
+            const intersected = setsUtil.setIntersection(annotatedDimensions, query.dimensions)
+            if (!setsUtil.setEqual(intersected, query.dimensions)) {
+                const diff = setsUtil.setDifference(query.dimensions, annotatedDimensions)
+                let difference = []
+                diff.forEach((item) => {
+                    difference.push(item)
+                })
+                throw new Error(`query category has unknown dimensions: ${difference}`)
+            }
+        })
+    } catch (e) {
+        return e.message
+    }
+    return ''
+}
 
 export const query2dcids = (dcids: Array<Dcid>,
                             categories: CategoryType,
                             categoryDependencies: [string, string][],
-                            ...queries: Array<Query>): Array<string> => {
-    // Sanity checks
-    const catNames = new Set<string>()
-    queries.forEach((query) => {
-        if (catNames.has(query.category)) {
-            throw new Error(`query has duplicate category: ${query.category}`)
-        }
-        catNames.add(query.category)
-        const catDimensions = categories[query.category]
-        if (catDimensions === undefined) {
-            throw new Error(`missing dimensions for category: ${query.category}`)
-        }
-        // TODO: cache these values
-        const annotatedCatset = new Set<string>()
-        catDimensions.forEach((dim) => {
-            annotatedCatset.add(`${query.category}:${dim}`)
-        })
-        const intersected = setsUtil.setIntersection(annotatedCatset, query.dimensions)
-        if (!setsUtil.setEqual(intersected, query.dimensions)) {
-            const diff = setsUtil.setDifference(query.dimensions, annotatedCatset)
-            throw new Error(`query has unknown categories: ${diff}`)
-        }
-        if (query.dimensions.size == 0) {
-            throw new Error(`missing dimensions for category query: ${query.category}`)
-        }
-    })
-    // console.log(queries)
+                            annotatedDimensions: Set<string>,
+                            ...queries: Array<Query>): QueryResult => {
+    const err = validateQueries(categories, annotatedDimensions, ...queries)
+    if (err != '') {
+        return {'error': err} as QueryResult
+    }
     const qs = new QuerySet(categories, categoryDependencies, ...queries)
+
     const out = new Array<string>()
     qs.compile().forEach((queryDimensions) => {
-        // console.log('queryDimensions', queryDimensions)
         dcids.forEach((dcid) => {
-            // console.log('dcid.dimensions', dcid.dimensions)
             const intersection = setsUtil.setIntersection(dcid.dimensions, queryDimensions)
             if (setsUtil.setEqual(queryDimensions, intersection)) {
                 out.push(dcid.dcid)
             }
         })
     })
-    return out
+    return {'results': out} as QueryResult
 }
