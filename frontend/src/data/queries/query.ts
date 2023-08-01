@@ -52,6 +52,7 @@ export class QuerySet {
 
         this.queries = queries
         this.fullQueries = []
+        this.fullCategories = new Set<string>()
         this.partialQueries = []
         this.partialCategories = new Set<string>()
         this.categoryDependencies = categoryDependencies
@@ -79,6 +80,7 @@ export class QuerySet {
                                                             this.annotatedDimensions[q.category])
             if (q.dimensions.size == 0 || containsAllDimensions) {
                 this.fullQueries.push(q)
+                this.fullCategories.add(q.category)
                 return
             }
             this.partialQueries.push(q)
@@ -130,6 +132,16 @@ export class QuerySet {
             if (includeAllDimensions.has(q.category)) {
                 const replacement = new Query(q.category, ...this.allCategories[q.category])
                 querySets.push(replacement.compile())
+                return
+            }
+            // There are no subset dependents for this query category. Now let's
+            // check if this query includes all dimensions for this category.
+            if (this.fullCategories.has(q.category)) {
+
+                // Add the generic key for all dimensions, this will prevent returning each
+                // dimension in the category.
+                const substitute = new Query(q.category, '')
+                querySets.push(substitute.compile())
                 return
             }
             querySets.push(q.compile())
