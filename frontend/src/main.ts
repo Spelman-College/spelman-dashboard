@@ -11,11 +11,7 @@ import TabPanel from 'primevue/tabpanel';
 import Tree from 'primevue/tree';
 import RadioButton from 'primevue/radiobutton';
 import Card from 'primevue/card';
-import VueAnalytics from 'vue-analytics';
-
-Vue.use(VueAnalytics, {
-  id: 'G-30X50JL2XS'
-});
+import VueGtag from "vue-gtag";
 
 const app = createApp(App)
 app.use(PrimeVue)
@@ -28,4 +24,8 @@ app.component('TabPanel', TabPanel)
 app.component('Tree', Tree)
 app.component('RadioButton', RadioButton)
 app.component('Card', Card)
+app.use(VueGtag, {
+  config: { id: "G-30X50JL2XS" }
+})
 app.mount('#app')
+
