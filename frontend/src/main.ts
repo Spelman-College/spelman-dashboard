@@ -14,7 +14,7 @@ import Card from 'primevue/card';
 
 
 const app = createApp(App)
-app.use(PrimeVue)
+app.use(PrimeVue, { unstyled: true })
 app.component('Button', Button)
 app.component('DataTable', DataTable)
 app.component('Column', Column)
