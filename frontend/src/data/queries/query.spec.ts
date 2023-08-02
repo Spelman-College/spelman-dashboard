@@ -86,29 +86,16 @@ describe('QuerySet compile method', () => {
         expect(out[0].has('tools:hammer')).toEqual(true)
     })
 
-    test('2 categories 2 dimensions each', () => {
+    test('2 categories 2 dimensions each, we use the generic key with an empty dimension to refer to all dimensions', () => {
         const A = new Query('pets', 'cat', 'dog')
         const B = new Query('tools', 'hammer', 'ruler')
         const qs = new QuerySet(categoryDimensions, [], A, B)
         const out = qs.compile()
-        expect(out.length).toEqual(4)
+        expect(out.length).toEqual(1)
 
         expect(out[0].size).toEqual(2)
-        expect(out[0].has('pets:cat')).toEqual(true)
-        expect(out[0].has('tools:hammer')).toEqual(true)
-
-        expect(out[1].size).toEqual(2)
-        expect(out[1].has('pets:cat')).toEqual(true)
-        expect(out[1].has('tools:ruler')).toEqual(true)
-
-        expect(out[2].size).toEqual(2)
-        expect(out[2].has('pets:dog')).toEqual(true)
-        expect(out[2].has('tools:hammer')).toEqual(true)
-
-
-        expect(out[3].size).toEqual(2)
-        expect(out[3].has('pets:dog')).toEqual(true)
-        expect(out[3].has('tools:ruler')).toEqual(true)
+        expect(out[0].has('pets:')).toEqual(true)
+        expect(out[0].has('tools:')).toEqual(true)
     })
 })
 
