@@ -1,25 +1,40 @@
+
 export type CategoryType = {
     [key: string]: Set<string>
 }
 
 export interface DcidFilter {
     ignorePrefix: string
-    omitDimensions: Set<string>
+    omitDimensions: Set<string>;
+
+    // This is a mapping of DCID to an array of dimensions in the form of `${category}:${dimension}`.
+    additions: {[key: string]: Array<string>}
 }
 
-export class Dcid {
+
+export class DataCommonsIdentifier {
     dcid: string;
     dimensions: Set<string>;
     dim2cat: {[key: string]: string}
+    filter: DcidFilter
 
     constructor(dcid: string, filter: DcidFilter, dim2cat: {[key: string]: string}) {
         this.dcid = dcid
         this.dimensions = new Set<string>()
         this.dim2cat = dim2cat
+        this.filter = filter
+    }
+}
+
+
+
+export class Dcid extends DataCommonsIdentifier {
+    constructor(dcid: string, filter: DcidFilter, dim2cat: {[key: string]: string}) {
+        super(dcid, filter, dim2cat)
 
         let key = this.dcid
-        if (filter.ignorePrefix != '' && key.startsWith(filter.ignorePrefix)) {
-            key = key.slice(filter.ignorePrefix.length)
+        if (this.filter.ignorePrefix != '' && key.startsWith(this.filter.ignorePrefix)) {
+            key = key.slice(this.filter.ignorePrefix.length)
         }
         if (key.startsWith('_')) {
             key = key.slice(1)
@@ -32,13 +47,13 @@ export class Dcid {
             if (dim == '') {
                 return
             }
-            if (filter.omitDimensions.has(dim)) {
+            if (this.filter.omitDimensions.has(dim)) {
                 return
             }
 
             const cat = dim2cat[dim]
             if (cat === undefined) {
-                throw Error(`missing dimension: ${dim} in the dimension to category map`)
+                      throw Error(`missing dimension: ${dim} in the dimension to category map ${this.dcid} ${sdims}`)
             }
             unUsedCats.delete(cat)
             this.dimensions.add(`${cat}:${dim}`)
@@ -50,5 +65,15 @@ export class Dcid {
         unUsedCats.forEach((cat) => {
             this.dimensions.add(`${cat}:`)
         })
+
+        // Check for additional dimensions to add.
+        if (filter.additions !== undefined) {
+            const additions = filter.additions[this.dcid]
+            if (additions !== undefined) {
+                additions.forEach((catdim) => {
+                    this.dimensions.add(catdim)
+                })
+            }
+        }
     }
 }
