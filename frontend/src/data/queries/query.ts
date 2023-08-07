@@ -1,5 +1,5 @@
 import * as setsUtil from "./sets"
-import { CategoryType } from "./dcid"
+import type { CategoryType } from "./dcid"
 
 export type QueryResult = {
     error: string

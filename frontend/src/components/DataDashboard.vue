@@ -1,12 +1,18 @@
-<script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { Parser } from '@json2csv/plainjs';
-import { setMaxIdleHTTPParsers } from 'http';
+<script setup lang="ts">;
+ import { ref, watchEffect } from 'vue';
+ import { Parser } from '@json2csv/plainjs';
+ import { setMaxIdleHTTPParsers } from 'http';
+ import { ApiCache } from '../data/dc/cache';
+ import { SeriesClient } from '../data/dc/client';
+ import { Query_demo } from '../data/demo/query';
+ import { Query } from '../data/queries/query';
 
-const tableItems = ref(Array.from({ length: 5 }));
-const gender = ref("Males");
-
-const tableCols = [
+ const dcClient: SeriesClient = new SeriesClient('country/USA',
+						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
+ const tableItems = ref(Array.from({ length: 5 }));
+ const gender = ref("Males");
+ const dataset = new Query_demo()
+ const tableCols = [
   {
     field: "date",
     header: "Date"
@@ -19,7 +25,7 @@ const tableCols = [
 
 const loading_download = ref(false);
 
-const downloadCSV = (gender) => {
+const downloadCSV = (dcid: string) => {
   loading_download.value = true;
   try {
     const parser_opts = {};
@@ -29,52 +35,42 @@ const downloadCSV = (gender) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.setAttribute('href', url);
-    a.setAttribute('download', genderToDcid(gender) + '.csv');
+    a.setAttribute('download', `${dcid}.csv`);
     a.click();
   } catch (err) {
     console.log(err);
   }
   loading_download.value = false;
 }
-
-let apiCache = new ApiCache();
-
-async function getData(dcid: string) {
-
-  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
-  let request = "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
-
-  if (apiCache.recordExists(request)) {
-    tableItems.value = apiCache.get(request).observations;
+ async function getData(dcid: string) {
+     const values = await dcClient.getData(dcid)
+     tableItems.value = values
   }
 
-  else {
-    const res = await fetch(request);
-    const finalRes = await res.json();
-    tableItems.value = finalRes.observations;
-    apiCache.set(request, finalRes);
-  }
-}
-
-function genderToDcid(gender: string): string {
-  let dcidMap = new Map<string, string>([
-    ["Males", "Count_Person_25OrMoreYears_EducationalAttainmentBachelorsDegree_Male"],
-    ["Females", "Count_Person_25OrMoreYears_EducationalAttainmentBachelorsDegree_Female"]
-  ]);
-
-  let dcid = dcidMap.get(gender);
-  return dcid == undefined ? "" : dcid;
-}
-
-watchEffect(async () => {
-  getData(genderToDcid(gender.value))
-}) 
+ const genderToDcid = (gender: string): string => {
+     let query: string = 'Female'
+     if (gender == 'Males') {
+	 query = 'Male'
+     }
+     const genderQuery = new Query('gender', query)
+     const majorQuery = new Query('major', 'BachelorOfScienceAndEngineeringMajor')
+     const response = dataset.query(genderQuery, majorQuery)
+     if (response.error !== undefined) {
+	 throw new Error(`Error querying dataset: ${response.error}`)
+     }
+     return response.results[0]
+ }
+ watchEffect(async () => {
+     getData(genderToDcid(gender.value))
+})
 </script>
 
 
 <template>
-  <div><Button label="Download CSV" @click=downloadCSV(gender) :loading="loading_download" /></div>
-  <span>Show US Population with a Bachelor's Degree for: {{ gender }}</span>
+  <div><Button label="Download CSV" @click=downloadCSV(genderToDcid(gender)) :loading="loading_download" /></div>
+  <p>
+      FIELD OF BACHELOR'S DEGREE FOR FIRST MAJOR American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree in Science or Engineering for: {{ gender }}
+  </p>
 
   <div class="p-field-radiobutton">
     <RadioButton id="gender" name="gender" value="Males" v-model="gender" />
@@ -103,25 +99,4 @@ export default {
   methods: {},
 };
 
-type CacheResult = any;
-
-export class ApiCache {
-  private static instance: ApiCache;
-  private cache: Map<string, any> = new Map();
-
-  public set = (url: string, result: any): void => {
-    if (!this.recordExists(url)) {
-      this.cache.set(url, result);
-    }
-  }
-
-  public get = (url: string): CacheResult | null => {
-    return this.cache.get(url);
-
-  }
-
-  public recordExists = (url: string): boolean => {
-    return !!this.cache.has(url);
-  }
-}
 </script>
