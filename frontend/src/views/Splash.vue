@@ -1,5 +1,5 @@
 <template>
-  <div id="splash">
+  <div class="background">
     <h1>
       Breaking Boundaries<br />
       and Transforming<br />
@@ -24,11 +24,6 @@
 
 <style scoped>
 @import "/homepage.css";
-
-#splash {
-  background-color: #22262B;
-  padding: 2rem 3rem;
-}
 
 #splash-graphics {
   position: absolute;

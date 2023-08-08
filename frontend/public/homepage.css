@@ -1,3 +1,8 @@
+div.background {
+  background-color: #22262B;
+  padding: 2rem 3rem;
+}
+
 h1 {
   color: #acf0ff;
   font-family: 'Noto Sans Mono';
