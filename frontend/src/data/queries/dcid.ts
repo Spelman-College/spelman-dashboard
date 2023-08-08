@@ -3,7 +3,7 @@ export type CategoryType = {
     [key: string]: Set<string>
 }
 
-export interface DcidFilter {
+export type  DcidFilter = {
     ignorePrefix: string
     omitDimensions: Set<string>;
 
