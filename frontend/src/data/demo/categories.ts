@@ -1,8 +1,9 @@
+import { Male, Female } from '../queries/dimensions'
 
 export const Categories = {
     'gender': new Set<string>([
-        'Male',
-	'Female',
+	Male,
+	Female
     ]),
     'age': new Set<string>([
 	'40To64Years',
