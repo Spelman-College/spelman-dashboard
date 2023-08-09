@@ -1,34 +1,58 @@
 <template>
-  <Card class="card">
+  <Card>
     <template #header>
       <img alt="user header" src="/story_placeholder1.jpg" />
     </template>
-    <template #title> Advanced Card </template>
-    <template #subtitle> Card subtitle </template>
+    <template #title>
+      <h1>
+        <slot name="name"></slot>
+      </h1>
+    </template>
     <template #content>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam
-        deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
-        neque
-        quas!
+        <slot name="story"></slot>
       </p>
     </template>
     <template #footer>
-      Hello world
-      <!-- <Button icon="pi pi-check" label="Save" />
-      <Button icon="pi pi-times" label="Cancel" severity="secondary" style="margin-left: 0.5em" /> -->
+      <h2>Read her story &rarr;</h2>
     </template>
   </Card>
 </template>
 
 <style scoped>
-.card {
+.p-card {
   background-color: white;
+  border-radius: 16px;
   width: 25em;
+}
+
+:deep(.p-card-body) {
+  padding: 2em;
+}
+
+h1 {
+  color: #000000;
+  font-size: 26px;
+  line-height: normal;
+}
+
+h2 {
+  color: #313b49;
+  font-family: 'Noto Sans Mono';
+  font-size: 21px;
+  font-weight: 700;
+}
+
+p {
+  color: #565656;
+  font-family: Roboto;
+  font-size: 21px;
+  line-height: 140%;
 }
 
 img {
   width: 25em;
   height: 25em;
+  border-radius: 16px 16px 0px 0px;
 }
 </style>

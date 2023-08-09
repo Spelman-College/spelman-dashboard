@@ -12,19 +12,32 @@ function prevPage() {
   document.getElementById('prevButton')?.click()
 }
 
-const stories = [{
-  "thing": "1",
-}, {
-  "thing": "2",
-}, {
-  "thing": "3",
-}, {
-  "thing": "4",
-}, {
-  "thing": "5",
-}, {
-  "thing": "6",
-}]
+const stories = [
+  {
+    name: "Dr. Helene D. Gayle - President of Spelman College",
+    story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non."
+  },
+  {
+    name: "Shakiyla Huggins - Meeting the Challenge",
+    story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non."
+  },
+  {
+    name: "Deanna Clemmer - An Invaluable Lab",
+    story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non."
+  },
+  {
+    name: "4",
+    story: "Story 4"
+  },
+  {
+    name: "5",
+    story: "Story 5"
+  },
+  {
+    name: "6",
+    story: "Story 6"
+  },
+]
 
 const page = ref(0)
 </script>
@@ -45,7 +58,10 @@ const page = ref(0)
         :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
         <template #item="slotProps">
           <p>{{ slotProps.data.thing }}</p>
-          <StoryCard></StoryCard>
+          <StoryCard>
+            <template #name>{{ slotProps.data.name }}</template>
+            <template #story>{{ slotProps.data.story }}</template>
+          </StoryCard>
         </template>
       </Carousel>
     </div>
