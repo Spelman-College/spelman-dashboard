@@ -1,7 +1,12 @@
+<script setup lang="ts">
+const props = defineProps({
+  imgSrc: String,
+})
+</script>
 <template>
   <Card>
     <template #header>
-      <img alt="user header" src="/story_placeholder1.jpg" />
+      <img alt="user header" :src="imgSrc" />
     </template>
     <template #title>
       <h1>
