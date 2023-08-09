@@ -1,6 +1,6 @@
 import { ApiCache } from './cache'
 
-
+// Used for timeseries data
 export class SeriesClient {
     private cache: ApiCache
     baseURI: string = 'https://api.datacommons.org/v1/observations/series'
