@@ -5,14 +5,13 @@
  import { ApiCache } from '../data/dc/cache'
  import { SeriesClient } from '../data/dc/client'
  import { Query_demo } from '../data/demo/query'
- import { formatPlot } from '../data/demo/plot'
+
  import { Query } from '../data/queries/query'
+ import  Demo from './data/Demo.vue'
  import { Female, Male } from '../data/queries/dimensions'
- import * as Plot from "@observablehq/plot"
- import PlotFigure from "./PlotFigure.vue"
 
 
-console.log(PlotFigure)
+
  const dcClient: SeriesClient = new SeriesClient('country/USA',
 						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
  const tableItems = ref([]);
@@ -51,7 +50,6 @@ console.log(PlotFigure)
  }
  async function getData(dcid: string) {
      const values = await dcClient.getData(dcid)
-     console.log(values)
      tableItems.value = values
  }
 
@@ -80,58 +78,19 @@ console.log(PlotFigure)
 	<Button label="Download CSV" @click=downloadCSV(genderToDcid(gender)) :loading="loading_download" />
     </div>
     <p>
-	FIELD OF BACHELOR'S DEGREE FOR FIRST MAJOR American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree in Science or Engineering for: {{ dim2text[gender] }}
+	FIELD OF BACHELOR'S DEGREE FOR FIRST MAJOR American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree in Science or Engineering by gender.
     </p>
 
     <div class="p-field-radiobutton">
 	<RadioButton id="gender" name="gender" value=Male v-model="gender" />
-	<label for="gender">Males</label>
+	<label for="gender">Men</label>
     </div>
     <div class="p-field-radiobutton">
 	<RadioButton id="gender2" name="gender" value=Female v-model="gender" />
-	<label for="gender2">Females</label>
+	<label for="gender2">Women</label>
     </div>
+    <Demo :data="tableItems" :title="dim2text[gender]" />
 
-    <div class="card">
-	<DataTable :value="tableItems" tableStyle="min-width: 50rem">
-	    <Column v-for="col of tableCols" :key="col.field" :field="col.field" :header="col.header"></Column>
-	</DataTable>
-    </div>
-    <div>
-
-	<PlotFigure
-	    :options="{
-		 x: {
-		    axis: null
-		},
-		y: {
-		    tickFormat: 's', grid: true
-		},
-		color: {
-		    scheme: 'spectral',
-		    legend: true
-		},
-		marks: [
-		    Plot.barY(formatPlot(tableItems, 'key', gender), {
-			x: 'key',
-			y: 'date',
-			fx: gender,
-			fill: 'key',
-			sort: {
-			    x: null,
-			    color: null,
-			    fx: {
-				value: '-y',
-				reduce: 'sum'
-			    }
-			}
-		    }),
-		    Plot.ruleY([0])
-		],
-
-	    }">
-	</PlotFigure>
-  </div>
 </template>
 
 <script lang="ts">

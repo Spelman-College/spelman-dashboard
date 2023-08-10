@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as Plot from "@observablehq/plot"
-import { h, withDirectives, defineProps } from "vue"
+import { defineProps } from "vue"
 
 const props = defineProps({
      options: Object
@@ -9,5 +9,5 @@ const props = defineProps({
 </script>
 
 <template>
-	<svg v-html="Plot.plot(props.options).outerHTML" />
+	<div v-html="Plot.plot(props.options).outerHTML" />
 </template>
