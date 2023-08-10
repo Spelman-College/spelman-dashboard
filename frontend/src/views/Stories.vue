@@ -14,7 +14,7 @@ function prevPage() {
 
 const stories = [
   {
-    name: "Dr. Helene D. Gayle - President of Spelman College",
+    name: "Dr. Helene D. Gayle, President of Spelman College",
     story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non.",
     imgSrc: "story_placeholder1.jpg"
   },
@@ -56,11 +56,12 @@ const page = ref(0)
       make their mark on the world
     </p>
 
-    <div class="nav-buttons">
-      <button @click="prevPage">&larr;</button> <button @click="nextPage">&rarr;</button>
+    <div class="carousel-nav">
+      <button class="carousel-nav-buttons" @click="prevPage">&larr;</button> <button class="carousel-nav-buttons"
+        @click="nextPage">&rarr;</button>
     </div>
     <div>
-      <Carousel :value="stories" :numVisible="3" :numScroll="3"
+      <Carousel :value="stories" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
         :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
         <template #item="slotProps">
           <StoryCard :img-src="slotProps.data.imgSrc">
@@ -70,14 +71,35 @@ const page = ref(0)
         </template>
       </Carousel>
     </div>
-    <button>Read more stories</button>
+    <button id="read-more-stories">Read more stories</button>
   </div>
 </template>
 
 <style>
 @import "/homepage.css";
 
+.carousel-nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5em;
+  margin-bottom: 4em;
+}
+
+.carousel-nav button {
+  text-align: center;
+  width: 4em;
+  height: 4em;
+  margin-left: 2em;
+}
+
+#read-more-stories {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4em;
+}
+
 .hidden {
-  display: none;
+  visibility: hidden;
 }
 </style>

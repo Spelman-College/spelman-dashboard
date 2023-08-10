@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { h, useSlots } from 'vue';
+
 const props = defineProps({
   imgSrc: String,
 })
+
+const slots = useSlots()
+const storyString = slots.story?.()[0].children
+const maxLength = 100
+const story = () => h('p', {}, storyString.length > 100 ? `${storyString?.slice(0, 100)}...` : storyString)
 </script>
 <template>
   <Card>
@@ -15,7 +22,7 @@ const props = defineProps({
     </template>
     <template #content>
       <p>
-        <slot name="story"></slot>
+        <story />
       </p>
     </template>
     <template #footer>
@@ -29,6 +36,7 @@ const props = defineProps({
   background-color: white;
   border-radius: 16px;
   width: 25em;
+  height: 50em;
 }
 
 :deep(.p-card-body) {
