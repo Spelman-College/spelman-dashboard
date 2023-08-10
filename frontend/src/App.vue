@@ -2,6 +2,7 @@
 import Header from '@/views/Header.vue'
 import Splash from '@/views/Splash.vue'
 import Stories from '@/views/Stories.vue'
+import Stat from '@/views/Stat.vue'
 import Footer from '@/views/Footer.vue'
 </script>
 
@@ -9,6 +10,7 @@ import Footer from '@/views/Footer.vue'
     <Header></Header>
     <Splash></Splash>
     <Stories></Stories>
+    <Stat></Stat>
     <Footer></Footer>
 </template>
 
