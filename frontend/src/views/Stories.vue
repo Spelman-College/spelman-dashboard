@@ -50,7 +50,7 @@ const page = ref(0)
 
 <template>
   <div class="background">
-    <h1>Read their stories</h1>
+    <h2>Read their stories</h2>
     <p>
       Celebrating Black women in STEM and inspiring others to<br />
       make their mark on the world
