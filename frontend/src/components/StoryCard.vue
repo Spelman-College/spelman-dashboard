@@ -8,7 +8,7 @@ const props = defineProps({
 const slots = useSlots()
 const storyString = slots.story?.()[0].children
 const maxLength = 100
-const story = () => h('p', {}, storyString.length > 100 ? `${storyString?.slice(0, 100)}...` : storyString)
+const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.slice(0, maxLength)}...` : storyString)
 </script>
 <template>
   <Card>
