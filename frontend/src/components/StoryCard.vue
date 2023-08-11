@@ -44,9 +44,10 @@ const story = () => h('p', {}, storyString.length > 100 ? `${storyString?.slice(
 }
 
 h1 {
-  color: #000000;
+  color: #101115;
   font-size: 26px;
   line-height: normal;
+  letter-spacing: normal;
 }
 
 h2 {

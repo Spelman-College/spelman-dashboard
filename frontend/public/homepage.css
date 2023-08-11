@@ -1,5 +1,4 @@
-div.background {
-  background-color: #22262B;
+div.view-container {
   padding: 2rem 3rem;
 }
 
@@ -23,11 +22,19 @@ h2 {
 }
 
 p {
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: 'DM Sans';
   font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: 4rem;
+}
+
+a {
+  color: #4fdfff;
+  font-family: 'Noto Sans Mono';
+  font-size: 1.3125rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 button {
@@ -40,4 +47,13 @@ button {
   font-size: 14px;
   font-weight: 500;
   padding: 10px 20px;
+}
+
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }

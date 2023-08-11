@@ -7,15 +7,38 @@ import Footer from '@/views/Footer.vue'
 </script>
 
 <template>
-    <Header></Header>
-    <Splash></Splash>
-    <Stories></Stories>
-    <Stat></Stat>
-    <Footer></Footer>
+    <div id="container">
+        <Header></Header>
+        <div class="view">
+            <Splash></Splash>
+        </div>
+        <div class="view">
+            <Stories></Stories>
+        </div>
+        <div class="view gradient">
+            <Stat></Stat>
+        </div>
+        <Footer></Footer>
+    </div>
 </template>
 
 <style>
 body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #22262b;
+}
+
+div#container {
+    width: 90rem;
+}
+
+div.view {
+    padding: 2rem 3rem;
+}
+
+div.gradient {
+    background: linear-gradient(180deg, rgba(34, 38, 43, 0.00) 0%, #181818 100%);
 }
 </style>

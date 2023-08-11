@@ -1,23 +1,21 @@
 <template>
-  <div class="background">
-    <h1>
-      Breaking Boundaries<br />
-      and Transforming<br />
-      Futures
-    </h1>
-    <p>
-      Amplifying the stories and impact of Black women in STEM<br />
-      through data, insights, and advocacy
-    </p>
-    <button>Visit the Data Dashboard</button>
-    <div id="splash-graphics">
-      <img src="/splash.png" alt="" id="splash-image" />
-      <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
-      <div id="plusses">
-        <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
-        <img src="/plus_icon_2.svg" alt="" class="plus-icon" id="plus-icon-2" />
-        <img src="/plus_icon_3.svg" alt="" class="plus-icon" id="plus-icon-3" />
-      </div>
+  <h1>
+    Breaking Boundaries<br />
+    and Transforming<br />
+    Futures
+  </h1>
+  <p>
+    Amplifying the stories and impact of Black women in STEM<br />
+    through data, insights, and advocacy
+  </p>
+  <button>Visit the Data Dashboard</button>
+  <div id="splash-graphics">
+    <img src="/splash.png" alt="" id="splash-image" />
+    <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
+    <div id="plusses">
+      <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
+      <img src="/plus_icon_2.svg" alt="" class="plus-icon" id="plus-icon-2" />
+      <img src="/plus_icon_3.svg" alt="" class="plus-icon" id="plus-icon-3" />
     </div>
   </div>
 </template>
