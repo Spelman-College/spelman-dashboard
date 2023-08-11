@@ -31,3 +31,19 @@
 	<Organization :org="row" :idx="idx.toString()"></Organization>
     </div>
 </template>
+
+<script lang="ts">
+export default {
+    name: 'App',
+  
+    methods : {
+    buttonClicked() {
+      this.$gtag.event('download-click', {
+        'event_category': 'downloads',
+        'event_label': 'Download Button Clicked',
+        'value': 1
+      })
+    }
+  },
+  }
+</script>
