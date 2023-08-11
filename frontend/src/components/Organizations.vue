@@ -5,9 +5,20 @@
  const sid = import.meta.env.VITE_ORGANIZATIONS_CONTENT_SHEET_ID
  const OrgURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
  const orgs = ref([]);
+
+ function buttonClicked() {
+      this.$gtag.event('download-click', {
+        'event_category': 'downloads',
+        'event_label': 'Download Button Clicked',
+        'value': 1
+      })
+    }
+
  const downloadOrgs = () => {
      window.open(OrgURI);
+     buttonClicked();
  }
+	
  async function getData() {
      const res = await Papa.parse(OrgURI, {
 	 header: true,
