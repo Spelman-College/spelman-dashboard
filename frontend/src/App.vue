@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import Header from '@/views/Header.vue'
 import Splash from '@/views/Splash.vue'
+import ExploreData from '@/views/ExploreData.vue'
 import Stories from '@/views/Stories.vue'
 import Stat from '@/views/Stat.vue'
+import MoreToExplore from '@/views/MoreToExplore.vue'
 import Footer from '@/views/Footer.vue'
 </script>
 
@@ -12,11 +14,17 @@ import Footer from '@/views/Footer.vue'
         <div class="view">
             <Splash></Splash>
         </div>
+        <div class="view gradient">
+            <ExploreData></ExploreData>
+        </div>
         <div class="view">
             <Stories></Stories>
         </div>
         <div class="view gradient">
             <Stat></Stat>
+        </div>
+        <div class="view">
+            <MoreToExplore></MoreToExplore>
         </div>
         <Footer></Footer>
     </div>

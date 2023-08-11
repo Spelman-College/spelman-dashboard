@@ -70,7 +70,7 @@ const page = ref(0)
       </template>
     </Carousel>
   </div>
-  <button id="read-more-stories">Read more stories</button>
+  <button class="center">Read more stories</button>
 </template>
 
 <style>
@@ -88,13 +88,6 @@ const page = ref(0)
   width: 4em;
   height: 4em;
   margin-left: 2em;
-}
-
-#read-more-stories {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 4em;
 }
 
 .hidden {

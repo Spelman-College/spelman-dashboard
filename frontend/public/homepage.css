@@ -49,6 +49,13 @@ button {
   padding: 10px 20px;
 }
 
+button.center {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4em;
+}
+
 .full-width {
   width: 100vw;
   position: relative;
