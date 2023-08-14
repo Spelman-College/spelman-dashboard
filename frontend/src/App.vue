@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import RouterView from 'vue-router'
 import Header from '@/views/Header.vue'
 import Splash from '@/views/Splash.vue'
 import ExploreData from '@/views/ExploreData.vue'
@@ -28,6 +29,8 @@ import Footer from '@/views/Footer.vue'
         </div>
         <Footer></Footer>
     </div>
+
+    <RouterView />
 </template>
 
 <style>
