@@ -26,7 +26,6 @@ const cards = [
   <h2>More to explore</h2>
   <p>Dive deeper into insights, metrics, news, and more about<br />
     Black women in STEM</p>
-  <!--Put these in a CSS grid -->
   <div class="explore-cards">
     <ExploreCard v-for="card in cards" v-key="card.header" :imgSrc="card.imgSrc">
       <template #header>
