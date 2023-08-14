@@ -5,22 +5,37 @@ import Footer from '@/views/Footer.vue'
 </script>
 
 <template>
-    <div id="container">
-        <Header></Header>
-        <RouterView />
-        <Footer></Footer>
-    </div>
+  <div id="container">
+    <Header></Header>
+    <RouterView />
+    <Footer></Footer>
+  </div>
 </template>
 
 <style>
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #22262b;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #22262b;
 }
 
 div#container {
-    width: 90rem;
+  width: 90rem;
 }
 </style>
+
+<script lang="ts">
+export default {
+  name: 'Home',
+
+  methods: {
+    track() {
+      this.$gtag.screenview({
+        app_name: 'App',
+        screen_name: 'Main screen',
+      })
+    }
+  }
+}
+</script>

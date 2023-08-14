@@ -1,95 +1,96 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { Parser } from '@json2csv/plainjs';
-import { setMaxIdleHTTPParsers } from 'http';
+ import { ref, watchEffect } from 'vue'
+ import { Parser } from '@json2csv/plainjs'
+ import { setMaxIdleHTTPParsers } from 'http'
+ import { ApiCache } from '../data/dc/cache'
+ import { SeriesClient } from '../data/dc/client'
+ import { Query_demo } from '../data/demo/query'
 
-const tableItems = ref(Array.from({ length: 5 }));
-const gender = ref("Males");
+ import { Query } from '../data/queries/query'
+ import  Demo from './data/Demo.vue'
+ import { Female, Male } from '../data/queries/dimensions'
 
-const tableCols = [
-  {
-    field: "date",
-    header: "Date"
-  },
-  {
-    field: "value",
-    header: "Population"
-  }
-]
 
-const loading_download = ref(false);
 
-const downloadCSV = (gender) => {
-  loading_download.value = true;
-  try {
-    const parser_opts = {};
-    const parser = new Parser(parser_opts);
-    const csv = parser.parse(tableItems.value);
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', genderToDcid(gender) + '.csv');
-    a.click();
-  } catch (err) {
-    console.log(err);
-  }
-  loading_download.value = false;
-}
+ const dcClient: SeriesClient = new SeriesClient('country/USA',
+						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
+ const tableItems = ref([]);
+ const gender = ref(Male);
 
-let apiCache = new ApiCache();
+ const dataset = new Query_demo()
+ const tableCols = [
+     {
+	 field: "date",
+	 header: "Date"
+     },
+     {
+	 field: "value",
+	 header: "Population"
+     }
+ ]
 
-async function getData(dcid: string) {
+ const loading_download = ref(false);
 
-  // This uses DataCommons' public API key. DO NOT INCLUDE A PRIVATE API KEY HERE!
-  let request = "https://api.datacommons.org/v1/observations/series/country/USA/" + dcid + "?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI";
+ const downloadCSV = (dcid: string) => {
+     loading_download.value = true;
+     try {
+	 const parser_opts = {};
+	 const parser = new Parser(parser_opts);
+	 const csv = parser.parse(tableItems.value);
+	 const blob = new Blob([csv], { type: 'text/csv' });
+	 const url = window.URL.createObjectURL(blob);
+	 const a = document.createElement('a');
+	 a.setAttribute('href', url);
+	 a.setAttribute('download', `${dcid}.csv`);
+	 a.click();
+     } catch (err) {
+	 console.log(err);
+     }
+     loading_download.value = false;
+ }
+ async function getData(dcid: string) {
+     const values = await dcClient.getData(dcid)
+     tableItems.value = values
+ }
 
-  if (apiCache.recordExists(request)) {
-    tableItems.value = apiCache.get(request).observations;
-  }
+ const genderToDcid = (gender: string): string => {
+     const genderQuery = new Query('gender', gender)
+     const majorQuery = new Query('major', 'BachelorOfScienceAndEngineeringMajor')
+     const response = dataset.query(genderQuery, majorQuery)
+     if (response.error !== undefined) {
+	 throw new Error(`Error querying dataset: ${response.error}`)
+     }
+     return response.results[0]
+ }
+ watchEffect(async () => {
+     getData(genderToDcid(gender.value))
+ })
 
-  else {
-    const res = await fetch(request);
-    const finalRes = await res.json();
-    tableItems.value = finalRes.observations;
-    apiCache.set(request, finalRes);
-  }
-}
-
-function genderToDcid(gender: string): string {
-  let dcidMap = new Map<string, string>([
-    ["Males", "Count_Person_25OrMoreYears_EducationalAttainmentBachelorsDegree_Male"],
-    ["Females", "Count_Person_25OrMoreYears_EducationalAttainmentBachelorsDegree_Female"]
-  ]);
-
-  let dcid = dcidMap.get(gender);
-  return dcid == undefined ? "" : dcid;
-}
-
-watchEffect(async () => {
-  getData(genderToDcid(gender.value))
-}) 
+ const dim2text = {
+     Male: 'Men',
+     Female: 'Women',
+ }
 </script>
 
 
 <template>
-  <div><Button label="Download CSV" @click=downloadCSV(gender) :loading="loading_download" /></div>
-  <span>Show US Population with a Bachelor's Degree for: {{ gender }}</span>
+    <div>
+	<Button label="Download CSV" @click=downloadCSV(genderToDcid(gender)) :loading="loading_download" />
+    </div>
+    <p>
+	FIELD OF BACHELOR'S DEGREE FOR FIRST MAJOR American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree in Science or Engineering by gender.
+    </p>
 
-  <div class="p-field-radiobutton">
-    <RadioButton id="gender" name="gender" value="Males" v-model="gender" />
-    <label for="gender">Males</label>
-  </div>
-  <div class="p-field-radiobutton">
-    <RadioButton id="gender2" name="gender" value="Females" v-model="gender" />
-    <label for="gender2">Females</label>
-  </div>
+    <div class="p-field-radiobutton">
+	<RadioButton id="gender" name="gender" value=Male v-model="gender" />
+	<label for="gender">Men</label>
+    </div>
+    <div class="p-field-radiobutton">
+	<RadioButton id="gender2" name="gender" value=Female v-model="gender" />
+	<label for="gender2">Women</label>
+    </div>
+    <Demo :data="tableItems" :title="dim2text[gender]" />
 
-  <div class="card">
-    <DataTable :value="tableItems" tableStyle="min-width: 50rem">
-      <Column v-for="col of tableCols" :key="col.field" :field="col.field" :header="col.header"></Column>
-    </DataTable>
-  </div>
 </template>
 
 <script lang="ts">
@@ -103,25 +104,4 @@ export default {
   methods: {},
 };
 
-type CacheResult = any;
-
-export class ApiCache {
-  private static instance: ApiCache;
-  private cache: Map<string, any> = new Map();
-
-  public set = (url: string, result: any): void => {
-    if (!this.recordExists(url)) {
-      this.cache.set(url, result);
-    }
-  }
-
-  public get = (url: string): CacheResult | null => {
-    return this.cache.get(url);
-
-  }
-
-  public recordExists = (url: string): boolean => {
-    return !!this.cache.has(url);
-  }
-}
 </script>

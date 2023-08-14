@@ -13,7 +13,7 @@ import Skeleton from 'primevue/skeleton';
 import TabPanel from 'primevue/tabpanel';
 import TabView from 'primevue/tabview';
 import Tree from 'primevue/tree';
-
+import VueGtag from "vue-gtag";
 
 const app = createApp(App)
 app.use(PrimeVue)
@@ -28,4 +28,8 @@ app.component('Skeleton', Skeleton)
 app.component('TabPanel', TabPanel)
 app.component('TabView', TabView)
 app.component('Tree', Tree)
+app.use(VueGtag, {
+  config: { id: "G-30X50JL2XS" }
+})
 app.mount('#app')
+
