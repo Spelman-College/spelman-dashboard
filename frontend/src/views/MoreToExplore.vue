@@ -3,22 +3,22 @@ import ExploreCard from '@/components/ExploreCard.vue'
 
 const cards = [
   {
-    imgSrc: "line_graph_feature_icon_2.svg",
+    imgSrc: "data_dashboard_icon.svg",
     header: "Data Dashboard",
     text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
     link: "Explore data dashboard"
   },
   {
-    imgSrc: "line_graph_feature_icon_2.svg",
-    header: "Data Dashboard",
+    imgSrc: "articles_icon.svg",
+    header: "Articles",
     text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
-    link: "Explore data dashboard"
+    link: "Read articles"
   },
   {
-    imgSrc: "line_graph_feature_icon_2.svg",
-    header: "Data Dashboard",
+    imgSrc: "news_icon.svg",
+    header: "News",
     text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
-    link: "Explore data dashboard"
+    link: "Get the latest news"
   }
 ]
 </script>
@@ -27,15 +27,25 @@ const cards = [
   <p>Dive deeper into insights, metrics, news, and more about<br />
     Black women in STEM</p>
   <!--Put these in a CSS grid -->
-  <ExploreCard v-for="card in cards" v-key="card.header" :imgSrc="card.imgSrc">
-    <template #header>
-      {{ card.header }}
-    </template>
-    <template #text>
-      {{ card.text }}
-    </template>
-    <template #link>
-      {{ card.link }}
-    </template>
-  </ExploreCard>
+  <div class="explore-cards">
+    <ExploreCard v-for="card in cards" v-key="card.header" :imgSrc="card.imgSrc">
+      <template #header>
+        {{ card.header }}
+      </template>
+      <template #text>
+        {{ card.text }}
+      </template>
+      <template #link>
+        {{ card.link }}
+      </template>
+    </ExploreCard>
+  </div>
 </template>
+
+<style scoped>
+.explore-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1rem;
+}
+</style>

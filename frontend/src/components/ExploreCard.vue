@@ -22,7 +22,6 @@ const props = defineProps({
 
 <style scoped>
 #explore-card {
-  width: 25rem;
   border: 1px solid #5d6267;
   border-radius: 1.25rem;
   box-shadow: 0 4px 20px 0 #292929;
