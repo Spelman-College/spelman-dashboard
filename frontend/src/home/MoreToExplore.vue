@@ -27,7 +27,7 @@ const cards = [
   <p>Dive deeper into insights, metrics, news, and more about<br />
     Black women in STEM</p>
   <div class="explore-cards">
-    <ExploreCard v-for="card in cards" v-key="card.header" :imgSrc="card.imgSrc">
+    <ExploreCard v-for="card in cards" :v-key="card.header" :imgSrc="card.imgSrc">
       <template #header>
         {{ card.header }}
       </template>
