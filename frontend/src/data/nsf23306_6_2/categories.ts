@@ -1,13 +1,11 @@
 export const Categories = {
     'ethnicity': new Set<string>([
-	'AmericanIndianOrAlaskaNativeAlone',
+	'AmericanIndianOrAlaskaNative',
 	'Asian',
 	'Black',
 	'HispanicOrLatino',
     'OtherPacificIslander',
 	'TwoOrMoreRaces',
-	'UnknownEthnicity',
-	'UnknownRace',
 	'WhiteAlone',
     ]),
     'gender': new Set<string>([
@@ -18,7 +16,6 @@ export const Categories = {
         'SOCComputerMathematicalOccupation',
         'SOCEngineersOccupation',
         'SOCLifeScientistsOccupation',
-        'SOCMathematicalScienceOccupation',
         'SOCPhysicalScientistsOccupation',
         'SOCSocialScientistsRelatedWorkersOccupation',
         'ScienceAndEngineeringOccupation',
