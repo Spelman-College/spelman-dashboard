@@ -8,4 +8,4 @@ Table 1-10 @ [https://ncses.nsf.gov/pubs/nsf23300/data-tables](https://ncses.nsf
 
 `categories.ts`: category to respective dimensions mapping in this dataset.
 
-`query.ts`: exports a class named `Query_nsf23300_1_10` that enables querying the dataset with one or more `Query` objects.
+`query.ts`: exports a class named `Query_nsf23306` that enables querying the dataset with one or more `Query` objects.
