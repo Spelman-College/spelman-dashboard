@@ -1,6 +1,6 @@
 import type { CategoryType, DcidFilter } from "../queries/dcid"
 import { Dcid } from "../queries/dcid"
-import type { QueryResult } from "../queries/query"
+import type { QueryResult, Queryable } from "../queries/query"
 import { Query, query2dcids } from "../queries/query"
 import { DCIDS } from './dcids'
 import { Categories } from './categories'
@@ -29,27 +29,30 @@ DCIDS.forEach((id) => {
 })
 
 // If we're querying both
-// 1. a subset of enthicity dimensions, and
-// 2. all gender dimensions
-// we need to query each gender dimension separately and the sum the values; that is,
+// 1. a subset of gender dimensions, and
+// 2. all major dimensions
+// we need to query each major dimension separately and the sum the values; that is,
 // we can't use the `gender:` dimension key to search for dcids that have a summarized
-// ethnicity metric that includes all genders.
-//// EXAMPLE: const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
+// major metric that includes all genders.
 const categoryDependencies: [string, string][] = [['gender', 'major']]
+// const categoryDependencies: [string, string][] = []
 
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
     protected dcids: Array<Dcid> = dcids
     protected annotatedDimensions: Set<string> = annotatedDimensions
+    categories(): CategoryType {
+	return Categories
+    }
 }
 
-export class Query_demo extends Base {
+export class Query_demo extends Base implements Queryable {
     constructor() {
 	super()
     }
     query(...queries: Array<Query>): QueryResult {
 	return query2dcids(this.dcids,
-			   Categories,
+			   this.categories(),
 			   this.categoryDependencies,
 			   this.annotatedDimensions,
 			   ...queries)

@@ -1,5 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 import { Query_nsf19304 } from './query'
+import { Categories } from './categories'
 import { Query } from '../queries/query'
 
 const nsf19304 = new Query_nsf19304()
@@ -10,11 +11,28 @@ const life_science = new Query('occupation', 'SOCLifeScientistsOccupation')
 const female = new Query('gender', 'Female')
 const tenured = new Query('tenure', 'Tenured')
 const male = new Query('gender', 'Male')
+const male_female = new Query('gender', 'Male', 'Female')
 const occupations_a = new Query('occupation',
                                 'SOCLifeScientistsOccupation',
                                 'SOCMathematicalScienceOccupation')
+const all_ethnicities = new Query('ethnicity', ...Categories['ethnicity'])
 
 describe('nsf19304 query subset of subset dependent category', () => {
+    test('1 gender all ethnicities explicit', () => {
+        let out = nsf19304.query(female, all_ethnicities)
+        expect(out.error).toEqual(undefined)
+        expect(out.results).toEqual([
+	    'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityOrCollegeTeacher_Female'
+        ])
+    })
+
+    test('1 gender all ethnicities implicit', () => {
+        let out = nsf19304.query(female)
+        expect(out.error).toEqual(undefined)
+        expect(out.results).toEqual([
+	    'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityOrCollegeTeacher_Female'
+        ])
+    })
 
     test('subset of ethnicity returns dcids for both genders', () => {
         let out = nsf19304.query(asian)
@@ -80,6 +98,14 @@ describe('nsf19304 query categories with no dependencies', () => {
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
             'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityOrCollegeTeacher_Female_Tenured'
+        ])
+    })
+
+    test('both genders, tenured', () => {
+        const out = nsf19304.query(male_female, tenured)
+        expect(out.error).toEqual(undefined)
+        expect(out.results).toEqual([
+	    'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityOrCollegeTeacher_Tenured'
         ])
     })
 })
