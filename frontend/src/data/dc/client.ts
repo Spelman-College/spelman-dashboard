@@ -30,8 +30,9 @@ export class SeriesClient {
 	const request = this.mkURI(variableDcid)
 	if (!this.cache.recordExists(request)) {
 	    const res = await fetch(request);
-	    const finalRes = await res.json();
-	    this.cache.setRecord(request, finalRes);
+	    const jres = await res.json();
+	    this.cache.setRecord(request, jres);
+	    return jres.observations;
 	}
 	return this.cache.getRecord(request).observations;
     }
