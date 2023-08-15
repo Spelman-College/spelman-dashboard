@@ -52,7 +52,7 @@ const faqs = [
     <p>Frequently Asked Questions</p>
     </div>
   
-<Accordion>
+<Accordion :multiple="true">
     <AccordionTab v-for="panel in faqs" :key="panel.question" :header="panel.question">
       {{ panel.answer }}
     </AccordionTab>
@@ -65,5 +65,13 @@ const faqs = [
 p {
   width: 36rem;
 }
+
+.p-accordion {
+  & :deep .p-accordion-tab {
+     background-color: aliceblue;
+  }
+} 
+
+
 
 </style>
