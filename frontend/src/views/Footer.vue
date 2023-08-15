@@ -23,7 +23,7 @@ function goToFAQ() {
       <div id="misc">
         <p>@ 2023-2-24</p>
         <p>Privacy --- Terms</p>
-        <p><button @click="goToFAQ">FAQ</button></p>
+        <div class = "faq" @click="goToFAQ"><p>FAQ</p></div>
       </div>
     </div>
   </div>
