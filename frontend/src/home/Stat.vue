@@ -8,7 +8,7 @@
         representation, improving access to<br />
         resources and strengthening<br />
         community partnerships.</p>
-      <div id="swiggle"><img src="swiggly_line_ACF0FF.svg" /></div>
+      <div id="swiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
       <p id="footnote">In 2021, only 2.9% of the STEM workforce in the<br />
         US are Black women.</p>
     </div>
