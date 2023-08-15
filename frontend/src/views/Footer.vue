@@ -6,14 +6,14 @@
     </div>
     <div class="info">
       <div id="contact">
-        <p>Address goes here</p>
-        <p>(222) 222-2222</p>
-        <p>xyz@coe.org</p>
+        <div>Address goes here</div>
+        <div>(222) 222-2222</div>
+        <div>xyz@coe.org</div>
       </div>
       <div id="misc">
-        <p>@ 2023-2-24</p>
-        <p>Privacy --- Terms</p>
-        <p>FAQ</p>
+        <div>@ 2023-2-24</div>
+        <div>Privacy &mdash; Terms</div>
+        <div>FAQ</div>
       </div>
     </div>
   </div>
@@ -26,6 +26,7 @@
   grid-template-columns: 1fr 1fr;
   padding: 2rem 6rem;
   font-family: 'Noto Sans', sans-serif;
+  margin-top: 4rem;
 }
 
 #logo {
