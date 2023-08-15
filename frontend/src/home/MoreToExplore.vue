@@ -3,19 +3,19 @@ import ExploreCard from '@/components/ExploreCard.vue'
 
 const cards = [
   {
-    imgSrc: "data_dashboard_icon.svg",
+    imgSrc: "/data_dashboard_icon.svg",
     header: "Data Dashboard",
     text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
     link: "Explore data dashboard"
   },
   {
-    imgSrc: "articles_icon.svg",
+    imgSrc: "/articles_icon.svg",
     header: "Articles",
     text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
     link: "Read articles"
   },
   {
-    imgSrc: "news_icon.svg",
+    imgSrc: "/news_icon.svg",
     header: "News",
     text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
     link: "Get the latest news"
