@@ -5,10 +5,14 @@ import { Categories } from './categories';
 
 const demo = new Query_nsf23306_6_2()
 
-const asian_black = new Query('ethnicity', 'Black', 'Asian')
+const asian_black = new Query('ethnicity', 'Asian', 'Black')
 const occupations = new Query('occupation',
     'SOCLifeScientistsOccupation',
     'SOCComputerMathematicalOccupation')
+
+const asian = new Query('ethnicity', 'Asian')
+const female = new Query('gender', 'Female')
+const engineer = new Query('occupation', 'SOCEngineersOccupation')
 
 const all_genders = Categories['gender']
 
@@ -18,48 +22,56 @@ const all_ethnicities = Categories['ethnicity']
 
 describe('demo query', () => {
 
-    test('test 2 ethnicity', () => {
+    test('test 2 ethnicities', () => {
         let out = demo.query(asian_black)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Asian")
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Black")
+        expect(out.results).toEqual(["Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Asian",
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Black"])
     })
 
     test('test 2 occupations', () => {
         let out = demo.query(occupations)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCLifeScientistsOccupation")
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCComputerMathematicalOccupation")
+        expect(out.results).toEqual(["Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCLifeScientistsOccupation",
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCComputerMathematicalOccupation"])
     })
 
-    test('test 2 occupations 2 ethnicty', () => {
+    test('test 2 occupations 2 ethnicities', () => {
         let out = demo.query(occupations, asian_black)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCLifeScientistsOccupation_Black")
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCComputerMathematicalOccupation_Black")
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCLifeScientistsOccupation_Asian")
-        expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCComputerMathematicalOccupation_Asian")
+        expect(out.results).toEqual([
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCLifeScientistsOccupation_Asian",
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCLifeScientistsOccupation_Black",
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCComputerMathematicalOccupation_Asian",
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_SOCComputerMathematicalOccupation_Black",])
     })
 
-    test('test all occupations', () => {
+    test('test occupation ethnicity gender', () => {
+        let out = demo.query(asian, female, engineer)
+        expect(out.error).toEqual(undefined)
+        expect(out.results).toEqual([
+            "Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Female_SOCEngineersOccupation_Asian"])
+    })
+
+    test('test each occupation', () => {
         all_occupations.forEach((occupation) => {
             let query = new Query("occupation", occupation)
             let out = demo.query(query)
-            expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_".concat(occupation))
+            expect(out.results).toEqual(["Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_".concat(occupation)])
         })
     })
-    test('test all ethniticies', () => {
+    test('test each ethnicity', () => {
         all_ethnicities.forEach((ethnicity) => {
             let query = new Query("ethnicity", ethnicity)
             let out = demo.query(query)
-            expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_".concat(ethnicity))
+            expect(out.results).toEqual(["Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_".concat(ethnicity)])
         })
     })
-    test('test all genders', () => {
+    test('test each gender', () => {
         all_genders.forEach((gender) => {
             let query = new Query("gender", gender)
             let out = demo.query(query)
-            expect(out.results).toContain("Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_".concat(gender))
+            expect(out.results).toEqual(["Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_".concat(gender)])
         })
     })
 })
