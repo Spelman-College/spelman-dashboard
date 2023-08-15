@@ -25,10 +25,6 @@ import MoreToExplore from '@/home/MoreToExplore.vue'
 </template>
 
 <style scoped>
-div.view {
-  padding: 2rem 3rem;
-}
-
 div.gradient {
   background: linear-gradient(180deg, rgba(34, 38, 43, 0.00) 0%, #181818 100%);
 }

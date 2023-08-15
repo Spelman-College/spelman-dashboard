@@ -1,23 +1,6 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
 
-import { ref } from 'vue'
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-const nextButton = ref(null)
-
-function nextPage() {
-  document.getElementById('nextButton')?.click()
-}
-function prevPage() {
-  document.getElementById('prevButton')?.click()
-}
-
-function goToStoriesView() {
-  router.push({ name: 'stories' })
-}
 
 const stories = [
   {
@@ -51,53 +34,32 @@ const stories = [
     imgSrc: "story_placeholder3.jpg"
   },
 ]
-
-const page = ref(0)
 </script>
 
 <template>
-  <h2>Read their stories</h2>
-  <p>
-    Celebrating Black women in STEM and inspiring others to<br />
-    make their mark on the world
-  </p>
+  <div class="view">
+    <h3>Stories</h3>
+    <p>The Black Experience in Design spotlights teaching practices, research, stories, and conversations from a
+      Black/African diasporic lens.</p>
+  </div>
 
-  <div class="carousel-nav">
-    <button class="carousel-nav-buttons" @click="prevPage">&larr;</button> <button class="carousel-nav-buttons"
-      @click="nextPage">&rarr;</button>
+  <div class="story-card-grid">
+    <StoryCard v-for="story in stories" :v-key="story.name" :imgSrc="story.imgSrc">
+      <template #name>{{ story.name }}</template>
+      <template #story>{{ story.story }}</template>
+    </StoryCard>
   </div>
-  <div>
-    <Carousel :value="stories" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
-      :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
-      <template #item="slotProps">
-        <StoryCard :img-src="slotProps.data.imgSrc">
-          <template #name>{{ slotProps.data.name }}</template>
-          <template #story>{{ slotProps.data.story }}</template>
-        </StoryCard>
-      </template>
-    </Carousel>
-  </div>
-  <button class="center" @click="goToStoriesView">Read more stories</button>
 </template>
 
-<style>
-@import "/homepage.css";
-
-.carousel-nav {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 5em;
-  margin-bottom: 4em;
+<style scoped>
+p {
+  width: 36rem;
 }
 
-.carousel-nav button {
-  text-align: center;
-  width: 4em;
-  height: 4em;
-  margin-left: 2em;
-}
-
-.hidden {
-  visibility: hidden;
+div.story-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 12rem;
 }
 </style>
