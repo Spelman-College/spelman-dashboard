@@ -66,11 +66,10 @@ p {
   width: 36rem;
 }
 
-.p-accordion {
-  & :deep .p-accordion-tab {
-     background-color: aliceblue;
-  }
+:deep(.p-accordion-content) {
+  background-color: aliceblue;
 } 
+
 
 
 
