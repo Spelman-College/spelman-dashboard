@@ -1,29 +1,33 @@
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import App from './App.vue'
+import router from './router'
 
 import Button from 'primevue/button';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import Skeleton from 'primevue/skeleton';
-import TabView from 'primevue/tabview';
-import TabPanel from 'primevue/tabpanel';
-import Tree from 'primevue/tree';
-import RadioButton from 'primevue/radiobutton';
 import Card from 'primevue/card';
+import Carousel from 'primevue/carousel';
+import Column from 'primevue/column';
+import DataTable from 'primevue/datatable';
+import RadioButton from 'primevue/radiobutton';
+import Skeleton from 'primevue/skeleton';
+import TabPanel from 'primevue/tabpanel';
+import TabView from 'primevue/tabview';
+import Tree from 'primevue/tree';
 import VueGtag from "vue-gtag";
 
 const app = createApp(App)
 app.use(PrimeVue)
+app.use(router)
 app.component('Button', Button)
-app.component('DataTable', DataTable)
-app.component('Column', Column)
-app.component('Skeleton', Skeleton)
-app.component('TabView', TabView)
-app.component('TabPanel', TabPanel)
-app.component('Tree', Tree)
-app.component('RadioButton', RadioButton)
 app.component('Card', Card)
+app.component('Carousel', Carousel)
+app.component('Column', Column)
+app.component('DataTable', DataTable)
+app.component('RadioButton', RadioButton)
+app.component('Skeleton', Skeleton)
+app.component('TabPanel', TabPanel)
+app.component('TabView', TabView)
+app.component('Tree', Tree)
 app.use(VueGtag, {
   config: { id: "G-30X50JL2XS" }
 })
