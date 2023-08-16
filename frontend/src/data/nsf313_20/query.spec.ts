@@ -97,8 +97,8 @@ describe('demo query', () => {
         let query_c = new Query("race", 'Black')
         let query_d = new Query("gender", 'Female')
         let out = demo.query(query_a, query_b, query_c, query_d)
-        expect(out.error).toEqual("Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Female_HBCU_Black")
-        expect(out.results).toEqual([])
+        expect(out.error).toEqual(undefined)
+        expect(out.results).toEqual(["Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Female_HBCU_Black"])
     })
 
 })
