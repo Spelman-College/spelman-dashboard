@@ -48,29 +48,104 @@ const faqs = [
 
 <template>
   <div class="view">
-    <h3>Have a question?</h3>
-    <p>Frequently Asked Questions</p>
+    <question_splash>Have a question?</question_splash>
+    <br>
+    <faq_splash>Frequently Asked<br>Questions</faq_splash>
     </div>
   
+
 <Accordion :multiple="true">
     <AccordionTab v-for="panel in faqs" :key="panel.question" :header="panel.question">
-      {{ panel.answer }}
+      {{ panel.answer }} 
     </AccordionTab>
   </Accordion>
+
 
 
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&family=Open+Sans&display=swap');
+
 p {
   width: 36rem;
 }
 
 :deep(.p-accordion-content) {
-  background-color: aliceblue;
+  color: #000;
+  font-family: Open Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  padding-left: 17.88rem;
 } 
 
+:deep(.p-accordion-header-text) {
+  color: #000;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px; /* 136.364% */
+  letter-spacing: -1px;
+  padding-left: 4.38rem;
+  padding-top: 3.06rem;
+  padding-bottom: 3.06rem;
 
+
+} 
+
+:deep(.p-accordion-tab) {
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: #ACF0FF;
+  width: 868px;
+  margin: 20px;
+}
+
+
+:deep(.p-accordion-content) {
+  padding-left: 4.46rem;
+  padding-right: 9.89rem;
+  padding-bottom: 1.67rem;
+  border-radius: 16px;
+}
+
+/* TODO: Right-align toggle icon placement  */
+:deep(.p-accordion-toggle-icon) {
+  display: flex;
+  flex-shrink: 0;
+  color: var(--gm-3-sys-light-on-surface-variant, #444746);
+}
+
+faq_splash {
+  color: #ACF0FF;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 3.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 3.75rem; /* 120% */
+  letter-spacing: -0.0625rem;
+  padding-left: 3.31rem;
+  padding-bottom: 7.16rem;
+}
+
+question_splash {
+  width: 16.70363rem;
+  height: 3.95775rem;
+  flex-shrink: 0;
+  color: #ACF0FF;
+  font-family: Open Sans;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 3.75rem; /* 200% */
+
+  padding-left: 3.31rem;
+  padding-bottom: 2.15rem;
+}
 
 
 </style>
