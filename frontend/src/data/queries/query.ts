@@ -136,7 +136,7 @@ export class QuerySet {
             }
             // There are no subset dependents for this query category. Now let's
             // check if this query includes all dimensions for this category.
-            if (this.fullCategories.has(q.category)) {
+            if (this.fullCategories.has(q.category) && this.allCategories[q.category].size != 1) {
 
                 // Add the generic key for all dimensions, this will prevent returning each
                 // dimension in the category.
