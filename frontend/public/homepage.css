@@ -36,6 +36,7 @@ p {
   margin-bottom: 4rem;
 }
 
+/* Controls router-link formatting */
 a {
   color: #4fdfff;
   font-family: 'Noto Sans Mono';
