@@ -44,6 +44,7 @@ export class QuerySet {
     partialCategories: Set<string>;
 
     fullQueries: Array<Query>
+    fullCategories: Set<string>;
 
     allCategories: CategoryType
 
@@ -57,8 +58,8 @@ export class QuerySet {
     annotatedDimensions: CategoryType
 
     constructor(allCategories: CategoryType,
-                categoryDependencies: [string, string][],
-                ...queries: Query[]) {
+        categoryDependencies: [string, string][],
+        ...queries: Query[]) {
 
         this.queries = queries
         this.fullQueries = []
@@ -87,8 +88,8 @@ export class QuerySet {
         this.queries.forEach((q) => {
             remaining.delete(q.category)
             const containsAllDimensions = setsUtil.setEqual(q.dimensions,
-                                                            this.annotatedDimensions[q.category])
-            if (q.dimensions.size == 0 || containsAllDimensions) {
+                this.annotatedDimensions[q.category])
+            if (q.dimensions.size == 0 || (containsAllDimensions && this.allCategories[q.category].size != 1)) {
                 this.fullQueries.push(q)
                 this.fullCategories.add(q.category)
                 return
@@ -100,7 +101,7 @@ export class QuerySet {
         // Add the non-existent categories to the fullQueries and fullCategories
         remaining.forEach((cat) => {
             this.fullQueries.push(new Query(cat, ''))
-	    this.fullCategories.add(cat)
+            this.fullCategories.add(cat)
         })
     }
 
@@ -116,22 +117,49 @@ export class QuerySet {
         // Check the dependencies for each category.
         const includeAllDimensions = new Set()
         this.categoryDependencies.forEach((deps) => {
-            const [target, dependency] = deps
-            if (includeAllDimensions.has(dependency)) {
-                return
-            }
-            // Does the target category include a query for partial dimensions?
-            if (this.partialCategories.has(target)) {
+            var [target_cat, dependency_cat] = deps
+            var dependency_dim = ""
 
-		// Is the dependency being queried via a subset of all it's dimensions?
-		if (this.partialCategories.has(dependency)) {
+            const colon_loc = dependency_cat.search(':')
+            if (colon_loc != -1) {
+                dependency_dim = dependency_cat.substring(colon_loc + 1)
+                dependency_cat = dependency_cat.substring(0, colon_loc)
+            }
+            const isDependencyQuery = (q) => q.category == dependency_cat;
+
+            // Does the target category include a query for all dimensions?
+            if (this.partialCategories.has(target_cat)) {
+
+                // Is the dependency being queried via a subset of all it's dimensions?
+                if (this.partialCategories.has(dependency_cat)) {
                     // We can skip.
                     return
-		};
-		// The dependency is either missing or being assumed to query all dimensions.
+                };
+                // If the dependcy has a specified dimension add it to partial queries
+                if (dependency_dim != "") {
+                    // Check that the dimension is valid
+                    if (!this.allCategories[dependency_cat].has(dependency_dim)) {
+                        throw new Error(`query dependency category: ${dependency_cat} has unknown dimension: ${dependency_dim}`)
+                    }
 
-		// We need to EXPLICITLY query all of the keys for the dependency.
-                includeAllDimensions.add(dependency)
+                    //delete from all dimensions if included
+                    includeAllDimensions.delete(dependency_cat)
+                    this.partialCategories.add(dependency_cat)
+                    this.partialQueries.push(new Query(dependency_cat, dependency_dim))
+                    if (this.fullCategories.delete(dependency_cat)) {
+                        this.fullQueries.splice(this.fullQueries.findIndex(isDependencyQuery), 1)
+                    }
+                    return
+                }
+
+                // No specified dependency dimension, check if dependency already present in all dimensions
+                if (includeAllDimensions.has(dependency_cat)) {
+                    return
+                }
+
+                // The dependency is either missing or being assumed to query all dimensions.
+                // We need to EXPLICITLY query all of the keys for the dependency.
+                includeAllDimensions.add(dependency_cat)
             }
         })
 
@@ -166,8 +194,8 @@ export class QuerySet {
 }
 
 export const validateQueries = (categories: CategoryType,
-                                annotatedDimensions: Set<string>,
-                                ...queries: Array<Query>): string => {
+    annotatedDimensions: Set<string>,
+    ...queries: Array<Query>): string => {
     const catNames = new Set<string>()
     const includesAllDimensions = new Set<string>()
     try {
@@ -208,13 +236,13 @@ export const validateQueries = (categories: CategoryType,
 }
 
 export const query2dcids = (dcids: Array<Dcid>,
-                            categories: CategoryType,
-                            categoryDependencies: [string, string][],
-                            annotatedDimensions: Set<string>,
-                            ...queries: Array<Query>): QueryResult => {
+    categories: CategoryType,
+    categoryDependencies: [string, string][],
+    annotatedDimensions: Set<string>,
+    ...queries: Array<Query>): QueryResult => {
     const err = validateQueries(categories, annotatedDimensions, ...queries)
     if (err != '') {
-        return {'error': err} as QueryResult
+        return { 'error': err } as QueryResult
     }
     const qs = new QuerySet(categories, categoryDependencies, ...queries)
 
