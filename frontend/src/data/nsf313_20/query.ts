@@ -50,7 +50,7 @@ dcids_set.forEach((id) => {
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = []
+const categoryDependencies: [string, string][] = [['gender', 'collegeOrGraduateSchoolEnrollment:EnrolledInCollegeOrGraduateSchool'], ['race', 'gender'], ['race', 'collegeOrGraduateSchoolEnrollment:EnrolledInCollegeOrGraduateSchool'] ]
 
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
