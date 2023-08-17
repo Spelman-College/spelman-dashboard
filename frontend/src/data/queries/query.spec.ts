@@ -76,6 +76,53 @@ describe('QuerySet compile method', () => {
         expect(out[0].has('pets:cat')).toEqual(true)
     })
 
+    test('1 category 1 dimension with category dependency ', () => {
+        const A = new Query('pets', 'cat')
+        const qs = new QuerySet(categoryDimensions, [['pets', 'tools']], A)
+        const out = qs.compile()
+        expect(out.length).toEqual(2)
+        expect(out[0].has('pets:cat')).toEqual(true)
+        expect(out[0].has('tools:hammer')).toEqual(true)
+        expect(out[1].has('pets:cat')).toEqual(true)
+        expect(out[1].has('tools:ruler')).toEqual(true)
+    })
+
+
+    test('1 category 1 dimension with specified dependency dimension ', () => {
+        const A = new Query('pets', 'cat')
+        const qs = new QuerySet(categoryDimensions, [['pets', 'tools:hammer']], A)
+        const out = qs.compile()
+        expect(out.length).toEqual(1)
+        expect(out[0].has('pets:cat')).toEqual(true)
+        expect(out[0].has('tools:hammer')).toEqual(true)
+    })
+
+    test('2 category 1 dimension each with specified dependency dimension ', () => {
+        const A = new Query('pets', 'cat')
+        const B = new Query('cars', 'fast')
+        const qs = new QuerySet(categoryDimensions, [['pets', 'tools:hammer']], A, B)
+        const out = qs.compile()
+        expect(out.length).toEqual(1)
+        expect(out[0].has('pets:cat')).toEqual(true)
+        expect(out[0].has('cars:fast')).toEqual(true)
+        expect(out[0].has('tools:hammer')).toEqual(true)
+    })
+
+    test('2 categories, single dimension category has a dependency on unqueried category ', () => {
+        const A = new Query('tools', 'ruler')
+        const B = new Query('cars', 'fast')
+        const qs = new QuerySet(categoryDimensions, [['pets', 'tools:hammer'], ['cars', 'pets'], ['cars', 'tools:hammer']], A, B)
+        const out = qs.compile()
+        expect(out.length).toEqual(2)
+        expect(out[0].has('pets:cat')).toEqual(true)
+        expect(out[0].has('cars:fast')).toEqual(true)
+        expect(out[0].has('tools:ruler')).toEqual(true)
+        expect(out[1].has('pets:dog')).toEqual(true)
+        expect(out[1].has('cars:fast')).toEqual(true)
+        expect(out[1].has('tools:ruler')).toEqual(true)
+
+    })
+
     test('1 multiple dimension category, all dimensions', () => {
         const A = new Query('pets', 'cat', 'dog')
         const qs = new QuerySet(categoryDimensions, [], A)
