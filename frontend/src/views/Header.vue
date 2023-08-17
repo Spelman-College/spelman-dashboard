@@ -20,13 +20,11 @@ function goToData() {
 <template>
   <div id="header">
     <span id="logo">Logo</span>
-    <span class="header-links" id="about" @click="goToAbout">About</span>
-    <span class="header-links" id="resources" @click="goToResources">Resources</span>
-    <span class="header-links" id="contact" @click="goToContact">Contact</span>
-    <span class="header-links" id="data-dashboard" @click="goToData"
-      v-if="$router.currentRoute.value.name === 'home'">Data Dashboard</span>
-    <button id="data-dashboard" class="header-links" @click="goToData"
-      v-if="$router.currentRoute.value.name !== 'home'">Data Dashboard</button>
+    <span class="header-links" id="about"><router-link to="/about">About</router-link></span>
+    <span class="header-links" id="resources">Resources</span>
+    <span class="header-links" id="contact"><router-link to="/contact">Contact</router-link></span>
+    <span class="header-links" id="data-dashboard"  v-if="$router.currentRoute.value.name === 'home'">Data Dashboard</span>
+    <button id="data-dashboard" class="header-links" v-if="$router.currentRoute.value.name !== 'home'">Data Dashboard</button>
   </div>
 </template>
 
