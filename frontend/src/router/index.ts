@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import StoriesView from '@/views/StoriesView.vue'
 import IndividualStoryView from '@/views/IndividualStoryView.vue'
-import AboutView from '@/views/IndividualStoryView.vue'
-import ContactView from '@/views/IndividualStoryView.vue'
+import AboutView from '@/views/AboutView.vue'
+import ContactView from '@/views/ContactView.vue'
 import DataDashboard from '@/components/DataDashboard.vue'
 
 const router = createRouter({
