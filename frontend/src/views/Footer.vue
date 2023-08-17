@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goToFAQ() {
+  router.push({ name: 'FAQ' })
+}
+</script>
+
 <template>
   <div id="footer">
     <div class="title">
@@ -13,7 +23,7 @@
       <div id="misc">
         <div>@ 2023-2-24</div>
         <div>Privacy &mdash; Terms</div>
-        <div>FAQ</div>
+        <div class = "faq" @click="goToFAQ">FAQ</div>
       </div>
     </div>
   </div>
