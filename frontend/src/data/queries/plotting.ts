@@ -11,7 +11,7 @@ export const formatPlot = (data: Array<Object>, keyName: string, keyValue: strin
     return out
 }
 
-const keyFromKeys = (o: Object, ...keys: string[]): string => {
+export const keyFromKeys = (o: Object, ...keys: string[]): string => {
     const skeys = keys.sort()
     let newKey = ''
     skeys.forEach((key) => {
