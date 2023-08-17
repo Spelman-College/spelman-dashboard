@@ -34,7 +34,7 @@ DCIDS.forEach((id) => {
 // we need to query each major dimension separately and the sum the values; that is,
 // we can't use the `gender:` dimension key to search for dcids that have a summarized
 // major metric that includes all genders.
-const categoryDependencies: [string, string][] = [['gender', 'major']]
+const categoryDependencies: [string, string][] = [['gender', 'major'], ['age', 'major']]
 // const categoryDependencies: [string, string][] = []
 
 class Base {
