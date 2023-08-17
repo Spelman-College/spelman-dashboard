@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import StoriesView from '@/views/StoriesView.vue'
 import IndividualStoryView from '@/views/IndividualStoryView.vue'
-import AboutView from '@/views/IndividualStoryView.vue'
-import ContactView from '@/views/IndividualStoryView.vue'
+import AboutView from '@/views/AboutView.vue'
+import ContactView from '@/views/ContactView.vue'
 import DataDashboard from '@/components/DataDashboard.vue'
 
 const router = createRouter({
@@ -25,17 +25,17 @@ const router = createRouter({
     },
     {
       path: '/about',
-      name: 'About',
+      name: 'about',
       component: AboutView
     },
     {
       path: '/contact',
-      name: 'Contact',
+      name: 'contact',
       component: ContactView
     },
     {
       path: '/data',
-      name: 'Data',
+      name: 'data',
       component: DataDashboard
     }
     
