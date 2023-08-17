@@ -1,4 +1,4 @@
-import {describe, expect, test} from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import { CategoryType } from './dcid'
 import { Query, QuerySet, validateQueries } from './query'
 
@@ -10,6 +10,9 @@ const categoryDimensions: CategoryType = {
     'tools': new Set<string>([
         'hammer',
         'ruler'
+    ]),
+    'cars': new Set<string>([
+        'fast',
     ]),
 }
 
@@ -27,29 +30,27 @@ describe('Query constructor', () => {
 
 describe('Query compile method', () => {
 
-    const testDimensions = new Set(['pets:cat', 'pets:dog', 'pets:bird'])
-
-    test('returns list of sets', () => {
+    test('returns list of sets 2 dimensions', () => {
         const A = new Query('pets', 'cat', 'dog')
-        const got = A.compile(testDimensions)
+        const got = A.compile()
         expect(got).toEqual([new Set(['pets:cat']), new Set(['pets:dog'])])
     })
 
-    test('returns empty list, meaning query all categories, when all dimensions are included', () => {
+    test('returns list of sets 3 dimensions', () => {
         const A = new Query('pets', 'cat', 'dog', 'bird')
-        const got = A.compile(testDimensions)
+        const got = A.compile()
         expect(got).toEqual([new Set(['pets:cat']), new Set(['pets:dog']), new Set(['pets:bird'])])
     })
 
     test('returns empty list when given 0 dimensions', () => {
         const A = new Query('pets')
-        const got = A.compile(testDimensions)
+        const got = A.compile()
         expect(got).toEqual([])
     })
 
     test('when given empty string, returns single dimensions key, meaning query all categories', () => {
         const A = new Query('pets', '')
-        const got = A.compile(testDimensions)
+        const got = A.compile()
         expect(got).toEqual([new Set(['pets:'])])
     })
 
@@ -75,15 +76,44 @@ describe('QuerySet compile method', () => {
         expect(out[0].has('pets:cat')).toEqual(true)
     })
 
+    test('1 multiple dimension category, all dimensions', () => {
+        const A = new Query('pets', 'cat', 'dog')
+        const qs = new QuerySet(categoryDimensions, [], A)
+        const out = qs.compile()
+        expect(out.length).toEqual(1)
+        expect(out[0].has('pets:')).toEqual(true)
+    })
+
+    test('1 single dimension category, all dimensions', () => {
+        const A = new Query('cars', 'fast')
+        const qs = new QuerySet(categoryDimensions, [], A)
+        const out = qs.compile()
+        expect(out.length).toEqual(1)
+        expect(out[0].has('cars:fast')).toEqual(true)
+    })
+
     test('2 categories 1 dimension each', () => {
         const A = new Query('pets', 'cat')
         const B = new Query('tools', 'hammer')
         const qs = new QuerySet(categoryDimensions, [], A, B)
         const out = qs.compile()
         expect(out.length).toEqual(1)
-        expect(out[0].size).toEqual(2)
+        expect(out[0].size).toEqual(3)
         expect(out[0].has('pets:cat')).toEqual(true)
         expect(out[0].has('tools:hammer')).toEqual(true)
+    })
+
+    test('3 categories 1 dimension each', () => {
+        const A = new Query('pets', 'cat')
+        const B = new Query('tools', 'hammer')
+        const C = new Query('cars', 'fast')
+        const qs = new QuerySet(categoryDimensions, [], A, B, C)
+        const out = qs.compile()
+        expect(out.length).toEqual(1)
+        expect(out[0].size).toEqual(3)
+        expect(out[0].has('pets:cat')).toEqual(true)
+        expect(out[0].has('tools:hammer')).toEqual(true)
+        expect(out[0].has('cars:fast')).toEqual(true)
     })
 
     test('2 categories 2 dimensions each, we use the generic key with an empty dimension to refer to all dimensions', () => {
@@ -93,9 +123,23 @@ describe('QuerySet compile method', () => {
         const out = qs.compile()
         expect(out.length).toEqual(1)
 
-        expect(out[0].size).toEqual(2)
+        expect(out[0].size).toEqual(3)
         expect(out[0].has('pets:')).toEqual(true)
         expect(out[0].has('tools:')).toEqual(true)
+    })
+
+    test('3 categories, all dimensions each, we use the generic key with an empty dimension to refer to all dimensions unless there is a single dimension', () => {
+        const A = new Query('pets', 'cat', 'dog')
+        const B = new Query('tools', 'hammer', 'ruler')
+        const C = new Query('cars', 'fast')
+        const qs = new QuerySet(categoryDimensions, [], A, B, C)
+        const out = qs.compile()
+        expect(out.length).toEqual(1)
+
+        expect(out[0].size).toEqual(3)
+        expect(out[0].has('pets:')).toEqual(true)
+        expect(out[0].has('tools:')).toEqual(true)
+        expect(out[0].has('cars:fast')).toEqual(true)
     })
 })
 
