@@ -176,14 +176,14 @@ describe('QuerySet compile method', () => {
 
     test('3 categories 1 dimension each', () => {
         const A = new Query('pets', 'cat')
-        const B = new Query('tools', 'hammer')
+        const B = new Query('tools', 'tape-measure')
         const C = new Query('cars', 'fast')
         const qs = new QuerySet(categoryDimensions, [], A, B, C)
         const out = qs.compile()
         expect(out.length).toEqual(1)
         expect(out[0].size).toEqual(3)
         expect(out[0].has('pets:cat')).toEqual(true)
-        expect(out[0].has('tools:hammer')).toEqual(true)
+        expect(out[0].has('tools:tape-measure')).toEqual(true)
         expect(out[0].has('cars:fast')).toEqual(true)
     })
 
@@ -201,7 +201,7 @@ describe('QuerySet compile method', () => {
 
     test('3 categories, all dimensions each, we use the generic key with an empty dimension to refer to all dimensions unless there is a single dimension', () => {
         const A = new Query('pets', 'cat', 'dog')
-        const B = new Query('tools', 'hammer', 'ruler')
+        const B = new Query('tools', 'tape-measure', 'ruler')
         const C = new Query('cars', 'fast')
         const qs = new QuerySet(categoryDimensions, [], A, B, C)
         const out = qs.compile()
