@@ -4,6 +4,7 @@ import StoriesView from '@/views/StoriesView.vue'
 import FAQView from '@/views/FAQView.vue'
 import IndividualStoryView from '@/views/IndividualStoryView.vue'
 import AboutView from '@/views/AboutView.vue'
+import ResourcesView from '@/views/ResourcesView.vue'
 import ContactView from '@/views/ContactView.vue'
 import DataDashboard from '@/views/DataDashboard.vue'
 
@@ -35,6 +36,11 @@ const router = createRouter({
       component: AboutView
     },
     {
+      path: '/resources',
+      name: 'resources',
+      component: ResourcesView
+    },
+    {
       path: '/contact',
       name: 'contact',
       component: ContactView
@@ -48,6 +54,7 @@ const router = createRouter({
       path: '/data/:dataset',
       component: DataDashboard
     }
+
     // {
     //   path: '/about',
     //   name: 'about',
