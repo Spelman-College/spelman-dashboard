@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { h, useSlots } from 'vue';
+import { computed, h, useSlots } from 'vue';
 
 const props = defineProps({
   imgSrc: String,
+  width: String
+})
+
+const remWidth = computed(() => {
+  return `${props.width}rem`;
+})
+const pWidth = computed(() => {
+  if (props.width !== undefined)
+    return `${+props.width - 4}rem`;
 })
 
 const slots = useSlots()
@@ -26,7 +35,9 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
       </p>
     </template>
     <template #footer>
-      <h2>Read her story &rarr;</h2>
+      <h2>
+        <slot name="linkText"></slot> &rarr;
+      </h2>
     </template>
   </Card>
 </template>
@@ -35,7 +46,7 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
 .p-card {
   background-color: white;
   border-radius: 16px;
-  width: 25em;
+  width: v-bind('remWidth');
   height: 50em;
 }
 
@@ -55,6 +66,7 @@ h2 {
   font-family: 'Noto Sans Mono';
   font-size: 21px;
   font-weight: 700;
+  letter-spacing: normal;
 }
 
 p {
@@ -62,10 +74,11 @@ p {
   font-family: Roboto;
   font-size: 21px;
   line-height: 140%;
+  width: v-bind('pWidth');
 }
 
 img {
-  width: 25em;
+  width: v-bind('remWidth');
   height: 25em;
   border-radius: 16px 16px 0px 0px;
 }

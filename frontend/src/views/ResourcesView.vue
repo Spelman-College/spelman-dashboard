@@ -2,6 +2,7 @@
 import Splash from '@/components/resources/Splash.vue'
 import Reads from '@/components/resources/Reads.vue'
 import Organizations from '@/components/resources/Organizations.vue'
+import News from '@/components/resources/News.vue'
 </script>
 
 <template>
@@ -13,5 +14,8 @@ import Organizations from '@/components/resources/Organizations.vue'
   </div>
   <div class="view gradient">
     <Organizations></Organizations>
+  </div>
+  <div class="view">
+    <News></News>
   </div>
 </template>
