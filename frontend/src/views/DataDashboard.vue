@@ -8,15 +8,13 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 
 let dataset = route.params.dataset
-console.log(dataset)
-
 </script>
 
 <template>
   <div class="view">
     <router-link id="back-button" class="material-icons" :to="{ name: 'home' }">chevron_left</router-link>
   </div>
-  <DataDashboard></DataDashboard>
+  <DataDashboard v-if="dataset=='demo'"></DataDashboard>
 </template>
 
 <style scoped>
