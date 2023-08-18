@@ -57,9 +57,10 @@ const page = ref(0)
     <Carousel :value="rows" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
       :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
       <template #item="slotProps">
-        <StoryCard :img-src="slotProps.data.hosted_image_link">
+        <StoryCard :img-src="slotProps.data.imgSrc" width="25">
           <template #name>{{ slotProps.data.name }}</template>
-          <template #story>{{ slotProps.data.text }}</template>
+          <template #story>{{ slotProps.data.story }}</template>
+          <template #linkText>Read her story</template>
         </StoryCard>
       </template>
     </Carousel>
