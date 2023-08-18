@@ -1,5 +1,11 @@
 import { ApiCache } from './cache'
 
+
+export interface DcClient {
+    getData(variableDcid: string): Promise<any>;
+}
+
+
 // Used for timeseries data
 export class SeriesClient {
     private cache: ApiCache
