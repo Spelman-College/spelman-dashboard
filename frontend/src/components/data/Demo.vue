@@ -15,7 +15,8 @@
  import {
      applyCompareQuery,
      getCompareData,
-     getSingleDimension
+     getSingleDimension,
+     asDownload
  } from '../../data/queries/ui'
 
  import * as dims from '../../data/queries/dimensions'
@@ -32,7 +33,25 @@
 
  async function download(fileName: string, items: Array<Map>) {
      loading_download.value = true
-     await downloadCSV(items, fileName)
+     const catMap = {
+	 'gender': genderQuery.value,
+	 'age': ageQuery.value,
+	 'major': majorQuery.value
+     }
+     const dimensions = []
+     if (compare.value == 'gender') {
+	 dimensions.push(...genderQuery.value)
+     }
+     if (compare.value == 'age') {
+	 dimensions.push(...ageQuery.value)
+     }
+     if (compare.value == 'major') {
+	 dimensions.push(...majorQuery.value)
+     }
+
+     const data = await asDownload(dataset, dcClient, compare.value, dimensions, catMap)
+     console.log('date', data)
+     await downloadCSV(data, fileName)
      loading_download.value = false
  }
 
