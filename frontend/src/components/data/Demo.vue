@@ -11,7 +11,13 @@
  import { Query_demo } from '../../data/demo/query'
 
  import { Query, QueryCompare, expandCompares } from '../../data/queries/query'
- import { formatPlot, reduceIntersection } from '../../data/queries/plotting'
+ import { reduceIntersection } from '../../data/queries/plotting'
+ import {
+     applyCompareQuery,
+     getCompareData,
+     getSingleDimension
+ } from '../../data/queries/ui'
+
  import * as dims from '../../data/queries/dimensions'
 
  const dcClient: SeriesClient = new SeriesClient('country/USA',
@@ -30,60 +36,6 @@
      loading_download.value = false
  }
 
- // Useful only for a single category query.
- const queryDcidIntersection = (categoryMap: Map<string, Array<string>>): Array => {
-     const queries = []
-     for (const cat in categoryMap) {
-	 const dimensions = categoryMap[cat]
-	 if (dimensions.length == 0) {
-	     continue
-	 }
-	 queries.push(new Query(cat, ...dimensions))
-     }
-     const response = dataset.query(...queries)
-
-     if (response.error !== undefined) {
-	 throw new Error(`Error querying dataset for "${category}" category: ${response.error}`)
-     }
-     return response.results
- }
-
-
- const applyCompareQuery = (compareCategory: string, categoryMap: Map<string, Array<string>>): Array<Array<string>> => {
-     const queryMap = expandCompares(compare.value, categoryMap)
-     const qc = new QueryCompare(compare.value, dataset, queryMap)
-     const err = qc.validate()
-     if (err != '') {
-	 throw new Error(`Error validating QueryCompare: ${err}`)
-     }
-     const compiled = qc.compile()
-     return compiled
- }
-
- const getCompareData = async (dcidMap: Map<string, Array<string>>): Array<Object> => {
-     const tmpOut = []
-     for (const dim in dcidMap) {
-	 const dcidList = dcidMap[dim]
-	 for (const dcid in dcidList) {
-	     const values = await dcClient.getData(dcidList[dcid])
-	     const formatted = formatPlot(values, 'key', dim)
-	     tmpOut.push(...formatted)
- 	 }
-     }
-     return tmpOut
- }
-
- const getSingleDimension = async (categoryMap: Map<string, Array<string>>, key:string): Array<Object> => {
-     const dcids = queryDcidIntersection(categoryMap)
-     const out = []
-     for (const idx in dcids) {
-	 const dcid = dcids[idx]
-	 const values = await dcClient.getData(dcid)
-	 const formatted = formatPlot(values, 'key', key)
-	 out.push(...formatted)
-     }
-     return out
- }
 
  watchEffect(() => {
      if (compare.value == 'gender') {
@@ -117,17 +69,22 @@
 	 return
      }
  })
- const renderCategory = (category: string, dimensions: string[], catMap: Map<string, Array<string>>) => {
+
+ const renderCategory = (
+     category: string,
+     dimensions: string[],
+     catMap: Map<string, Array<string>>) => {
+
      if (dimensions.length > 1) {
-	 const dcids = applyCompareQuery(category, catMap)
-	 const pout = getCompareData(dcids)
+	 const dcids = applyCompareQuery(dataset, category, catMap)
+	 const pout = getCompareData(dcClient, dcids)
 	 pout.then((tmpOut) => {
 	     const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
 	     tableItems.value = reduced
 	 })
 	 return
      }
-     const out = getSingleDimension(catMap, dimensions[0])
+     const out = getSingleDimension(dataset, dcClient, catMap, dimensions[0])
      out.then((data) => {
 	 tableItems.value = data
      })
@@ -149,52 +106,13 @@
 	 case 'gender': {
 	     renderCategory(compare.value, genderQuery.value, catMap)
 	     break
-	     if (genderQuery.value.length > 1) {
-
-		 const dcids = applyCompareQuery(compare.value, catMap)
-		 const pout = getCompareData(dcids)
-		 pout.then((tmpOut) => {
-		     const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-		     tableItems.value = reduced
-		 })
-		 return
-	     }
-	     const out = getSingleDimension(catMap, genderQuery.value[0])
-	     out.then((data) => {
-		 tableItems.value = data
-	     })
-	     break
 	 }
 	 case 'age': {
-	     if (ageQuery.value.length > 1) {
-		 const dcids = applyCompareQuery(compare.value, catMap)
-		 const pout = getCompareData(dcids)
-		 pout.then((tmpOut) => {
-		     const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-		     tableItems.value = reduced
-		 })
-		 return
-	     }
-	     const out = getSingleDimension(catMap, ageQuery.value[0])
-	     out.then((data) => {
-		 tableItems.value = data
-	     })
+	     renderCategory(compare.value, ageQuery.value, catMap)
 	     break
 	 }
 	 case 'major': {
-	     if (majorQuery.value.length > 1) {
-		 const dcids = applyCompareQuery(compare.value, catMap)
-		 const pout = getCompareData(dcids)
-		 pout.then((tmpOut) => {
-		     const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-		     tableItems.value = reduced
-		 })
-		 return
-	     }
-	     const out = getSingleDimension(catMap, majorQuery.value[0])
-	     out.then((data) => {
-		 tableItems.value = data
-	     })
+	     renderCategory(compare.value, majorQuery.value, catMap)
 	     break
 	 }
 	 default: {

@@ -2,7 +2,7 @@ import * as setsUtil from "./sets"
 import type { CategoryType } from "./dcid"
 
 
-interface Queryable {
+export interface Queryable {
     query(...queries: Array<Query>): QueryResult
     categories(): CategoryType
 }
