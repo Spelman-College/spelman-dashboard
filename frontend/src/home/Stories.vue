@@ -10,7 +10,7 @@ const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=
 const rows = ref([]);
 
 async function getData() {
-  const res = await Papa.parse(StoriesURI, {
+  await Papa.parse(StoriesURI, {
 	 header: true,
 	 download: true,
 	 worker: true,
