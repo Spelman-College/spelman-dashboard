@@ -1,27 +1,28 @@
 <script setup lang="ts">
-import DataDashboard from '@/home/DataDashboard.vue'
-import '../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
-import '../../node_modules/primeflex/primeflex.css'
+ import { ref, watchEffect } from 'vue'
 
-import { useRoute } from 'vue-router';
+ import DataDashboard from '@/home/DataDashboard.vue'
+ import DatasetSelector from '@/components/data/DatasetSelector.vue'
 
-const route = useRoute();
+ import '../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
+ import '../../node_modules/primeflex/primeflex.css'
 
-let dataset = route.params.dataset
+ import { useRouter } from 'vue-router';
+
+ const router = useRouter();
+
+ const dataset = ref('')
+
+ const changeDashboardDataset = (name:string) => {
+     dataset.value = name
+     router.push(`/data/${dataset.value}`)
+ }
 </script>
 
 <template>
-  <div class="view">
-    <router-link id="back-button" class="material-icons" :to="{ name: 'home' }">chevron_left</router-link>
-  </div>
-  <DataDashboard v-if="dataset=='demo'"></DataDashboard>
+    <DatasetSelector @change-dataset="changeDashboardDataset" />
+    <DataDashboard :dataset=dataset />
 </template>
 
 <style scoped>
-
-#back-button {
-  font-size: 2.5rem;
-  color: #ffffff;
-  margin-bottom: 1rem;
-}
 </style>
