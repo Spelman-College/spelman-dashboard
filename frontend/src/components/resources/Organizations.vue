@@ -1,3 +1,40 @@
+<script setup lang="ts">
+import AccordionPanel from '@/components/AccordionPanel.vue'
+
+const orgs = [
+  {
+    imgSrc: "/org_logos/blackgirlsdostem_logo.png",
+    name: "Example Org 1",
+    url: "https://example1.com/",
+    description: "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    imgSrc: "/org_logos/abwp_logo.png",
+    name: "Example Org 2",
+    url: "https://example2.com/",
+    description: "2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    imgSrc: "/org_logos/blackgirlsdostem_logo.png",
+    name: "Example Org 3",
+    url: "https://example3.com/",
+    description: "3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    imgSrc: "/org_logos/abwp_logo.png",
+    name: "Example Org 4",
+    url: "https://example4.com/",
+    description: "4 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    imgSrc: "/org_logos/blackgirlsdostem_logo.png",
+    name: "Example Org 5",
+    url: "https://example5.com/",
+    description: "5 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+]
+</script>
+
 <template>
   <h2>Changemaking Organizations</h2>
   <p>Spotlighting organizations dedicated to the advancement of<br />
@@ -15,18 +52,30 @@
         involved, and foster a more inclusive and diverse future in STEM.</p>
     </div>
   </div>
+
+  <AccordionPanel v-for="org in orgs" :key="org.name">
+    <template #header>
+      <div class="logo-container">
+        <img class="logo" :src="org.imgSrc">
+      </div>
+      <div>
+        <div class="name">{{ org.name }}</div>
+        <a :href="org.url" class="url">{{ org.url }}</a>
+      </div>
+    </template>
+    <template #body>
+      <div class="description">{{ org.description }}</div>
+    </template>
+  </AccordionPanel>
 </template>
 
 <style scoped>
 div#outer {
-  height: 62rem;
-}
-
-img {
-  position: absolute;
+  height: 70rem;
 }
 
 img#splash {
+  position: absolute;
   width: 75.5rem;
   border-radius: 2.5rem;
   margin-left: 7.875rem;
@@ -50,7 +99,7 @@ div#splash-text>p {
 }
 
 #splash-text-headnote {
-  color: #FF6454;
+  color: #ff6454;
   font-family: Noto Sans Display;
   font-size: 1.125rem;
   font-weight: 500;
@@ -64,7 +113,47 @@ div#splash-text>p {
 }
 
 img#dots {
+  position: absolute;
   margin-top: 50.5rem;
   margin-left: 41rem;
+}
+
+.name {
+  color: #070707;
+  font-family: 'Noto Sans';
+  font-size: 1.8125rem;
+  font-weight: normal;
+  margin: 1rem;
+}
+
+.url {
+  color: #313b49;
+  font-family: 'Noto Sans Display';
+  font-size: 1.3125rem;
+  text-decoration-line: underline;
+  margin: 1rem;
+}
+
+.description {
+  color: #313b49;
+  font-family: 'Noto Sans Display';
+  font-size: 1.3125rem;
+  margin-left: 13.625rem;
+  margin-bottom: 2rem;
+  width: 56rem;
+}
+
+.logo {
+  max-width: 10.625rem;
+  max-height: 9.9375rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10.625rem;
+  height: 9.9375rem;
+  margin: 1rem;
 }
 </style>
