@@ -3,6 +3,7 @@ import { h, useSlots } from 'vue';
 
 const props = defineProps({
   imgSrc: String,
+  alt: String,
 })
 
 const slots = useSlots()
@@ -13,7 +14,7 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
 <template>
   <Card>
     <template #header>
-      <img alt="user header" :src="imgSrc" />
+      <img :alt="alt" :src="imgSrc" style="object-fit: cover;" />
     </template>
     <template #title>
       <h1>
