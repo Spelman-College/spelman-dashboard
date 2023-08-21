@@ -1,11 +1,18 @@
 import * as setsUtil from "./sets"
 import type { CategoryType } from "./dcid"
 
+
+export interface Queryable {
+    query(...queries: Array<Query>): QueryResult
+    categories(): CategoryType
+}
+
 export type QueryResult = {
     error: string
     results: Array<string>
 }
 
+// A Query represents a single category and one or more dimensions.
 export class Query {
     category: string
     dimensions: Set<string>;
@@ -27,6 +34,8 @@ export class Query {
     }
 }
 
+// A QuerySet takes one or more Query objects and some category metadata. The `compile` method
+// returns an array of Sets that are meant to match a `Dcid.dimensions` Set.
 export class QuerySet {
     queries: Query[]
 
@@ -37,6 +46,7 @@ export class QuerySet {
     fullQueries: Array<Query>
 
     allCategories: CategoryType
+
 
     // categoryDependencies are subset dependencies. When a target category query
     // contains a subset of dimensions, AND a dependency category query contains
@@ -90,6 +100,7 @@ export class QuerySet {
         // Add the non-existent categories to the fullQueries and fullCategories
         remaining.forEach((cat) => {
             this.fullQueries.push(new Query(cat, ''))
+	    this.fullCategories.add(cat)
         })
     }
 
@@ -109,17 +120,17 @@ export class QuerySet {
             if (includeAllDimensions.has(dependency)) {
                 return
             }
-            // Does the target category include a query for all dimensions?
-           if (this.partialCategories.has(target)) {
+            // Does the target category include a query for partial dimensions?
+            if (this.partialCategories.has(target)) {
 
-               // Is the dependency being queried via a subset of all it's dimensions?
-               if (this.partialCategories.has(dependency)) {
-                   // We can skip.
-                   return
-               };
-               // The dependency is either missing or being assumed to query all dimensions.
+		// Is the dependency being queried via a subset of all it's dimensions?
+		if (this.partialCategories.has(dependency)) {
+                    // We can skip.
+                    return
+		};
+		// The dependency is either missing or being assumed to query all dimensions.
 
-               // We need to EXPLICITLY query all of the keys for the dependency.
+		// We need to EXPLICITLY query all of the keys for the dependency.
                 includeAllDimensions.add(dependency)
             }
         })
@@ -127,7 +138,6 @@ export class QuerySet {
         // Once we've marked all category dependencies, we can iterate over all queries,
         // adding the full set of dimensions to category queries that require it.
         const querySets = []
-        const remaining = new Set([...Object.keys(this.allCategories)])
         this.partialQueries.concat(this.fullQueries).forEach((q) => {
             if (includeAllDimensions.has(q.category)) {
                 const replacement = new Query(q.category, ...this.allCategories[q.category])
@@ -159,6 +169,7 @@ export const validateQueries = (categories: CategoryType,
                                 annotatedDimensions: Set<string>,
                                 ...queries: Array<Query>): string => {
     const catNames = new Set<string>()
+    const includesAllDimensions = new Set<string>()
     try {
         queries.forEach((query) => {
             if (catNames.has(query.category)) {
@@ -181,7 +192,15 @@ export const validateQueries = (categories: CategoryType,
                 })
                 throw new Error(`query category has unknown dimensions: ${difference}`)
             }
+	    // console.log('intersected', intersected, 'catDimensions', catDimensions)
+	    if (intersected.size == catDimensions.size) {
+		includesAllDimensions.add(query.category)
+	    }
         })
+	// console.log(includesAllDimensions, catNames)
+	if (setsUtil.setEqual(includesAllDimensions, catNames)) {
+	    throw new Error(`All query categories given include all respective dimensions`)
+	}
     } catch (e) {
         return e.message
     }
@@ -209,4 +228,94 @@ export const query2dcids = (dcids: Array<Dcid>,
         })
     })
     return {'results': out} as QueryResult
+}
+
+// A QueryCompare accepts a category to compare, a Queryable class, and
+// a Map<string(a category dimension), Array<Query>> for plotting/comparing.
+// The `compile` method returns an Array<Array<string>> of `Dcid.dcid` strings;
+// each sub-Array refers the respective
+// Array<Query> index from the constructor method argument `queries`.
+export class QueryCompare {
+    queries: Map<string, Array<Query>>
+    queryable: Queryable
+    category: string
+
+    constructor(category:string, queryable: Queryable, queries: Map<string, Array<Query>>) {
+	if (Object.keys(queries).length < 2) {
+	    throw new Error('QueryCompare requires a Map with at least 2 items')
+	}
+
+	this.queries = queries
+	this.category = category
+	this.queryable = queryable
+
+	if (this.queryable.categories()[category] === undefined) {
+	    throw new Error(`category missing from queries: ${category}`)
+	}
+    }
+
+    validate(): string {
+	// We can only compare subsets of the category argument. If we find
+	// the same dimensions from the target category in any other QuerySet, we throw an error.
+	// This prevents comparing the same dimensions in the target category.
+	const existingDimensions = new Set<string>()
+	try {
+	    for (const dim in this.queries) {
+		const qs = this.queries[dim]
+		// qs is an Array<Query>
+		qs.forEach((q) => {
+		    q.dimensions.forEach((d) => {
+			if (q.category == this.category && existingDimensions.has(d)) {
+			    throw new Error(`duplicate dimensions in the ${this.category} category: ${d}`)
+			}
+			existingDimensions.add(d)
+		    })
+		})
+	    }
+	} catch (e) {
+	    return e.message
+	}
+	return ''
+    }
+
+    compile(): Map<string, Array<string>> {
+	const out: Map<string, Array<string>> = {}
+	for (const dim in this.queries) {
+	    const qs = this.queries[dim]
+	    const res = this.queryable.query(...qs)
+	    if (res.error !== undefined) {
+		throw new Error(`Error querying Queryable: ${res.error}`)
+	    }
+	    out[dim] = res.results
+	}
+	return out
+    }
+}
+
+// expandCompares accepts a category to compare and a
+// Map<string(category), Array<string(dimension for the respective category)>>
+// It will return a Map<`dimension of compare category`, Array<Query>>, where Array<Query> includes
+// all queries to be compared against the other category dimension(s).
+export const expandCompares = (compareCategory: string, queries: Map<string, Array<string>>): Map<string, Array<Query>> => {
+
+    const out: Map<string, Array<Query>> = {}
+    const compareDimensions = queries[compareCategory]
+    if (compareDimensions === undefined) {
+	throw new Error(`Cannot compare category that does not exist in queries. category: ${compareCategory} queries: ${queries}`)
+    }
+    compareDimensions.forEach((dim) => {
+	const placeholder = [new Query(compareCategory, dim)]
+	for (const cat in queries) {
+	    if (cat == compareCategory) {
+		continue
+	    }
+	    const dimensions = queries[cat]
+	    if (dimensions.length == 0) {
+		continue
+	    }
+	    placeholder.push(new Query(cat, ...dimensions))
+	}
+	out[dim] = placeholder
+    })
+    return out
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Splash from '@/home/Splash.vue'
 import ExploreData from '@/home/ExploreData.vue'
+import DataDashboard from '@/home/DataDashboard.vue'
 import Stories from '@/home/Stories.vue'
 import Stat from '@/home/Stat.vue'
 import MoreToExplore from '@/home/MoreToExplore.vue'
@@ -21,6 +22,9 @@ import MoreToExplore from '@/home/MoreToExplore.vue'
   </div>
   <div class="view">
     <MoreToExplore></MoreToExplore>
+  </div>
+  <div class="view">
+    <DataDashboard></DataDashboard>
   </div>
 </template>
 

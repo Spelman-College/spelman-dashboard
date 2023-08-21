@@ -1,20 +1,20 @@
-import { Male, Female } from '../queries/dimensions'
+import * as dims from '../queries/dimensions'
 
 export const Categories = {
     'gender': new Set<string>([
-	Male,
-	Female
+	dims.Male,
+	dims.Female
     ]),
     'age': new Set<string>([
-	'40To64Years',
-	'25To39Years',
-	'65OrMoreYears'
+	dims.age_40To64Years,
+	dims.age_25To39Years,
+	dims.age_65OrMoreYears
     ]),
     'major': new Set<string>([
-	'BachelorOfEducationMajor',
-	'BachelorOfScienceAndEngineeringMajor',
-	'BachelorOfScienceAndEngineeringRelatedMajor',
-	'BachelorOfArtsHumanitiesAndOtherMajor',
-	'BachelorOfBusinessMajor',
+	dims.BachelorOfEducationMajor,
+	dims.BachelorOfScienceAndEngineeringMajor,
+	dims.BachelorOfScienceAndEngineeringRelatedMajor,
+	dims.BachelorOfArtsHumanitiesAndOtherMajor,
+	dims.BachelorOfBusinessMajor,
     ])
 }
