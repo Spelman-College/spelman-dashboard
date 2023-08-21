@@ -9,18 +9,18 @@ const rows = ref([]);
 
 async function getData() {
   await Papa.parse(StoriesURI, {
-	 header: true,
-	 download: true,
-	 worker: true,
-	 complete: function(results, file) {
-	     rows.value = results.data;
-	 },
+    header: true,
+    download: true,
+    worker: true,
+    complete: function (results, file) {
+      rows.value = results.data;
+    },
   });
- }
+}
 
- onMounted(() => {
-     getData();
- });
+onMounted(() => {
+  getData();
+});
 
 </script>
 
@@ -32,9 +32,10 @@ async function getData() {
   </div>
 
   <div class="story-card-grid">
-    <StoryCard v-for="story in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name">
+    <StoryCard v-for="story in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name" width="25">
       <template #name>{{ story.name }}</template>
       <template #story>{{ story.text }}</template>
+      <template #linkText>Read her story</template>
     </StoryCard>
   </div>
 </template>
