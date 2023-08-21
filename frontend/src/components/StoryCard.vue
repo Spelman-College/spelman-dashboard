@@ -14,7 +14,7 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
 <template>
   <Card>
     <template #header>
-      <img :alt="alt" :src="imgSrc" style="object-fit: cover;" />
+      <img :alt="alt" :src="imgSrc"/>
     </template>
     <template #title>
       <h1>
