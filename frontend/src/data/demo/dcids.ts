@@ -56,8 +56,6 @@ export const DCIDS: Array<string> = [
     'Count_Person_40To64Years_BachelorOfScienceAndEngineeringRelatedMajor',
     'Count_Person_65OrMoreYears_BachelorOfScienceAndEngineeringRelatedMajor',
     'Count_Person_65OrMoreYears_BachelorOfScienceAndEngineeringRelatedMajor',
-    'Count_Person_25To39Years_BachelorOfScienceAndEngineeringRelatedMajor',
-    'Count_Person_25To39Years_BachelorOfScienceAndEngineeringRelatedMajor',
     'Count_Person_BachelorOfBusinessMajor_Male',
     'Count_Person_BachelorOfBusinessMajor_Female',
     'Count_Person_BachelorOfBusinessMajor',
