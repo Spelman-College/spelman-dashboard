@@ -44,12 +44,13 @@ const orgs = [
     <img id="dots" src="/dots.svg" />
     <div id="splash-text">
       <div id="splash-text-headnote">List of organizations</div>
-      <div id="splash-text-header">Lifting Up Black Women in STEM: Organizations</div>
-      <p>These organizations are at the forefront of championing diversity, equity, and inclusion, and they actively work
-        to create opportunities, resources, and networks for Black women pursuing careers in STEM disciplines.<br /><br />
+      <div id="splash-text-header">Changemaking Organizations</div>
+      <div id="splash-text-body">These organizations are at the forefront of championing diversity, equity, and inclusion,
+        and they actively work to create opportunities, resources, and networks for Black women pursuing careers in STEM
+        disciplines.<br /><br />
 
         By showcasing these organizations, the aim is to shed light on their impactful initiatives, inspire others to get
-        involved, and foster a more inclusive and diverse future in STEM.</p>
+        involved, and foster a more inclusive and diverse future in STEM.</div>
     </div>
   </div>
 
@@ -87,15 +88,17 @@ div#splash-text {
   border-radius: 2.5rem;
   box-shadow: 13px 11px 22px 0px #1f1f1f;
   backdrop-filter: blur(30px);
-  width: 37.8125rem;
-  height: 21.9375rem;
+  width: 47.8125rem;
+  height: 31.9375rem;
   margin-top: 32rem;
   padding: 5rem;
 }
 
-div#splash-text>p {
+#splash-text-body {
   color: #313b49;
+  font-family: 'Noto Sans';
   font-size: 1.125rem;
+  width: 37rem;
 }
 
 #splash-text-headnote {

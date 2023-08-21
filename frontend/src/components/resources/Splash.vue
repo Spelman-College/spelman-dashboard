@@ -5,13 +5,15 @@
     <img id="splash-image" src="/gettyimages-1405307215-1024x1024.jpg" />
     <div id="splash-text">
       <div id="splash-text-headnote">Black Women in STEM</div>
-      <div id="splash-text-header">Changemaking organizations</div>
-      <p>Spotlighting organizations dedicated to the advancement of Black women in STEM. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Cras at volutpat dolor, et euismod dolor. Vivamus quis iaculis neque. Interdum et
-        malesuada fames ac ante ipsum primis in faucibus.<br /><br />
+      <div id="splash-text-header">Empowering Black Women in STEM: Your Resource Hub</div>
+      <div id="splash-text-body">Welcome to our Resource Page of [Name]!<br /><br />
 
-        Pellentesque ligula dui, mattis sit amet suscipit vitae, viverra quis eros. Proin elementum diam in dolor
-        ullamcorper auctor.</p>
+        We are thrilled to present this collection of resources dedicated to empowering and celebrating the achievements
+        of Black women in the fields of Science, Technology, Engineering, and Mathematics (STEM).<br /><br />
+
+        Our mission is to provide a platform that showcases the remarkable contributions, stories, and accomplishments of
+        Black women in STEM.
+      </div>
     </div>
   </div>
 </template>
@@ -31,16 +33,19 @@ div#splash-text {
   border-radius: 2.5rem;
   box-shadow: 13px 11px 22px 0px #1f1f1f;
   backdrop-filter: blur(30px);
-  width: 37.8125rem;
-  height: 21.9375rem;
+  width: 47.8125rem;
+  height: 31.9375rem;
   margin-top: 10.625rem;
   margin-left: 35.5625rem;
-  padding: 5rem;
+  padding: 4rem;
 }
 
-div#splash-text>p {
+#splash-text-body {
   color: #313b49;
+  font-family: 'Noto Sans';
   font-size: 1.125rem;
+  width: 37rem;
+  margin-top: 1rem;
 }
 
 #splash-text-headnote {
