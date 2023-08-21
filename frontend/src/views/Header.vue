@@ -39,6 +39,7 @@ function goToData() {
 .header-links {
   margin: 0 2rem;
   font-family: 'Noto Sans Mono';
+  cursor: pointer;
 }
 
 #logo {
