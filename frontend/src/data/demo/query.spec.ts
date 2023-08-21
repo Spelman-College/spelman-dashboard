@@ -6,6 +6,8 @@ const demo = new Query_demo()
 
 const female = new Query('gender', 'Female')
 const male = new Query('gender', 'Male')
+const male_female = new Query('gender', 'Male', 'Female')
+
 const twenty_to_39 = new Query('age', '25To39Years')
 const all_majors = new Query('major',
                              'BachelorOfEducationMajor',

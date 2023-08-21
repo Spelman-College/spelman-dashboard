@@ -1,39 +1,27 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
+import { ref, onMounted } from 'vue';
+import Papa from 'papaparse';
+const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
+const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
+const rows = ref([]);
 
-const stories = [
-  {
-    name: "Dr. Helene D. Gayle, President of Spelman College",
-    story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non.",
-    imgSrc: "/story_placeholder1.jpg"
-  },
-  {
-    name: "Shakiyla Huggins - Meeting the Challenge",
-    story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non.",
-    imgSrc: "/story_placeholder2.jpg"
-  },
-  {
-    name: "Deanna Clemmer - An Invaluable Lab",
-    story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra quam sed purus dignissim accumsan. Phasellus tristique dignissim lacus, ut dapibus libero luctus a. Sed tempor placerat nulla. Vestibulum tincidunt, massa quis vehicula eleifend, quam felis consectetur libero, vitae volutpat arcu felis eget metus. Nullam laoreet hendrerit mauris vitae ultricies. Vivamus hendrerit erat eget felis hendrerit pulvinar. Integer ut lorem consectetur, auctor nibh a, aliquam sem. Nam erat purus, congue vitae tellus ullamcorper, porttitor pellentesque lectus. Proin sed posuere eros. Phasellus at suscipit nunc, vel maximus tellus. Vestibulum lorem nisi, dapibus malesuada metus id, lacinia ultricies magna. Aenean iaculis ante est, ac euismod dolor vehicula non.",
-    imgSrc: "/story_placeholder3.jpg"
-  },
-  {
-    name: "4",
-    story: "Story 4",
-    imgSrc: "/story_placeholder1.jpg"
-  },
-  {
-    name: "5",
-    story: "Story 5",
-    imgSrc: "/story_placeholder2.jpg"
-  },
-  {
-    name: "6",
-    story: "Story 6",
-    imgSrc: "/story_placeholder3.jpg"
-  },
-]
+async function getData() {
+  await Papa.parse(StoriesURI, {
+	 header: true,
+	 download: true,
+	 worker: true,
+	 complete: function(results, file) {
+	     rows.value = results.data;
+	 },
+  });
+ }
+
+ onMounted(() => {
+     getData();
+ });
+
 </script>
 
 <template>
@@ -44,9 +32,9 @@ const stories = [
   </div>
 
   <div class="story-card-grid">
-    <StoryCard v-for="story in stories" :v-key="story.name" :imgSrc="story.imgSrc">
+    <StoryCard v-for="story in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name">
       <template #name>{{ story.name }}</template>
-      <template #story>{{ story.story }}</template>
+      <template #story>{{ story.text }}</template>
     </StoryCard>
   </div>
 </template>

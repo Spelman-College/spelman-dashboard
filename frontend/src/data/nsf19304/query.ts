@@ -36,7 +36,6 @@ DCIDS.forEach((id) => {
 // ethnicity metric that includes all genders.
 const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
 
-
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
     protected dcids: Array<Dcid> = dcids
