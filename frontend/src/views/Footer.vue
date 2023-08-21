@@ -23,7 +23,7 @@ function goToFAQ() {
       <div id="misc">
         <div>@ 2023-2-24</div>
         <div>Privacy &mdash; Terms</div>
-        <div class = "faq" @click="goToFAQ">FAQ</div>
+        <div class="footer-links" @click="goToFAQ">FAQ</div>
       </div>
     </div>
   </div>
@@ -63,4 +63,9 @@ function goToFAQ() {
 #misc {
   font-size: 14px;
 }
+
+.footer-links {
+  cursor: pointer;
+}
+  
 </style>
