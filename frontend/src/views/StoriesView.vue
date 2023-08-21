@@ -27,8 +27,7 @@ async function getData() {
 <template>
   <div class="view">
     <h3>Stories</h3>
-    <p>The Black Experience in Design spotlights teaching practices, research, stories, and conversations from a
-      Black/African diasporic lens.</p>
+    <p>Celebrating Black women in STEM and inspiring others to make their mark on the world</p>
   </div>
 
   <div class="story-card-grid">
