@@ -24,10 +24,8 @@ describe('demo query', () => {
         let out = demo.query(black)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Male_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Male_HBCU_Black",
+            "Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU_Black",
+            "Count_Person_EnrolledInCollegeOrGraduateSchool_Male_HBCU_Black",
         ])
     })
 
@@ -43,8 +41,7 @@ describe('demo query', () => {
         let out = demo.query(female)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU",
+            "Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU"
         ])
     })
 
@@ -52,8 +49,8 @@ describe('demo query', () => {
         let out = demo.query(black, female)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU_Black",])
+            "Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU_Black",
+        ])
     })
 
     test('test race gender enrollment', () => {
@@ -67,10 +64,7 @@ describe('demo query', () => {
         all_enrollment_types.forEach((type) => {
             let query = new Query("collegeOrGraduateSchoolEnrollment", type)
             let out = demo.query(query)
-            if(type == 'EnrolledInCollegeOrGraduateSchool'){ expect(out.results).toEqual([]) }
-            else{
-                expect(out.results).toEqual(["Count_Person_".concat(type).concat("_HBCU")])
-            }
+            expect(out.results).toEqual(["Count_Person_".concat(type).concat("_HBCU")])
         })
     })
 
@@ -93,15 +87,8 @@ describe('demo query', () => {
         })
     })
 
-    test('test 2 enrollment types ', () => {
-        let query = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInPrivateCollegeOrGraduateSchool', 'EnrolledInPublicCollegeOrGraduateSchool')
-        let out = demo.query(query)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual(["Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_HBCU", "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_HBCU"])
-    })
-
-    test('test 2 enrollment types 1 university level', () => {
-        let query_a = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInCollegeOrGraduateSchool', 'EnrolledInPublicCollegeOrGraduateSchool')
+    test('test 1 enrollment types 1 university level', () => {
+        let query_a = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInPublicCollegeOrGraduateSchool')
         let query_b = new Query("collegeOrUniversityLevel", '2year')
         let out = demo.query(query_a, query_b)
         expect(out.error).toEqual(undefined)
@@ -117,18 +104,6 @@ describe('demo query', () => {
         expect(out.results).toEqual([
             "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Female_HBCU_Black",
             "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Male_HBCU_Black"
-        ])
-    })
-
-    test('test race category dependency', () => {
-        let query = new Query("race", 'Black')
-        let out = demo.query(query)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
-            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Male_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Male_HBCU_Black",
         ])
     })
 
