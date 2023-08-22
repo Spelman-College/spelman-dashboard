@@ -24,8 +24,11 @@ describe('demo query', () => {
         let out = demo.query(black)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-            "Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInCollegeOrGraduateSchool_Male_HBCU_Black"])
+            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU_Black",
+            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Male_HBCU_Black",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU_Black",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Male_HBCU_Black",
+        ])
     })
 
     test('test race enrollment', () => {
@@ -39,13 +42,18 @@ describe('demo query', () => {
     test('test gender alone', () => {
         let out = demo.query(female)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual(["Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU"])
+        expect(out.results).toEqual([
+            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU",
+        ])
     })
 
     test('test race gender', () => {
         let out = demo.query(black, female)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual(["Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU_Black"])
+        expect(out.results).toEqual([
+            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU_Black",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU_Black",])
     })
 
     test('test race gender enrollment', () => {
@@ -59,16 +67,19 @@ describe('demo query', () => {
         all_enrollment_types.forEach((type) => {
             let query = new Query("collegeOrGraduateSchoolEnrollment", type)
             let out = demo.query(query)
-            expect(out.results).toEqual(["Count_Person_".concat(type).concat("_HBCU")])
+            if(type == 'EnrolledInCollegeOrGraduateSchool'){ expect(out.results).toEqual([]) }
+            else{
+                expect(out.results).toEqual(["Count_Person_".concat(type).concat("_HBCU")])
+            }
         })
     })
 
     test('test each university level', () => {
         all_genders.forEach((gender) => {
             let query_a = new Query("gender", gender)
-            let query_b = new Query("collegeOrGraduateSchoolEnrollment", "EnrolledInCollegeOrGraduateSchool")
+            let query_b = new Query("collegeOrGraduateSchoolEnrollment", "EnrolledInPrivateCollegeOrGraduateSchool")
             let out = demo.query(query_a, query_b)
-            expect(out.results).toEqual(["Count_Person_EnrolledInCollegeOrGraduateSchool_".concat(gender).concat("_HBCU")])
+            expect(out.results).toEqual(["Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_".concat(gender).concat("_HBCU")])
         })
     })
 
@@ -83,10 +94,10 @@ describe('demo query', () => {
     })
 
     test('test 2 enrollment types ', () => {
-        let query = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInCollegeOrGraduateSchool', 'EnrolledInPublicCollegeOrGraduateSchool')
+        let query = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInPrivateCollegeOrGraduateSchool', 'EnrolledInPublicCollegeOrGraduateSchool')
         let out = demo.query(query)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual(["Count_Person_EnrolledInCollegeOrGraduateSchool_HBCU", "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_HBCU"])
+        expect(out.results).toEqual(["Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_HBCU", "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_HBCU"])
     })
 
     test('test 2 enrollment types 1 university level', () => {
@@ -105,7 +116,7 @@ describe('demo query', () => {
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
             "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Female_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Male_HBCU_Black"            
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Male_HBCU_Black"
         ])
     })
 
@@ -114,8 +125,10 @@ describe('demo query', () => {
         let out = demo.query(query)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-            "Count_Person_EnrolledInCollegeOrGraduateSchool_Female_HBCU_Black",
-            "Count_Person_EnrolledInCollegeOrGraduateSchool_Male_HBCU_Black"
+            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Female_HBCU_Black",
+            "Count_Person_EnrolledInPublicCollegeOrGraduateSchool_Male_HBCU_Black",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Female_HBCU_Black",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_Male_HBCU_Black",
         ])
     })
 
