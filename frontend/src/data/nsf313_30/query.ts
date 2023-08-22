@@ -59,7 +59,7 @@ class Base {
     protected annotatedDimensions: Set<string> = annotatedDimensions
 }
 
-export class Query_nsf313_20 extends Base {
+export class Query_nsf313_30 extends Base {
     constructor() {
 	super()
     }

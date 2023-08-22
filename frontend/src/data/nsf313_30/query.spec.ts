@@ -1,9 +1,9 @@
 import { describe, expect, test } from '@jest/globals';
-import { Query_nsf313_20 } from './query'
+import { Query_nsf313_30 } from './query'
 import { Query } from '../queries/query'
 import { Categories } from './categories';
 
-const demo = new Query_nsf313_20()
+const demo = new Query_nsf313_30()
 
 const black = new Query('race', 'Black')
 const four_year = new Query('collegeOrUniversityLevel',
