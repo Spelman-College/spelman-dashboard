@@ -1,13 +1,21 @@
 import Papa from 'papaparse';
+import { ref } from 'vue'
 
-export async function getData(sheet:string, rows:([])) {
+var rows:string[] = [];
+
+export async function getData(sheet:string) {
     await Papa.parse(sheet, {
       header: true,
       download: true,
       worker: true,
       complete: function (results, file) {
-        rows.value = results.data;
+        rows = results.data;
+        // Expected array logged
+        console.log(rows);
+
       },
     });
-  return rows;
+    // Empty array logged
+    console.log(rows);
+    return rows;
 }

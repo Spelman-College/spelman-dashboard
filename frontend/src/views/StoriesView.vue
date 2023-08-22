@@ -8,7 +8,7 @@ const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=
 const rows = ref([]);
 
 onMounted(() => {
-  getData(StoriesURI, rows);
+  rows.value = getData(StoriesURI);
 });
 
 </script>
