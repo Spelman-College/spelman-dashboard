@@ -8,9 +8,10 @@ AWS Amplify provides a Git-based workflow for hosting serverless web apps with c
 
 ## How to do a Prod Cut Step-by-Step
 
-1. Switch to the `latest` branch. Do a `git pull` to ensure all your local changes are synced with remote.
-1. From `latest`, switch to a new branch `v{version_number}`, where `{version_number}` is the version of the *previous* release. This essentially archives `latest` before we do this prod cut.
-1. In GitHub, lock the `v{version_number}` branch to ensure it is never overwritten.
-1. Run `git pull main` to ensure your local `main` branch is in sync with remote.
-1. Again make sure you are on the `latest` branch. Run `git merge main` to merge `main` into `latest`. This is the prod cut.
-1. Tag the merge in GitHub with `v{new_version_number}`, where `{new_version_number}` is the version of the *current* release.
+1. In GitHub, create a pull request for merging `main` into `latest`.
+1. After it is approved, merge the change.
+1. On the right-hand side, click on "Releases".
+1. Click "Draft a new release" at the top.
+1. Under "Choose a tag", type in `v{version_number}` where `{version_number}` is the version number for this new release.
+1. Click the "Generate release notes" button to auto-generate release notes.
+1. Click "Publish release". All done!
