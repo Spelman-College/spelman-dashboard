@@ -194,7 +194,7 @@ export const validateQueries = (categories: CategoryType,
                 throw new Error(`query category has unknown dimensions: ${difference}`)
             }
 	    // console.log('intersected', intersected, 'catDimensions', catDimensions)
-	    if (intersected.size == catDimensions.size) {
+	    if (intersected.size == catDimensions.size && catDimensions.size != 1) {
 		includesAllDimensions.add(query.category)
 	    }
         })
