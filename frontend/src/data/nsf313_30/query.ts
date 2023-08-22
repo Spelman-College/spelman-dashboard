@@ -7,6 +7,7 @@ const filter: DcidFilter = {
     ignorePrefix: 'Count_Person',
     omitDimensions: new Set<string>([
 	'HBCU',
+    'EnrolledInCollegeOrGraduateSchool'
     ]),
     additions: {}
 } as DcidFilter
@@ -50,7 +51,7 @@ dcids_set.forEach((id) => {
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = [['gender', 'collegeOrGraduateSchoolEnrollment:EnrolledInCollegeOrGraduateSchool'], ['race', 'gender'], ['race', 'collegeOrGraduateSchoolEnrollment:EnrolledInCollegeOrGraduateSchool'] ]
+const categoryDependencies: [string, string][] = [['gender', 'collegeOrGraduateSchoolEnrollment'], ['race', 'gender'], ['race', 'collegeOrGraduateSchoolEnrollment'] ]
 
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
