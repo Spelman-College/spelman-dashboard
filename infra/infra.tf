@@ -145,6 +145,28 @@ resource "aws_iam_group_membership" "terraform_full_permissions" {
   group = aws_iam_group.terraform_full_permissions.name
 }
 
+resource "aws_iam_group" "billing_admins" {
+  name = "BillingAdmins"
+}
+
+resource "aws_iam_group_membership" "billing_admins" {
+  name = "billing_admins_membership"
+  users = [
+    aws_iam_user.terriadavis.name
+  ]
+  group = aws_iam_group.billing_admins.name
+}
+
+resource "aws_iam_group_policy_attachment" "billing_admins_force_mfa" {
+  group      = aws_iam_group.billing_admins.name
+  policy_arn = aws_iam_policy.force_mfa.arn
+}
+
+resource "aws_iam_group_policy_attachment" "billing_admins_billing" {
+  group = aws_iam_group.admins.name
+  policy_arn = "arn:aws:iam::aws:policy/job-function/Billing"
+}
+
 resource "aws_iam_policy" "force_mfa" {
   name        = "ForceMFA"
   description = "Blocks access to everything except account configuration when not signed in with MFA."
@@ -355,6 +377,25 @@ resource "aws_iam_user_policy_attachment" "drumsound_change_password" {
   user       = aws_iam_user.drumsound.name
   policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
 }
+
+resource "aws_iam_user" "terriadavis" {
+  name = "terriadavis"
+}
+
+resource "aws_iam_user_login_profile" "terriadavis" {
+  user = aws_iam_user.terriadavis.name
+  pgp_key = file("public.pgp")
+}
+
+output "terriadavis_password" {
+  value = aws_iam_user_login_profile.terriadavis.encrypted_password
+}
+
+resource "aws_iam_user_policy_attachment" "terriadavis_change_password" {
+  user       = aws_iam_user.terriadavis.name
+  policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
+}
+
 
 resource "aws_iam_user" "terraform" {
   name = "terraform"
