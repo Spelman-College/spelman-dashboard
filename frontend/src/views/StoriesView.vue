@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
-import { getData } from '@/components/fetchSpreadsheet'
+import { getData } from '@/sheets/client'
 import { ref, onMounted } from 'vue';
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 

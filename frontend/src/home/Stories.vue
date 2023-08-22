@@ -3,7 +3,7 @@ import StoryCard from '@/components/StoryCard.vue'
 
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router';
-import { getData } from '@/components/fetchSpreadsheet'
+import { getData } from '@/sheets/client'
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
