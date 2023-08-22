@@ -40,7 +40,7 @@ onMounted(() => {
       </div>
       <div>
         <div class="name">{{ org.name }}</div>
-        <a :href="org.url" class="url">{{ org.url }}</a>
+        <a :href="org.formatted_url" class="url">{{ org.url }}</a>
       </div>
     </template>
     <template #body>
