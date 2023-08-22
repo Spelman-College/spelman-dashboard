@@ -237,7 +237,7 @@ describe('validateQueries', () => {
             'fast',
             'red'
         ]),
-        
+
         'tools': new Set<string>([
             'hammer',
         ])
@@ -281,7 +281,7 @@ describe('validateQueries', () => {
         expect(err).toEqual('')
     })
 
-    test('query with single dimension does not return error', () => {
+    test('query with single dimension category does not return error', () => {
         const q1 = new Query('tools', 'hammer')
         const err = validateQueries(categories, annotatedDimensions, q1)
         expect(err).toEqual("")
