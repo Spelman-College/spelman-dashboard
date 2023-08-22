@@ -1,25 +1,14 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
+import { getData } from '@/components/fetchSpreadsheet'
 import { ref, onMounted } from 'vue';
-import Papa from 'papaparse';
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
 const rows = ref([]);
 
-async function getData() {
-  await Papa.parse(StoriesURI, {
-    header: true,
-    download: true,
-    worker: true,
-    complete: function (results, file) {
-      rows.value = results.data;
-    },
-  });
-}
-
 onMounted(() => {
-  getData();
+  getData(StoriesURI, rows);
 });
 
 </script>
