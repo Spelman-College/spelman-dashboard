@@ -7,7 +7,6 @@ export const Categories = {
         '2year',
     ]),
     'collegeOrGraduateSchoolEnrollment': new Set<string>([
-        'EnrolledInCollegeOrGraduateSchool', 
         'EnrolledInPublicCollegeOrGraduateSchool',
         'EnrolledInPrivateCollegeOrGraduateSchool'
     ]),
