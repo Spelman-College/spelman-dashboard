@@ -236,10 +236,14 @@ describe('validateQueries', () => {
         'cars': new Set<string>([
             'fast',
             'red'
+        ]),
+        
+        'tools': new Set<string>([
+            'hammer',
         ])
     }
 
-    const annotatedDimensions = new Set(['pets:cat', 'pets:dog', 'cars:fast', 'cars:red'])
+    const annotatedDimensions = new Set(['pets:cat', 'pets:dog', 'cars:fast', 'cars:red', 'tools:hammer'])
 
     test('duplicate categories returns error', () => {
         const q1 = new Query('pets', 'cat')
@@ -275,6 +279,12 @@ describe('validateQueries', () => {
 	const q3 = new Query('cars', 'fast')
         err = validateQueries(categories, annotatedDimensions, q1, q3)
         expect(err).toEqual('')
+    })
+
+    test('query with single dimension does not return error', () => {
+        const q1 = new Query('tools', 'hammer')
+        const err = validateQueries(categories, annotatedDimensions, q1)
+        expect(err).toEqual("")
     })
 
 })
