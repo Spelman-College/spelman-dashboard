@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
-import { getData } from '@/sheets/client'
+import { getData } from '@/components/fetchSpreadsheet'
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
 const rows = ref([]);
 
 onMounted(() => {
-  const pout = getData(StoriesURI);
-  pout.then((data) => {
-	  rows.value = data;
-	 })
+  getData(StoriesURI, rows);
 });
 
 </script>
@@ -23,10 +23,11 @@ onMounted(() => {
   </div>
 
   <div class="story-card-grid">
-    <StoryCard v-for="story in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name" width="25">
+    <StoryCard v-for="(story, index) in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name"
+      width="25">
       <template #name>{{ story.name }}</template>
       <template #story>{{ story.text }}</template>
-      <template #linkText>Read her story</template>
+      <template #linkText><router-link :to="{ path: '/stories/' + index }">Read her story</router-link></template>
     </StoryCard>
   </div>
 </template>
