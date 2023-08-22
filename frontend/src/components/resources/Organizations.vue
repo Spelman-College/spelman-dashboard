@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AccordionPanel from '@/components/AccordionPanel.vue'
-import { getData } from '@/components/fetchSpreadsheet'
+import { getData } from '@/sheets/client'
 import { ref, onMounted } from 'vue'
 
 const sid = import.meta.env.VITE_ORGANIZATIONS_CONTENT_SHEET_ID
