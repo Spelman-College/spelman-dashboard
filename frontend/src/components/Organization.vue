@@ -5,9 +5,7 @@
      label: props.org.name,
      children: [
 	 { key: props.idx + '-0', label: props.org.website},
-	 { key: props.idx + '-1', label: 'Founded: ' + props.org.founded},
-	 { key: props.idx + '-2', label: 'Founder: ' + props.org.founder},
-	 { key: props.idx + '-3', label: 'STEM Focus: ' + props.org.focus}
+	 { key: props.idx + '-1', label: props.org.info}
      ]
  }]
 </script>
@@ -16,4 +14,10 @@
     <p>
 	<Tree :value="nodes"></Tree>
     </p>
+    <!-- TODO: Integrate image in nodes var -->
+    <Card style="width: 20em; margin-top: 1em; ">
+    <template #header>
+        <img alt="{{props.org.name}}" :src="props.org.image" style="width: 20em;"/>
+	</template>
+    </Card>
 </template>
