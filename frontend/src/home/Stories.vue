@@ -11,18 +11,18 @@ const rows = ref([]);
 
 async function getData() {
   await Papa.parse(StoriesURI, {
-	 header: true,
-	 download: true,
-	 worker: true,
-	 complete: function(results, file) {
-	     rows.value = results.data;
-	 },
+    header: true,
+    download: true,
+    worker: true,
+    complete: function (results, file) {
+      rows.value = results.data;
+    },
   });
- }
+}
 
- onMounted(() => {
-     getData();
- });
+onMounted(() => {
+  getData();
+});
 
 const router = useRouter();
 
@@ -57,9 +57,10 @@ const page = ref(0)
     <Carousel :value="rows" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
       :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
       <template #item="slotProps">
-        <StoryCard :img-src="slotProps.data.hosted_image_link">
+        <StoryCard :img-src="slotProps.data.hosted_image_link" width="25">
           <template #name>{{ slotProps.data.name }}</template>
           <template #story>{{ slotProps.data.text }}</template>
+          <template #linkText>Read her story</template>
         </StoryCard>
       </template>
     </Carousel>
