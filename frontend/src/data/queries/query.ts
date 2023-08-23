@@ -44,6 +44,7 @@ export class QuerySet {
     partialCategories: Set<string>;
 
     fullQueries: Array<Query>
+    fullCategories: Set<string>;
 
     allCategories: CategoryType
 
@@ -57,8 +58,8 @@ export class QuerySet {
     annotatedDimensions: CategoryType
 
     constructor(allCategories: CategoryType,
-                categoryDependencies: [string, string][],
-                ...queries: Query[]) {
+        categoryDependencies: [string, string][],
+        ...queries: Query[]) {
 
         this.queries = queries
         this.fullQueries = []
@@ -87,8 +88,8 @@ export class QuerySet {
         this.queries.forEach((q) => {
             remaining.delete(q.category)
             const containsAllDimensions = setsUtil.setEqual(q.dimensions,
-                                                            this.annotatedDimensions[q.category])
-            if (q.dimensions.size == 0 || containsAllDimensions) {
+                this.annotatedDimensions[q.category])
+            if (q.dimensions.size == 0 || (containsAllDimensions && this.allCategories[q.category].size != 1)) {
                 this.fullQueries.push(q)
                 this.fullCategories.add(q.category)
                 return
@@ -100,7 +101,7 @@ export class QuerySet {
         // Add the non-existent categories to the fullQueries and fullCategories
         remaining.forEach((cat) => {
             this.fullQueries.push(new Query(cat, ''))
-	    this.fullCategories.add(cat)
+            this.fullCategories.add(cat)
         })
     }
 
@@ -166,8 +167,8 @@ export class QuerySet {
 }
 
 export const validateQueries = (categories: CategoryType,
-                                annotatedDimensions: Set<string>,
-                                ...queries: Array<Query>): string => {
+    annotatedDimensions: Set<string>,
+    ...queries: Array<Query>): string => {
     const catNames = new Set<string>()
     const includesAllDimensions = new Set<string>()
     try {
@@ -193,7 +194,7 @@ export const validateQueries = (categories: CategoryType,
                 throw new Error(`query category has unknown dimensions: ${difference}`)
             }
 	    // console.log('intersected', intersected, 'catDimensions', catDimensions)
-	    if (intersected.size == catDimensions.size) {
+	    if (intersected.size == catDimensions.size && catDimensions.size != 1) {
 		includesAllDimensions.add(query.category)
 	    }
         })
@@ -208,13 +209,13 @@ export const validateQueries = (categories: CategoryType,
 }
 
 export const query2dcids = (dcids: Array<Dcid>,
-                            categories: CategoryType,
-                            categoryDependencies: [string, string][],
-                            annotatedDimensions: Set<string>,
-                            ...queries: Array<Query>): QueryResult => {
+    categories: CategoryType,
+    categoryDependencies: [string, string][],
+    annotatedDimensions: Set<string>,
+    ...queries: Array<Query>): QueryResult => {
     const err = validateQueries(categories, annotatedDimensions, ...queries)
     if (err != '') {
-        return {'error': err} as QueryResult
+        return { 'error': err } as QueryResult
     }
     const qs = new QuerySet(categories, categoryDependencies, ...queries)
 
@@ -227,7 +228,7 @@ export const query2dcids = (dcids: Array<Dcid>,
             }
         })
     })
-    return {'results': out} as QueryResult
+    return { 'results': out } as QueryResult
 }
 
 // A QueryCompare accepts a category to compare, a Queryable class, and
