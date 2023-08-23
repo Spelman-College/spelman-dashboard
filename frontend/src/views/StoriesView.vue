@@ -8,7 +8,16 @@ const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=
 const rows = ref([]);
 
 onMounted(() => {
-  rows.value = getData(StoriesURI);
+  const pout = getData(StoriesURI);
+  console.log(pout);
+  pout.then((data) => {
+       // PromiseState is fulfilled 
+       console.log(pout);
+       // PromiseResult is undefined
+       console.log(data);
+	     rows.value = data;
+	 })
+   console.log(rows.value);
 });
 
 </script>
