@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import Splash from '@/components/about/Splash.vue'
+</script>
+
 <template>
-    <div class="view">
-        <h3>About Placeholder</h3>
-      </div>
+  <div class="view">
+    <Splash></Splash>
+  </div>
 </template>
