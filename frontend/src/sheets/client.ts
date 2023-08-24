@@ -7,7 +7,6 @@ export const getData = async (sheet:string)  => {
           download: true,
           worker: true,
           complete (results) {
-              console.log(results.data);
               resolve(results.data)
           },
       })

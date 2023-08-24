@@ -2,21 +2,22 @@
 import Stories from '@/home/Stories.vue'
 import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
-import { getData } from '@/components/fetchSpreadsheet'
+import { getData } from '@/sheets/client'
 
 const route = useRoute();
 
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
-const rows = ref([]);
+const thisStory = ref([]);
 
 onMounted(() => {
-  getData(StoriesURI, rows);
+  const pout = getData(StoriesURI);
+  pout.then((data) => {
+    thisStory.value = data[parseInt(route.params.id)];
+	 })
 });
 
-
-let thisStory = rows[route.params.id];
 </script>
 
 <template>
@@ -26,11 +27,13 @@ let thisStory = rows[route.params.id];
       <div>
         <img class="profile-img" :src="thisStory.hosted_image_link" />
         <div class="quote">
-          "{{ thisStory.quote }}"
+          {{ thisStory.undergraduate_degree }}
+          {{ thisStory.graduate_degree }}
         </div>
         <div class="social-media-icons">
-          <img src="/social_media_icons/icons8-twitter.svg" /><img src="/social_media_icons/icons8-instagram.svg" /><img
-            src="/social_media_icons/icons8-linkedin.svg" />
+          <a :href=thisStory.twitter><img v-if="thisStory.twitter" src="/social_media_icons/icons8-twitter.svg" alt="Twitter" id="twitter"/></a>
+          <a :href=thisStory.instagram><img v-if="thisStory.instagram" src="/social_media_icons/icons8-instagram.svg" alt="Instagram"/></a>
+          <a :href=thisStory.linkedin><img v-if="thisStory.linkedin" src="/social_media_icons/icons8-linkedin.svg" alt="LinkedIn"/></a>
         </div>
       </div>
       <div>
@@ -71,5 +74,6 @@ img.profile-img {
 
 .social-media-icons img {
   margin: 1rem;
+  cursor: pointer;
 }
 </style>

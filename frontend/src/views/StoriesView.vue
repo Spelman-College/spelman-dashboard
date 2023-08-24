@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
-import { getData } from '@/components/fetchSpreadsheet'
+import { getData } from '@/sheets/client'
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
