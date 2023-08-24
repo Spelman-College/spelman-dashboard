@@ -20,7 +20,6 @@ const storyString = slots.story?.()[0].children
 const professionString = slots.profession?.()[0].children
 let professionStringLength = professionString?.length;
 let storyStringLength = storyString?.length;
-const nameString = slots.name?.()[0].children
 const maxStoryLength = 100
 const maxProfessionLength = 44
 const profession = () => h('p', {}, professionStringLength > maxProfessionLength ? `${professionString?.slice(0, maxProfessionLength)}...` : professionString)
