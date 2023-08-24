@@ -5,7 +5,10 @@ import { Categories } from '../categories/values'
 
 const filter: DcidFilter = {
     ignorePrefix: 'Count_Person',
-    omitDimensions: new Set<string>(["EducationalAttainmentGraduateSchoolOrPostGraduate"]),
+    omitDimensions: new Set<string>([
+        'EducationalAttainmentGraduateSchoolOrPostGraduate',
+        'NotHispanicOrLatino',
+        'UnknownEthnicity',]),
     additions: {}
 } as DcidFilter
 
@@ -17,7 +20,7 @@ Object.keys(Categories).forEach((cat) => {
     const values = Categories[cat]
     values.forEach((dim) => {
         dimension2Category[dim] = cat
-	annotatedDimensions.add(`${cat}:${dim}`)
+        annotatedDimensions.add(`${cat}:${dim}`)
     })
 })
 // Because we're using timeseries, we'll need to create a set of all of the available
@@ -33,7 +36,7 @@ const dcids_set = new Set()
 for (const date in DCIDS_VALUES) {
     const keys = DCIDS_VALUES[date]
     keys.forEach((id) => {
-	dcids_set.add(id)
+        dcids_set.add(id)
     })
 }
 dcids_set.forEach((id) => {
@@ -48,7 +51,7 @@ dcids_set.forEach((id) => {
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = [['ethnicity', 'citizenship'], ['race', 'citizenship'], ['race', 'ethnicity']]
+const categoryDependencies: [string, string][] = [['ethnicity', 'citizenship'], ['race', 'citizenship']]
 
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
@@ -58,13 +61,13 @@ class Base {
 
 export class Query_nsf23313_2_1_values extends Base {
     constructor() {
-	super()
+        super()
     }
     query(...queries: Array<Query>): QueryResult {
-	return query2dcids(this.dcids,
-			   Categories,
-			   this.categoryDependencies,
-			   this.annotatedDimensions,
-			   ...queries)
+        return query2dcids(this.dcids,
+            Categories,
+            this.categoryDependencies,
+            this.annotatedDimensions,
+            ...queries)
     }
 }

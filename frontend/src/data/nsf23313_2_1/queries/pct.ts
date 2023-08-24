@@ -5,7 +5,13 @@ import { Categories } from '../categories/pct'
 
 const filter: DcidFilter = {
     ignorePrefix: 'Count_Person',
-    omitDimensions: new Set<string>([]),
+    omitDimensions: new Set<string>([
+        'EducationalAttainmentGraduateSchoolOrPostGraduate',
+        'NotHispanicOrLatino',
+        'UnknownEthnicity',
+        'AsAFractionOf',
+        'Count',
+        'Person',]),
     additions: {}
 } as DcidFilter
 
@@ -17,7 +23,7 @@ Object.keys(Categories).forEach((cat) => {
     const values = Categories[cat]
     values.forEach((dim) => {
         dimension2Category[dim] = cat
-	annotatedDimensions.add(`${cat}:${dim}`)
+        annotatedDimensions.add(`${cat}:${dim}`)
     })
 })
 // Because we're using timeseries, we'll need to create a set of all of the available
@@ -30,10 +36,10 @@ Object.keys(Categories).forEach((cat) => {
 const dcids = []
 const dcids_set = new Set()
 
-for (const date in DCIDS) {
-    const keys = DCIDS[date]
+for (const date in DCIDS_PCT) {
+    const keys = DCIDS_PCT[date]
     keys.forEach((id) => {
-	dcids_set.add(id)
+        dcids_set.add(id)
     })
 }
 dcids_set.forEach((id) => {
@@ -48,7 +54,7 @@ dcids_set.forEach((id) => {
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = []
+const categoryDependencies: [string, string][] = [['ethnicity', 'citizenship'], ['race', 'citizenship']]
 
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
@@ -56,15 +62,15 @@ class Base {
     protected annotatedDimensions: Set<string> = annotatedDimensions
 }
 
-export class Query_nsf23306_6_2 extends Base {
+export class Query_nsf23313_2_1_pct extends Base {
     constructor() {
-	super()
+        super()
     }
     query(...queries: Array<Query>): QueryResult {
-	return query2dcids(this.dcids,
-			   Categories,
-			   this.categoryDependencies,
-			   this.annotatedDimensions,
-			   ...queries)
+        return query2dcids(this.dcids,
+            Categories,
+            this.categoryDependencies,
+            this.annotatedDimensions,
+            ...queries)
     }
 }

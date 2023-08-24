@@ -5,9 +5,7 @@ export const Categories = {
         'Female',
     ]),
     'ethnicity': new Set<string>([
-        'HispanicOrLatino',
-        'NotHispanicOrLatino',
-        'UnknownEthnicity'
+        'HispanicOrLatino', 
     ]),
     'race': new Set<string>([
         'NativeHawaiianOrOtherPacificIslanderAlone',
@@ -19,7 +17,6 @@ export const Categories = {
         'UnknownRace',
     ]),
     'education': new Set<string>([
-        'EducationalAttainmentGraduateSchoolOrPostGraduate',
         'EducationalAttainmentDoctorateDegree',
         'EducationalAttainmentMastersDegree',
     ]),
@@ -28,7 +25,7 @@ export const Categories = {
         'VisaHolder',
     ]),
     'occupation': new Set<string>([
-        'PostDoctoralAppointee',
-        'NonFacultyResearcher',
+        'PostDoctoralAppointeeOccupation',
+        'NonFacultyResearcherOccupation',
     ]),
 }
