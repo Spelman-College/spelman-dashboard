@@ -51,8 +51,9 @@ const page = ref(0)
       <template #item="slotProps">
         <StoryCard :img-src="slotProps.data.hosted_image_link" width="25">
           <template #name>{{ slotProps.data.name }}</template>
-          <template #story>{{ slotProps.data.text }}</template>
-          <template #linkText>Read her story</template>
+          <template #profession>{{ slotProps.data.profession }}</template>
+          <template #story>{{ slotProps.data.how_did_you_choose_this_path }}</template>
+          <template #linkText><router-link :to="{path: '/stories/' + index}">Read her story</router-link></template>
         </StoryCard>
       </template>
     </Carousel>

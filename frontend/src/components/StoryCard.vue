@@ -17,8 +17,13 @@ const pWidth = computed(() => {
 
 const slots = useSlots()
 const storyString = slots.story?.()[0].children
-const maxLength = 100
-const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.slice(0, maxLength)}...` : storyString)
+const professionString = slots.profession?.()[0].children
+let professionStringLength = professionString?.length;
+let storyStringLength = storyString?.length;
+const maxStoryLength = 100
+const maxProfessionLength = 44
+const profession = () => h('p', {}, professionStringLength > maxProfessionLength ? `${professionString?.slice(0, maxProfessionLength)}...` : professionString)
+const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyString?.slice(0, maxStoryLength)}...` : storyString)
 </script>
 <template>
   <Card>
@@ -27,18 +32,19 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
     </template>
     <template #title>
       <h1>
-        <slot name="name"></slot>
+        <slot name="name"></slot><br>
+        <profession style="color: #101115; font-size: 26px; font-family: 'Noto Sans Mono';"/>
       </h1>
     </template>
     <template #content>
       <p>
-        <story />
+        <story style="position:absolute; margin-bottom: 5.31;"/>
       </p>
     </template>
     <template #footer>
-      <h2>
-        <slot name="linkText"></slot> &rarr;
-      </h2>
+      <div style="margin-top:2rem; margin-bottom: 2.81rem;">
+        <slot name="linkText"></slot>
+      </div>
     </template>
   </Card>
 </template>
@@ -51,6 +57,18 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
   height: 50em;
 }
 
+:deep(.p-card-title) {
+  width: 22.5625rem;
+  height: 8.375rem;
+  flex-shrink: 0;
+}
+
+:deep(.p-card-content) {
+  width: 22.5625rem;
+  height: 8.875rem;
+  flex-shrink: 0;
+}
+
 :deep(.p-card-body) {
   padding: 2em;
 }
@@ -59,14 +77,6 @@ h1 {
   color: #101115;
   font-size: 26px;
   line-height: normal;
-  letter-spacing: normal;
-}
-
-h2 {
-  color: #313b49;
-  font-family: 'Noto Sans Mono';
-  font-size: 21px;
-  font-weight: 700;
   letter-spacing: normal;
 }
 
