@@ -1,38 +1,51 @@
 <script setup lang="ts">
  import { useRoute, useRouter } from 'vue-router';
- import { ref, watchEffect } from 'vue'
+ import { ref, watchEffect, watch } from 'vue'
+ import { datasets, presets } from '../../data/queries/ui'
 
+ // The event we emit when we change the dataset
  const emit = defineEmits(['changeDataset'])
 
- const route = useRoute();
- const router = useRouter();
+ // `view` is either 'preset' or 'explore'
+ // `dataset` is a dataset path, selected from
+ // 'presets' if `dataset` is 'preset' or
+ // 'datasets' if `datasets` is 'explore'
+ const props = defineProps(['view', 'dataset'])
 
- const paramDataset = route.params.dataset
- let ds = paramDataset
- if (paramDataset === undefined || paramDataset === 'undefined') {
-     ds = ''
- }
- const selected = ref(ds)
- const placeholderText = ref('Select a dataset')
+ const view = ref(props.view)
+ const dataset = ref(props.dataset)
 
- const datasets = [
-     {'name': 'Demo dataset for testing the dashboard and plotting logic', path: 'demo'},
-     {'name': 'Example that does not exist yet', path: 'nope'},
-     {'name': 'Another Example that does not exist yet', path: 'nope2'},
- ]
+ const placeholderText = ref('')
+ const selected = ref({})
 
  // Select the target dataset if it exists in the available list.
- datasets.forEach((s) => {
-     if (ds == s.path) {
-	 selected.value = s.path
-	 placeholderText.value = s.name
+ watchEffect(() => {
+     let container = ''
+     let dataset = {}
+     if (view.value == 'explore') {
+	 container = 'dataset to explore'
+	 datasets.forEach((s) => {
+	     if (dataset.value == s.path) {
+		 dataset = s
+		 placeholderText.value = s.name
+	     }
+	 })
+     } else if (view.value == 'preset') {
+	 container = 'chart to view'
+	 presets.forEach((s) => {
+	     if (dataset.value == s.path) {
+		 dataset = s
+		 placeholderText.value = s.name
+	     }
+	 })
      }
+     placeholderText.value = `Select a ${container}`
+     selected.value = dataset
+
  })
 
- watchEffect(() => {
-     if (selected.value == '') {
-	 return
-     }
+
+ watch(selected, () => {
      emit('changeDataset', selected.value.path)
  })
 
@@ -40,7 +53,10 @@
 
 
 <template>
-    <Dropdown v-model=selected :options=datasets optionLabel=name :placeholder=placeholderText class="data-selector"></Dropdown>
+    <Dropdown v-if="view == 'explore'" v-model=selected :options=datasets optionLabel=name :placeholder=placeholderText class="data-selector"></Dropdown>
+    <Dropdown v-if="view == 'preset'" v-model=selected :options=presets optionLabel=name :placeholder=placeholderText class="data-selector"></Dropdown>
+
+
 </template>
 <style scoped>
  .data-selector {

@@ -8,6 +8,42 @@ import {
 import { formatPlot } from './plotting'
 import type DcClient from '../dc/client'
 
+export const datasets = [
+    {'name': 'Demo dataset for testing the dashboard and plotting logic', path: 'demo'},
+    {'name': 'Example that does not exist yet', path: 'nope'},
+    {'name': 'Another Example that does not exist yet', path: 'nope2'},
+ ]
+
+export const presets = [
+     {'name': 'Demo preset for testing the dashboard', path: 'demo-preset'},
+     {'name': 'Preset that does not exist yet', path: 'nope-preset'},
+     {'name': 'Another Preset that does not exist yet', path: 'nope2-preset'},
+ ]
+
+export const views = [
+     {name: 'Open explore', path: 'explore', deactivate: false},
+     {name: 'Data preset', path: 'preset', deactivate: false},
+]
+
+export const selectDsView = (view: string, dsPath: string): {[key:string]: string} => {
+    let selected = {error: 'not found'}
+    if (view == 'explore') {
+	datasets.forEach((s) => {
+	    if (s.path == dsPath) {
+		selected = s
+	    }
+	})
+    } else if (view == 'preset') {
+	presets.forEach((s) => {
+	    if (s.path == dsPath) {
+		selected = s
+	    }
+	})
+    }
+    return selected
+}
+
+
 // Useful only for a single category query.
 export const queryDcidIntersection = (
     dataset: Queryable,

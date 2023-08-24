@@ -6,9 +6,9 @@ import IndividualStoryView from '@/views/IndividualStoryView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
 import ContactView from '@/views/ContactView.vue'
-import DataDashboard from '@/views/DataDashboard.vue'
 import DataDashboardMainView from '@/views/DataDashboardMainView.vue'
 import DDWelcomeView from '@/views/dataDashboardViews/DDWelcomeView.vue'
+import DataDashboardView from '@/views/DataDashboardView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,15 +48,6 @@ const router = createRouter({
       component: ContactView
     },
     {
-      path: '/data',
-      name: 'data',
-      component: DataDashboard
-    },
-    {
-      path: '/data/:dataset',
-      component: DataDashboard
-    },
-    {
       path: '/data-dashboard',
       name: 'data-dashboard',
       component: DataDashboardMainView,
@@ -66,6 +57,19 @@ const router = createRouter({
           component: DDWelcomeView
         }
       ]
+    },
+    {
+      path: '/data/:view/:dataset',
+      component: DataDashboardView,
+      meta: { reload: true },
+    },
+    {
+      path: '/data/:view',
+      redirect: '/data-dashboard'
+    },
+    {
+      path: '/data',
+      redirect: '/data-dashboard'
     }
     // {
     //   path: '/about',
