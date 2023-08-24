@@ -10,9 +10,6 @@
   </div>
   <div id="building-vision-header">Building the Vision</div>
   <div id="swiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
-  <div id="image-grid">
-    <img id="square-photo-card" src="/spelman_flickr_01.jpg"/> 
-  </div>
 </template>
 
 <style scoped>
