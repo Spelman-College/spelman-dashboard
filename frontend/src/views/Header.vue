@@ -15,6 +15,9 @@ function goToData() {
   router.push({ name: 'data' })
 }
 
+function showDataDashboardAsButton(): boolean {
+  return router?.currentRoute.value.name ? !['home', 'dataDashboard'].includes(router.currentRoute.value.name.toString()) : true
+}
 </script>
 
 <template>
@@ -23,10 +26,10 @@ function goToData() {
     <span class="header-links" id="about" @click="goToAbout">About</span>
     <span class="header-links" id="resources" @click="goToResources">Resources</span>
     <span class="header-links" id="contact" @click="goToContact">Contact</span>
-    <span class="header-links" id="data-dashboard" @click="goToData"
-      v-if="$router.currentRoute.value.name === 'home'">Data Dashboard</span>
-    <button id="data-dashboard" class="header-links" @click="goToData"
-      v-if="$router.currentRoute.value.name !== 'home'">Data Dashboard</button>
+    <span class="header-links" id="data-dashboard" @click="goToData" v-if="!showDataDashboardAsButton()">Data
+      Dashboard</span>
+    <button id="data-dashboard" class="header-links" @click="goToData" v-if="showDataDashboardAsButton()">Data
+      Dashboard</button>
   </div>
 </template>
 
