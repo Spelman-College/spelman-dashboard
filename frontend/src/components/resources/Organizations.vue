@@ -1,38 +1,20 @@
 <script setup lang="ts">
 import AccordionPanel from '@/components/AccordionPanel.vue'
+import { getData } from '@/sheets/client'
+import { ref, onMounted } from 'vue'
 
-const orgs = [
-  {
-    imgSrc: "/org_logos/blackgirlsdostem_logo.png",
-    name: "Example Org 1",
-    url: "https://example1.com/",
-    description: "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    imgSrc: "/org_logos/abwp_logo.png",
-    name: "Example Org 2",
-    url: "https://example2.com/",
-    description: "2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    imgSrc: "/org_logos/blackgirlsdostem_logo.png",
-    name: "Example Org 3",
-    url: "https://example3.com/",
-    description: "3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    imgSrc: "/org_logos/abwp_logo.png",
-    name: "Example Org 4",
-    url: "https://example4.com/",
-    description: "4 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    imgSrc: "/org_logos/blackgirlsdostem_logo.png",
-    name: "Example Org 5",
-    url: "https://example5.com/",
-    description: "5 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-]
+const sid = import.meta.env.VITE_ORGANIZATIONS_CONTENT_SHEET_ID
+
+const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
+const rows = ref([]);
+
+onMounted(() => {
+  const pout = getData(StoriesURI);
+  pout.then((data) => {
+	  rows.value = data;
+	 })
+});
+
 </script>
 
 <template>
@@ -54,14 +36,14 @@ const orgs = [
     </div>
   </div>
 
-  <AccordionPanel v-for="org in orgs" :key="org.name">
+  <AccordionPanel v-for="org in rows" :key="org.name">
     <template #header>
       <div class="logo-container">
         <img class="logo" :src="org.imgSrc">
       </div>
       <div>
         <div class="name">{{ org.name }}</div>
-        <a :href="org.url" class="url">{{ org.url }}</a>
+        <a :href="org.formatted_url" class="url">{{ org.url }}</a>
       </div>
     </template>
     <template #body>

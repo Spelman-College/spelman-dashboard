@@ -147,6 +147,17 @@ describe('QuerySet compile method', () => {
         expect(out[0].has('pets:cat')).toEqual(true)
     })
 
+    test('1 category 1 dimension with category dependency ', () => {
+        const A = new Query('pets', 'cat')
+        const qs = new QuerySet(categoryDimensions, [['pets', 'tools']], A)
+        const out = qs.compile()
+        expect(out.length).toEqual(2)
+        expect(out[0].has('pets:cat')).toEqual(true)
+        expect(out[0].has('tools:tape-measure')).toEqual(true)
+        expect(out[1].has('pets:cat')).toEqual(true)
+        expect(out[1].has('tools:ruler')).toEqual(true)
+    })
+
     test('1 multiple dimension category, all dimensions', () => {
         const A = new Query('pets', 'cat', 'dog')
         const qs = new QuerySet(categoryDimensions, [], A)
@@ -225,10 +236,14 @@ describe('validateQueries', () => {
         'cars': new Set<string>([
             'fast',
             'red'
+        ]),
+
+        'tools': new Set<string>([
+            'hammer',
         ])
     }
 
-    const annotatedDimensions = new Set(['pets:cat', 'pets:dog', 'cars:fast', 'cars:red'])
+    const annotatedDimensions = new Set(['pets:cat', 'pets:dog', 'cars:fast', 'cars:red', 'tools:hammer'])
 
     test('duplicate categories returns error', () => {
         const q1 = new Query('pets', 'cat')
@@ -264,6 +279,12 @@ describe('validateQueries', () => {
 	const q3 = new Query('cars', 'fast')
         err = validateQueries(categories, annotatedDimensions, q1, q3)
         expect(err).toEqual('')
+    })
+
+    test('query with single dimension category does not return error', () => {
+        const q1 = new Query('tools', 'hammer')
+        const err = validateQueries(categories, annotatedDimensions, q1)
+        expect(err).toEqual("")
     })
 
 })

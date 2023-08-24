@@ -3,25 +3,17 @@ import StoryCard from '@/components/StoryCard.vue'
 
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router';
-import Papa from 'papaparse';
+import { getData } from '@/sheets/client'
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
 const rows = ref([]);
 
-async function getData() {
-  await Papa.parse(StoriesURI, {
-    header: true,
-    download: true,
-    worker: true,
-    complete: function (results, file) {
-      rows.value = results.data;
-    },
-  });
-}
-
 onMounted(() => {
-  getData();
+  const pout = getData(StoriesURI);
+  pout.then((data) => {
+	  rows.value = data;
+	 })
 });
 
 const router = useRouter();
