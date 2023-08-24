@@ -34,11 +34,19 @@ onMounted(() => {
           <a :href=thisStory.twitter><img v-if="thisStory.twitter" src="/social_media_icons/icons8-twitter.svg" alt="Twitter" id="twitter"/></a>
           <a :href=thisStory.instagram><img v-if="thisStory.instagram" src="/social_media_icons/icons8-instagram.svg" alt="Instagram"/></a>
           <a :href=thisStory.linkedin><img v-if="thisStory.linkedin" src="/social_media_icons/icons8-linkedin.svg" alt="LinkedIn"/></a>
+          <a :href=thisStory.website><img v-if="thisStory.website" src="/social_media_icons/icons8-website.svg" alt="Website"/></a>
         </div>
       </div>
       <div>
-        <h3>{{ thisStory.name }}</h3>
-        <p>{{ thisStory.text }}</p>
+        <h3>{{ thisStory.name }} - {{ thisStory.profession }}</h3>
+        <div class="question-header">How did you choose this path?</div>
+        <p>{{ thisStory.how_did_you_choose_this_path }}</p>
+        <div class="question-header">What's a challenge that you had to overcome?</div>
+        <p>{{ thisStory.challenge_you_had_to_overcome }}</p>
+        <div class="question-header">What advice would you give to someone who would like to follow in your footsteps or pursue a career in STEM?</div>
+        <p>{{ thisStory.advice }}</p>
+        <div class="question-header">Being a Black woman in STEM...</div>
+        <p>{{ thisStory.being_a_black_woman_in_stem }}</p>
       </div>
     </div>
   </div>
@@ -62,6 +70,15 @@ onMounted(() => {
   color: #acf0ff;
   font-family: 'Noto Sans';
   font-size: 2.5rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.question-header {
+  width: 25rem;
+  color: #acf0ff;
+  font-family: 'Noto Sans Mono';
+  font-size: 1.5rem;
   font-weight: 500;
   margin: 1rem 0;
 }
