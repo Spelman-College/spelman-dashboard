@@ -26,7 +26,8 @@ onMounted(() => {
     <StoryCard v-for="(story, index) in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name"
       width="25">
       <template #name>{{ story.name }}</template>
-      <template #story>{{ story.text }}</template>
+      <template #profession>{{ story.profession }}</template>
+      <template #story>{{ story.how_did_you_choose_this_path }}</template>
       <template #linkText><router-link :to="{ path: '/stories/' + index }">Read her story</router-link></template>
     </StoryCard>
   </div>
@@ -42,5 +43,25 @@ div.story-card-grid {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   margin-bottom: 12rem;
+}
+
+/* 'Read Her Story' link' */
+a {
+  color: purple;
+  position: absolute;
+  margin-bottom: 2.81rem;
+  box-sizing: content-box;
+
+  color: #313B49;
+  font-family: Google Sans Mono;
+  font-size: 1.3125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.875rem;
+  /* 142.857% */
+
+  width: 11.3125rem;
+  height: 2rem;
+  flex-shrink: 0;
 }
 </style>

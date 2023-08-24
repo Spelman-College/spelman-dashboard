@@ -15,10 +15,36 @@ const pWidth = computed(() => {
     return `${+props.width - 4}rem`;
 })
 
+// const professionStringLength = computed(() => {
+//   let professionString = slots.profession?.()[0].children;
+//   if (professionString !== undefined) {
+//     return professionString.length;
+//   }
+//   else return 0;
+// })
+
+// const storyStringLength = computed(() => {
+//   let storyString = slots.story?.()[0].children;
+//   if (storyString !== undefined) {
+//     return storyString.length;
+//   }
+//   else return 0;
+// })
+
+
 const slots = useSlots()
 const storyString = slots.story?.()[0].children
-const maxLength = 100
-const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.slice(0, maxLength)}...` : storyString)
+const professionString = slots.profession?.()[0].children
+let professionStringLength = professionString?.length;
+let storyStringLength = storyString?.length;
+const nameString = slots.name?.()[0].children
+const maxStoryLength = 100
+const maxProfessionLength = 44
+const profession = () => h('p', {}, professionStringLength > maxProfessionLength ? `${professionString?.slice(0, maxProfessionLength)}...` : professionString)
+//const profession = () => h('p', {}, `${professionString?.slice(0, maxProfessionLength)}...`)
+
+const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyString?.slice(0, maxStoryLength)}...` : storyString)
+//const story = () => h('p', {}, `${storyString?.slice(0, maxStoryLength)}...`)
 </script>
 <template>
   <Card>
@@ -27,12 +53,13 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
     </template>
     <template #title>
       <h1>
-        <slot name="name"></slot>
+        <slot name="name"></slot><br>
+        <profession style="color: #101115; font-size: 26px; font-family: 'Noto Sans Mono';"/>
       </h1>
     </template>
     <template #content>
       <p>
-        <story />
+        <story style="position:absolute; margin-bottom: 5.31;"/>
       </p>
     </template>
     <template #footer>
@@ -49,6 +76,18 @@ const story = () => h('p', {}, storyString.length > maxLength ? `${storyString?.
   border-radius: 16px;
   width: v-bind('remWidth');
   height: 50em;
+}
+
+:deep(.p-card-title) {
+  width: 22.5625rem;
+  height: 8.375rem;
+  flex-shrink: 0;
+}
+
+:deep(.p-card-content) {
+  width: 22.5625rem;
+  height: 8.875rem;
+  flex-shrink: 0;
 }
 
 :deep(.p-card-body) {
@@ -68,6 +107,7 @@ h2 {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: normal;
+  color: red;
 }
 
 p {
