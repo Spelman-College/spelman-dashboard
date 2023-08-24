@@ -7,7 +7,7 @@ import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
 import ContactView from '@/views/ContactView.vue'
 import DataDashboard from '@/views/DataDashboard.vue'
-import DataDashboardView from '@/views/DataDashboardView.vue'
+import DataDashboardMainView from '@/views/DataDashboardMainView.vue'
 import DDWelcomeView from '@/views/dataDashboardViews/DDWelcomeView.vue'
 
 const router = createRouter({
@@ -59,7 +59,7 @@ const router = createRouter({
     {
       path: '/data-dashboard',
       name: 'data-dashboard',
-      component: DataDashboardView,
+      component: DataDashboardMainView,
       children: [
         {
           path: '',
