@@ -7,7 +7,6 @@ import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
 import ContactView from '@/views/ContactView.vue'
 import DataDashboard from '@/views/DataDashboard.vue'
-import DataDashboardExploreView from '@/views/DataDashboardExploreView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,11 +44,6 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: ContactView
-    },
-    {
-      path: '/data-dashboard',
-      name: 'dataDashboard',
-      component: DataDashboardExploreView
     },
     {
       path: '/data',
