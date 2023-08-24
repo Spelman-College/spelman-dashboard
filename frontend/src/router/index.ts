@@ -6,7 +6,6 @@ import IndividualStoryView from '@/views/IndividualStoryView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
 import ContactView from '@/views/ContactView.vue'
-import DataDashboardExploreView from '@/views/DataDashboardExploreView.vue'
 import DataDashboardView from '@/views/DataDashboardView.vue'
 
 const router = createRouter({
@@ -47,14 +46,9 @@ const router = createRouter({
       component: ContactView
     },
     {
-      path: '/data-dashboard',
-      name: 'dataDashboard',
-      component: DataDashboardExploreView
-    },
-    {
       path: '/data/:view/:dataset',
       component: DataDashboardView,
-      meta: { reload: true},
+      meta: { reload: true },
     },
     {
       path: '/data/:view',
