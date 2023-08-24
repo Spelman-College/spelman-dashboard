@@ -15,23 +15,6 @@ const pWidth = computed(() => {
     return `${+props.width - 4}rem`;
 })
 
-// const professionStringLength = computed(() => {
-//   let professionString = slots.profession?.()[0].children;
-//   if (professionString !== undefined) {
-//     return professionString.length;
-//   }
-//   else return 0;
-// })
-
-// const storyStringLength = computed(() => {
-//   let storyString = slots.story?.()[0].children;
-//   if (storyString !== undefined) {
-//     return storyString.length;
-//   }
-//   else return 0;
-// })
-
-
 const slots = useSlots()
 const storyString = slots.story?.()[0].children
 const professionString = slots.profession?.()[0].children
@@ -41,10 +24,7 @@ const nameString = slots.name?.()[0].children
 const maxStoryLength = 100
 const maxProfessionLength = 44
 const profession = () => h('p', {}, professionStringLength > maxProfessionLength ? `${professionString?.slice(0, maxProfessionLength)}...` : professionString)
-//const profession = () => h('p', {}, `${professionString?.slice(0, maxProfessionLength)}...`)
-
 const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyString?.slice(0, maxStoryLength)}...` : storyString)
-//const story = () => h('p', {}, `${storyString?.slice(0, maxStoryLength)}...`)
 </script>
 <template>
   <Card>
@@ -63,9 +43,9 @@ const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyStri
       </p>
     </template>
     <template #footer>
-      <h2>
-        <slot name="linkText"></slot> &rarr;
-      </h2>
+      <div style="margin-top:2rem; margin-bottom: 2.81rem;">
+        <slot name="linkText"></slot>
+      </div>
     </template>
   </Card>
 </template>
@@ -99,15 +79,6 @@ h1 {
   font-size: 26px;
   line-height: normal;
   letter-spacing: normal;
-}
-
-h2 {
-  color: #313b49;
-  font-family: 'Noto Sans Mono';
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: normal;
-  color: red;
 }
 
 p {

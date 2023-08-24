@@ -28,7 +28,8 @@ onMounted(() => {
       <template #name>{{ story.name }}</template>
       <template #profession>{{ story.profession }}</template>
       <template #story>{{ story.how_did_you_choose_this_path }}</template>
-      <template #linkText><router-link :to="{ path: '/stories/' + index }">Read her story</router-link></template>
+      <template #linkText><router-link :to="{ path: '/stories/' + index }">Read her story<span
+            class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
     </StoryCard>
   </div>
 </template>
@@ -47,13 +48,11 @@ div.story-card-grid {
 
 /* 'Read Her Story' link' */
 a {
-  color: purple;
   position: absolute;
   margin-bottom: 2.81rem;
   box-sizing: content-box;
 
   color: #313B49;
-  font-family: Google Sans Mono;
   font-size: 1.3125rem;
   font-style: normal;
   font-weight: 700;
@@ -63,5 +62,16 @@ a {
   width: 11.3125rem;
   height: 2rem;
   flex-shrink: 0;
+
+  white-space: nowrap;
+}
+
+.material-symbols-outlined {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: #313B49;
+  margin-left: 0.81rem;
+  vertical-align: middle;
 }
 </style>
