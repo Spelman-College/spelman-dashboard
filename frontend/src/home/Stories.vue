@@ -53,7 +53,7 @@ const page = ref(0)
           <template #name>{{ slotProps.data.name }}</template>
           <template #profession>{{ slotProps.data.profession }}</template>
           <template #story>{{ slotProps.data.how_did_you_choose_this_path }}</template>
-          <template #linkText><router-link :to="{path: '/stories/' + index}">Read her story</router-link></template>
+          <template #linkText><router-link :to="{path: '/stories/' + slotProps.index}">Read her story</router-link></template>
         </StoryCard>
       </template>
     </Carousel>
