@@ -11,7 +11,7 @@ function prevPage() {
 const books = [
   {
     imgSrc: "/books/book_01.png",
-    link: "https://www.amazon.com/Disordered-Cosmos-Journey-Spacetime-Deferred/dp/1541724704"
+    link: "/book_01",
   },
   {
     imgSrc: "/books/book_02.png",
