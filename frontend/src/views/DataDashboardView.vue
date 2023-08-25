@@ -2,11 +2,11 @@
 import { ref, computed } from 'vue';
 import { RouterView } from 'vue-router';
 
+import Dropdown from '@/components/Dropdown.vue'
+
 const exploreDataActive = ref(true)
 
 const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
-
-const currentDataset = ref('STEM degrees conferred by level (2001 - 2021)')
 </script>
 
 <template>
@@ -23,10 +23,8 @@ const currentDataset = ref('STEM degrees conferred by level (2001 - 2021)')
             Review charts
           </button>
         </div>
-        <div class="dropdown">
-          <div class="dropdown-header">Dataset</div>
-          <div class="dropdown-text">{{ currentDataset }}</div>
-          <div class="dropdown-arrow material-icons">arrow_drop_down</div>
+        <div>
+          <Dropdown></Dropdown>
         </div>
       </div>
       <div class="filters">
@@ -68,37 +66,6 @@ const currentDataset = ref('STEM degrees conferred by level (2001 - 2021)')
 
 .button-group>button:last-child {
   border-radius: 0rem 6.25rem 6.25rem 0rem;
-}
-
-.dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  color: #ffffff;
-  font-family: 'Noto Sans Mono';
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.0125rem;
-  width: 61.75rem;
-  height: 3rem;
-  border-radius: 0.25rem;
-  border: 1px solid #c4c7c5;
-}
-
-.dropdown-header {
-  position: absolute;
-  padding: 0 0.5rem;
-  margin: 0 0 0 -0.5rem;
-  top: -0.6rem;
-  font-size: 0.75rem;
-  background: #22262b;
-}
-
-.dropdown-arrow {
-  position: absolute;
-  right: 0;
-  margin: 0 0.5rem;
 }
 
 .filters {
