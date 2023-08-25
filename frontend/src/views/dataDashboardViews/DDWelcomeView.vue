@@ -3,19 +3,33 @@
 </script>
 
 <template>
-  <div class="card">
-    <div class="header">Welcome to the data dashboard</div>
-    <div class="paragraph">Select a dataset in the drop-down menu above.</div>
-    <div class="paragraph">Use the toggle on the top left of the page to switch between Explore Data mode and Preset Chart
-      mode.</div>
-    <div class="paragraph">Toggle to Explore Data to tailor datasets using filters and create custom charts.</div>
-    <div class="paragraph">Or, toggle to Preset Charts to see charts with key statistics highlighted.</div>
-    <div class="footer">Need more help? Check out the comprehensive <a href="/faq">FAQ page</a>.</div>
+  <div class="card-and-arrow-container">
+    <div class="arrow-left">
+      <img src="arrow_left.svg" />
+    </div>
+    <div class="card">
+      <div class="header">Welcome to the data dashboard</div>
+      <div class="paragraph">Select a dataset in the drop-down menu above.</div>
+      <div class="paragraph">Use the toggle on the top left of the page to switch between Explore Data mode and Preset
+        Chart
+        mode.</div>
+      <div class="paragraph">Toggle to Explore Data to tailor datasets using filters and create custom charts.</div>
+      <div class="paragraph">Or, toggle to Preset Charts to see charts with key statistics highlighted.</div>
+      <div class="footer">Need more help? Check out the comprehensive <a href="/faq">FAQ page</a>.</div>
+    </div>
+    <div class="arrow-right">
+      <img src="arrow_right.svg" />
+    </div>
   </div>
 </template>
 
 <style scoped>
+.card-and-arrow-container {
+  display: flex;
+}
+
 .card {
+  margin: 8rem 1rem 0 1rem;
   width: 47.75rem;
   height: 29.3125rem;
   background-color: white;
@@ -53,5 +67,13 @@
   letter-spacing: inherit;
   font-weight: inherit;
   color: #0b57d0;
+}
+
+.arrow-left {
+  margin-top: -1rem;
+}
+
+.arrow-right {
+  margin-top: -4rem;
 }
 </style>
