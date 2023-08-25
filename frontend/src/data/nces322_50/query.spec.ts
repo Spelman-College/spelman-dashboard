@@ -6,7 +6,6 @@ import { Categories } from './categories';
 const demo = new Query_nces322_50()
 
 const black = new Query('race', 'Black')
-const nonresident = new Query('residentStatus', 'NonUSResident')
 
 const eng_tech = new Query('bachelorsDegreeMajor', 'BachelorOfEngineeringTechnologiesMajor')
 const eng_eng_tech = new Query('bachelorsDegreeMajor', 'BachelorOfEngineeringTechnologiesMajor', 'BachelorOfEngineeringMajor')
@@ -39,15 +38,6 @@ describe('test omitted summary statistic', () => {
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
             "Count_Person_EducationalAttainmentBachelorsDegree_Female"
-        ])
-    })
-
-    test('test non us resident dependency', () => {
-        let out = demo.query(nonresident)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
-            "Count_Person_EducationalAttainmentBachelorsDegree_Female_NonUSResident",
-            "Count_Person_EducationalAttainmentBachelorsDegree_Male_NonUSResident"
         ])
     })
 
@@ -91,34 +81,16 @@ describe('test 2 category queries', () => {
         ])
     })
 
-    test('test race nonresident combo, expect empty', () => {
-        let out = demo.query(nonresident, black)
+    test('test race 2 majors', () => {
+        let out = demo.query(black, eng_eng_tech)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
+            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Female_Black",
+            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Male_Black",
+            "Count_Person_BachelorOfEngineeringMajor_EducationalAttainmentBachelorsDegree_Female_Black",
+            "Count_Person_BachelorOfEngineeringMajor_EducationalAttainmentBachelorsDegree_Male_Black"
         ])
     })
-
-    test('test nonresident major', () => {
-        let out = demo.query(nonresident, eng_tech)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
-            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Female_NonUSResident",
-            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Male_NonUSResident"
-        ])
-    })
-
-    test('test nonresident 2 majors', () => {
-        let out = demo.query(nonresident, eng_eng_tech)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
-            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Female_NonUSResident",
-            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Male_NonUSResident",
-            "Count_Person_BachelorOfEngineeringMajor_EducationalAttainmentBachelorsDegree_Female_NonUSResident",
-            "Count_Person_BachelorOfEngineeringMajor_EducationalAttainmentBachelorsDegree_Male_NonUSResident"
-        ])
-    })
-
-
 })
 
 describe('test 3 category queries', () => {
@@ -128,29 +100,6 @@ describe('test 3 category queries', () => {
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
             "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Female_Black",
-        ])
-    })
-
-    test('test gender major nonresident', () => {
-        let out = demo.query(female, eng_tech, nonresident)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
-            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Female_NonUSResident"
-        ])
-    })
-
-    test('test gender 2 majors nonresident', () => {
-        let out = demo.query(female, eng_tech, nonresident)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
-            "Count_Person_BachelorOfEngineeringTechnologiesMajor_EducationalAttainmentBachelorsDegree_Female_NonUSResident"
-        ])
-    })
-
-    test('test race nonresident combo, expect empty', () => {
-        let out = demo.query(nonresident, black, female)
-        expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual([
         ])
     })
 

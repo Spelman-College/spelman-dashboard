@@ -8,6 +8,7 @@ export const Categories = {
         "HawaiianNativeOrPacificIslander",
         "AmericanIndianOrAlaskaNative",
         "TwoOrMoreRaces",
+        'NonUSResident'
     ]),
     'bachelorsDegreeMajor': new Set<string>([
         "BachelorOfAgricultureAndNaturalResourcesMajor",
@@ -44,9 +45,6 @@ export const Categories = {
         "BachelorOfTransportationAndMaterialsMovingMajor",
         "BachelorOfVisualAndPerformingArtsMajor",
         "BachelorOfOtherMajor",
-    ]),
-    'residentStatus': new Set<string>([
-        'NonUSResident'
     ]),
     'gender': new Set<string>([
         'Female',
