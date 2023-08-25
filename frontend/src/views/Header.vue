@@ -14,6 +14,9 @@ function goToResources() {
 function goToData() {
   router.push({ name: 'data' })
 }
+function goToHome() {
+  router.push({ name: 'home' })
+}
 
 function showDataDashboardAsButton(): boolean {
   return router?.currentRoute.value.name ? !['home', 'dataDashboard'].includes(router.currentRoute.value.name.toString()) : true
@@ -22,7 +25,7 @@ function showDataDashboardAsButton(): boolean {
 
 <template>
   <div id="header">
-    <span id="logo">Logo</span>
+    <span id="logo" @click="goToHome">Home</span>
     <span class="header-links" id="about" @click="goToAbout">About</span>
     <span class="header-links" id="resources" @click="goToResources">Resources</span>
     <span class="header-links" id="contact" @click="goToContact">Contact</span>
@@ -53,5 +56,7 @@ function showDataDashboardAsButton(): boolean {
 #logo {
   margin-right: auto;
   color: #4fdfff;
+  font-family: 'Noto Sans Mono';
+  cursor: pointer;
 }
 </style>
