@@ -74,28 +74,18 @@
 
 
  watchEffect(() => {
+     genderQuery.value = [...genderDomain]
+     ageQuery.value = [...ageDomain]
+     majorQuery.value = [...majorDomain]
+
      if (compare.value == 'gender') {
-	 // Select on change
-	 genderQuery.value = [...genderDomain]
 	 colorDomain.value = [...genderDomain]
-	 ageQuery.value = []
-	 majorQuery.value = []
-	 return
      }
      if (compare.value == 'age') {
-	 // Select on change
-	 ageQuery.value = [...ageDomain]
 	 colorDomain.value = [...ageDomain]
-	 genderQuery.value = []
-	 majorQuery.value = []
-	 return
      }
      if (compare.value == 'major') {
-	 majorQuery.value = [...majorDomain]
 	 colorDomain.value = [...majorDomain]
-	 genderQuery.value = []
-	 ageQuery.value = []
-	 return
      }
  })
 
