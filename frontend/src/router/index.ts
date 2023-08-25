@@ -62,6 +62,7 @@ const router = createRouter({
     },
     {
       path: '/data',
+      name: 'data',
       redirect: '/data-dashboard'
     },
     {
