@@ -53,7 +53,7 @@ const page = ref(0)
           <template #name>{{ slotProps.data.name }}</template>
           <template #profession>{{ slotProps.data.profession }}</template>
           <template #story>{{ slotProps.data.how_did_you_choose_this_path }}</template>
-          <template #linkText><router-link :to="{path: '/stories/' + slotProps.index}">Read her story</router-link></template>
+          <template #linkText><router-link :to="{path: '/stories/' + slotProps.index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
         </StoryCard>
       </template>
     </Carousel>
@@ -81,4 +81,23 @@ const page = ref(0)
 .hidden {
   visibility: hidden;
 }
+
+a {
+  color: #313B49;
+  font-family: Noto Sans Mono;
+  font-size: 1.3125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.875rem; /* 142.857% */
+}
+
+.material-symbols-outlined {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: #313B49;
+  margin-left: 0.81rem;
+  vertical-align:middle;
+}
+
 </style>
