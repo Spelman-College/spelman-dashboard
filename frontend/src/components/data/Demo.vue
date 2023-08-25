@@ -30,6 +30,22 @@
  const majorQuery = ref([])
  const compare = ref('gender')
  const tableItems = ref([]);
+ const colorDomain = ref([])
+
+ // Please don't mutate these or the plot will break. When assigning these, make a copy.
+ const genderDomain = [dims.Male, dims.Female]
+ const ageDomain = [
+     dims.age_25To39Years,
+     dims.age_40To64Years,
+     dims.age_65OrMoreYears
+ ]
+ const majorDomain = [
+     dims.BachelorOfEducationMajor,
+     dims.BachelorOfScienceAndEngineeringMajor,
+     dims.BachelorOfScienceAndEngineeringRelatedMajor,
+     dims.BachelorOfArtsHumanitiesAndOtherMajor,
+     dims.BachelorOfBusinessMajor,
+ ]
 
  async function download(fileName: string, items: Array<Map>) {
      loading_download.value = true
@@ -56,33 +72,27 @@
  }
 
 
+
  watchEffect(() => {
      if (compare.value == 'gender') {
 	 // Select on change
-	 genderQuery.value = [dims.Male, dims.Female]
+	 genderQuery.value = [...genderDomain]
+	 colorDomain.value = [...genderDomain]
 	 ageQuery.value = []
 	 majorQuery.value = []
 	 return
      }
      if (compare.value == 'age') {
 	 // Select on change
-	 ageQuery.value = [
-	     dims.age_25To39Years,
-	     dims.age_40To64Years,
-	     dims.age_65OrMoreYears
-	 ]
+	 ageQuery.value = [...ageDomain]
+	 colorDomain.value = [...ageDomain]
 	 genderQuery.value = []
 	 majorQuery.value = []
 	 return
      }
      if (compare.value == 'major') {
-	 majorQuery.value = [
-	     dims.BachelorOfEducationMajor,
-	     dims.BachelorOfScienceAndEngineeringMajor,
-	     dims.BachelorOfScienceAndEngineeringRelatedMajor,
-	     dims.BachelorOfArtsHumanitiesAndOtherMajor,
-	     dims.BachelorOfBusinessMajor,
-	 ]
+	 majorQuery.value = [...majorDomain]
+	 colorDomain.value = [...majorDomain]
 	 genderQuery.value = []
 	 ageQuery.value = []
 	 return
@@ -142,7 +152,6 @@
      }
  })
 
-
 </script>
 
 <template>
@@ -194,6 +203,7 @@
 			    },
 			    color: {
 				scheme: 'spectral',
+				domain: colorDomain,
 				legend: true
 			    },
 			    marks: [
@@ -204,7 +214,6 @@
 				    fill: 'key',
 				    sort: {
 					x: null,
-
 				    }
 				}),
 				Plot.ruleY([0])
