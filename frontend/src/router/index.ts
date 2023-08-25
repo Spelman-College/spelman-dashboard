@@ -5,7 +5,7 @@ import FAQView from '@/views/FAQView.vue'
 import IndividualStoryView from '@/views/IndividualStoryView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
-import DisorderedCosmosView from '@/views/reads/DisorderedCosmosView.vue'
+import IndividualReadsView from '@/views/reads/IndividualReadsView.vue'
 import ContactView from '@/views/ContactView.vue'
 import DataDashboardDatasetView from '@/views/DataDashboardDatasetView.vue'
 import DataDashboardView from '@/views/DataDashboardView.vue'
@@ -48,9 +48,8 @@ const router = createRouter({
       component: ResourcesView
     },
     {
-      path: '/book_01',
-      name: 'book_01',
-      component: DisorderedCosmosView
+      path: '/resources/:id',
+      component: IndividualReadsView
     },
     {
       path: '/contact',

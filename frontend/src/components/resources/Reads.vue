@@ -48,7 +48,7 @@ const books = [
     <Carousel :value="books" :numVisible="5" :numScroll="5" :show-indicators="false" :circular="true"
       :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
       <template #item="slotProps">
-        <a :href="slotProps.data.link"><img class="book-card" :src="slotProps.data.imgSrc" /></a>
+        <router-link :to="{path: '/resources/' + slotProps.index}"><img class="book-card" :src="slotProps.data.imgSrc" /></router-link>
       </template>
     </Carousel>
   </div>
