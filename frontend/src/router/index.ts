@@ -12,9 +12,9 @@ import DDWelcomeView from '@/views/dataDashboardViews/DDWelcomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior () {
-  // Always scroll to top
-  return { top: 0 }
+  scrollBehavior() {
+    // Always scroll to top
+    return { top: 0 }
   },
   routes: [
     {
@@ -67,11 +67,11 @@ const router = createRouter({
     },
     {
       path: '/data-dashboard',
-      name: 'data-dashboard',
       component: DataDashboardView,
       children: [
         {
           path: '',
+          name: 'dataDashboard',
           component: DDWelcomeView
         }
       ]
