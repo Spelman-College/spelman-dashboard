@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import Stories from '@/home/Stories.vue'
-import { useRoute } from 'vue-router';
-import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { ref, onMounted, watch } from 'vue';
 import { getData } from '@/sheets/client'
 
 const route = useRoute();
+const router = useRouter();
 
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
@@ -17,6 +18,14 @@ onMounted(() => {
     thisStory.value = data[parseInt(route.params.id)];
 	 })
 });
+
+// TODO: Look into alternate function to speed this up
+watch(route, () => { 
+  const pout = getData(StoriesURI);
+  pout.then((data) => {
+    thisStory.value = data[parseInt(route.params.id)];
+	 }) 
+})
 
 </script>
 
