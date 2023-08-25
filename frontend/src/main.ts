@@ -10,6 +10,7 @@ import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
 import RadioButton from 'primevue/radiobutton';
 import MultiSelect from 'primevue/multiselect';
+import Multiselect from 'vue-multiselect'
 import Dropdown from 'primevue/dropdown';
 import ToggleButton from 'primevue/togglebutton'
 import Skeleton from 'primevue/skeleton';
@@ -28,6 +29,7 @@ app.component('Column', Column)
 app.component('DataTable', DataTable)
 app.component('RadioButton', RadioButton)
 app.component('MultiSelect', MultiSelect)
+app.component('Multiselect', Multiselect)
 app.component('Dropdown', Dropdown)
 app.component('ToggleButton', ToggleButton)
 app.component('Skeleton', Skeleton)
