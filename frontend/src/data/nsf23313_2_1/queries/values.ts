@@ -4,11 +4,18 @@ import { DCIDS_VALUES } from '../dcids/values'
 import { Categories } from '../categories/values'
 
 const filter: DcidFilter = {
-    ignorePrefix: 'Count_Person',
+    ignorePrefix: 'Count',
     omitDimensions: new Set<string>([
         'EducationalAttainmentGraduateSchoolOrPostGraduate',
+        'MastersDegreeOrDoctorateDegree',
+        'EducationalAttainmentDoctorateDegree',
         'NotHispanicOrLatino',
-        'UnknownEthnicity',]),
+        'UnknownEthnicity',
+        'ScienceOrEngineeringOrHealth',
+        'Science', 'Or', 'Engineering', 'Health',
+        'Student',
+        'Person',
+    ]),
     additions: {}
 } as DcidFilter
 

@@ -4,14 +4,20 @@ import { DCIDS_PCT } from '../dcids/pct'
 import { Categories } from '../categories/pct'
 
 const filter: DcidFilter = {
-    ignorePrefix: 'Count_Person',
+    ignorePrefix: 'Percent',
     omitDimensions: new Set<string>([
         'EducationalAttainmentGraduateSchoolOrPostGraduate',
+        'MastersDegreeOrDoctorateDegree', // Summary statistic
+        'EducationalAttainmentDoctorateDegree',
         'NotHispanicOrLatino',
         'UnknownEthnicity',
-        'AsAFractionOf',
+        'ScienceOrEngineeringOrHealth',
+        'Science', 'Or', 'Engineering', 'Health',
         'Count',
-        'Person',]),
+        'Student',
+        'Person',
+        'In',
+    ]),
     additions: {}
 } as DcidFilter
 
@@ -54,7 +60,7 @@ dcids_set.forEach((id) => {
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = [['ethnicity', 'citizenship'], ['race', 'citizenship']]
+const categoryDependencies: [string, string][] = [['race', 'citizenship']]
 
 class Base {
     protected categoryDependencies: [string, string][] = categoryDependencies
