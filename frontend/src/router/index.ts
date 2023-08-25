@@ -12,6 +12,10 @@ import DDWelcomeView from '@/views/dataDashboardViews/DDWelcomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior () {
+  // Always scroll to top
+  return { top: 0 }
+  },
   routes: [
     {
       path: '/',
