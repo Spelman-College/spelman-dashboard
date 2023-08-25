@@ -8,6 +8,7 @@
       <img src="arrow_left.svg" />
     </div>
     <div class="card">
+      <img src="/data_dashboard_welcome_icon.svg" />
       <div class="header">Welcome to the data dashboard</div>
       <div class="paragraph">Select a dataset in the drop-down menu above.</div>
       <div class="paragraph">Use the toggle on the top left of the page to switch between Explore Data mode and Preset
@@ -29,12 +30,18 @@
 }
 
 .card {
-  margin: 8rem 1rem 0 1rem;
+  margin: 6rem 1rem 0 1rem;
   width: 47.75rem;
   height: 29.3125rem;
   background-color: white;
   padding: 2.5rem;
   border-radius: 0.5rem;
+}
+
+.card>img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card>.header {
