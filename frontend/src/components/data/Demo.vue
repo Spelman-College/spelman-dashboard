@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
  import { ref, watchEffect } from 'vue'
  import * as Plot from "@observablehq/plot"
 
@@ -8,6 +9,7 @@
  import { downloadCSV } from '../../data/dc/download'
 
  import { genderOptions, ageOptions, majorOptions, datasetTitle } from '../../data/demo/ui'
+
  import { Query_demo } from '../../data/demo/query'
 
  import { Query, QueryCompare, expandCompares } from '../../data/queries/query'
@@ -165,13 +167,15 @@
 	    </div>
 	</div>
 	<div class="card flex justify-content-center">
-            <MultiSelect v-model=genderQuery :options=genderOptions filter optionLabel="label" optionValue="value" placeholder="Gender" class="w-full md:w-20rem" />
-
-	    <MultiSelect v-model=ageQuery :options=ageOptions filter optionLabel="label" optionValue="value" placeholder="Age Group" class="w-full md:w-20rem" />
-
-	    <MultiSelect v-model=majorQuery :options=majorOptions filter optionLabel="label" optionValue="value" placeholder="College Major" class="w-full md:w-20rem" />
-
+            <Multiselect v-model=genderQuery :options=genderOptions placeholder="Gender" trackBy=value label="label" mode=tags :can-clear=false :allow-absent=false :close-on-select=false />
 	</div>
+	<div>
+	    <Multiselect v-model=ageQuery :options=ageOptions trackBy=value mode=tags label="label" placeholder="Age Group" :can-clear=false :allow-absent=false :close-on-select=false />
+	</div>
+	<div>
+	    <Multiselect v-model=majorQuery :options=majorOptions trackBy=value mode='tags' label="label" placeholder="College Major" :can-clear=false :close-on-select=false />
+	    </div>
+
 	<div>
 	    <Button v-if="tableItems.length > 0" label="Download CSV" @click="download('results', tableItems)" :loading="loading_download" />
 	</div>
@@ -214,3 +218,5 @@
 	</div>
     </div>
 </template>
+
+<style src="../../../node_modules/@vueform/multiselect/themes/default.css"></style>

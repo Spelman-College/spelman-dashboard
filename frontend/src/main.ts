@@ -10,7 +10,7 @@ import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
 import RadioButton from 'primevue/radiobutton';
 import MultiSelect from 'primevue/multiselect';
-import Multiselect from 'vue-multiselect'
+import Multiselect from '../node_modules/@vueform/multiselect'
 import Dropdown from 'primevue/dropdown';
 import ToggleButton from 'primevue/togglebutton'
 import Skeleton from 'primevue/skeleton';
