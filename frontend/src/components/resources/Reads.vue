@@ -11,27 +11,21 @@ function prevPage() {
 const books = [
   {
     imgSrc: "/books/book_01.png",
-    link: "/book_01",
   },
   {
     imgSrc: "/books/book_02.png",
-    link: "https://www.amazon.com/Genius-Women-Overlooked-Changing-World/dp/1524744212"
   },
   {
     imgSrc: "/books/book_03.png",
-    link: "https://www.amazon.com/Atomic-Women-Stories-Scientists-Nuclear/dp/031648959X"
   },
   {
     imgSrc: "/books/book_04.png",
-    link: "https://www.amazon.com/Portrait-Scientist-Young-Woman/dp/0063086905",
   },
   {
     imgSrc: "/books/book_05.png",
-    link: "https://www.amazon.com/Black-Fortunes-African-Americans-Millionaires/dp/0062437593/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=1692987967&sr=8-1",
   },
   {
     imgSrc: "/books/book_06.jpg",
-    link: "https://a.co/d/7oWkoyL",
   },
 ]
 </script>
