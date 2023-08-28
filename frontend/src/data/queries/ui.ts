@@ -25,6 +25,14 @@ export const views = [
      {name: 'Data preset', path: 'preset', deactivate: false},
 ]
 
+export const plotColors = [
+    '#FF6454',
+    '#FF971E',
+    '#04C899',
+    '#4FDFFF',
+    '#FFDC69',
+]
+
 export const selectDsView = (view: string, dsPath: string): {[key:string]: string} => {
     let selected = {error: 'not found'}
     if (view == 'explore') {

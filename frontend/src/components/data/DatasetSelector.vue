@@ -45,13 +45,12 @@
 	 placeholderText.value = undefined
      }
      selected.value = datasetObject
-     console.log(dataset)
  })
-
 
  watch(selected, () => {
      emit('changeDataset', selected.value.path)
  })
+
 
 </script>
 

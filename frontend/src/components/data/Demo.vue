@@ -26,7 +26,8 @@
      getCompareData,
      getSingleDimension,
      asDownload,
-     minSelectString
+     minSelectString,
+     plotColors
  } from '../../data/queries/ui'
 
  import * as dims from '../../data/queries/dimensions'
@@ -199,7 +200,6 @@
 				label: null
 			    },
 			    color: {
-				scheme: 'spectral',
 				domain: colorDomain,
 				legend: true
 			    },
