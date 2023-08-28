@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
 
 const props = defineProps({
@@ -9,10 +9,14 @@ const props = defineProps({
   }
 })
 
+const searchString = ref('')
+const filteredOptions: Ref<Array<string>> = ref([])
 const selected: Ref<Array<string>> = ref([])
 const tempSelected: Ref<Array<string>> = ref([])
 const selectAll = ref(false)
 const dropdownShowing = ref(false)
+
+onMounted(() => (filteredOptions.value = [...props.options]))
 
 function doSelectAll() {
   if (!selectAll.value) tempSelected.value = [...props.options]
@@ -45,6 +49,15 @@ function showDropdown() {
     dropdownShowing.value = true;
   }
 }
+
+function search() {
+  filteredOptions.value = props.options.filter(searchFilter)
+}
+
+function searchFilter(op: string) {
+  op = op.toLowerCase()
+  return searchString.value === '' || op.includes(searchString.value.toLowerCase())
+}
 </script>
 
 <template>
@@ -60,7 +73,8 @@ function showDropdown() {
         <div class="chip-dropdown-header-close material-icons" @click="dropdownShowing = false">close</div>
       </div>
       <div class="chip-dropdown-search-container">
-        <input class="chip-dropdown-search-input" type="text" placeholder="Search" />
+        <input class="chip-dropdown-search-input" v-model="searchString" type="text" placeholder="Search"
+          @keyup="search" />
         <div class="material-icons">search</div>
       </div>
       <div class="chip-dropdown-checkbox-selectall">
@@ -69,7 +83,7 @@ function showDropdown() {
             class="chip-dropdown-checkbox-check material-icons">checkmark</span>Select all
         </label>
       </div>
-      <div v-for=" option  in  props.options " :key="option">
+      <div v-for="option in filteredOptions" :key="option">
         <label class="chip-dropdown-checkbox">
           <input type="checkbox" :checked="tempSelected.includes(option)" :value="option"
             @click.prevent="setOption(option)" /><span
