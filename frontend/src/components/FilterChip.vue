@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
+import ClickawayDetection from '@/components/ClickawayDetection.vue'
 
 const props = defineProps({
   options: {
@@ -39,7 +40,7 @@ function apply() {
   tempSelected.value = []
 }
 
-function showDropdown() {
+function toggleDropdown() {
   if (dropdownShowing.value) {
     dropdownShowing.value = false;
     tempSelected.value = []
@@ -61,10 +62,11 @@ function searchFilter(op: string) {
 </script>
 
 <template>
+  <ClickawayDetection v-if="dropdownShowing" @click="toggleDropdown"></ClickawayDetection>
   <div class="filter-chip-dropdown-container">
     <div class="filter-chip"
       :class="{ 'filter-chip-has-selections': selected.length > 0, 'dropdown-showing': dropdownShowing }"
-      @click="showDropdown">
+      @click="toggleDropdown">
       <slot></slot><span v-if="selected.length > 0">: {{ selected.join(', ') }}</span>
     </div>
     <div class="chip-dropdown" v-if="dropdownShowing">
