@@ -2,6 +2,7 @@
 import Splash from '@/components/about/Splash.vue'
 import Mission from '@/components/about/Mission.vue'
 import Vision from '@/components/about/Vision.vue'
+import TeamStories from '@/about/TeamStories.vue'
 </script>
 
 <template>
@@ -14,5 +15,8 @@ import Vision from '@/components/about/Vision.vue'
   <!-- TODO: Debug gradient -->
   <div class="view">
     <Vision></Vision>
+  </div>
+  <div class="view gradient">
+    <TeamStories></TeamStories>
   </div>
 </template>
