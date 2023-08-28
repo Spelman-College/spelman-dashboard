@@ -10,22 +10,22 @@ function prevPage() {
 
 const books = [
   {
-    imgSrc: "/books/book_01.png",
+    imgSrc: "/books/book_01.png"
   },
   {
-    imgSrc: "/books/book_02.png",
+    imgSrc: "/books/book_02.png"
   },
   {
-    imgSrc: "/books/book_03.png",
+    imgSrc: "/books/book_03.png"
   },
   {
-    imgSrc: "/books/book_04.png",
+    imgSrc: "/books/book_04.png"
   },
   {
-    imgSrc: "/books/book_05.png",
+    imgSrc: "/books/book_05.png"
   },
   {
-    imgSrc: "/books/book_06.jpg",
+    imgSrc: "/books/book_06.jpg"
   },
 ]
 </script>
