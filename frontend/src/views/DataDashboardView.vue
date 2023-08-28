@@ -8,7 +8,16 @@ import FilterChip from '@/components/FilterChip.vue'
 const exploreDataActive = ref(true)
 
 // const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
-const filters = ref(['Year'])
+const filters = [
+  {
+    name: 'Year',
+    options: ['2019', '2020', '2021']
+  },
+  {
+    name: 'Gender',
+    options: ['Male', 'Female']
+  }
+]
 </script>
 
 <template>
@@ -31,7 +40,7 @@ const filters = ref(['Year'])
       </div>
       <div class="filters">
         <div class="filter-text">Filters</div>
-        <FilterChip v-for="filter in filters">{{ filter }}</FilterChip>
+        <FilterChip :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
       </div>
     </div>
     <div class="router-view-container">
