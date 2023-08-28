@@ -3,10 +3,21 @@ import { ref, computed } from 'vue';
 import { RouterView } from 'vue-router';
 
 import Dropdown from '@/components/Dropdown.vue'
+import FilterChip from '@/components/FilterChip.vue'
 
 const exploreDataActive = ref(true)
 
-const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
+// const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
+const filters = [
+  {
+    name: 'Year',
+    options: ['2019', '2020', '2021']
+  },
+  {
+    name: 'Gender',
+    options: ['Male', 'Female']
+  }
+]
 </script>
 
 <template>
@@ -28,8 +39,8 @@ const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
         </div>
       </div>
       <div class="filters">
-        <span class="filter-text">Filters</span>
-        <span class="filter-chip" v-for="filter in filters" :key="filter">{{ filter }}</span>
+        <div class="filter-text">Filters</div>
+        <FilterChip :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
       </div>
     </div>
     <div class="router-view-container">
@@ -42,7 +53,6 @@ const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
 .toggle-and-dropdown {
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
   justify-content: space-between;
 }
 
@@ -53,6 +63,10 @@ const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
   font-weight: 700;
   background: #444c57;
   color: #ffffff;
+}
+
+.button-group>button:hover {
+  background: #6f7987;
 }
 
 .button-group>button.active {
@@ -69,7 +83,9 @@ const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
 }
 
 .filters {
-  margin: 2rem 0rem;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
 }
 
 .filter-text {
@@ -77,18 +93,6 @@ const filters = ref(['Year', 'Sex', 'Race', 'Degree level', 'Residency status'])
   font-family: 'Noto Sans Mono';
   font-size: 0.875rem;
   font-weight: 700;
-}
-
-.filter-chip {
-  margin: 0.5rem;
-  padding: 0.375rem 0.8125rem;
-  border-radius: 2.25rem;
-  border: 1px solid #c4c7c5;
-  background: #fff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  font-family: 'Noto Sans Mono';
-  color: #474747;
 }
 
 .router-view-container {

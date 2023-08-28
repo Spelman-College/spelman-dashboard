@@ -130,7 +130,7 @@ function handleClick(name: String | null) {
 }
 
 .dropdown-option:hover {
-  background-color: #4fdfff;
+  background-color: #d6e2fb;
 }
 
 .name-source-vars-container {
