@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+function goToData() {
+  router.push({ name: 'data' })
+}
+
+</script>
+
 <template>
   <h1>
     Breaking Boundaries<br />
@@ -8,7 +18,7 @@
     Amplifying the stories and impact of Black women in STEM<br />
     through data, insights, and advocacy
   </p>
-  <button>Visit the Data Dashboard</button>
+  <button @click="goToData">Visit the Data Dashboard</button>
   <div id="splash-graphics">
     <img src="/splash.png" alt="" id="splash-image" />
     <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
