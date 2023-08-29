@@ -102,6 +102,7 @@ function searchFilter(op: string) {
 <style scoped>
 .filter-chip-dropdown-container {
   position: relative;
+  z-index: 1;
 }
 
 .filter-chip {
