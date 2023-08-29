@@ -7,6 +7,7 @@ import IndividualStoryView from '@/views/IndividualStoryView.vue'
 import IndividualBioView from '@/views/IndividualBioView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
+import IndividualReadsView from '@/views/reads/IndividualReadsView.vue'
 import ContactView from '@/views/ContactView.vue'
 import DataDashboardDatasetView from '@/views/DataDashboardDatasetView.vue'
 import DataDashboardView from '@/views/DataDashboardView.vue'
@@ -56,6 +57,10 @@ const router = createRouter({
       path: '/resources',
       name: 'resources',
       component: ResourcesView
+    },
+    {
+      path: '/resources/:id',
+      component: IndividualReadsView
     },
     {
       path: '/contact',

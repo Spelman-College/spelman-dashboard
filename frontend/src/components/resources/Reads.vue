@@ -25,13 +25,7 @@ const books = [
     imgSrc: "/books/book_05.png"
   },
   {
-    imgSrc: "/books/book_01.png"
-  },
-  {
-    imgSrc: "/books/book_02.png"
-  },
-  {
-    imgSrc: "/books/book_03.png"
+    imgSrc: "/books/book_06.jpg"
   },
 ]
 </script>
@@ -48,7 +42,7 @@ const books = [
     <Carousel :value="books" :numVisible="5" :numScroll="5" :show-indicators="false" :circular="true"
       :pt="{ previousButton: { id: 'prevButton', class: 'hidden' }, nextButton: { id: 'nextButton', class: 'hidden' } }">
       <template #item="slotProps">
-        <img class="book-card" :src="slotProps.data.imgSrc" />
+        <router-link :to="{path: '/resources/' + slotProps.index}"><img class="book-card" :src="slotProps.data.imgSrc" /></router-link>
       </template>
     </Carousel>
   </div>
