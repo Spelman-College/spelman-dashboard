@@ -43,7 +43,7 @@ const bios = [
   },
   {
     name: "Tiffany Oliver",
-    imgSrc: "/team/",
+    imgSrc: "/team/tiffany_oliver.png",
     story: "Dr. Tiffany Oliver is a dynamic motivational speaker, author, professor, and scientist. For almost 20 years, she has captivated audiences with her research and presentations on leadership, persistence, and excellence. A native of Detroit, Michigan, Tiffany is celebrated for her TedxTalk -  Creating diverse and equitable initiatives in data science. She serves an Associate Professor and Chair of the Biology Department at Spelman College where she is a Carnegie and Rockefeller Distinguished Research Scholar. Dr. Oliver received her Ph.D. in Genetics and Molecular Biology from Emory University; her research uses both molecular and data-science based approaches to characterize genes and mutations that play a role in disease." +
     "<br><br> Dr. Oliver is passionate about increasing diversity in STEM (science, technology, engineering, and mathematics) disciplines. She does this by running a research lab that employs and engages students in scientific research." +
     "<br><br> However, Dr. Oliver also creates opportunities for cross-disciplinary collaboration and experiential learning by leading projects that integrate STEM and the arts, better known as STEAM. Studies show that STEAM projects promote inquiry, problem solving, dialogue, critical thinking, and experiential learning.  Her students have won cash prizes and scholarships for their participation in activities including but not limited to the Army Research Lab’s Student Design Competition, where they created a fully functional, Unmanned Aerial Vehicle (UAV), otherwise known as a “drone”, upon being provided with nothing but a sample of the bacteriaDr. Oliver also worked with an interdisciplinary team of faculty and students that placed second in the International Bio Design Competition (BDC). In her first year of participation, her students placed second out of 51 international institutions for the design of a bio-inspired garment, that imbued modular biosensors and spider silk to provide physical protection as well as enable the communication of health and emotions between wearers via a virtual network." +
@@ -51,32 +51,17 @@ const bios = [
   },
   {
     name: "Holly Smith",
-    imgSrc: "/team/",
+    imgSrc: "/team/holly_smith.png",
     story: "Holly A. Smith is the College Archivist at Spelman College. She received her B.A. in History and Black Studies from The College of William and Mary, an M.A. in History from Yale University, and an M.S. in Library and Information Science from Simmons College. She co-authored the article “This [Black] Woman’s Work: Exploring Archival Projects that Embrace the Identity of the Memory Worker” (KULA Journal, 2018:2), and authored the pieces “Radical Love: Documenting Underrepresented Communities Using Principles of Radical Empathy” (Journal for the Society of North Carolina Archivists, 2018: 15) and “Wholeness is No Trifling Matter: Black Feminist Archival Practice and The Spelman College Archives” (The Black Scholar 52:2).  She is passionate about community archives and archival advocacy related to collections for historically under documented communities.  " 
   },
   {
     name: "Valeisha Ellis",
-    imgSrc: "/team/",
+    imgSrc: "/team/valeisha_ellis.jpg",
     story: "Dr. Valeisha Ellis is an assistant professor in the Education Department at Spelman College.  She has experience in S.T.E.A.M. curriculum and instruction, reading, special education and teacher education.  Dr. Ellis’ research interests include STEM identity development, effective models of establishing and maintaining P-12 S.T.E.A.M. school and community partnerships, effective pre-service STEM field and clinical models for teacher education, and multidisciplinary education research.  In 2023, Dr. Ellis was awarded a grant from Google Education. Her project focuses on innovative solutions to our K-12 STEM community, addressing the current challenges of Computer Science (CS) workforce diversity, lack of CS career exposure for educators and K-12 students, and heightening CS engagement. She is the program chair of the Research Focus on Black Education Special Interest Group (SIG) at the American Association of Education Research Association (AERA). She is a member of the Atlanta University Center (AUC) K-12 Data Science Initiative and the steering committee for Spelman College’s Center of Excellence for Minority Women in STEM. Her most recent publications include “The perspectives and pedagogies of middle school social justice educators.”, “Changing the Face of STEM: Review of Literature on The Role of Mentors in the Success of Undergraduate Black Women in STEM Education.”, and “An HBCU Initiative to Build Effective Partnerships for Pre-Service Teachers’ Field and Clinical Experiences.”     "
   },
   {
-    name: "Sierra Griffith",
-    imgSrc: "/team/",
-    story: "Sierra Griffith is a sophomore at Spelman College. She is pursuing a degree in Economics (BA) but has a focus on marketing. Sierra hopes to learn more about different industries' strategies to interest their target audience. Such industries can include fashion, media, technology, or news agencies. Her interest in marketing stems from her passion for media and the creative plans one uses to convince an audience about a film. Ms. Griffith also recently took a course learning how people use technology to influence consumers positively and negatively. Entering her second year of college, Sierra hopes to gain more experience with various companies and progress toward her career. "
-  },
-  {
-    name: "Kailen Bain",
-    imgSrc: "/team/",
-    story: "Kailen Bain is a sophomore Chemistry major on the pre-dental track at Spelman College. She is 1 of 5 students selected to be in the first cohort of Ralph Lauren Corporate Foundation Scholars and she is also a member of the Ethel Waddell Githii Honors Program. Throughout her time in school, she has been devoted to helping children within the metro-Atlanta community explore their passions in S.T.E.M. Over the past year, she has worked with nonprofit organizations that focus on providing access to S.T.E.M resources in low-income communities. In her free time, she enjoys creating cosmetic products for her business Kay Nichole Beauty, which she founded in 2019. With experience in clinical job shadowing, entrepreneurship, and volunteering she is eager to gain more exposure through professional work experiences. "
-  },
-  {
-    name: "Shanina Sanders Johnson",
-    imgSrc: "/team/",
-    story: "Dr. Shanina Sanders Johnson is an Associate Professor in the Department of Chemistry and Biochemistry at Spelman College. Her teaching and scholarly activities align with her goals of nurturing the next generation of Black women in STEM and creating a more inclusive field. She introduced culturally relevant teaching into the organic lectures and labs at Spelman to engage students and promote science identity among Black women. Dr. Sanders has received funding from the Associated Colleges of the South and the National Science Foundation to support teaching and research activities in this area. She has organized workshops, presented related work at conferences, academic institutions, and published journal articles and editorials that highlight efforts to engage diverse audiences in STEM and make STEM curriculum more inclusive. As a teacher scholar, she has an active synthetic chemistry research lab where she trains students interested in STEM careers or graduate school in chemistry."
-  },
-  {
     name: "Na’Taki Osborne Jelks",
-    imgSrc: "/team/",
+    imgSrc: "/team/na_taki_osborne.png",
     story: "Dr. Na’Taki Osborne Jelks is an Assistant Professor in the Environmental and Health Sciences Program at Spelman College in Atlanta, GA.  Dr. Jelks investigates urban environmental health disparities; the role that place, race, and social factors play in influencing health; cumulative environmental risks and health; the impact of climate change on vulnerable populations, and the connection between urban watersheds, pollution, the built environment, and health.  She also develops, implements, and evaluates community-based initiatives that set conditions to enable low-income and communities of color to empower themselves to reduce exposure to environmental health hazards and improve health and quality of life. Jelks is particularly interested in approaches that engage environmentally overburdened communities in monitoring local environmental conditions, generating actionable data for community change, and developing effective community-based interventions that revitalize toxic, degraded spaces into healthy places. She is currently co-leading UrbanHeatATL, a research initiative in which Atlanta-based students and community members are mapping urban heat islands in Atlanta with community science. Her research and public health practice are supported by private and public agencies and foundations such as the U.S. Environmental Protection Agency, the National Institute of Environmental Health Sciences, and The Rockefeller, Robert Wood Johnson and National Science Foundations. " +
     "<br><br> Dr. Jelks co-founded the West Atlanta Watershed Alliance (WAWA), a community-based environmental justice organization that works to grow a cleaner, greener, healthier, more sustainable West Atlanta through authentic community engagement, organizing, education, community science, and participatory research. Since 2018 she has served on the National Environmental Justice Advisory Council (NEJAC), a federal advisory committee that works to integrate environmental justice into the Environmental Protection Agency’s programs, policies and activities as well as to improve the environment or public health in communities disproportionately burdened by environmental harms and risks. Jelks is currently one of two co- chairs of the NEJAC. A nationally recognized leader in engaging urban communities and youth of color in environmental stewardship, Jelks also co-founded the National Wildlife Federation’s Atlanta Earth Tomorrow Program, a youth environmental leadership and environmental justice program, in 2001 and served as the program director from 2005 until 2017. " +
     "<br><br> Jelks studied Chemistry and Civil and Environmental Engineering at Spelman College and the Georgia Institute of Technology respectively before earning a Master of Environmental and Occupational Health degree at Emory University and a Ph.D. in Public Health at Georgia State University." +
@@ -84,21 +69,26 @@ const bios = [
   },
   {
     name: "Elethia Tillman",
-    imgSrc: "/team/",
+    imgSrc: "/team/elethia_tillman.png",
     story: "Dr. Elethia Tillman is currently a Senior Lecturer and Co-Chair of Spelman’s biology department. She has a Ph.D. in biomedical science with emphasis in the molecular and cellular pathways that lead to cardiovascular disease from Meharry Medical College. Dr. Tillman’s broad interests include medical communication, health disparities and women’s health and she is passionate about enhancing participation among minority women in STEM. Dr. Tillman is also a freelance medical writer, providing science communication support across multiple therapeutic areas in clinical research and continuing medical education initiatives. Her Biology of Women course empowers high school and undergraduate minority women to have agency over their healthcare experiences through exploration of their unique biology and how biology influences their lived experiences and she has also mentored students in data science research examining maternal health disparities. As a member of the Atlanta University Center cohort of the UNCF/Excelencia data science program, Dr. Tillman and her colleagues presented data that identified race and sex as predictors of STEM PhD students taking gap years which extends the time to degree completion and entry into a STEM profession. "
   },
   {
     name: "Celeste Lee",
-    imgSrc: "/team/",
+    imgSrc: "/team/celeste_lee.png",
     story: "Dr. Celeste Lee is an assistant professor of Sociology at Spelman College; she teaches courses on multivariate analysis, sociology of race and racism, research methods, and the sociology of health. She also serves as director of Spelman’s Census Information Center and a member of steering committee for the Center of Excellence for Minority Women in STEM. " +
     "<br><br> Dr. Lee’s areas of expertise include racial and ethnic inequality, ideology, sociology of health, education, and quantitative methods. Ultimately, her research agenda aims to interrogate how race and ethnicity impact people’s lived experiences, the relationship between racialized experiences and racial ideology, and groups’ understanding of broader racial dynamics. In 2023, Dr. Lee was awarded a health equity grant from the Thurgood Marshall College Fund and Novartis Alliance. Her project focuses on nursing interventions for obstetric emergencies as a pathway for addressing high maternal mortality rates. She also serves as Co-PI on a grant from the National Science Foundation; the grant supports research on Black women’s experiences in computer science.  In the fall 2021-2022 academic year, she received a UNCF/ Mellon Faculty in Residency Grant and spent the spring semester as a fellow at the James Weldon Johnson Institute for the Study of Race and Difference. During her residency, Dr. Lee completed her most recent publication, \"Beyond the Four Frames of Colorblind Ideology: The Impact of Colorblind Ideology on Black Millennial's Racial Views\"; ublished Summer 2022 in “Phylon.” " +
     "<br><br> Dr. Lee is a proud Atlanta native. She earned her doctoral and bachelor’s degrees in Sociology from Emory University. She also holds a master’s in education from Duke University. "
   },
   {
+    name: "Shanina Sanders Johnson",
+    imgSrc: "https://i0.wp.com/tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png?ssl=1",
+    story: "Dr. Shanina Sanders Johnson is an Associate Professor in the Department of Chemistry and Biochemistry at Spelman College. Her teaching and scholarly activities align with her goals of nurturing the next generation of Black women in STEM and creating a more inclusive field. She introduced culturally relevant teaching into the organic lectures and labs at Spelman to engage students and promote science identity among Black women. Dr. Sanders has received funding from the Associated Colleges of the South and the National Science Foundation to support teaching and research activities in this area. She has organized workshops, presented related work at conferences, academic institutions, and published journal articles and editorials that highlight efforts to engage diverse audiences in STEM and make STEM curriculum more inclusive. As a teacher scholar, she has an active synthetic chemistry research lab where she trains students interested in STEM careers or graduate school in chemistry."
+  },
+  {
     name: "Marilyn A. Davis",
-    imgSrc: "/team/",
-    story: "Associate Professor of Political Science, Spelman College" +
-    "<br><br> Goals and Aspirations:  To teach, encourage, advise, mentor, and nurture undergraduate students throughout their matriculation." +
+    imgSrc: "https://i0.wp.com/tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png?ssl=1",
+    story: "Associate Professor of Political Science, Spelman College." +
+    "Goals and Aspirations:  To teach, encourage, advise, mentor, and nurture undergraduate students throughout their matriculation." +
     "<br><br>Achievements " +
     "<ul>The American Political Science Association, Best Syllabi Recognition, 1980s. Political Science 497, Senior Seminar; Political Science 415, Ancient and Classical Political Theory/Political Science 417, Political Theory from Machiavelli to the Present; and Political Science 419, The American Presidency.</ul>" +
     "<ul>Sears-Roebuck Foundation Teaching Excellence and Campus Leadership Award, April 1990.</ul>" +
@@ -106,6 +96,16 @@ const bios = [
     "<ul>Several published articles and book chapters on the voting behavior of African Americans and the national electoral success of African American Women, 1980s through 2020s.</ul>" +
     "<ul>Published and widely cited nationally, a political science research article with Spelman College faculty colleagues, PS, a publication of the American Political Science Association, 2022.</ul>" +
     "<ul>Core II, Center for Excellence, Black Women in STEM, Spelman College, 2023.</ul>"
+  },
+  {
+    name: "Sierra Griffith",
+    imgSrc: "/team/sierra_griffith.png",
+    story: "Sierra Griffith is a sophomore at Spelman College. She is pursuing a degree in Economics (BA) but has a focus on marketing. Sierra hopes to learn more about different industries' strategies to interest their target audience. Such industries can include fashion, media, technology, or news agencies. Her interest in marketing stems from her passion for media and the creative plans one uses to convince an audience about a film. Ms. Griffith also recently took a course learning how people use technology to influence consumers positively and negatively. Entering her second year of college, Sierra hopes to gain more experience with various companies and progress toward her career. "
+  },
+  {
+    name: "Kailen Bain",
+    imgSrc: "/team/kailen_bain.png",
+    story: "Kailen Bain is a sophomore Chemistry major on the pre-dental track at Spelman College. She is 1 of 5 students selected to be in the first cohort of Ralph Lauren Corporate Foundation Scholars and she is also a member of the Ethel Waddell Githii Honors Program. Throughout her time in school, she has been devoted to helping children within the metro-Atlanta community explore their passions in S.T.E.M. Over the past year, she has worked with nonprofit organizations that focus on providing access to S.T.E.M resources in low-income communities. In her free time, she enjoys creating cosmetic products for her business Kay Nichole Beauty, which she founded in 2019. With experience in clinical job shadowing, entrepreneurship, and volunteering she is eager to gain more exposure through professional work experiences. "
   },
 ]
 

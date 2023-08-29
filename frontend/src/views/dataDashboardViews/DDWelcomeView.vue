@@ -5,7 +5,7 @@
 <template>
   <div class="card-and-arrow-container">
     <div class="arrow-left">
-      <img src="arrow_left.svg" />
+      <img src="/arrow_left.svg" />
     </div>
     <div class="card">
       <img src="/data_dashboard_welcome_icon.svg" />
@@ -19,7 +19,7 @@
       <div class="footer">Need more help? Check out the comprehensive <a href="/faq">FAQ page</a>.</div>
     </div>
     <div class="arrow-right">
-      <img src="arrow_right.svg" />
+      <img src="/arrow_right.svg" />
     </div>
   </div>
 </template>

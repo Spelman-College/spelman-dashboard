@@ -18,7 +18,7 @@ const pWidth = computed(() => {
 const slots = useSlots()
 const storyString = slots.story?.()[0].children
 let storyStringLength = storyString?.length;
-const maxStoryLength = 90
+const maxStoryLength = 85
 const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyString?.slice(0, maxStoryLength)}...` : storyString)
 </script>
 <template>
