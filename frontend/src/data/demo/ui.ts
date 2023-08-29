@@ -50,3 +50,18 @@ export const majorOptions  = [
 	label: dims.Dimension2Text[dims.BachelorOfBusinessMajor]
     }
 ]
+
+ // Please don't mutate these or the plot will break. When assigning these, make a copy.
+export const genderDomain = [dims.Male, dims.Female]
+export const ageDomain = [
+     dims.age_25To39Years,
+     dims.age_40To64Years,
+     dims.age_65OrMoreYears
+ ]
+export const majorDomain = [
+     dims.BachelorOfEducationMajor,
+     dims.BachelorOfScienceAndEngineeringMajor,
+     dims.BachelorOfScienceAndEngineeringRelatedMajor,
+     dims.BachelorOfArtsHumanitiesAndOtherMajor,
+     dims.BachelorOfBusinessMajor,
+ ]

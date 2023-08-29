@@ -18,8 +18,11 @@
  const changeView = (v: string) => {
      emit('changeView', v)
      view.value = v
+     // We reset to the default view.
+     dataset.value = 'default'
  }
-  const changeDataset = (ds: string) => {
+
+ const changeDataset = (ds: string) => {
      emit('changeDataset', ds)
      dataset.value = ds
   }

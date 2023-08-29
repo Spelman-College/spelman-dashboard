@@ -21,12 +21,12 @@
  // Select the target dataset if it exists in the available list.
  watchEffect(() => {
      let container = ''
-     let dataset = {}
+     let datasetObject = {}
      if (view.value == 'explore') {
 	 container = 'dataset to explore'
 	 datasets.forEach((s) => {
 	     if (dataset.value == s.path) {
-		 dataset = s
+		 datasetObject = s
 		 placeholderText.value = s.name
 	     }
 	 })
@@ -34,20 +34,23 @@
 	 container = 'chart to view'
 	 presets.forEach((s) => {
 	     if (dataset.value == s.path) {
-		 dataset = s
+		 datasetObject = s
 		 placeholderText.value = s.name
 	     }
 	 })
      }
-     placeholderText.value = `Select a ${container}`
-     selected.value = dataset
-
+     if (Object.keys(datasetObject).length == 0) {
+	 placeholderText.value = `Select a ${container}`
+     } else {
+	 placeholderText.value = undefined
+     }
+     selected.value = datasetObject
  })
-
 
  watch(selected, () => {
      emit('changeDataset', selected.value.path)
  })
+
 
 </script>
 
