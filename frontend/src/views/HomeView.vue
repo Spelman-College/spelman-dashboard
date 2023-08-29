@@ -12,13 +12,10 @@ import MoreToExplore from '@/home/MoreToExplore.vue'
     <Splash></Splash>
   </div>
   <div class="view gradient">
-    <ExploreData></ExploreData>
+    <Stat></Stat>
   </div>
   <div class="view">
     <Stories></Stories>
-  </div>
-  <div class="view gradient">
-    <Stat></Stat>
   </div>
   <div class="view">
     <MoreToExplore></MoreToExplore>
