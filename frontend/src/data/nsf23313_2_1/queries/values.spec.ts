@@ -7,10 +7,10 @@ const data: Query_nsf23313_2_1_values = new Query_nsf23313_2_1_values()
 const male = new Query('gender', 'Male')
 const masters_degree = new Query('education', 'MastersDegree')
 const doc_degree = new Query('education', 'DoctorateDegree')
-const postdoc = new Query('occupation', 'PostDoctoralAppointeeOccupation')
-const nonfaculty = new Query('occupation', 'NonFacultyResearcherOccupation')
+const postdoc = new Query('postdoc', 'PostDoctoralAppointeeOccupation')
+const nonfaculty = new Query('nonfaculty', 'NonFacultyResearcherOccupation')
 const black = new Query('race', 'Black')
-const unknown = new Query('race', 'UnknownRace')
+const notknown = new Query('race', 'UnknownRace')
 const citizen = new Query('citizenship', 'Citizen')
 const visa = new Query('citizenship', 'VisaHolder')
 
@@ -57,7 +57,7 @@ describe('nsf23313_2_1 query single dimension that is expected to return a value
     })
 
     test('query unknown race', () => {
-        const out = data.query(unknown)
+        const out = data.query(notknown)
         expect(out.results).toEqual([
             'Count_Student_Citizen_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree_UnknownEthnicity_UnknownRace',
         ])
