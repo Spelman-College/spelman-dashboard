@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import StoriesView from '@/views/StoriesView.vue'
+import BiosView from '@/views/BiosView.vue'
 import FAQView from '@/views/FAQView.vue'
 import IndividualStoryView from '@/views/IndividualStoryView.vue'
+import IndividualBioView from '@/views/IndividualBioView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
 import ContactView from '@/views/ContactView.vue'
@@ -28,6 +30,11 @@ const router = createRouter({
       component: StoriesView
     },
     {
+      path: '/bios',
+      name: 'bios',
+      component: BiosView
+    },
+    {
       path: '/FAQ',
       name: 'FAQ',
       component: FAQView
@@ -35,6 +42,10 @@ const router = createRouter({
     {
       path: '/stories/:id',
       component: IndividualStoryView
+    },
+    {
+      path: '/bios/:id',
+      component: IndividualBioView
     },
     {
       path: '/about',
