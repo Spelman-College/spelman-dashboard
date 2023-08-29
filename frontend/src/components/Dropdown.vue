@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { debugPort } from 'process';
 import { ref } from 'vue'
+import ClickawayDetection from './ClickawayDetection.vue';
 
 const currentDataset = ref(0)
 
@@ -54,6 +55,7 @@ function handleClick(name: String | null) {
 </script>
 
 <template>
+  <ClickawayDetection v-if="dropdownVisible" @click="dropdownVisible = false"></ClickawayDetection>
   <div class="dropdown" @click="handleClick(null)">
     <div class="dropdown-header">Dataset</div>
     <div class="dropdown-text">{{ options[currentDataset].name }} &nbsp;({{ options[currentDataset].year }})</div>
