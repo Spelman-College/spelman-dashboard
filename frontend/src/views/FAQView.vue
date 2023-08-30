@@ -47,42 +47,56 @@ const faqs = [
 </script>
 
 <template>
-  <div class="view">
-    <question_splash>Have a question?</question_splash>
-    <br>
-    <faq_splash>Frequently Asked<br>Questions</faq_splash>
+  <div class="flex-container">
+    <div class="view faq">
+      <question_splash>Have a question?</question_splash>
+      <faq_splash>Frequently Asked<br>Questions</faq_splash>
+      <img src="/swiggly_line_red_FF6454.svg" alt="" id="swiggly-line-red" />
     </div>
-  
-
-<Accordion :multiple="true">
-    <AccordionTab v-for="panel in faqs" :key="panel.question" :header="panel.question">
-      {{ panel.answer }} 
-    </AccordionTab>
-  </Accordion>
-
-
-
+    <Accordion :multiple="true"> 
+      <AccordionTab v-for="panel in faqs" :key="panel.question" :header="panel.question">
+        {{ panel.answer }}
+      </AccordionTab>
+    </Accordion>
+  </div>
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&family=Open+Sans&display=swap');
 
+.flex-container{
+  display: flex;
+  flex-direction: column;
+  overflow-x:auto;
+  align-items:center;
+}
+.faq{
+  display:flex;
+  align-self:start;
+  flex-direction:column;
+  gap: 2rem;
+  white-space: nowrap;
+}
+
 p {
   width: 36rem;
 }
-
-:deep(.p-accordion-content) {
+:deep(.p-accordion .p-accordion-content) { 
   color: #000;
   font-family: Open Sans;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5rem; /* 150% */
-  padding-left: 17.88rem;
+  padding-left: 4.46rem;
+  padding-top:0;
+  padding-right: 9.89rem;
+  padding-bottom: 3rem;
+  background-color:#ACF0FF;
 } 
 
-:deep(.p-accordion-header-text) {
+:deep(.p-accordion .p-accordion-header-text) {
   color: #000;
   font-family: 'Noto Sans Mono', monospace;
   font-size: 22px;
@@ -91,26 +105,17 @@ p {
   line-height: 30px; /* 136.364% */
   letter-spacing: -1px;
   padding-left: 4.38rem;
-  padding-top: 3.06rem;
-  padding-bottom: 3.06rem;
-
-
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
 } 
 
-:deep(.p-accordion-tab) {
+:deep(.p-accordion .p-accordion-tab) {
   box-sizing: border-box;
-  border-radius: 16px;
   background: #ACF0FF;
-  width: 868px;
+  width: 54.25rem;
   margin: 20px;
-}
-
-
-:deep(.p-accordion-content) {
-  padding-left: 4.46rem;
-  padding-right: 9.89rem;
-  padding-bottom: 1.67rem;
   border-radius: 16px;
+
 }
 
 /* TODO: Right-align toggle icon placement  */
@@ -128,8 +133,7 @@ faq_splash {
   font-weight: 500;
   line-height: 3.75rem; /* 120% */
   letter-spacing: -0.0625rem;
-  padding-left: 3.31rem;
-  padding-bottom: 7.16rem;
+
 }
 
 question_splash {
@@ -142,10 +146,37 @@ question_splash {
   font-style: normal;
   font-weight: 500;
   line-height: 3.75rem; /* 200% */
-
-  padding-left: 3.31rem;
-  padding-bottom: 2.15rem;
 }
 
+/* Overriding the theme to make Accordion buttons rounded */
+:deep(.p-accordion .p-accordion-tab .p-accordion-header .p-accordion-header-link),
+:deep(.p-accordion .p-accordion-tab:first-child),
+:deep(.p-accordion .p-accordion-tab .p-accordion-content),
+:deep(.p-accordion .p-accordion-tab:first-child .p-accordion-header .p-accordion-header-link),
+:deep(.p-accordion .p-accordion-tab:last-child .p-accordion-content),
+:deep(.p-accordion .p-accordion-tab:last-child .p-accordion-header:not(.p-highlight) .p-accordion-header-link),
+:deep(.p-accordion .p-accordion-tab:last-child){
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+/* Overriding the theme to make Accordion blue*/
+:deep(.p-accordion .p-accordion-header .p-accordion-header-link:hover ),
+:deep(.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link),
+:deep(.p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link),
+:deep(.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link),
+:deep(.p-accordion .p-accordion-tab:not(.p-accordion-tab-active) .p-accordion-header-link:focus  ),
+:deep(.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link),
+  :deep(.p-accordion .p-accordion-header-link:hover .p-accordion-header-action:hover){
+  background-color:#ACF0FF;
+}
+
+
+:deep(.p-accordion .p-accordion-header .p-accordion-header-link ){
+  background-color:#ACF0FF;
+  padding-left:0;
+}
 
 </style>
