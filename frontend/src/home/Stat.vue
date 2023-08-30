@@ -37,11 +37,17 @@
       </div>
     </div>
   </div>
-  <a href="">Learn more &rarr;</a>
+  <div id="link">
+    <a href="">Learn more <span class="material-symbols-outlined">arrow_right_alt</span></a>
+  </div>
 </template>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&family=Open+Sans&display=swap');
+
+#link a {
+  color: #4fdfff;
+}
 
 #outer {
   display: flex;
@@ -117,6 +123,15 @@
   height: 4rem;
   font-size: 3rem;
   color: #ffffff;
+}
+
+#link .material-symbols-outlined {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: #4fdfff;
+  margin-left: 0.81rem;
+  vertical-align:middle;
 }
 
 #source {
