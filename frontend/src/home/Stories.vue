@@ -42,8 +42,8 @@ const page = ref(0)
   </p>
 
   <div class="carousel-nav">
-    <button class="carousel-nav-buttons" @click="prevPage">&larr;</button> <button class="carousel-nav-buttons"
-      @click="nextPage">&rarr;</button>
+    <button class="carousel-nav-buttons" @click="prevPage"><div id="carousel-arrows"><span class="material-symbols-outlined">arrow_left_alt</span></div></button> <button class="carousel-nav-buttons"
+      @click="nextPage"><div id="carousel-arrows"><span class="material-symbols-outlined">arrow_right_alt</span></div></button>
   </div>
   <div>
     <Carousel :value="rows" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
@@ -91,13 +91,11 @@ a {
   line-height: 1.875rem; /* 142.857% */
 }
 
-.material-symbols-outlined {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-  color: #313B49;
-  margin-left: 0.81rem;
-  vertical-align:middle;
+/* TODO: Center arrows and change to material-symbols-rounded */
+#carousel-arrows .material-symbols-outlined {
+  margin-left: 0rem;
+  width: 0.975rem;
+  ;
 }
 
 </style>
