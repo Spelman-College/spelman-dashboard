@@ -7,7 +7,16 @@
   import { SeriesClient } from '../../data/dc/client'
  import { downloadCSV } from '../../data/dc/download'
 
- import { genderOptions, ageOptions, majorOptions, datasetTitle } from '../../data/demo/ui'
+ import {
+     genderOptions,
+     ageOptions,
+     majorOptions,
+     datasetTitle,
+     genderDomain,
+     ageDomain,
+     majorDomain
+ } from '../../data/demo/ui'
+
  import { Query_demo } from '../../data/demo/query'
 
  import { Query, QueryCompare, expandCompares } from '../../data/queries/query'
@@ -16,7 +25,9 @@
      applyCompareQuery,
      getCompareData,
      getSingleDimension,
-     asDownload
+     asDownload,
+     minSelectString,
+     plotColors
  } from '../../data/queries/ui'
 
  import * as dims from '../../data/queries/dimensions'
@@ -25,11 +36,24 @@
 						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
  const dataset = new Query_demo()
  const loading_download = ref(false);
+
  const genderQuery = ref([])
  const ageQuery = ref([])
  const majorQuery = ref([])
+
+ // Used to ensure at least 1 value is selected
+ const lastGenderValue = ref([...genderDomain])
+ const updateGender = minSelectString(genderQuery, lastGenderValue, 1)
+ const lastAgeValue = ref([...ageDomain])
+ const updateAge = minSelectString(ageQuery, lastAgeValue, 1)
+ const lastMajorValue = ref([...majorDomain])
+ const updateMajor = minSelectString(majorQuery, lastMajorValue, 1)
+
+
  const compare = ref('gender')
- const tableItems = ref([]);
+ const tableItems = ref([])
+ const colorDomain = ref([])
+
 
  async function download(fileName: string, items: Array<Map>) {
      loading_download.value = true
@@ -56,36 +80,20 @@
  }
 
 
+
  watchEffect(() => {
+     genderQuery.value = [...genderDomain]
+     ageQuery.value = [...ageDomain]
+     majorQuery.value = [...majorDomain]
+
      if (compare.value == 'gender') {
-	 // Select on change
-	 genderQuery.value = [dims.Male, dims.Female]
-	 ageQuery.value = []
-	 majorQuery.value = []
-	 return
+	 colorDomain.value = [...genderDomain]
      }
      if (compare.value == 'age') {
-	 // Select on change
-	 ageQuery.value = [
-	     dims.age_25To39Years,
-	     dims.age_40To64Years,
-	     dims.age_65OrMoreYears
-	 ]
-	 genderQuery.value = []
-	 majorQuery.value = []
-	 return
+	 colorDomain.value = [...ageDomain]
      }
      if (compare.value == 'major') {
-	 majorQuery.value = [
-	     dims.BachelorOfEducationMajor,
-	     dims.BachelorOfScienceAndEngineeringMajor,
-	     dims.BachelorOfScienceAndEngineeringRelatedMajor,
-	     dims.BachelorOfArtsHumanitiesAndOtherMajor,
-	     dims.BachelorOfBusinessMajor,
-	 ]
-	 genderQuery.value = []
-	 ageQuery.value = []
-	 return
+	 colorDomain.value = [...majorDomain]
      }
  })
 
@@ -135,8 +143,7 @@
 	     break
 	 }
 	 default: {
-	     throw new Error(compare.value == 'gender')
-	     console.log(`got ${compare.value}, expected age or gender`)
+	     throw new Error(`got ${compare.value}, expected gender, age, or major`)
 	     break
 	 }
      }
@@ -166,11 +173,11 @@
 	    </div>
 	</div>
 	<div class="card flex justify-content-center">
-            <MultiSelect v-model=genderQuery :options=genderOptions filter optionLabel="label" optionValue="value" placeholder="Gender" class="w-full md:w-20rem" />
+            <MultiSelect v-model=genderQuery :options=genderOptions filter optionLabel="label" optionValue="value" placeholder="Gender" class="w-full md:w-20rem" @update:modelValue=updateGender />
 
-	    <MultiSelect v-model=ageQuery :options=ageOptions filter optionLabel="label" optionValue="value" placeholder="Age Group" class="w-full md:w-20rem" />
+	    <MultiSelect v-model=ageQuery :options=ageOptions filter optionLabel="label" optionValue="value" placeholder="Age Group" class="w-full md:w-20rem" @update:modelValue=updateAge />
 
-	    <MultiSelect v-model=majorQuery :options=majorOptions filter optionLabel="label" optionValue="value" placeholder="College Major" class="w-full md:w-20rem" />
+	    <MultiSelect v-model=majorQuery :options=majorOptions filter optionLabel="label" optionValue="value" placeholder="College Major" class="w-full md:w-20rem" @update:modelValue=updateMajor />
 
 	</div>
 	<div>
@@ -193,7 +200,7 @@
 				label: null
 			    },
 			    color: {
-				scheme: 'spectral',
+				domain: colorDomain,
 				legend: true
 			    },
 			    marks: [
@@ -204,7 +211,6 @@
 				    fill: 'key',
 				    sort: {
 					x: null,
-
 				    }
 				}),
 				Plot.ruleY([0])

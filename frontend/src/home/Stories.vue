@@ -3,25 +3,17 @@ import StoryCard from '@/components/StoryCard.vue'
 
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router';
-import Papa from 'papaparse';
+import { getData } from '@/sheets/client'
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
 const rows = ref([]);
 
-async function getData() {
-  await Papa.parse(StoriesURI, {
-    header: true,
-    download: true,
-    worker: true,
-    complete: function (results, file) {
-      rows.value = results.data;
-    },
-  });
-}
-
 onMounted(() => {
-  getData();
+  const pout = getData(StoriesURI);
+  pout.then((data) => {
+	  rows.value = data;
+	 })
 });
 
 const router = useRouter();
@@ -50,8 +42,8 @@ const page = ref(0)
   </p>
 
   <div class="carousel-nav">
-    <button class="carousel-nav-buttons" @click="prevPage">&larr;</button> <button class="carousel-nav-buttons"
-      @click="nextPage">&rarr;</button>
+    <button class="carousel-nav-buttons" @click="prevPage"><div id="carousel-arrows"><span class="material-symbols-outlined">arrow_left_alt</span></div></button> <button class="carousel-nav-buttons"
+      @click="nextPage"><div id="carousel-arrows"><span class="material-symbols-outlined">arrow_right_alt</span></div></button>
   </div>
   <div>
     <Carousel :value="rows" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
@@ -59,8 +51,9 @@ const page = ref(0)
       <template #item="slotProps">
         <StoryCard :img-src="slotProps.data.hosted_image_link" width="25">
           <template #name>{{ slotProps.data.name }}</template>
-          <template #story>{{ slotProps.data.text }}</template>
-          <template #linkText>Read her story</template>
+          <template #profession>{{ slotProps.data.profession }}</template>
+          <template #story>{{ slotProps.data.how_did_you_choose_this_path }}</template>
+          <template #linkText><router-link :to="{path: '/stories/' + slotProps.index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
         </StoryCard>
       </template>
     </Carousel>
@@ -88,4 +81,21 @@ const page = ref(0)
 .hidden {
   visibility: hidden;
 }
+
+a {
+  color: #313B49;
+  font-family: Noto Sans Mono;
+  font-size: 1.3125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.875rem; /* 142.857% */
+}
+
+/* TODO: Center arrows and change to material-symbols-rounded */
+#carousel-arrows .material-symbols-outlined {
+  margin-left: 0rem;
+  width: 0.975rem;
+  ;
+}
+
 </style>

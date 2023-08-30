@@ -1,15 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import StoriesView from '@/views/StoriesView.vue'
+import BiosView from '@/views/BiosView.vue'
 import FAQView from '@/views/FAQView.vue'
 import IndividualStoryView from '@/views/IndividualStoryView.vue'
+import IndividualBioView from '@/views/IndividualBioView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ResourcesView from '@/views/ResourcesView.vue'
+import IndividualReadsView from '@/views/reads/IndividualReadsView.vue'
 import ContactView from '@/views/ContactView.vue'
-import DataDashboard from '@/views/DataDashboard.vue'
+import DataDashboardDatasetView from '@/views/DataDashboardDatasetView.vue'
+import DataDashboardView from '@/views/DataDashboardView.vue'
+import DDWelcomeView from '@/views/dataDashboardViews/DDWelcomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior() {
+    // Always scroll to top
+    return { top: 0 }
+  },
   routes: [
     {
       path: '/',
@@ -22,6 +31,11 @@ const router = createRouter({
       component: StoriesView
     },
     {
+      path: '/bios',
+      name: 'bios',
+      component: BiosView
+    },
+    {
       path: '/FAQ',
       name: 'FAQ',
       component: FAQView
@@ -29,6 +43,10 @@ const router = createRouter({
     {
       path: '/stories/:id',
       component: IndividualStoryView
+    },
+    {
+      path: '/bios/:id',
+      component: IndividualBioView
     },
     {
       path: '/about',
@@ -41,18 +59,38 @@ const router = createRouter({
       component: ResourcesView
     },
     {
+      path: '/resources/:id',
+      component: IndividualReadsView
+    },
+    {
       path: '/contact',
       name: 'contact',
       component: ContactView
     },
     {
-      path: '/data',
-      name: 'data',
-      component: DataDashboard
+      path: '/data/:view/:dataset',
+      component: DataDashboardDatasetView,
+      meta: { reload: true },
     },
     {
-      path: '/data/:dataset',
-      component: DataDashboard
+      path: '/data/:view',
+      redirect: '/data-dashboard'
+    },
+    {
+      path: '/data',
+      name: 'data',
+      redirect: '/data-dashboard'
+    },
+    {
+      path: '/data-dashboard',
+      component: DataDashboardView,
+      children: [
+        {
+          path: '',
+          name: 'dataDashboard',
+          component: DDWelcomeView
+        }
+      ]
     }
     // {
     //   path: '/about',

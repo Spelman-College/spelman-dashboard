@@ -8,6 +8,50 @@ import {
 import { formatPlot } from './plotting'
 import type DcClient from '../dc/client'
 
+export const datasets = [
+    {'name': 'Demo dataset for testing the dashboard and plotting logic', path: 'demo'},
+    {'name': 'Example that does not exist yet', path: 'nope'},
+    {'name': 'Another Example that does not exist yet', path: 'nope2'},
+ ]
+
+export const presets = [
+     {'name': 'Demo preset for testing the dashboard', path: 'demo-preset'},
+     {'name': 'Preset that does not exist yet', path: 'nope-preset'},
+     {'name': 'Another Preset that does not exist yet', path: 'nope2-preset'},
+ ]
+
+export const views = [
+     {name: 'Open explore', path: 'explore', deactivate: false},
+     {name: 'Data preset', path: 'preset', deactivate: false},
+]
+
+export const plotColors = [
+    '#FF6454',
+    '#FF971E',
+    '#04C899',
+    '#4FDFFF',
+    '#FFDC69',
+]
+
+export const selectDsView = (view: string, dsPath: string): {[key:string]: string} => {
+    let selected = {error: 'not found'}
+    if (view == 'explore') {
+	datasets.forEach((s) => {
+	    if (s.path == dsPath) {
+		selected = s
+	    }
+	})
+    } else if (view == 'preset') {
+	presets.forEach((s) => {
+	    if (s.path == dsPath) {
+		selected = s
+	    }
+	})
+    }
+    return selected
+}
+
+
 // Useful only for a single category query.
 export const queryDcidIntersection = (
     dataset: Queryable,
@@ -109,3 +153,22 @@ export const asDownload = async (
 	const out = await getSingleDimension(dataset, client, catMap, dimensions[0])
 	return out
     }
+
+
+export interface minSelectStringReturnFunc {
+    (val: Array<string>): undefined
+}
+// minSelectString is used to prevent less than a minumum number of multiselect items. It will
+// keep track of the last value and reset the targetRef value to the last valid value
+// if the target is updated with a number of values below the `min` count.
+export const minSelectString = (targetRef: Ref<Array<string>>, lastRef: Ref<Array<string>>, min: number): minSelectStringReturnFunc => {
+    return function(vals: Array<string>) {
+	if (vals.length < min) {
+	    targetRef.value = lastRef.value
+	    return
+	}
+	if (vals.length >= min) {
+	    lastRef.value = vals
+	}
+    }
+}
