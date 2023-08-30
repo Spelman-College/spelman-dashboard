@@ -8,8 +8,6 @@
       <div id="swiggle-vision-card"><img src="/swiggly_line_ACF0FF.svg" /></div>  
       </div>
   </div>
-  <div id="building-vision-header">Building the Vision</div>
-  <div id="swiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
 </template>
 
 <style scoped>

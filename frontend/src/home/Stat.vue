@@ -4,13 +4,14 @@
     <div id="percent">
       <span class="big-percent">2.9</span>
       <span class="big-percent">%</span>
-      <p id="blurb">Explore the commitment to increasing<br />
+      <div id="percent-blurb">In 2021, only 2.9% of the STEM<br> workforce in the
+        United States<br> are Black women.</div>
+      <div id="squiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
+      <p id="footnote">
+        Explore the commitment to increasing<br />
         representation, improving access to<br />
         resources and strengthening<br />
         community partnerships.</p>
-      <div id="swiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
-      <p id="footnote">In 2021, only 2.9% of the STEM workforce in the<br />
-        US are Black women.</p>
     </div>
     <div id="bullet-points">
       <div class="bullet-point">
@@ -40,15 +41,25 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&family=Open+Sans&display=swap');
+
 #outer {
   display: flex;
 }
 
-#blurb {
+#percent-blurb {
   margin-bottom: 0;
+  font-family: 'Noto Sans Mono';
+  color: #FFF;
+  text-align: center;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
 }
 
-#swiggle {
+#squiggle {
   margin: 4rem 0;
 }
 
