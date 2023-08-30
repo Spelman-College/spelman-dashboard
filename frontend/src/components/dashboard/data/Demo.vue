@@ -3,24 +3,25 @@
  import * as Plot from "@observablehq/plot"
 
  import PlotFigure from "./PlotFigure.vue"
+ import FilterChip from "../FilterChip.vue"
 
-  import { SeriesClient } from '../../data/dc/client'
- import { downloadCSV } from '../../data/dc/download'
+ import { SeriesClient } from '../../../data/dc/client'
+ import { downloadCSV } from '../../../data/dc/download'
 
  import {
      genderOptions,
      ageOptions,
      majorOptions,
-     datasetTitle,
      genderDomain,
      ageDomain,
-     majorDomain
- } from '../../data/demo/ui'
+     majorDomain,
+     datasetMeta
+ } from '../../../data/demo/ui'
 
- import { Query_demo } from '../../data/demo/query'
+ import { Query_demo } from '../../../data/demo/query'
 
- import { Query, QueryCompare, expandCompares } from '../../data/queries/query'
- import { reduceIntersection } from '../../data/queries/plotting'
+ import { Query, QueryCompare, expandCompares } from '../../../data/queries/query'
+ import { reduceIntersection } from '../../../data/queries/plotting'
  import {
      applyCompareQuery,
      getCompareData,
@@ -28,9 +29,9 @@
      asDownload,
      minSelectString,
      plotColors
- } from '../../data/queries/ui'
+ } from '../../../data/queries/ui'
 
- import * as dims from '../../data/queries/dimensions'
+ import * as dims from '../../../data/queries/dimensions'
 
  const dcClient: SeriesClient = new SeriesClient('country/USA',
 						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
@@ -54,7 +55,6 @@
  const tableItems = ref([])
  const colorDomain = ref([])
 
-
  async function download(fileName: string, items: Array<Map>) {
      loading_download.value = true
      const catMap = {
@@ -74,7 +74,7 @@
      }
 
      const data = await asDownload(dataset, dcClient, compare.value, dimensions, catMap)
-     console.log('date', data)
+
      await downloadCSV(data, fileName)
      loading_download.value = false
  }
@@ -155,7 +155,7 @@
 <template>
     <div class="data-dashboard">
 	<div class="title">
-	    {{datasetTitle}}
+	    {{ datasetMeta.name }}
 	</div>
 	<div class="flex flex-wrap gap-3">
 	    <p>Compare category dimensions:</p>
@@ -172,6 +172,7 @@
 		<label for="majorRadio" class="ml-2">College Major</label>
 	    </div>
 	</div>
+
 	<div class="card flex justify-content-center">
             <MultiSelect v-model=genderQuery :options=genderOptions filter optionLabel="label" optionValue="value" placeholder="Gender" class="w-full md:w-20rem" @update:modelValue=updateGender />
 
@@ -183,6 +184,13 @@
 	<div>
 	    <Button v-if="tableItems.length > 0" label="Download CSV" @click="download('results', tableItems)" :loading="loading_download" />
 	</div>
+
+	<div class="filters">
+	    <div class="filter-text">Filters</div>
+	    <FilterChip :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
+	</div>
+
+
 	<div>
 
 	    <PlotFigure v-if="tableItems.length > 0"
@@ -221,3 +229,19 @@
 	</div>
     </div>
 </template>
+
+<style scoped>
+.filters {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.filter-text {
+  color: #ffffff;
+  font-family: 'Noto Sans Mono';
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+</style>

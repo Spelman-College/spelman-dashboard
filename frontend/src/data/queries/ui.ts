@@ -8,11 +8,17 @@ import {
 import { formatPlot } from './plotting'
 import type DcClient from '../dc/client'
 
+import { datasetMeta as demoMeta } from '../../data/demo/ui'
 export const datasets = [
-    {'name': 'Demo dataset for testing the dashboard and plotting logic', path: 'demo'},
-    {'name': 'Example that does not exist yet', path: 'nope'},
-    {'name': 'Another Example that does not exist yet', path: 'nope2'},
- ]
+    demoMeta,
+    {
+        name: "Second Demo example",
+	source: "Fix Me!",
+	variables: ['Gender', 'Age', 'Major'],
+	year: "2015 - 2019",
+	path: "demo-2"
+    },
+]
 
 export const presets = [
      {'name': 'Demo preset for testing the dashboard', path: 'demo-preset'},
@@ -171,4 +177,22 @@ export const minSelectString = (targetRef: Ref<Array<string>>, lastRef: Ref<Arra
 	    lastRef.value = vals
 	}
     }
+}
+
+// getVarsString will format and truncate an array of variables.
+export const getVarsString = (vars: Array<string>, maxChars: number): string => {
+    var joinedString = vars.join(', ')
+
+    // If the string is too long, remove variables until it is not and keep track of how many.
+    var lastIndex;
+    var countRemoved = 0;
+    while ((lastIndex = joinedString.lastIndexOf(',')) > maxChars) {
+	joinedString = joinedString.substring(0, lastIndex)
+	countRemoved++;
+    }
+
+    if (countRemoved !== 0)
+	joinedString += `, +${countRemoved} more`
+
+    return joinedString;
 }

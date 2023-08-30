@@ -1,7 +1,11 @@
 <script setup lang="ts">
  import  Demo from './data/Demo.vue'
 
+ import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
+ import '../../../node_modules/primeflex/primeflex.css'
+
  const props = defineProps(['dataset', 'view'])
+
 </script>
 
 <template>
