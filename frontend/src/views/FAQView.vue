@@ -118,7 +118,6 @@ p {
 
 }
 
-/* TODO: Right-align toggle icon placement  */
 :deep(.p-accordion-toggle-icon) {
   display: flex;
   flex-shrink: 0;
