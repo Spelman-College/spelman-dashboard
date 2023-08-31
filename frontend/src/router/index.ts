@@ -72,7 +72,7 @@ const router = createRouter({
       component: DataDashboardView,
     },
     {
-      path: '/data-dashboard/:view/:dataset',
+	path: '/data-dashboard/:view/:dataset',
       component: DataDashboardView,
     },
     // {
