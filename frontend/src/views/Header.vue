@@ -40,10 +40,10 @@ function showDataDashboardAsButton(): boolean {
 #header {
   display: flex;
   height: 2.5rem;
-  padding: 2rem;
+  padding: 2rem 3.5rem;
   color: #a7d7ed;
   background-color: #181818;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 
