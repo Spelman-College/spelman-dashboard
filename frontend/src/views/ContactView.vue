@@ -86,7 +86,7 @@
   font-weight: 400;
   line-height: 1.25rem; /* 125% */
 }
-.material-symbols-rounded{
+.contact-text .material-symbols-rounded{
   margin-left:0
 }
 </style>
