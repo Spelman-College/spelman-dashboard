@@ -1,6 +1,12 @@
 import * as dims from '../../data/queries/dimensions'
 
-export const datasetTitle = "FIELD OF BACHELOR'S DEGREE FOR FIRST MAJOR American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree by gender."
+export const datasetMeta = {
+    name: "Field of bachelor's degree for first major American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree by gender.",
+    source: "Fix Me!",
+    variables: ['Gender', 'Age', 'Major'],
+    year: "2015 - 2019",
+    path: "demo"
+  }
 
 export const genderOptions = [
      {
