@@ -78,7 +78,7 @@ let thisBook = books[route.params.id];
 
 <template>
   <div class="view">
-    <router-link id="back-button" class="material-icons" :to="{ name: 'resources' }">chevron_left</router-link>
+    <router-link id="back-button" class="material-symbols-rounded" :to="{ name: 'resources' }">chevron_left</router-link>
     <div class="side-by-side">
       <div>
         <img class="profile-img" :src="thisBook.imgSrc" />
@@ -100,7 +100,7 @@ let thisBook = books[route.params.id];
 #back-button {
   font-size: 2.5rem;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .side-by-side {

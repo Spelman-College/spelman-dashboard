@@ -28,8 +28,8 @@ function goToBiosView() {
   </p>
 
   <div class="carousel-nav">
-    <button class="carousel-nav-buttons" @click="prevPage">&larr;</button> <button class="carousel-nav-buttons"
-      @click="nextPage">&rarr;</button>
+    <button class="carousel-nav-buttons" @click="prevPage"><span class="material-symbols-rounded">arrow_left_alt</span></button> <button class="carousel-nav-buttons"
+      @click="nextPage"><span class="material-symbols-rounded">arrow_right_alt</span></button>
   </div>
   <div>
     <Carousel :value="bios" :numVisible="4" :numScroll="1" :show-indicators="false" :circular="true"
@@ -38,7 +38,7 @@ function goToBiosView() {
         <TeamStoryCard :img-src="slotProps.data.imgSrc" width="19.7">
           <template #name>{{ slotProps.data.name }}</template>
           <template #story>{{ slotProps.data.story }}</template>
-          <template #linkText><router-link :to="{path: '/bios/' + slotProps.index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
+          <template #linkText><router-link :to="{path: '/bios/' + slotProps.index}">Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link></template>
         </TeamStoryCard>
       </template>
     </Carousel>
@@ -62,11 +62,11 @@ function goToBiosView() {
   margin-bottom: 4em;
 }
 
-.carousel-nav button {
-  text-align: center;
-  width: 4em;
-  height: 4em;
-  margin-left: 2em;
+.carousel-nav button .material-symbols-rounded{
+  margin-left: 0rem;
+  width: 0.975rem;
+  display:flex;
+  justify-content:center;
 }
 
 .hidden {
@@ -82,7 +82,7 @@ a {
   line-height: 1.875rem; /* 142.857% */
 }
 
-.material-symbols-outlined {
+.material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;

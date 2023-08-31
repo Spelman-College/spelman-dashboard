@@ -10,7 +10,7 @@
         Email us at <div class="email">email@spelman.edu</div>
         <br><br>
         <span class="contact-text">
-          <span class="material-symbols-outlined">pin_drop</span>
+          <span class="material-symbols-rounded">pin_drop</span>
           <br>
           Lorem ipsum dolor sit
           amet, consectuer
@@ -85,5 +85,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1.25rem; /* 125% */
+}
+.material-symbols-rounded{
+  margin-left:0
 }
 </style>

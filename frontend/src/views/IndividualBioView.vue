@@ -21,7 +21,7 @@ watch(route, () => {
 
 <template>
   <div class="view">
-    <router-link id="back-button" class="material-icons" :to="{ name: 'bios' }">chevron_left</router-link>
+    <router-link id="back-button" class="material-symbols-rounded" :to="{ name: 'bios' }">chevron_left</router-link>
     <div class="side-by-side">
       <div>
         <img class="profile-img" :src="thisStory.imgSrc" />
@@ -39,10 +39,10 @@ watch(route, () => {
 </template>
 
 <style scoped>
-#back-button {
+ #back-button {
   font-size: 2.5rem;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .side-by-side {
