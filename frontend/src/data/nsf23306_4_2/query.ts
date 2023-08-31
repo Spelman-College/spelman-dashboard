@@ -8,6 +8,8 @@ const filter: DcidFilter = {
     ignorePrefix: 'Median_Earnings_Person',
     omitDimensions: new Set<string>([
 	'EducationalAttainmentCollegeGraduate',
+    'Employed',
+    'NotHispanicOrLatino'
     ])
 } as DcidFilter
 
