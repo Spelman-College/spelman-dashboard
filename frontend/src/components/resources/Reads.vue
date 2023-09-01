@@ -35,8 +35,8 @@ const books = [
   <p>Check out these amazing stories of resilience, brilliance, and groundbreaking achievements! We're celebrating the
     unsung heroes of STEM - Science, Technology, Engineering, and Mathematics.</p>
   <div class="carousel-nav">
-    <button class="carousel-nav-buttons" @click="prevPage">&larr;</button> <button class="carousel-nav-buttons"
-      @click="nextPage">&rarr;</button>
+    <button class="carousel-nav-buttons" @click="prevPage"><span class="material-symbols-rounded">arrow_left_alt</span></button> <button class="carousel-nav-buttons"
+      @click="nextPage"><span class="material-symbols-rounded">arrow_right_alt</span></button>
   </div>
   <div>
     <Carousel :value="books" :numVisible="5" :numScroll="5" :show-indicators="false" :circular="true"

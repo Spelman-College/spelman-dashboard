@@ -14,7 +14,7 @@ import bios from '@/about/bios.ts'
     <TeamStoryCard v-for="(story, index) in bios" :v-key="story.name" :imgSrc="story.imgSrc" :alt="story.name" width="20">
       <template #name>{{ story.name }}</template>
       <template #story>{{ story.story }}</template>
-      <template #linkText><router-link :to="{path: '/bios/' + index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
+      <template #linkText><router-link :to="{path: '/bios/' + index}">Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link></template>
     </TeamStoryCard>
   </div>
 </template>
@@ -50,7 +50,7 @@ a {
   white-space: nowrap;
 }
 
-.material-symbols-outlined {
+.material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;

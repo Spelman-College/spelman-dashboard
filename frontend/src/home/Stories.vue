@@ -42,8 +42,8 @@ const page = ref(0)
   </p>
 
   <div class="carousel-nav">
-    <button class="carousel-nav-buttons" @click="prevPage"><div id="carousel-arrows"><span class="material-symbols-outlined">arrow_left_alt</span></div></button> <button class="carousel-nav-buttons"
-      @click="nextPage"><div id="carousel-arrows"><span class="material-symbols-outlined">arrow_right_alt</span></div></button>
+    <button class="carousel-nav-buttons" @click="prevPage"><div id="carousel-arrows"><span class="material-symbols-rounded">arrow_left_alt</span></div></button> <button class="carousel-nav-buttons"
+      @click="nextPage"><div id="carousel-arrows"><span class="material-symbols-rounded">arrow_right_alt</span></div></button>
   </div>
   <div>
     <Carousel :value="rows" :numVisible="3" :numScroll="3" :show-indicators="false" :circular="true"
@@ -53,7 +53,7 @@ const page = ref(0)
           <template #name>{{ slotProps.data.name }}</template>
           <template #profession>{{ slotProps.data.profession }}</template>
           <template #story>{{ slotProps.data.how_did_you_choose_this_path }}</template>
-          <template #linkText><router-link :to="{path: '/stories/' + slotProps.index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
+          <template #linkText><router-link :to="{path: '/stories/' + slotProps.index}">Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link></template>
         </StoryCard>
       </template>
     </Carousel>
@@ -91,11 +91,11 @@ a {
   line-height: 1.875rem; /* 142.857% */
 }
 
-/* TODO: Center arrows and change to material-symbols-rounded */
-#carousel-arrows .material-symbols-outlined {
+#carousel-arrows .material-symbols-rounded {
   margin-left: 0rem;
   width: 0.975rem;
-  ;
+  display:flex;
+  justify-content:center;
 }
 
 </style>
