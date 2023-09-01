@@ -1,21 +1,19 @@
 <script setup lang="ts">
  import { ref, watchEffect } from 'vue'
  import * as Plot from "@observablehq/plot"
-
  import PlotFigure from "./PlotFigure.vue"
+
  import FilterChip from "../FilterChip.vue"
 
  import { SeriesClient } from '../../../data/dc/client'
  import { downloadCSV } from '../../../data/dc/download'
 
  import {
-     genderOptions,
-     ageOptions,
-     majorOptions,
      genderDomain,
      ageDomain,
      majorDomain,
-     datasetMeta
+     datasetMeta,
+     dashboardFilters
  } from '../../../data/demo/ui'
 
  import { Query_demo } from '../../../data/demo/query'
@@ -27,7 +25,6 @@
      getCompareData,
      getSingleDimension,
      asDownload,
-     minSelectString,
      plotColors
  } from '../../../data/queries/ui'
 
@@ -42,14 +39,7 @@
  const ageQuery = ref([])
  const majorQuery = ref([])
 
- // Used to ensure at least 1 value is selected
- const lastGenderValue = ref([...genderDomain])
- const updateGender = minSelectString(genderQuery, lastGenderValue, 1)
- const lastAgeValue = ref([...ageDomain])
- const updateAge = minSelectString(ageQuery, lastAgeValue, 1)
- const lastMajorValue = ref([...majorDomain])
- const updateMajor = minSelectString(majorQuery, lastMajorValue, 1)
-
+ const filters = dashboardFilters
 
  const compare = ref('gender')
  const tableItems = ref([])
@@ -120,7 +110,6 @@
  watchEffect(() => {
      if (genderQuery.value.length == 0 && ageQuery.value.length == 0 && majorQuery.value.length == 0) {
 	 tableItems.value = []
-
 	 return
      }
      const catMap = {
@@ -149,16 +138,35 @@
      }
  })
 
+ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
+     switch(filterId) {
+	 case 'gender': {
+	     genderQuery.value = [...activeFilters]
+	     break
+	 }
+	 case 'age': {
+	     ageQuery.value = [...activeFilters]
+	     break
+	 }
+	 case 'major': {
+	      majorQuery.value = [...activeFilters]
+	     break
+	 }
+	 default: {
+	     throw new Error(`got ${filterId}, expected gender, age, or major`)
+	     break
+	 }
+     }
+
+ }
+
 
 </script>
 
 <template>
-    <div class="data-dashboard">
-	<div class="title">
-	    {{ datasetMeta.name }}
-	</div>
-	<div class="flex flex-wrap gap-3">
-	    <p>Compare category dimensions:</p>
+    <div class="">
+	<div v-if=true class="flex flex-wrap gap-3 filter-text">
+	    <span class='filter-text'>Compare</span>
 	    <div class="flex align-items-center">
 		<RadioButton v-model="compare" inputId="genderRadio" name="gender" value="gender" />
 		<label for="genderRadio" class="ml-2">Gender</label>
@@ -172,76 +180,73 @@
 		<label for="majorRadio" class="ml-2">College Major</label>
 	    </div>
 	</div>
-
-	<div class="card flex justify-content-center">
-            <MultiSelect v-model=genderQuery :options=genderOptions filter optionLabel="label" optionValue="value" placeholder="Gender" class="w-full md:w-20rem" @update:modelValue=updateGender />
-
-	    <MultiSelect v-model=ageQuery :options=ageOptions filter optionLabel="label" optionValue="value" placeholder="Age Group" class="w-full md:w-20rem" @update:modelValue=updateAge />
-
-	    <MultiSelect v-model=majorQuery :options=majorOptions filter optionLabel="label" optionValue="value" placeholder="College Major" class="w-full md:w-20rem" @update:modelValue=updateMajor />
-
-	</div>
-	<div>
-	    <Button v-if="tableItems.length > 0" label="Download CSV" @click="download('results', tableItems)" :loading="loading_download" />
-	</div>
-
-	<div class="filters">
-	    <div class="filter-text">Filters</div>
-	    <FilterChip :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
+    </div>
+    <div class="filters" :key="compare">
+	<div class="filter-text">Filters</div>
+	<FilterChip @update-filter=updateFilter :id="filter.id" :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
+    </div>
+    <div>
+	<Button v-if="tableItems.length > 0" label="Download CSV" @click="download('results', tableItems)" :loading="loading_download" />
+    </div>
+    <div class="data-dashboard">
+	<div class="title">
+	    {{ datasetMeta.name }}
 	</div>
 
 
-	<div>
-
+	<div v-if=true class="plot">
 	    <PlotFigure v-if="tableItems.length > 0"
-			:options="{
-			    x: {
-				axis: null,
-				tickFormat: '',
-				type: 'band',
-			    },
-			    y: {
-				tickFormat: 's',
-				grid: true
-			    },
-			    fx: {
-				label: null
-			    },
-			    color: {
-				domain: colorDomain,
-				legend: true
-			    },
-			    marks: [
-				Plot.barY(tableItems, {
-				    x: 'key',
-				    y: 'value',
-				    fx: 'date',
-				    fill: 'key',
-				    sort: {
-					x: null,
-				    }
-				}),
-				Plot.ruleY([0])
-			    ],
+			      :options="{
+				  x: {
+				      axis: null,
+				      tickFormat: '',
+				      type: 'band',
+				  },
+				  y: {
+				      tickFormat: 's',
+				      grid: true
+				  },
+				  fx: {
+				      label: null
+				  },
+				  color: {
+				      domain: colorDomain,
+				      legend: true
+				  },
+				  marks: [
+				      Plot.barY(tableItems, {
+					  x: 'key',
+					  y: 'value',
+					  fx: 'date',
+					  fill: 'key',
+					  sort: {
+					      x: null,
+					  }
+				      }),
+				      Plot.ruleY([0])
+				  ],
 
-			}">
+			      }">
 	    </PlotFigure>
 	</div>
     </div>
 </template>
 
 <style scoped>
-.filters {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0;
-}
+ .plot {
+     z-index: -1;
+ }
+ .filters {
+     display: flex;
+     align-items: center;
+     margin: 1rem 0;
+ }
 
-.filter-text {
-  color: #ffffff;
-  font-family: 'Noto Sans Mono';
-  font-size: 0.875rem;
-  font-weight: 700;
-}
+ .filter-text {
+     color: #ffffff;
+     font-family: 'Noto Sans Mono';
+     font-size: 0.875rem;
+     font-weight: 700;
+ }
 
 </style>

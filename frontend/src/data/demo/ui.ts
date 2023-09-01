@@ -8,57 +8,8 @@ export const datasetMeta = {
     path: "demo"
   }
 
-export const genderOptions = [
-     {
-	 value: dims.Male,
-	 label: dims.Dimension2Text[dims.Male]
-     },
-     {
-	 value: dims.Female,
-	 label: dims.Dimension2Text[dims.Female]
-     }
- ]
-
-export const ageOptions = [
-     {
-	 value: dims.age_25To39Years,
-	 label: dims.Dimension2Text[dims.age_25To39Years]
-     },
-     {
-	 value: dims.age_40To64Years,
-	 label: dims.Dimension2Text[dims.age_40To64Years]
-     },
-     {
-	 value: dims.age_65OrMoreYears,
-	 label: dims.Dimension2Text[dims.age_65OrMoreYears]
-     },
- ]
-
-export const majorOptions  = [
-    {
-	value: dims.BachelorOfEducationMajor,
-	label: dims.Dimension2Text[dims.BachelorOfEducationMajor]
-    },
-    {
-	value: dims.BachelorOfScienceAndEngineeringMajor,
-	label: dims.Dimension2Text[dims.BachelorOfScienceAndEngineeringMajor]
-    },
-    {
-	value: dims.BachelorOfScienceAndEngineeringRelatedMajor,
-	label: dims.Dimension2Text[dims.BachelorOfScienceAndEngineeringRelatedMajor]
-    },
-    {
-	value: dims.BachelorOfArtsHumanitiesAndOtherMajor,
-	label: dims.Dimension2Text[dims.BachelorOfArtsHumanitiesAndOtherMajor]
-    },
-    {
-	value: dims.BachelorOfBusinessMajor,
-	label: dims.Dimension2Text[dims.BachelorOfBusinessMajor]
-    }
-]
-
  // Please don't mutate these or the plot will break. When assigning these, make a copy.
-export const genderDomain = [dims.Male, dims.Female]
+export const genderDomain = [dims.Female, dims.Male]
 export const ageDomain = [
      dims.age_25To39Years,
      dims.age_40To64Years,
@@ -70,4 +21,22 @@ export const majorDomain = [
      dims.BachelorOfScienceAndEngineeringRelatedMajor,
      dims.BachelorOfArtsHumanitiesAndOtherMajor,
      dims.BachelorOfBusinessMajor,
+ ]
+
+export const dashboardFilters = [
+     {
+	 name: 'Gender',
+	 id: 'gender',
+	 options: [...genderDomain]
+     },
+     {
+	 name: 'Age group',
+	 id: 'age',
+	 options: [...ageDomain],
+     },
+    {
+	 name: 'Education Major',
+	 id: 'major',
+	 options: [...majorDomain]
+     }
  ]
