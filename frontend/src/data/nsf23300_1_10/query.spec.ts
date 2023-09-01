@@ -6,9 +6,9 @@ const demo = new Query_nsf23300_1_10()
 
 const asian = new Query('ethnicity', 'Asian')
 
-const black = new Query('ethnicity', 'Black')
+const black = new Query('ethnicity', 'BlackOrAfricanAmericanAlone')
 
-const asian_black = new Query('ethnicity', 'Black', 'Asian')
+const asian_black = new Query('ethnicity', 'BlackOrAfricanAmericanAlone', 'Asian')
 
 const citizen = new Query('citizenship', 'Citizen')
 const citizen_and_visa = new Query('citizenship', 'Citizen', 'VisaHolder')
@@ -44,7 +44,7 @@ describe('demo query', () => {
         let out = demo.query(asian_black)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-	    "Count_Person_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Black",
+	    "Count_Person_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_BlackOrAfricanAmericanAlone",
 	    "Count_Person_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Asian"
 	])
     })
@@ -53,8 +53,8 @@ describe('demo query', () => {
         let out = demo.query(asian_black, citizen_and_visa)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-	    "Count_Person_Citizen_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Black",
-	    "Count_Person_VisaHolder_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Black",
+	    "Count_Person_Citizen_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_BlackOrAfricanAmericanAlone",
+	    "Count_Person_VisaHolder_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_BlackOrAfricanAmericanAlone",
 	    "Count_Person_Citizen_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Asian",
 	    "Count_Person_VisaHolder_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Asian"
 	])
