@@ -7,6 +7,7 @@ const filter: DcidFilter = {
     ignorePrefix: 'Count_Person',
     omitDimensions: new Set<string>([
 	'EducationalAttainmentBachelorsDegreeOrHigher',
+    'Employed'
     ]),
     additions: {}
 } as DcidFilter
