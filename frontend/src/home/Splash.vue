@@ -41,7 +41,13 @@ function goToData() {
   display:flex;
   justify-content:space-between;
 }
-
+.title-and-link button{
+width: 227px;
+height: 48px;
+}
+.title-and-link p{
+font-size:1.5rem;
+}
 #splash-graphics {
   position: relative;
   top: 10rem;
