@@ -16,7 +16,7 @@ const props = defineProps({
     </div>
     <div class="link" id="link">
       <a>
-        <slot name="link"></slot><span class="material-symbols-outlined">arrow_right_alt</span> 
+        <slot name="link"></slot><span class="material-symbols-rounded">arrow_right_alt</span> 
       </a>
     </div>
   </div>
@@ -65,7 +65,7 @@ const props = defineProps({
   color: #4fdfff;
 }
 
-#link .material-symbols-outlined {
+#link .material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;

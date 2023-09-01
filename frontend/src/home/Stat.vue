@@ -38,7 +38,7 @@
     </div>
   </div>
   <div id="link">
-    <a href="">Learn more <span class="material-symbols-outlined">arrow_right_alt</span></a>
+    <a href="">Learn more <span class="material-symbols-rounded">arrow_right_alt</span></a>
   </div>
 </template>
 
@@ -125,7 +125,7 @@
   color: #ffffff;
 }
 
-#link .material-symbols-outlined {
+#link .material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;

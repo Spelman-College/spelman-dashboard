@@ -31,7 +31,7 @@ onMounted(() => {
       <template #name>{{ story.name }}</template>
       <template #profession>{{ story.profession }}</template>
       <template #story>{{ story.how_did_you_choose_this_path }}</template>
-      <template #linkText><router-link :to="{path: '/stories/' + index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
+      <template #linkText><router-link :to="{path: '/stories/' + index}">Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link></template>
     </StoryCard>
   </div>
 </template>
@@ -67,7 +67,7 @@ a {
   white-space: nowrap;
 }
 
-.material-symbols-outlined {
+.material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
