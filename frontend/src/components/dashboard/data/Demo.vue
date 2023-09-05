@@ -5,7 +5,7 @@
 
  import FilterChip from "../FilterChip.vue"
 
- import { SeriesClient } from '../../../data/dc/client'
+ import { SeriesClient, BulkClient } from '../../../data/dc/client'
  import { downloadCSV } from '../../../data/dc/download'
 
  import {
@@ -13,7 +13,8 @@
      ageDomain,
      majorDomain,
      datasetMeta,
-     dashboardFilters
+     dashboardFilters,
+     download as demoDownload
  } from '../../../data/demo/ui'
 
  import { Query_demo } from '../../../data/demo/query'
@@ -25,12 +26,14 @@
      getCompareData,
      getSingleDimension,
      asDownload,
-     plotColors
+     plotColors,
  } from '../../../data/queries/ui'
 
  import * as dims from '../../../data/queries/dimensions'
 
  const dcClient: SeriesClient = new SeriesClient('country/USA',
+						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
+ const bulkClient = new BulkClient('country/USA',
 						 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
  const dataset = new Query_demo()
  const loading_download = ref(false);
@@ -47,29 +50,13 @@
 
  async function download(fileName: string, items: Array<Map>) {
      loading_download.value = true
-     const catMap = {
-	 'gender': genderQuery.value,
-	 'age': ageQuery.value,
-	 'major': majorQuery.value
-     }
-     const dimensions = []
-     if (compare.value == 'gender') {
-	 dimensions.push(...genderQuery.value)
-     }
-     if (compare.value == 'age') {
-	 dimensions.push(...ageQuery.value)
-     }
-     if (compare.value == 'major') {
-	 dimensions.push(...majorQuery.value)
-     }
 
-     const data = await asDownload(dataset, dcClient, compare.value, dimensions, catMap)
-
-     await downloadCSV(data, fileName)
+     const err = await demoDownload(bulkClient, fileName)
+     if (err != '') {
+	 throw new Error(`error downloading csv data: ${err}`)
+     }
      loading_download.value = false
  }
-
-
 
  watchEffect(() => {
      genderQuery.value = [...genderDomain]
