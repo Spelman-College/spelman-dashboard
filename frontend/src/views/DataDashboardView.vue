@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, provide } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import PresetExploreSelector from '@/components/dashboard/PresetExploreSelector.vue'
@@ -9,6 +9,10 @@ import DataDashboard from '@/components/dashboard/DataDashboard.vue'
 
 const route = useRoute()
 const router = useRouter()
+
+const dropdownShowing = ref('')
+
+provide('dropdownShowing', dropdownShowing)
 
 const showWelcome = ref(false)
 
