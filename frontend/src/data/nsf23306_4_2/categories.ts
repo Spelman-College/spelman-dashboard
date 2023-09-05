@@ -7,10 +7,10 @@ export const Categories = {
     ]),
     'ethnicity': new Set<string>([
         'AmericanIndianOrAlaskaNativeAlone',
-        'AsianOrPacificIslander',
-        'Black',
+        'Asian',
+        'BlackOrAfricanAmericanAlone',
         'HispanicOrLatino',
-        'OtherPacificIslander',
+        'NativeHawaiianOrOtherPacificIslanderAlone',
         'TwoOrMoreRaces',
         'WhiteAlone',
     ]),

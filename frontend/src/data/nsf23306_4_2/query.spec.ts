@@ -4,8 +4,8 @@ import { Query } from '../queries/query'
 
 const nsf23306 = new Query_nsf23306()
 
-const asian = new Query('ethnicity', 'AsianOrPacificIslander')
-const black_asian = new Query('ethnicity', 'Black', 'AsianOrPacificIslander')
+const asian = new Query('ethnicity', 'Asian')
+const black_asian = new Query('ethnicity', 'BlackOrAfricanAmericanAlone', 'Asian')
 
 const female = new Query('gender', 'Female')
 const male = new Query('gender', 'Male')
@@ -46,63 +46,69 @@ describe('nsf23306 query keys', () => {
     })
 
 
-    test('query summary dimensions', () => {
+    test('query summary dimensions gender disability', () => {
         let out = nsf23306.query(female, no_disability)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_NoDisability_EducationalAttainmentCollegeGraduate_Female'
+            'Median_Earnings_Person_NoDisability_EducationalAttainmentCollegeGraduate_Employed_Female'
         ])
+    })
 
-        out = nsf23306.query(female)
+    test('query summary dimensions gender ', () => {
+        let out = nsf23306.query(female)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_EducationalAttainmentCollegeGraduate_Female'
+            'Median_Earnings_Person_EducationalAttainmentCollegeGraduate_Employed_Female'
         ])
+    })
 
-        out = nsf23306.query(eng_phsysci, female)
+    test('query summary dimensions occupation gender ', () => {
+        let out = nsf23306.query(eng_phsysci, female)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_EducationalAttainmentCollegeGraduate_Female_SOCEngineersOccupation',
-            'Median_Earnings_Person_EducationalAttainmentCollegeGraduate_Female_SOCPhysicalScientistsOccupation',
+            'Median_Earnings_Person_EducationalAttainmentCollegeGraduate_Employed_Female_SOCEngineersOccupation',
+            'Median_Earnings_Person_EducationalAttainmentCollegeGraduate_Employed_Female_SOCPhysicalScientistsOccupation',
         ])
     })
 
     test('query with gender, occupation, disability categories', () => {
         let out = nsf23306.query(eng_phsysci, female, disability)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_WithDisability_EducationalAttainmentCollegeGraduate_Female_SOCEngineersOccupation',
-            'Median_Earnings_Person_WithDisability_EducationalAttainmentCollegeGraduate_Female_SOCPhysicalScientistsOccupation',
+            'Median_Earnings_Person_WithDisability_EducationalAttainmentCollegeGraduate_Employed_Female_SOCEngineersOccupation',
+            'Median_Earnings_Person_WithDisability_EducationalAttainmentCollegeGraduate_Employed_Female_SOCPhysicalScientistsOccupation'
         ])
     })
 
     test('query with gender, occupation, citizenship', () => {
         let out = nsf23306.query(eng_phsysci, female, citizen)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_Citizen_EducationalAttainmentCollegeGraduate_Female_SOCEngineersOccupation',
-            'Median_Earnings_Person_Citizen_EducationalAttainmentCollegeGraduate_Female_SOCPhysicalScientistsOccupation',
+            'Median_Earnings_Person_Citizen_EducationalAttainmentCollegeGraduate_Employed_Female_SOCEngineersOccupation',
+            'Median_Earnings_Person_Citizen_EducationalAttainmentCollegeGraduate_Employed_Female_SOCPhysicalScientistsOccupation',
         ])
     })
 
     test('query with gender, occupation, ethnicity, age categories', () => {
         let out = nsf23306.query(male_female, eng_phsysci, black_asian, thirty_nine_under)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_Black',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_Black',
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_AsianOrPacificIslander',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_AsianOrPacificIslander',
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_Black',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_Black',
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_AsianOrPacificIslander',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_AsianOrPacificIslander',
+            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_BlackOrAfricanAmericanAlone',
+            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_BlackOrAfricanAmericanAlone',
+            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_Asian',
+            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_Asian',
+            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_BlackOrAfricanAmericanAlone',
+            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_BlackOrAfricanAmericanAlone',
+            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_Asian',
+            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_Asian',
         ])
+    })
 
-        out = nsf23306.query(eng_phsysci, black_asian, thirty_nine_under)
+    test('query with occupation, ethnicity, age categories', () => {
+        let out = nsf23306.query(eng_phsysci, black_asian, thirty_nine_under)
         expect(out.results).toEqual([
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_Black',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_Black',
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_AsianOrPacificIslander',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCEngineersOccupation_AsianOrPacificIslander',
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_Black',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_Black',
-            'Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_AsianOrPacificIslander',
-            'Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_SOCPhysicalScientistsOccupation_AsianOrPacificIslander',
+            "Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_BlackOrAfricanAmericanAlone",
+            "Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_BlackOrAfricanAmericanAlone",
+            "Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_Asian",
+            "Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCEngineersOccupation_Asian",
+            "Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_BlackOrAfricanAmericanAlone",
+            "Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_BlackOrAfricanAmericanAlone",
+            "Median_Earnings_Person_29OrLessYears_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_Asian",
+            "Median_Earnings_Person_30To39Years_EducationalAttainmentCollegeGraduate_Employed_NotHispanicOrLatino_SOCPhysicalScientistsOccupation_Asian",
         ])
     })
 

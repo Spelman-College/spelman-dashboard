@@ -160,25 +160,6 @@ export const asDownload = async (
 	return out
     }
 
-
-export interface minSelectStringReturnFunc {
-    (val: Array<string>): undefined
-}
-// minSelectString is used to prevent less than a minumum number of multiselect items. It will
-// keep track of the last value and reset the targetRef value to the last valid value
-// if the target is updated with a number of values below the `min` count.
-export const minSelectString = (targetRef: Ref<Array<string>>, lastRef: Ref<Array<string>>, min: number): minSelectStringReturnFunc => {
-    return function(vals: Array<string>) {
-	if (vals.length < min) {
-	    targetRef.value = lastRef.value
-	    return
-	}
-	if (vals.length >= min) {
-	    lastRef.value = vals
-	}
-    }
-}
-
 // getVarsString will format and truncate an array of variables.
 export const getVarsString = (vars: Array<string>, maxChars: number): string => {
     var joinedString = vars.join(', ')
