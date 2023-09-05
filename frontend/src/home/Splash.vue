@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-const router = useRouter();
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 function goToData() {
   router.push({ name: 'data' })
 }
-
 </script>
 
 <template>
@@ -22,67 +21,66 @@ function goToData() {
       </p>
       <button @click="goToData">Visit the Data Dashboard</button>
     </div>
-      <div id="splash-graphics">
-        <img src="/splash.png" alt="" id="splash-image" />
-        <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
-        <div id="plusses">
-          <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
-          <img src="/plus_icon_2.svg" alt="" class="plus-icon" id="plus-icon-2" />
-          <img src="/plus_icon_3.svg" alt="" class="plus-icon" id="plus-icon-3" />
-        </div>
+    <div id="splash-graphics">
+      <img src="/splash.png" alt="" id="splash-image" />
+      <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
+      <div id="plusses">
+        <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
+        <img src="/plus_icon_2.svg" alt="" class="plus-icon" id="plus-icon-2" />
+        <img src="/plus_icon_3.svg" alt="" class="plus-icon" id="plus-icon-3" />
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
-@import "/homepage.css";
+@import '/homepage.css';
 
-.flex-container{
-  display:flex;
-  justify-content:space-between;
+.flex-container {
+  display: flex;
+  justify-content: space-between;
 }
-.title-and-link button{
-width: 227px;
-height: 48px;
+.title-and-link button {
+  width: 227px;
+  height: 48px;
 }
-.title-and-link p{
-font-size:1.5rem;
+.title-and-link p {
+  font-size: 1.5rem;
 }
 #splash-graphics {
   position: relative;
   top: 10rem;
   /* Temporary fix to prevent swiggly red from going over title text
    - update margin-left once mobile view is designed */
-  margin-left:6rem; 
+  margin-left: 6rem;
 }
 
 #splash-image {
-  width: 24rem;
+  width: 30rem;
 }
 
 #swiggly-red {
   position: absolute;
   top: 5rem;
   left: -7rem;
-  width: 14rem;
+  width: 17rem;
 }
 
 #plusses {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: 1rem;
 }
 
 .plus-icon {
   position: absolute;
-  width: 1.5rem;
+  width: 1.8rem;
 }
 
 #plus-icon-2 {
-  left: 19rem;
+  left: 25rem;
 }
 
 #plus-icon-3 {
-  top: 19rem;
+  top: 23rem;
 }
 </style>
