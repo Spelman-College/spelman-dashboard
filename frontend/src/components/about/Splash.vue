@@ -6,9 +6,13 @@
     <div id="splash-text">
       <div id="splash-text-headnote">Black Women in STEM</div>
       <div id="splash-text-header">Our Tribute to Black Women in STEM</div>
-      <div id="splash-text-body">Welcome to [Name- Still in progress], a platform dedicated to celebrating the achievements of Black women in STEM.<br /><br />
+      <div id="splash-text-body">
+        Welcome to [Name- Still in progress], a platform dedicated to celebrating the achievements
+        of Black women in STEM.<br /><br />
 
-        Through engaging data visualizations and captivating narratives, we spotlight the talent, resilience, and innovation demonstrated by Black women in STEM. Join us as we amplify their voices and celebrate their invaluable contributions.
+        Through engaging data visualizations and captivating narratives, we spotlight the talent,
+        resilience, and innovation demonstrated by Black women in STEM. Join us as we amplify their
+        voices and celebrate their invaluable contributions.
       </div>
     </div>
   </div>
@@ -21,6 +25,7 @@ img {
 
 div#outer {
   height: 40rem;
+  justify-self: center;
 }
 
 div#splash-text {
@@ -34,6 +39,7 @@ div#splash-text {
   margin-top: 10.625rem;
   margin-left: 35.5625rem;
   padding: 4rem;
+  z-index: 3;
 }
 
 #splash-text-body {
@@ -45,7 +51,7 @@ div#splash-text {
 }
 
 #splash-text-headnote {
-  color: #FF6454;
+  color: #ff6454;
   font-family: Noto Sans Display;
   font-size: 1.125rem;
   font-weight: 500;
@@ -70,6 +76,7 @@ img#splash-image {
 
 img#dots {
   margin-left: 43rem;
+  z-index: 2;
 }
 
 img#stripes {
