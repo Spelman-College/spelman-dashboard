@@ -91,7 +91,8 @@ const bios = [
   },
   {
     name: "Marilyn A. Davis",
-    imgSrc: "https://i0.wp.com/tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png?ssl=1",
+    // Spelman requests their logo as the placeholder for any missing headshots.
+    imgSrc: "https://cdn.freebiesupply.com/logos/large/2x/spelman-college-logo-svg-vector.svg",
     story: "Associate Professor of Political Science, Spelman College." +
     "Goals and Aspirations:  To teach, encourage, advise, mentor, and nurture undergraduate students throughout their matriculation." +
     "<br><br>Achievements " +
