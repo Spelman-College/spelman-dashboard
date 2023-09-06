@@ -9,8 +9,6 @@ const male = new Query('gender', 'Male')
 
 const masters_degree = new Query('education', 'MastersDegree')
 const doc_degree = new Query('education', 'DoctorateDegree')
-const postdoc = new Query('postdoc', 'PostDoctoralAppointeeOccupation')
-const nonfaculty = new Query('nonfaculty', 'NonFacultyResearcherOccupation')
 const black = new Query('race', 'Black')
 const notknown = new Query('race', 'UnknownRace')
 
@@ -30,11 +28,6 @@ describe('nsf23313_2_1 query single dimenions that are not reported alone', () =
         expect(out.results).toEqual([
             "Percent_Citizen_NotHispanicOrLatino_Black_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree"
         ])
-    })
-
-    test('query nonfaculty', () => {
-        const out = data.query(nonfaculty)
-        expect(out.results).toEqual([])
     })
 })
 describe('nsf23313_2_1 query single dimension that is expected to return a value', () => {
@@ -68,9 +61,9 @@ describe('nsf23313_2_1 query single dimension that is expected to return a value
 
 describe('nsf23313_2_1 query 2 categories', () => {
 
-    test('query postdoc appointee citizens', () => {
-        const out = data.query(citizen,postdoc)
-        expect(out.results).toEqual(["Percent_Citizen_In_Count_Person_ScienceOrEngineeringOrHealth_EducationalAttainmentDoctorateDegree_PostDoctoralAppointeeOccupation"])
+    test('query black  citizens', () => {
+        const out = data.query(citizen,black)
+        expect(out.results).toEqual(["Percent_Citizen_NotHispanicOrLatino_Black_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree"])
     })
 
     test('query citizens with masters ', () => {
