@@ -22,10 +22,4 @@ export const Categories = {
         'Citizen',
         'VisaHolder',
     ]),
-    'postdoc': new Set<string>([
-        'PostDoctoralAppointeeOccupation',
-    ]),
-    'nonfaculty': new Set<string>([
-        'NonFacultyResearcherOccupation',
-    ]),
 }
