@@ -7,7 +7,7 @@ const demo = new Query_nsf313_30()
 
 const black = new Query('race', 'Black')
 const four_year = new Query('collegeOrUniversityLevel',
-    '4year',)
+    'FourYear',)
 
 const private_enrollment = new Query('collegeOrGraduateSchoolEnrollment', 'EnrolledInPrivateCollegeOrGraduateSchool')
 const female = new Query('gender', 'Female')
@@ -93,32 +93,32 @@ describe('test combination queries', () => {
 
     test('test 1 enrollment types 1 university level', () => {
         let query_a = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInPublicCollegeOrGraduateSchool')
-        let query_b = new Query("collegeOrUniversityLevel", '2year')
+        let query_b = new Query("collegeOrUniversityLevel", 'TwoYear')
         let out = demo.query(query_a, query_b)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual(["Count_Person_EnrolledInPublicCollegeOrGraduateSchool_2year_HBCU"])
+        expect(out.results).toEqual(["Count_Person_EnrolledInPublicCollegeOrGraduateSchool_TwoYear_HBCU"])
     })
 
     test('test 1 enrollment types 1 university level 1 race ', () => {
         let query_a = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInPrivateCollegeOrGraduateSchool')
-        let query_b = new Query("collegeOrUniversityLevel", '2year')
+        let query_b = new Query("collegeOrUniversityLevel", 'TwoYear')
         let query_c = new Query("race", 'Black')
         let out = demo.query(query_a, query_b, query_c)
         expect(out.error).toEqual(undefined)
         expect(out.results).toEqual([
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Female_HBCU_Black",
-            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Male_HBCU_Black"
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_TwoYear_Female_HBCU_Black",
+            "Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_TwoYear_Male_HBCU_Black"
         ])
     })
 
     test('test 1 enrollment types 1 university level 1 race 1 gender', () => {
         let query_a = new Query("collegeOrGraduateSchoolEnrollment", 'EnrolledInPrivateCollegeOrGraduateSchool')
-        let query_b = new Query("collegeOrUniversityLevel", '2year')
+        let query_b = new Query("collegeOrUniversityLevel", 'TwoYear')
         let query_c = new Query("race", 'Black')
         let query_d = new Query("gender", 'Female')
         let out = demo.query(query_a, query_b, query_c, query_d)
         expect(out.error).toEqual(undefined)
-        expect(out.results).toEqual(["Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_2year_Female_HBCU_Black"])
+        expect(out.results).toEqual(["Count_Person_EnrolledInPrivateCollegeOrGraduateSchool_TwoYear_Female_HBCU_Black"])
     })
 
 })
