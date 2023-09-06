@@ -19,7 +19,7 @@ function goToHome() {
 }
 
 function showDataDashboardAsButton(): boolean {
-  return router?.currentRoute.value.name ? !['home', 'dataDashboard'].includes(router.currentRoute.value.name.toString()) : true
+  return router?.currentRoute.value.name ? !['home', 'dataDashboard', 'dataDashboardView'].includes(router.currentRoute.value.name.toString()) : true
 }
 </script>
 
