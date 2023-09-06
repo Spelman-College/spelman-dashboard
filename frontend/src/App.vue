@@ -21,7 +21,10 @@ body {
 }
 
 div#container {
-  width: 90rem;
+display:flex;
+flex-direction:column;
+width: 100vw;
+overflow-x:auto;
 }
 </style>
 

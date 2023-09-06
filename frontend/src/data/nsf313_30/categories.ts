@@ -3,8 +3,8 @@ export const Categories = {
         'Black'
     ]),
     'collegeOrUniversityLevel': new Set<string>([
-        '4year',
-        '2year',
+        'FourYear',
+        'TwoYear',
     ]),
     'collegeOrGraduateSchoolEnrollment': new Set<string>([
         'EnrolledInPublicCollegeOrGraduateSchool',

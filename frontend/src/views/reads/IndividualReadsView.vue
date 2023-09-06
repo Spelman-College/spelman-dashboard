@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import Reads from '@/components/resources/Reads.vue'
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { watch } from 'vue';
 
 const route = useRoute();
-const router = useRouter();
-
-function goToData() {
-  router.push({ name: 'data' })
-}
 
 watch(route, () => { 
   thisBook = books[parseInt(route.params.id)]
@@ -22,7 +17,8 @@ const books = [
     + "<br><br> In The Disordered Cosmos, Dr. Chanda Prescod-Weinstein shares her love for physics, from the Standard Model of Particle Physics and what lies beyond it, to the physics of melanin in skin, to the latest theories of dark matter—along with a perspective informed by history, politics, and the wisdom of Star Trek."
     + "<br><br> One of the leading physicists of her generation, Dr. Chanda Prescod-Weinstein is also one of fewer than one hundred Black American women to earn a PhD from a department of physics. Her vision of the cosmos is vibrant, buoyantly nontraditional, and grounded in Black and queer feminist lineages."
     + "<br><br> Dr. Prescod-Weinstein urges us to recognize how science, like most fields, is rife with racism, misogyny, and other forms of oppression. She lays out a bold new approach to science and society, beginning with the belief that we all have a fundamental right to know and love the night sky. The Disordered Cosmos dreams into existence a world that allows everyone to experience and understand the wonders of the universe.",
-    imgSrc: "/books/book_01.png"
+    imgSrc: "/books/book_01.png",
+    link: "https://a.co/d/evnDzRs"
   },
   { 
     title: "The Genius of Women: From Overlooked to Changing the World",   
@@ -33,6 +29,7 @@ const books = [
     + "<br><br> It's about having that talent recognized, nurtured, and celebrated. Across the generations, even when they face less-than-perfect circumstances, women geniuses have created brilliant and original work. In The Genius of Women, you’ll learn how they ignored obstacles and broke down seemingly unshakable barriers."
     + "<br><br> The geniuses in this moving, powerful, and very entertaining book provide more than inspiration—they offer a clear blueprint to everyone who wants to find her own path and move forward with passion.",
     imgSrc: "/books/book_02.png",
+    link: "https://a.co/d/2J3KXZw"
   },
   {
     title: "Atomic Women: The Untold Stories of the Scientists Who Helped Create the Nuclear Bomb",   
@@ -41,6 +38,7 @@ const books = [
     + "<br><ul>  Lise Meitner and Irène Joliot-Curie (daughter of Marie Curie), who laid the groundwork for the Manhattan Project from Europe</ul><ul>Elizabeth Rona, the foremost expert in plutonium, who gave rise to the \"Fat Man\" and \"Little Boy,\" the bombs dropped over Japan</ul><ul>Leona Woods, Elizabeth Graves, and Joan Hinton, who were inspired by European scientific ideals but carved their own paths.</ul>"
     + "<br><br> This book explores not just the critical steps toward the creation of a successful nuclear bomb, but also the moral implications of such an invention.",
     imgSrc: "/books/book_03.png",
+    link: "https://a.co/d/cA7noAv"
   },
   {
     title: "A Portrait of the Scientist as a Young Woman: A Memoir",   
@@ -50,6 +48,7 @@ const books = [
     + "<br><br>  But (16) Psyche has the potential to unlock something even more valuable: the story of how planets form, and how our planet formed. Soon we will find out, thanks to the extraordinary work of Lindy Elkins-Tanton, the Principal Investigator of NASA’s $800 million Psyche mission, and the second woman ever to be awarded a major NASA space exploration contract. The journey that brought her to this place is extraordinary. Amid a childhood of terrible trauma, Elkins-Tanton fell in love with science as a means of healing and consolation."
     + "<br><br> But still she wondered, was forced to wonder: as a woman, was science “for her”? In answering that question, she takes us from the wilds of the Siberian tundra to the furthest reaches of outer space, from the Mayo Clinic, where Elkins-Tanton battled ovarian cancer while writing the Psyche proposal, to NASA’s Jet Propulsion Laboratory, where her team brought that proposal to life. A Portrait of the Scientist as a Young Woman is a beautifully-constructed memoir that explores how a philosophy of life can be built from the tools of scientific inquiry. It teaches us how to approach difficult problems by asking the right questions and truly listening to the answers—and how we may find meaning through exploring the wonders of the universe around us.",
     imgSrc: "/books/book_04.png",
+    link: "https://a.co/d/2jzPlnp"
   },
   {
     title: "Black Fortunes: The Story of the First Six African Americans Who Escaped Slavery and Became Millionaires",   
@@ -60,6 +59,7 @@ const books = [
     + "<br><ul> Mary Ellen Pleasant, who used her Gold Rush wealth to further the cause of abolitionist John Brown</ul><ul>Robert Reed Church, who became the largest landowner in Tennessee</ul><ul>Hannah Elias, the mistress of a New York City millionaire, who used the land her lover gave her to build an empire in Harlem</ul><ul>Orphan and self-taught chemist Annie Turnbo-Malone, who developed the first national brand of hair care products</ul><ul>Madam C. J Walker, Turnbo-Malone’s employee who would earn the nickname America’s \"first female black millionaire\"</ul><ul>Mississippi school teacher O. W. Gurley, who developed a piece of Tulsa, Oklahoma, into a \"town\" for wealthy black professionals and craftsmen\" that would become known as \"the Black Wall Street.\"</ul>"
     + "<br><br>  A fresh, little-known chapter in the nation’s story—A blend of Hidden Figures, Titan, and The Tycoons—Black Fortunes illuminates the birth of the black business titan and the emergence of the black marketplace in America as never before.",
     imgSrc: "/books/book_05.png",
+    link: "https://a.co/d/9BFQnOE"
   },
   {
     title: "The Black Experience in Design: Identity, Expression & Reflection",
@@ -69,6 +69,7 @@ const books = [
      " <br><br> Through the voices represented, this text exemplifies the inherently collaborative and multidisciplinary nature of design, providing access to ideas and topics for a variety of audiences, meeting people as they are and wherever they are in their knowledge about design." +
      " <br><br> Ultimately, The Black Experience in Design serves as both inspiration and a catalyst for the next generation of creative minds tasked with imagining, shaping, and designing our future.", 
     imgSrc: "/books/book_06.jpg",
+    link: "https://a.co/d/6Nda2Ty"
   },
 ]
 
@@ -85,7 +86,7 @@ let thisBook = books[route.params.id];
         <div class="quote">
           {{ thisBook.title }}
         </div>
-        <button @click="goToData">Visit the Data Dashboard</button>
+        <a :href="thisBook.link"><button>Purchase on Amazon</button></a>
       </div>
       <div>
         <h3>About the book</h3>

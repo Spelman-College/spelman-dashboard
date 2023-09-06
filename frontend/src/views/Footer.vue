@@ -32,9 +32,9 @@ function goToFAQ() {
 <style scoped>
 #footer {
   background-color: #000000;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 2rem 6rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 3rem;
   font-family: 'Noto Sans', sans-serif;
   margin-top: 4rem;
 }
@@ -54,6 +54,7 @@ function goToFAQ() {
   color: #dcdcdc;
   align-items: center;
   justify-content: space-between;
+  gap:4rem;
 }
 
 #contact {
@@ -61,7 +62,7 @@ function goToFAQ() {
 }
 
 #misc {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .footer-links {
