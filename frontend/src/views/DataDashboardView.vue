@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, provide } from 'vue';
+import { ref, watchEffect, provide } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import PresetExploreSelector from '@/components/dashboard/PresetExploreSelector.vue'
@@ -17,10 +17,9 @@ const dropdownShowing = ref('')
 
 provide('dropdownShowing', dropdownShowing)
 
-let showWelcome = ref(false)
-if (view.value == undefined && dataset.value == undefined) {
-    showWelcome = showWelcome.value = true
-}
+const showWelcome = ref(false)
+
+watchEffect(() => { showWelcome.value = view.value === undefined && dataset.value === undefined })
 
 const changeDataset = (ds) => {
     dataset.value = ds
