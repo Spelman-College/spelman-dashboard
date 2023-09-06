@@ -1,4 +1,4 @@
- import { Parser } from '@json2csv/plainjs'
+import { Parser } from '@json2csv/plainjs'
 
 // Used to test UI loading elements
 const delay = (ms: number) => {
