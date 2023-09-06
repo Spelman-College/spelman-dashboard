@@ -68,11 +68,12 @@ const router = createRouter({
     },
     {
       path: '/data-dashboard',
-	name: 'data',
+      name: 'dataDashboard',
       component: DataDashboardView,
     },
     {
-	path: '/data-dashboard/:view/:dataset',
+      path: '/data-dashboard/:view/:dataset',
+      name: 'dataDashboardView',
       component: DataDashboardView,
     },
     // {
