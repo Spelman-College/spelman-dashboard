@@ -10,25 +10,19 @@ import DataDashboard from '@/components/dashboard/DataDashboard.vue'
 const route = useRoute()
 const router = useRouter()
 
-const view = ref(route.params.view)
-const dataset = ref(route.params.dataset)
-
 const dropdownShowing = ref('')
 
 provide('dropdownShowing', dropdownShowing)
 
 const showWelcome = ref(false)
 
-watchEffect(() => { showWelcome.value = (view.value === undefined && dataset.value === undefined) })
+watchEffect(() => { showWelcome.value = (route.params.dataset === 'default') })
 
 const changeDataset = (ds) => {
-    dataset.value = ds
-    router.push(`/data-dashboard/${view.value}/${ds}`)
+    router.push(`/data-dashboard/${route.params.view}/${ds}`)
 }
 const changeView = (v) => {
-    view.value = v
-    dataset.value = undefined
-    router.push(`/data-dashboard/${view.value}/default`)
+    router.push(`/data-dashboard/${v}/default`)
 }
 
 </script>
@@ -36,11 +30,11 @@ const changeView = (v) => {
 <template>
     <div class="view">
         <div class="dd-header">
-            <PresetExploreSelector :dataset=dataset :view=view @change-view="changeView" @change-dataset="changeDataset"
-                :key=view />
+            <PresetExploreSelector :dataset=route.params.dataset :view=route.params.view @change-view="changeView"
+                @change-dataset="changeDataset" :key=route.params.view />
         </div>
 
     </div>
-    <DataDashboard v-if="!showWelcome" :view=view :dataset=dataset />
+    <DataDashboard v-if="!showWelcome" :view=route.params.view :dataset=route.params.dataset />
     <DDWelcomeView v-if="showWelcome" />
 </template>
