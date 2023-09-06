@@ -19,7 +19,7 @@ provide('dropdownShowing', dropdownShowing)
 
 const showWelcome = ref(false)
 
-watchEffect(() => { showWelcome.value = view.value === undefined && dataset.value === undefined })
+watchEffect(() => { showWelcome.value = (view.value === undefined && dataset.value === undefined) })
 
 const changeDataset = (ds) => {
     dataset.value = ds
