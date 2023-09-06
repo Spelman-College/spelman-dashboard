@@ -21,8 +21,7 @@ const filter: DcidFilter = {
     ]),
     additions: {
         'Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree': [
-            'race:UnknownRace', 'gender:Female', 'citizenship:Citizen', 'education:MastersDegree'
-        ]}
+            'race:UnknownRace']}
 } as DcidFilter
 
 const dimension2Category = {}
