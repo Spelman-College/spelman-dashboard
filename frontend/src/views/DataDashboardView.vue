@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import PresetExploreSelector from '@/components/dashboard/PresetExploreSelector.vue'
@@ -14,7 +14,8 @@ const view = ref(route.params.view)
 const dataset = ref(route.params.dataset)
 
 const showWelcome = ref(false)
-watch([view, dataset], () => { showWelcome.value = view.value === undefined && dataset.value === undefined }, { immediate: true })
+
+watchEffect(() => { showWelcome.value = (view.value === undefined && dataset.value === undefined) })
 
 const changeDataset = (ds) => {
     dataset.value = ds
