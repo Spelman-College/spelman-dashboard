@@ -109,7 +109,7 @@ function handleClick(name: String | null) {
     border-radius: 0.25rem;
     border: 1px solid #c4c7c5;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
 }
 
 .dropdown-header {
