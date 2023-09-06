@@ -27,6 +27,7 @@
 <style scoped>
 .card-and-arrow-container {
   display: flex;
+  justify-content: center;
 }
 
 .card {
@@ -81,6 +82,6 @@
 }
 
 .arrow-right {
-  margin-top: -4rem;
+  margin-top: -2rem;
 }
 </style>
