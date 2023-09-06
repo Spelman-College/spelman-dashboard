@@ -5,6 +5,7 @@ import { Query } from '../../queries/query'
 const data: Query_nsf23313_2_1_pct = new Query_nsf23313_2_1_pct()
 
 const male = new Query('gender', 'Male')
+const female = new Query('gender', 'Female')
 
 
 const masters_degree = new Query('education', 'MastersDegree')
@@ -75,4 +76,14 @@ describe('nsf23313_2_1 query 2 categories', () => {
         const out = data.query(visa, doc_degree)
         expect(out.results).toEqual(["Percent_UnknownEthnicity_VisaHolder_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree"])
     })
+})
+
+describe('nsf23313_2_1 query additions', () => {
+    test('query single category gender', () => {
+        const out = data.query(female, notknown, masters_degree)
+        expect(out.results).toEqual([
+            "Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree"
+        ])
+    })
+
 })

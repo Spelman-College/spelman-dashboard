@@ -11,6 +11,7 @@ const filter: DcidFilter = {
         'EducationalAttainmentDoctorateDegree',
         'NotHispanicOrLatino',
         'UnknownEthnicity',
+        'UnknwonRace',
         'ScienceOrEngineeringOrHealth',
         'Science', 'Or', 'Engineering', 'Health',
         'Count',
@@ -18,7 +19,10 @@ const filter: DcidFilter = {
         'Person',
         'In',
     ]),
-    additions: {}
+    additions: {
+        'Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree': [
+            'race:UnknownRace', 'gender:Female', 'citizenship:Citizen', 'education:MastersDegree'
+        ]}
 } as DcidFilter
 
 const dimension2Category = {}

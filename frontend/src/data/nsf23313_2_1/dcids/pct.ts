@@ -87,7 +87,7 @@ export const DCIDS_PCT: { [key: string]: string[] } = {
     'Percent_Female_Citizen_NotHispanicOrLatino_TwoOrMoreRaces_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
     'Percent_Female_Citizen_NotHispanicOrLatino_TwoOrMoreRaces_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree',
     'Percent_Female_Citizen_UnknownEthnicity_UnknownRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree',
-    // Typo in dcid 'UnknwonRace', commented until fixed 'Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
+    'Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
     'Percent_Female_Citizen_UnknownEthnicity_UnknownRace_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree',
     'Percent_Female_VisaHolder_UnknownEthnicity_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree',
     'Percent_Female_VisaHolder_UnknownEthnicity_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
