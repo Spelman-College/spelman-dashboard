@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import StoryCard from '@/components/StoryCard.vue'
 import { getData } from '@/sheets/client'
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
 const sid = import.meta.env.VITE_WOMEN_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
-const rows = ref([]);
+const rows = ref([])
 
 onMounted(() => {
-  const pout = getData(StoriesURI);
+  const pout = getData(StoriesURI)
   pout.then((data) => {
-	  rows.value = data;
-	 })
-});
-
+    rows.value = data
+  })
+})
 </script>
 
 <template>
@@ -27,11 +26,21 @@ onMounted(() => {
   </div>
 
   <div class="story-card-grid">
-    <StoryCard v-for="(story, index) in rows" :v-key="story.name" :imgSrc="story.hosted_image_link" :alt="story.name" width="25">
+    <StoryCard
+      v-for="(story, index) in rows"
+      :v-key="story.name"
+      :imgSrc="story.hosted_image_link"
+      :alt="story.name"
+      width="25"
+    >
       <template #name>{{ story.name }}</template>
       <template #profession>{{ story.profession }}</template>
       <template #story>{{ story.how_did_you_choose_this_path }}</template>
-      <template #linkText><router-link :to="{path: '/stories/' + index}">Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link></template>
+      <template #linkText
+        ><router-link :to="{ path: '/stories/' + index }"
+          >Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link
+        ></template
+      >
     </StoryCard>
   </div>
 </template>
@@ -42,10 +51,12 @@ p {
 }
 
 div.story-card-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 12rem;
+  margin-left: 3rem;
 }
 
 /* 'Read Her Story' link' */
@@ -54,7 +65,7 @@ a {
   margin-bottom: 2.81rem;
   box-sizing: content-box;
 
-  color: #313B49;
+  color: #313b49;
   font-size: 1.3125rem;
   font-style: normal;
   font-weight: 700;
@@ -71,9 +82,8 @@ a {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
-  color: #313B49;
+  color: #313b49;
   margin-left: 0.81rem;
-  vertical-align:middle;
+  vertical-align: middle;
 }
-
 </style>
