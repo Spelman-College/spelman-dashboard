@@ -14,7 +14,8 @@
      majorDomain,
      datasetMeta,
      dashboardFilters,
-     download as demoDownload
+     download as demoDownload,
+     datasetDownloadFilename
  } from '../../../data/demo/ui'
 
  import { Query_demo } from '../../../data/demo/query'
@@ -48,10 +49,10 @@
  const tableItems = ref([])
  const colorDomain = ref([])
 
- async function download(fileName: string, items: Array<Map>) {
+ async function download(items: Array<Map>) {
      loading_download.value = true
 
-     const err = await demoDownload(bulkClient, fileName)
+     const err = await demoDownload(bulkClient, datasetDownloadFilename)
      if (err != '') {
 	 throw new Error(`error downloading csv data: ${err}`)
      }
@@ -173,7 +174,7 @@
 	<FilterChip @update-filter=updateFilter :id="filter.id" :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
     </div>
     <div>
-	<Button v-if="tableItems.length > 0" label="Download CSV" @click="download('results', tableItems)" :loading="loading_download" />
+	<Button v-if="tableItems.length > 0" label="Download CSV" @click="download(tableItems)" :loading="loading_download" />
     </div>
     <div class="data-dashboard">
 	<div class="title">

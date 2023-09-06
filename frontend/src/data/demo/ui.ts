@@ -4,6 +4,7 @@ import type { DcClientBulk } from '../dc/client'
 import { blobs2Csv } from '../dc/client'
 import { downloadCSV } from '../dc/download'
 
+export const datasetDownloadFilename = 'Field_of_bachelors_degree_for_first_major_American_Community_Survey_2019'
 
 export const datasetMeta = {
     name: "Field of bachelor's degree for first major American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree by gender.",
