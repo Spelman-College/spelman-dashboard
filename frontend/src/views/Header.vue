@@ -12,7 +12,7 @@ function goToResources() {
   router.push({ name: 'resources' })
 }
 function goToData() {
-  router.push({ name: 'data' })
+  router.push({ name: 'dataDashboard' })
 }
 function goToHome() {
   router.push({ name: 'home' })
