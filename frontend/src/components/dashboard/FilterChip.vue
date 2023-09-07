@@ -161,7 +161,7 @@ function searchFilter(op: string) {
 
 .chip-dropdown {
     position: absolute;
-    top: 2.5rem;
+    top: 100%;
     left: 0.5rem;
     width: 22.5rem;
     background-color: #ffffff;
