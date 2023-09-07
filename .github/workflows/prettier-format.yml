@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - "src/**"
+      - "frontend/src/**"
 jobs:
   format:
     runs-on: ubuntu-latest
