@@ -36,12 +36,12 @@ export const dashboardFilters = [
 	 options: [...genderDomain]
      },
      {
-	 name: 'Age group',
+	 name: 'Age Group',
 	 id: 'age',
 	 options: [...ageDomain],
      },
     {
-	 name: 'Education Major',
+	 name: 'College Major',
 	 id: 'major',
 	 options: [...majorDomain]
      }
