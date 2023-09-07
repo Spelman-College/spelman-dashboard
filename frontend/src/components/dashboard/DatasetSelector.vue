@@ -110,6 +110,7 @@ function handleClick(name: String | null) {
     border: 1px solid #c4c7c5;
     cursor: pointer;
     z-index: 3;
+    user-select: none;
 }
 
 .dropdown-header {
