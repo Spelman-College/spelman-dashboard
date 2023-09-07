@@ -24,7 +24,9 @@ export const Categories = {
     dims.EducationalAttainment9ThTo12ThGradeNoDiploma,
     dims.EducationalAttainmentAssociatesDegree,
     dims.EducationalAttainmentBachelorsDegree,
-    dims.EducationalAttainmentCollegeGraduate,
+    // This is the summary statistic; normally this would not be included so we
+    // filter it out and add the summary dimension `education:`.
+    // dims.EducationalAttainmentCollegeGraduate,
     dims.EducationalAttainmentDoctorateDegree,
     dims.EducationalAttainmentMastersDegree,
   ]),

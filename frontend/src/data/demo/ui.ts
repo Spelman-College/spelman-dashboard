@@ -1,4 +1,5 @@
 import * as dims from '../../data/queries/dimensions'
+import { downloadDataset } from '../../data/queries/ui'
 import { DCIDS } from './dcids'
 import type { DcClientBulk } from '../dc/client'
 import { blobs2Csv } from '../dc/client'
@@ -48,14 +49,5 @@ export const dashboardFilters = [
 ]
 
 export async function download(client: DcClientBulk, filename: string): Promise<string> {
-  const res = await client.getTimeseries(DCIDS)
-  if (res === undefined) {
-    return 'error querying data commons'
-  }
-  const rows = blobs2Csv(res)
-  if (rows.error != undefined) {
-    return `error formatting data: ${rows.error}`
-  }
-  await downloadCSV(rows.rows, filename)
-  return ''
+    return downloadDataset(client, DCIDS, filename)
 }
