@@ -87,7 +87,7 @@ const filterChipText = computed(() => {
   } else if (numSelected === 1) {
     return selected.value[0]; // Display the selected item when only one is selected
   } else {
-    return `${numSelected}/${totalOptions} Selected`; // Display 'x/total selected' when multiple items are selected
+    return `${numSelected} of ${totalOptions} selected`; // Display 'x of total selected' when multiple items are selected
   }
 });
 
