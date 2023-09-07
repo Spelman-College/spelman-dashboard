@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, nextTick, inject } from 'vue'
+import { onMounted, ref, watch, nextTick, inject, computed } from 'vue'
 import type { Ref } from 'vue'
 
 import ClickawayDetection from '@/components/ClickawayDetection.vue'
@@ -77,6 +77,20 @@ function searchFilter(op: string) {
     op = op.toLowerCase()
     return searchString.value === '' || op.includes(searchString.value.toLowerCase())
 }
+//Text for the filter-chip to display
+const filterChipText = computed(() => {
+  const numSelected = selected.value.length;
+  const totalOptions = props.options.length;
+
+  if (numSelected === totalOptions) {
+    return 'All'; // Display 'All' when all of the options are selected
+  } else if (numSelected === 1) {
+    return selected.value[0]; // Display the selected item when only one is selected
+  } else {
+    return `${numSelected}/${totalOptions} Selected`; // Display 'x/total selected' when multiple items are selected
+  }
+});
+
 </script>
 
 <template>
@@ -86,7 +100,7 @@ function searchFilter(op: string) {
             <div class="filter-chip"
                 :class="{ 'filter-chip-has-selections': selected.length > 0, 'dropdown-showing': dropdownShowing === props.id }"
                 @click="toggleDropdown">
-                <slot></slot><span v-if="selected.length > 0">: {{ selected.join(', ') }}</span>
+                <slot></slot><span>: {{filterChipText}}</span>
             </div>
             <div class="chip-dropdown" v-if="dropdownShowing === props.id">
                 <div class="chip-dropdown-header">
@@ -121,7 +135,7 @@ function searchFilter(op: string) {
 .filter-chip-dropdown-container {
     position: relative;
     z-index: 2;
-}
+  }
 
 .filter-chip {
     margin: 0.5rem;
