@@ -63,7 +63,7 @@ watch(selected, () => {
 
 function handleClick(name: String | null) {
     if (name === null)
-        dropdownShowing.value = dropdownShowing.value === '' ? dropdownShowingId : '';
+        dropdownShowing.value = dropdownShowing.value !== 'datasetDropdown' ? dropdownShowingId : '';
     else {
         const idx = options.findIndex(option => option.name === name)
         selectedIndex.value = idx
