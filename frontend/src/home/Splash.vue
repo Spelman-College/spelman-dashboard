@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function goToData() {
-  router.push({ name: 'data' })
+  router.push({ name: 'dataDashboard' })
 }
 </script>
 
@@ -16,7 +16,7 @@ function goToData() {
         Futures
       </h1>
       <p>
-        Amplifying the stories and impact of Black women in STEM<br />
+        Amplifying the stories and impact of Black women in STEM
         through data, insights, and advocacy
       </p>
       <button @click="goToData">Visit the Data Dashboard</button>
