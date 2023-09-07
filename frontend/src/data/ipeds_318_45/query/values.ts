@@ -8,13 +8,10 @@ const filter: DcidFilter = {
     ignorePrefix: 'Count_Person',
     omitDimensions: new Set<string>([
 	'EducationalAttainment',
-	'9ThTo12ThGradeNoDiploma'
+	'9ThTo12ThGradeNoDiploma',
+	'BachelorOfScienceOrTechnologyOrEngineeringOrMathematics',
     ]),
-    additions: {
-	'Count_Person_EducationalAttainment_9ThTo12ThGradeNoDiploma': [
-	    'education:EducationalAttainment9ThTo12ThGradeNoDiploma'
-	]
-    }
+    additions: {}
 } as DcidFilter
 
 const dimension2Category = {}
