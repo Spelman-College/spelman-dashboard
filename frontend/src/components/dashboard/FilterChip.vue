@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, nextTick, inject } from 'vue'
+import { onMounted, ref, watch, nextTick, inject, computed } from 'vue'
 import type { Ref } from 'vue'
 
 import ClickawayDetection from '@/components/ClickawayDetection.vue'
@@ -16,6 +16,14 @@ const props = defineProps({
   selected: {
     type: Array<string>,
     required: false
+  },
+  alias: {
+    type: Object as () => { [key: string]: string },
+    required: true
+  },
+  filterName: {
+    type: Array<string>,
+    required: true
   }
 })
 
@@ -74,8 +82,26 @@ function search() {
 }
 
 function searchFilter(op: string) {
-  op = op.toLowerCase()
-  return searchString.value === '' || op.includes(searchString.value.toLowerCase())
+  let alias = mapOption(op)
+  alias = alias.toLowerCase()
+  return searchString.value === '' || alias.includes(searchString.value.toLowerCase())
+}
+//Text for the filter-chip to display
+const filterChipText = computed(() => {
+  const numSelected = selected.value.length
+  const totalOptions = props.options.length
+
+  if (numSelected === totalOptions) {
+    return 'All' // Display 'All' when all of the options are selected
+  } else if (numSelected === 1) {
+    return mapOption(selected.value[0]) // Display the selected item when only one is selected
+  } else {
+    return `${numSelected} of ${totalOptions} selected` // Display 'x of total selected' when multiple items are selected
+  }
+})
+//takes option key and returns alias, ie "BachelorOfEducationMajor" => "Education"
+function mapOption(op: string) {
+  return props.alias[op]
 }
 </script>
 
@@ -94,11 +120,11 @@ function searchFilter(op: string) {
         }"
         @click="toggleDropdown"
       >
-        <slot></slot><span v-if="selected.length > 0">: {{ selected.join(', ') }}</span>
+        <slot></slot><span>: {{ filterChipText }}</span>
       </div>
       <div class="chip-dropdown" v-if="dropdownShowing === props.id">
         <div class="chip-dropdown-header">
-          <div class="chip-dropdown-header-title">Main</div>
+          <div class="chip-dropdown-header-title">{{ props.filterName }}</div>
           <div class="chip-dropdown-header-close material-icons" @click="dropdownShowing = ''">
             close
           </div>
@@ -111,7 +137,7 @@ function searchFilter(op: string) {
             placeholder="Search"
             @keyup="search"
           />
-          <div class="material-icons">search</div>
+          <div class="material-icons searchIcon">search</div>
         </div>
         <div class="chip-dropdown-checkbox-selectall">
           <label class="chip-dropdown-checkbox">
@@ -129,7 +155,7 @@ function searchFilter(op: string) {
           <label class="chip-dropdown-checkbox">
             <input type="checkbox" :id="option" :value="option" v-model="selected" />
             <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
-            {{ option }}
+            {{ mapOption(option) }}
           </label>
         </div>
       </div>
@@ -213,7 +239,7 @@ function searchFilter(op: string) {
 .chip-dropdown-search-container {
   display: flex;
   gap: 0.625rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.3rem;
   color: #3c4043;
 }
 

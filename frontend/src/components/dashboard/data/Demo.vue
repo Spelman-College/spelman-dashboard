@@ -173,6 +173,8 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       @update-filter="updateFilter"
       :id="filter.id"
       :options="filter.options"
+      :alias="filter.alias"
+      :filterName="filter.name"
       v-for="filter in filters"
       >{{ filter.name }}</FilterChip
     >
