@@ -167,10 +167,18 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       </div>
     </div>
   </div>
-    <div class="filters" :key="compare">
-	<div class="filter-text">Filters</div>
-	<FilterChip @update-filter=updateFilter :id="filter.id" :options="filter.options" :alias="filter.alias" :filterName="filter.name" v-for="filter in filters">{{ filter.name }}</FilterChip>
-    </div>
+  <div class="filters" :key="compare">
+    <div class="filter-text">Filters</div>
+    <FilterChip
+      @update-filter="updateFilter"
+      :id="filter.id"
+      :options="filter.options"
+      :alias="filter.alias"
+      :filterName="filter.name"
+      v-for="filter in filters"
+      >{{ filter.name }}</FilterChip
+    >
+  </div>
   <div>
     <Button
       v-if="tableItems.length > 0"

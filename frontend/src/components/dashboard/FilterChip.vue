@@ -5,26 +5,26 @@ import type { Ref } from 'vue'
 import ClickawayDetection from '@/components/ClickawayDetection.vue'
 
 const props = defineProps({
-    id: {
-        type: String,
-        required: true
-    },
-    options: {
-        type: Array<string>,
-        required: true
-    },
-    selected: {
-        type: Array<string>,
-        required: false
-    },
-    alias:{
-        type:Object as () => { [key: string]: string },
-        required: true
-    },
-    filterName: {
-        type: Array<string>,
-        required: true
-    }
+  id: {
+    type: String,
+    required: true
+  },
+  options: {
+    type: Array<string>,
+    required: true
+  },
+  selected: {
+    type: Array<string>,
+    required: false
+  },
+  alias: {
+    type: Object as () => { [key: string]: string },
+    required: true
+  },
+  filterName: {
+    type: Array<string>,
+    required: true
+  }
 })
 
 const emit = defineEmits(['updateFilter'])
@@ -82,65 +82,85 @@ function search() {
 }
 
 function searchFilter(op: string) {
-    let alias = mapOption(op)
-    alias = alias.toLowerCase()
-    return searchString.value === '' || alias.includes(searchString.value.toLowerCase())
+  let alias = mapOption(op)
+  alias = alias.toLowerCase()
+  return searchString.value === '' || alias.includes(searchString.value.toLowerCase())
 }
 //Text for the filter-chip to display
 const filterChipText = computed(() => {
-  const numSelected = selected.value.length;
-  const totalOptions = props.options.length;
+  const numSelected = selected.value.length
+  const totalOptions = props.options.length
 
   if (numSelected === totalOptions) {
-    return 'All'; // Display 'All' when all of the options are selected
+    return 'All' // Display 'All' when all of the options are selected
   } else if (numSelected === 1) {
-    return mapOption(selected.value[0]); // Display the selected item when only one is selected
+    return mapOption(selected.value[0]) // Display the selected item when only one is selected
   } else {
-    return `${numSelected} of ${totalOptions} selected`; // Display 'x of total selected' when multiple items are selected
+    return `${numSelected} of ${totalOptions} selected` // Display 'x of total selected' when multiple items are selected
   }
-});
+})
 //takes option key and returns alias, ie "BachelorOfEducationMajor" => "Education"
-function mapOption(op: string){
-    return props.alias[op]
+function mapOption(op: string) {
+  return props.alias[op]
 }
 </script>
 
 <template>
-    <div>
-        <ClickawayDetection v-if="dropdownShowing === props.id" @click="dropdownShowing = ''"></ClickawayDetection>
-        <div class="filter-chip-dropdown-container">
-            <div class="filter-chip"
-                :class="{ 'filter-chip-has-selections': selected.length > 0, 'dropdown-showing': dropdownShowing === props.id }"
-                @click="toggleDropdown">
-                <slot></slot><span>: {{filterChipText}}</span>
-            </div>
-            <div class="chip-dropdown" v-if="dropdownShowing === props.id">
-                <div class="chip-dropdown-header">
-                    <div class="chip-dropdown-header-title">{{ props.filterName }}</div>
-                    <div class="chip-dropdown-header-close material-icons" @click="dropdownShowing = ''">close</div>
-                </div>
-                <div class="chip-dropdown-search-container">
-                    <input class="chip-dropdown-search-input" v-model="searchString" type="text" placeholder="Search"
-                        @keyup="search" />
-                    <div class="material-icons searchIcon">search</div>
-                </div>
-                <div class="chip-dropdown-checkbox-selectall">
-                    <label class="chip-dropdown-checkbox">
-                        <input :disabled="allSelected" type="checkbox" v-model="allSelected" @click="doSelectAll" />
-                        <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
-                        Select all
-                    </label>
-                </div>
-                <div v-for="option in filteredOptions">
-                    <label class="chip-dropdown-checkbox">
-                        <input type="checkbox" :id=option :value=option v-model=selected />
-                        <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
-                        {{ mapOption(option) }}
-                    </label>
-                </div>
-            </div>
+  <div>
+    <ClickawayDetection
+      v-if="dropdownShowing === props.id"
+      @click="dropdownShowing = ''"
+    ></ClickawayDetection>
+    <div class="filter-chip-dropdown-container">
+      <div
+        class="filter-chip"
+        :class="{
+          'filter-chip-has-selections': selected.length > 0,
+          'dropdown-showing': dropdownShowing === props.id
+        }"
+        @click="toggleDropdown"
+      >
+        <slot></slot><span>: {{ filterChipText }}</span>
+      </div>
+      <div class="chip-dropdown" v-if="dropdownShowing === props.id">
+        <div class="chip-dropdown-header">
+          <div class="chip-dropdown-header-title">{{ props.filterName }}</div>
+          <div class="chip-dropdown-header-close material-icons" @click="dropdownShowing = ''">
+            close
+          </div>
         </div>
+        <div class="chip-dropdown-search-container">
+          <input
+            class="chip-dropdown-search-input"
+            v-model="searchString"
+            type="text"
+            placeholder="Search"
+            @keyup="search"
+          />
+          <div class="material-icons searchIcon">search</div>
+        </div>
+        <div class="chip-dropdown-checkbox-selectall">
+          <label class="chip-dropdown-checkbox">
+            <input
+              :disabled="allSelected"
+              type="checkbox"
+              v-model="allSelected"
+              @click="doSelectAll"
+            />
+            <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
+            Select all
+          </label>
+        </div>
+        <div v-for="option in filteredOptions">
+          <label class="chip-dropdown-checkbox">
+            <input type="checkbox" :id="option" :value="option" v-model="selected" />
+            <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
+            {{ mapOption(option) }}
+          </label>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -217,10 +237,10 @@ function mapOption(op: string){
 }
 
 .chip-dropdown-search-container {
-    display: flex;
-    gap: 0.625rem;
-    padding: 0.5rem 1.3rem;
-    color: #3c4043;
+  display: flex;
+  gap: 0.625rem;
+  padding: 0.5rem 1.3rem;
+  color: #3c4043;
 }
 
 .chip-dropdown-search-input {
