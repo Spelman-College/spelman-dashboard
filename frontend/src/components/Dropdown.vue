@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { debugPort } from 'process';
+import { debugPort } from 'process'
 import { ref } from 'vue'
-import ClickawayDetection from './ClickawayDetection.vue';
+import ClickawayDetection from './ClickawayDetection.vue'
 
 const currentDataset = ref(0)
 
@@ -9,47 +9,72 @@ const dropdownVisible = ref(false)
 
 const options = [
   {
-    name: "STEM degrees conferred by level",
-    source: "IPEDS",
-    variables: ["Year", "Sex", "Race", "Degree Level", "Disability status"],
-    year: "2001 - 2021"
+    name: 'STEM degrees conferred by level',
+    source: 'IPEDS',
+    variables: ['Year', 'Sex', 'Race', 'Degree Level', 'Disability status'],
+    year: '2001 - 2021'
   },
   {
-    name: "National survey of college graduates salaries",
-    source: "National Center for Science and Engineering Statistics",
-    variables: ["Year", "Sex", "Race", "Age range", "Residency status", "Citizenship status", "Occupation", "Employment status", "Field of status", "Job satisfaction", "Salary", "Some variable"],
-    year: "2001 - 2021"
+    name: 'National survey of college graduates salaries',
+    source: 'National Center for Science and Engineering Statistics',
+    variables: [
+      'Year',
+      'Sex',
+      'Race',
+      'Age range',
+      'Residency status',
+      'Citizenship status',
+      'Occupation',
+      'Employment status',
+      'Field of status',
+      'Job satisfaction',
+      'Salary',
+      'Some variable'
+    ],
+    year: '2001 - 2021'
   },
   {
-    name: "Research Doctorate recipients",
-    source: "National Center for Science and Engineering Statistics",
-    variables: ["Year", "Sex", "Race", "Degree Level", "Residency status", "Citizenship status", "Education-related debt", "Field of study", "Salary", "Institution", "Countries", "Another", "Variable"],
-    year: "2001 - 2021"
-  },
+    name: 'Research Doctorate recipients',
+    source: 'National Center for Science and Engineering Statistics',
+    variables: [
+      'Year',
+      'Sex',
+      'Race',
+      'Degree Level',
+      'Residency status',
+      'Citizenship status',
+      'Education-related debt',
+      'Field of study',
+      'Salary',
+      'Institution',
+      'Countries',
+      'Another',
+      'Variable'
+    ],
+    year: '2001 - 2021'
+  }
 ]
 
 function getVarsString(vars: Array<String>): String {
   var joinedString = vars.join(', ')
 
   // If the string is too long, remove variables until it is not and keep track of how many.
-  var lastIndex;
-  var countRemoved = 0;
+  var lastIndex
+  var countRemoved = 0
   while ((lastIndex = joinedString.lastIndexOf(',')) > 132) {
     joinedString = joinedString.substring(0, lastIndex)
-    countRemoved++;
+    countRemoved++
   }
 
-  if (countRemoved !== 0)
-    joinedString += `, +${countRemoved} more`
+  if (countRemoved !== 0) joinedString += `, +${countRemoved} more`
 
-  return joinedString;
+  return joinedString
 }
 
 function handleClick(name: String | null) {
-  if (name === null)
-    dropdownVisible.value = !dropdownVisible.value
+  if (name === null) dropdownVisible.value = !dropdownVisible.value
   else {
-    currentDataset.value = options.findIndex(option => option.name === name)
+    currentDataset.value = options.findIndex((option) => option.name === name)
   }
 }
 </script>
@@ -58,10 +83,17 @@ function handleClick(name: String | null) {
   <ClickawayDetection v-if="dropdownVisible" @click="dropdownVisible = false"></ClickawayDetection>
   <div class="dropdown" @click="handleClick(null)">
     <div class="dropdown-header">Dataset</div>
-    <div class="dropdown-text">{{ options[currentDataset].name }} &nbsp;({{ options[currentDataset].year }})</div>
+    <div class="dropdown-text">
+      {{ options[currentDataset].name }} &nbsp;({{ options[currentDataset].year }})
+    </div>
     <div class="dropdown-arrow material-icons">arrow_drop_down</div>
     <div class="dropdown-options-container" v-if="dropdownVisible">
-      <div class="dropdown-option" v-for="option in options" :key="option.name" @click="handleClick(option.name)">
+      <div
+        class="dropdown-option"
+        v-for="option in options"
+        :key="option.name"
+        @click="handleClick(option.name)"
+      >
         <div class="name-source-vars-container">
           <div class="name-source">{{ option.name }} | Source: {{ option.source }}</div>
           <div class="vars">Variables: {{ getVarsString(option.variables) }}</div>
@@ -112,7 +144,7 @@ function handleClick(name: String | null) {
   width: 61.75rem;
   background-color: #ffffff;
   border-radius: 0.25rem;
-  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 .dropdown-option {

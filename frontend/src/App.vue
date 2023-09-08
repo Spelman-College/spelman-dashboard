@@ -36,7 +36,7 @@ export default {
     track() {
       this.$gtag.screenview({
         app_name: 'App',
-        screen_name: 'Main screen',
+        screen_name: 'Main screen'
       })
     }
   }

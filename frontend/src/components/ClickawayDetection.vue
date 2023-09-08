@@ -1,8 +1,7 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div class="clickaway"></div>
+  <div class="clickaway"></div>
 </template>
 
 <style>

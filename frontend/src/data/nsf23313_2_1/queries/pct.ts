@@ -1,39 +1,42 @@
-import { Dcid, DcidFilter, CategoryType } from "../../queries/dcid"
-import { Query, QueryResult, query2dcids } from "../../queries/query"
+import { Dcid, DcidFilter, CategoryType } from '../../queries/dcid'
+import { Query, QueryResult, query2dcids } from '../../queries/query'
 import { DCIDS_PCT } from '../dcids/pct'
 import { Categories } from '../categories/pct'
 
 const filter: DcidFilter = {
-    ignorePrefix: 'Percent',
-    omitDimensions: new Set<string>([
-        'EducationalAttainmentGraduateSchoolOrPostGraduate',
-        'MastersDegreeOrDoctorateDegree', // Summary statistic
-        'EducationalAttainmentDoctorateDegree',
-        'NotHispanicOrLatino',
-        'UnknownEthnicity',
-        'UnknwonRace',
-        'ScienceOrEngineeringOrHealth',
-        'Science', 'Or', 'Engineering', 'Health',
-        'Count',
-        'Student',
-        'Person',
-        'In',
-    ]),
-    additions: {
-        'Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree': [
-            'race:UnknownRace']}
+  ignorePrefix: 'Percent',
+  omitDimensions: new Set<string>([
+    'EducationalAttainmentGraduateSchoolOrPostGraduate',
+    'MastersDegreeOrDoctorateDegree', // Summary statistic
+    'EducationalAttainmentDoctorateDegree',
+    'NotHispanicOrLatino',
+    'UnknownEthnicity',
+    'UnknwonRace',
+    'ScienceOrEngineeringOrHealth',
+    'Science',
+    'Or',
+    'Engineering',
+    'Health',
+    'Count',
+    'Student',
+    'Person',
+    'In'
+  ]),
+  additions: {
+    Percent_Female_Citizen_UnknownEthnicity_UnknwonRace_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree:
+      ['race:UnknownRace']
+  }
 } as DcidFilter
 
 const dimension2Category = {}
 const annotatedDimensions = new Set<string>()
 
-
 Object.keys(Categories).forEach((cat) => {
-    const values = Categories[cat]
-    values.forEach((dim) => {
-        dimension2Category[dim] = cat
-        annotatedDimensions.add(`${cat}:${dim}`)
-    })
+  const values = Categories[cat]
+  values.forEach((dim) => {
+    dimension2Category[dim] = cat
+    annotatedDimensions.add(`${cat}:${dim}`)
+  })
 })
 // Because we're using timeseries, we'll need to create a set of all of the available
 // DCIDs that include each year. There may be keys that don't exist in some years
@@ -46,13 +49,13 @@ const dcids = []
 const dcids_set = new Set()
 
 for (const date in DCIDS_PCT) {
-    const keys = DCIDS_PCT[date]
-    keys.forEach((id) => {
-        dcids_set.add(id)
-    })
+  const keys = DCIDS_PCT[date]
+  keys.forEach((id) => {
+    dcids_set.add(id)
+  })
 }
 dcids_set.forEach((id) => {
-    dcids.push(new Dcid(id, filter, dimension2Category))
+  dcids.push(new Dcid(id, filter, dimension2Category))
 })
 
 // If we're querying both
@@ -66,20 +69,22 @@ dcids_set.forEach((id) => {
 const categoryDependencies: [string, string][] = [['race', 'citizenship']]
 
 class Base {
-    protected categoryDependencies: [string, string][] = categoryDependencies
-    protected dcids: Array<Dcid | TsDcid> = dcids
-    protected annotatedDimensions: Set<string> = annotatedDimensions
+  protected categoryDependencies: [string, string][] = categoryDependencies
+  protected dcids: Array<Dcid | TsDcid> = dcids
+  protected annotatedDimensions: Set<string> = annotatedDimensions
 }
 
 export class Query_nsf23313_2_1_pct extends Base {
-    constructor() {
-        super()
-    }
-    query(...queries: Array<Query>): QueryResult {
-        return query2dcids(this.dcids,
-            Categories,
-            this.categoryDependencies,
-            this.annotatedDimensions,
-            ...queries)
-    }
+  constructor() {
+    super()
+  }
+  query(...queries: Array<Query>): QueryResult {
+    return query2dcids(
+      this.dcids,
+      Categories,
+      this.categoryDependencies,
+      this.annotatedDimensions,
+      ...queries
+    )
+  }
 }

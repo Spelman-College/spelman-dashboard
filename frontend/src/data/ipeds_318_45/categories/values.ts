@@ -1,30 +1,26 @@
-
 export const Categories = {
-    'gender': new Set<string>([
-        'Male',
-        'Female',
-    ]),
-    'ethnicity': new Set<string>([
-        'HispanicOrLatino',
-        'AmericanIndianOrAlaskaNativeAlone',
-        'Black',
-        'TwoOrMoreRaces',
-        'WhiteAlone',
+  gender: new Set<string>(['Male', 'Female']),
+  ethnicity: new Set<string>([
+    'HispanicOrLatino',
+    'AmericanIndianOrAlaskaNativeAlone',
+    'Black',
+    'TwoOrMoreRaces',
+    'WhiteAlone',
 
-        // AsianOrPacificIslander is the sum of both Asian AND HawaiianNativeOrPacificIslander
-        // 'AsianOrPacificIslander',
-        'Asian',
-        'HawaiianNativeOrPacificIslander',
+    // AsianOrPacificIslander is the sum of both Asian AND HawaiianNativeOrPacificIslander
+    // 'AsianOrPacificIslander',
+    'Asian',
+    'HawaiianNativeOrPacificIslander',
 
-        // Total for this category is reported, including this data.
-        'NonUSResident',
-    ]),
-    'education': new Set<string>([
-        'EducationalAttainment9ThTo12ThGradeNoDiploma',
-        'EducationalAttainmentAssociatesDegree',
-        'EducationalAttainmentBachelorsDegree',
-        'EducationalAttainmentCollegeGraduate',
-        'EducationalAttainmentDoctorateDegree',
-        'EducationalAttainmentMastersDegree',
-    ]),
+    // Total for this category is reported, including this data.
+    'NonUSResident'
+  ]),
+  education: new Set<string>([
+    'EducationalAttainment9ThTo12ThGradeNoDiploma',
+    'EducationalAttainmentAssociatesDegree',
+    'EducationalAttainmentBachelorsDegree',
+    'EducationalAttainmentCollegeGraduate',
+    'EducationalAttainmentDoctorateDegree',
+    'EducationalAttainmentMastersDegree'
+  ])
 }

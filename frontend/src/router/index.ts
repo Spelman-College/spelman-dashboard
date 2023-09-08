@@ -11,7 +11,6 @@ import IndividualReadsView from '@/views/reads/IndividualReadsView.vue'
 import ContactView from '@/views/ContactView.vue'
 import DataDashboardView from '@/views/DataDashboardView.vue'
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior() {
@@ -74,8 +73,8 @@ const router = createRouter({
     {
       path: '/data-dashboard/:view/:dataset',
       name: 'dataDashboardView',
-      component: DataDashboardView,
-    },
+      component: DataDashboardView
+    }
     // {
     //   path: '/about',
     //   name: 'about',
