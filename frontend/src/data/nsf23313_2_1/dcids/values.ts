@@ -1,5 +1,5 @@
 export const DCIDS_VALUES: { [key: string]: string[] } = {
-  "2021": [
+  '2021': [
     'Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree',
     'Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
     'Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree',
@@ -98,7 +98,6 @@ export const DCIDS_VALUES: { [key: string]: string[] } = {
     'Count_Student_Citizen_ScienceOrEngineeringOrHealth_DoctorateDegree_UnknownEthnicity_Female_UnknownRace',
     'Count_Student_VisaHolder_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree_UnknownEthnicity_Female',
     'Count_Student_VisaHolder_ScienceOrEngineeringOrHealth_MastersDegree_UnknownEthnicity_Female',
-    'Count_Student_VisaHolder_ScienceOrEngineeringOrHealth_DoctorateDegree_UnknownEthnicity_Female',
-  ],
+    'Count_Student_VisaHolder_ScienceOrEngineeringOrHealth_DoctorateDegree_UnknownEthnicity_Female'
+  ]
 }
-

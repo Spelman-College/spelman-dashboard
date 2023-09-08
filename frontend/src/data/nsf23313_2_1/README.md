@@ -20,7 +20,6 @@ This holds mapping of categories to their associated dimensions.
 
 `values.ts`: associated with values
 
-
 ### `query/`
 
 Exports a class that can be used to query data using 1 or more `Query` classes.

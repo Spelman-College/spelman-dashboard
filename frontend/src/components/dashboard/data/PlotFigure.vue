@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import * as Plot from "@observablehq/plot"
+import * as Plot from '@observablehq/plot'
 
 const props = defineProps({
-     options: Object
- })
-
+  options: Object
+})
 </script>
 
 <template>
-	<div v-html="Plot.plot(props.options).outerHTML" />
+  <div v-html="Plot.plot(props.options).outerHTML" />
 </template>
