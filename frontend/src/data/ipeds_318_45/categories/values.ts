@@ -11,10 +11,10 @@ export const Categories = {
         'TwoOrMoreRaces',
         'WhiteAlone',
 
-        // AsianOrPacificIslander is the sum of both Asian AND OtherPacificIslander
+        // AsianOrPacificIslander is the sum of both Asian AND HawaiianNativeOrPacificIslander
         // 'AsianOrPacificIslander',
         'Asian',
-        'OtherPacificIslander',
+        'HawaiianNativeOrPacificIslander',
 
         // Total for this category is reported, including this data.
         'NonUSResident',

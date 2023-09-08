@@ -1,4 +1,4 @@
-import {describe, expect, test} from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import { Query_values } from './values'
 import { Query } from '../../queries/query'
 
@@ -7,20 +7,20 @@ const ipeds: Query_values = new Query_values()
 const male = new Query('gender', 'Male')
 const all_genders = new Query('gender', 'Male', 'Female')
 const all_ethnicities = new Query('ethnicity',
-                                  'AmericanIndianOrAlaskaNativeAlone',
-                                  'Asian',
-                                  'Black',
-                                  'HispanicOrLatino',
-                                  'OtherPacificIslander',
-                                  'TwoOrMoreRaces',
-                                  'WhiteAlone',
-                                  'NonUSResident',
-                                 )
+    'AmericanIndianOrAlaskaNativeAlone',
+    'Asian',
+    'Black',
+    'HispanicOrLatino',
+    'HawaiianNativeOrPacificIslander',
+    'TwoOrMoreRaces',
+    'WhiteAlone',
+    'NonUSResident',
+)
 
 const hispanic = new Query('ethnicity', 'HispanicOrLatino')
 const associates_degree = new Query('education', 'EducationalAttainmentAssociatesDegree')
 const grad = new Query('education', 'EducationalAttainmentDoctorateDegree',
-                       'EducationalAttainmentMastersDegree')
+    'EducationalAttainmentMastersDegree')
 
 const highschool = new Query('education', 'EducationalAttainment9ThTo12ThGradeNoDiploma')
 
