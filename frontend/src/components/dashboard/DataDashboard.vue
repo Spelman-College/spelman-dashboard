@@ -14,7 +14,5 @@ const props = defineProps(['dataset', 'view'])
             <p class="temp-title">This is a preset demo view.</p>
         </div>
     </div>
-  </div>
 </template>
 
-</template>
