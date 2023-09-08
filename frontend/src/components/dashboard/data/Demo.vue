@@ -173,50 +173,49 @@
 	<div class="filter-text">Filters</div>
 	<FilterChip @update-filter=updateFilter :id="filter.id" :options="filter.options" v-for="filter in filters">{{ filter.name }}</FilterChip>
     </div>
-    <div>
-	<Button v-if="tableItems.length > 0" label="Download CSV" @click="download(tableItems)" :loading="loading_download" />
-    </div>
-    <div class="data-dashboard">
-	<div class="title">
-	    {{ datasetMeta.name }}
-	</div>
+  
+    <div class="data-dashboard-plot">
+		<!-- TODO: Update to pull in source alias instead -->
+		<div class="title source">Source: U.S. Census Bureau, American Community Survey 2019</div>
+		<div>{{ datasetMeta.name }}</div>
+		<div>
+			<Button v-if="tableItems.length > 0" label="Download CSV" @click="download(tableItems)" :loading="loading_download" />
+   		</div>
+		<div v-if=true class="plot">
+			<PlotFigure v-if="tableItems.length > 0"
+					:options="{
+					x: {
+						axis: null,
+						tickFormat: '',
+						type: 'band',
+					},
+					y: {
+						tickFormat: 's',
+						grid: true
+					},
+					fx: {
+						label: null
+					},
+					color: {
+						domain: colorDomain,
+						legend: true
+					},
+					marks: [
+						Plot.barY(tableItems, {
+						x: 'key',
+						y: 'value',
+						fx: 'date',
+						fill: 'key',
+						sort: {
+							x: null,
+						}
+						}),
+						Plot.ruleY([0])
+					],
 
-
-	<div v-if=true class="plot">
-	    <PlotFigure v-if="tableItems.length > 0"
-			      :options="{
-				  x: {
-				      axis: null,
-				      tickFormat: '',
-				      type: 'band',
-				  },
-				  y: {
-				      tickFormat: 's',
-				      grid: true
-				  },
-				  fx: {
-				      label: null
-				  },
-				  color: {
-				      domain: colorDomain,
-				      legend: true
-				  },
-				  marks: [
-				      Plot.barY(tableItems, {
-					  x: 'key',
-					  y: 'value',
-					  fx: 'date',
-					  fill: 'key',
-					  sort: {
-					      x: null,
-					  }
-				      }),
-				      Plot.ruleY([0])
-				  ],
-
-			      }">
-	    </PlotFigure>
-	</div>
+					}">
+			</PlotFigure>
+		</div>
     </div>
 </template>
 
@@ -236,5 +235,21 @@
      font-size: 0.875rem;
      font-weight: 700;
  }
+ .data-dashboard-plot{
+	 color: black;
+     background-color: white;
+	 border-radius:8px;
+	 border: 1px solid #BDC1C6;
+	 padding:32px;
+ }
+  :deep(.title) {
+     color: #4285F4;
+     font-family: Google Sans Mono;
+     font-size: 2rem;
+     font-style: normal;
+     font-weight: 400;
+     line-height: normal;
+ }
+
 
 </style>
