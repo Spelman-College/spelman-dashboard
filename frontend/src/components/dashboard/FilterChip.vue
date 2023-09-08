@@ -19,7 +19,11 @@ const props = defineProps({
     },
     alias:{
         type:Object as () => { [key: string]: string },
-        required: false
+        required: true
+    },
+    filterName: {
+        type: Array<string>,
+        required: true
     }
 
 })
@@ -113,13 +117,13 @@ function mapOption(op: string){
             </div>
             <div class="chip-dropdown" v-if="dropdownShowing === props.id">
                 <div class="chip-dropdown-header">
-                    <div class="chip-dropdown-header-title">Main</div>
+                    <div class="chip-dropdown-header-title">{{ props.filterName }}</div>
                     <div class="chip-dropdown-header-close material-icons" @click="dropdownShowing = ''">close</div>
                 </div>
                 <div class="chip-dropdown-search-container">
                     <input class="chip-dropdown-search-input" v-model="searchString" type="text" placeholder="Search"
                         @keyup="search" />
-                    <div class="material-icons">search</div>
+                    <div class="material-icons searchIcon">search</div>
                 </div>
                 <div class="chip-dropdown-checkbox-selectall">
                     <label class="chip-dropdown-checkbox">
@@ -211,12 +215,12 @@ function mapOption(op: string){
 .chip-dropdown-header-close {
     cursor: pointer;
     padding: 1rem;
-}
+    }
 
 .chip-dropdown-search-container {
     display: flex;
     gap: 0.625rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.3rem;
     color: #3c4043;
 }
 

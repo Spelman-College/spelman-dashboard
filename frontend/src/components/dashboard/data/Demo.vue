@@ -171,7 +171,7 @@
     </div>
     <div class="filters" :key="compare">
 	<div class="filter-text">Filters</div>
-	<FilterChip @update-filter=updateFilter :id="filter.id" :options="filter.options" :alias="filter.alias" v-for="filter in filters">{{ filter.name }}</FilterChip>
+	<FilterChip @update-filter=updateFilter :id="filter.id" :options="filter.options" :alias="filter.alias" :filterName="filter.name" v-for="filter in filters">{{ filter.name }}</FilterChip>
     </div>
     <div>
 	<Button v-if="tableItems.length > 0" label="Download CSV" @click="download(tableItems)" :loading="loading_download" />
