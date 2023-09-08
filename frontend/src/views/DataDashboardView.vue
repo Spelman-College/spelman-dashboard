@@ -39,13 +39,18 @@ const changeView = (v) => {
         :key="route.params.view"
       />
     </div>
-    <DataDashboard v-if="!showWelcome" :view=route.params.view :dataset=route.params.dataset  class="dashboard-parent-container" />
-    <DDWelcomeView v-if="showWelcome" class="dashboard-parent-container"/>
-</div>
+    <DataDashboard
+      v-if="!showWelcome"
+      :view="route.params.view"
+      :dataset="route.params.dataset"
+      class="dashboard-parent-container"
+    />
+    <DDWelcomeView v-if="showWelcome" class="dashboard-parent-container" />
+  </div>
 </template>
 
 <style>
-.dashboard-parent-container{
-    padding:2rem 3rem;
+.dashboard-parent-container {
+  padding: 2rem 3rem;
 }
 </style>
