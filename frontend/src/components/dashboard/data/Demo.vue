@@ -179,19 +179,33 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       >{{ filter.name }}</FilterChip
     >
   </div>
-  <div>
-    <Button
-      v-if="tableItems.length > 0"
-      label="Download CSV"
-      @click="download(tableItems)"
-      :loading="loading_download"
-    />
-  </div>
-  <div class="data-dashboard">
-    <div class="title">
-      {{ datasetMeta.name }}
-    </div>
 
+  <div class="data-dashboard-plot">
+    <!-- TODO: Update to pull in source alias instead -->
+    <div class="title-container">
+      <div class="title source">Source: U.S. Census Bureau, American Community Survey 2019</div>
+    </div>
+    <div class="data-type-and-download-container">
+      <div class="plot-text choose-data-type">
+        <div class="data-type-text">Data type</div>
+        <div class="plot-button choose-bar"><span class="material-icons">bar_chart</span></div>
+        <div class="plot-button choose-line"><span class="material-icons">timeline</span></div>
+        <div class="plot-button choose-pie"><span class="material-icons">pie_chart</span></div>
+      </div>
+      <div class="csv-download-container">
+        <div class="plot-text">Download data</div>
+        <div
+          class="csv"
+          v-if="tableItems.length > 0"
+          label="Download CSV"
+          @click="download(tableItems)"
+          :loading="loading_download"
+        >
+          CSV
+        </div>
+      </div>
+    </div>
+    <!-- <div>{{ datasetMeta.name }}</div> -->
     <div v-if="true" class="plot">
       <PlotFigure
         v-if="tableItems.length > 0"
@@ -246,5 +260,72 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
   font-family: 'Noto Sans Mono';
   font-size: 0.875rem;
   font-weight: 700;
+}
+.data-dashboard-plot {
+  color: black;
+  border-radius: 8px;
+  /* TODO: update page layout for narrower window widths */
+  min-width: 1040px;
+}
+
+:deep(.title) {
+  color: #4285f4;
+  font-family: 'Noto Sans Mono';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.title-container,
+.plot,
+.data-type-and-download-container {
+  border: 1px solid #bdc1c6;
+  background: #fff;
+  padding: 32px;
+}
+.data-type-and-download-container {
+  border-top: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.csv {
+  color: #1a73e8;
+  font-family: Google Sans Mono;
+  font-size: 12px;
+}
+.csv-download-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.choose-data-type {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.title-container {
+  border-radius: 8px 8px 0px 0px;
+}
+.plot-button {
+  display: flex;
+  padding: 8px;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 4px;
+  border: 1px solid #bdc1c6;
+  background: #ececec;
+}
+.plot-text {
+  font-family: 'Noto Sans Mono';
+  font-size: 12px;
+}
+.material-icon {
+  background-color: #444746;
+}
+.plot {
+  border-top: none;
+  border-radius: 0px 0px 8px 8px;
 }
 </style>
