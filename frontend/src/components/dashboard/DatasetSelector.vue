@@ -119,6 +119,8 @@ function handleClick(name: String | null) {
   cursor: pointer;
   z-index: 3;
   user-select: none;
+  /* TODO: update page layout for narrower window widths */
+  min-width: 700px;
 }
 
 .dropdown-header {

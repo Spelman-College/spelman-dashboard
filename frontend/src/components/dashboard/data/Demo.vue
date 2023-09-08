@@ -264,6 +264,8 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 .data-dashboard-plot {
   color: black;
   border-radius: 8px;
+  /* TODO: update page layout for narrower window widths */
+  min-width: 1040px;
 }
 
 :deep(.title) {
