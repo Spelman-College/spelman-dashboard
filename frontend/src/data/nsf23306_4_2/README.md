@@ -10,7 +10,6 @@ Table 4-2 @ Source URI [https://ncses.nsf.gov/surveys/national-survey-college-gr
 
 `query.ts`: exports a class named `Query_nsf23306` that enables querying the dataset with one or more `Query` objects.
 
-
 ## NOTE: incompatible query parameters
 
 The following query category pairs return no results because the data does not report at the intersection of these categories. If we check the original data, disability status and citizenship status are columns, alongside ethnicity.

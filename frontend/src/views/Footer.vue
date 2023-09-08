@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
 function goToFAQ() {
   router.push({ name: 'FAQ' })
@@ -54,7 +54,7 @@ function goToFAQ() {
   color: #dcdcdc;
   align-items: center;
   justify-content: space-between;
-  gap:4rem;
+  gap: 4rem;
 }
 
 #contact {
@@ -68,5 +68,4 @@ function goToFAQ() {
 .footer-links {
   cursor: pointer;
 }
-  
 </style>

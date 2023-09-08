@@ -1,29 +1,27 @@
-import { Dcid, TsDcid, DcidFilter, CategoryType } from "../../queries/dcid"
-import { Query, QueryResult, query2dcids } from "../../queries/query"
+import { Dcid, TsDcid, DcidFilter, CategoryType } from '../../queries/dcid'
+import { Query, QueryResult, query2dcids } from '../../queries/query'
 import { DCIDS_VALUES } from '../dcids/values'
 import { Categories } from '../categories/values'
 
-
 const filter: DcidFilter = {
-    ignorePrefix: 'Count_Person',
-    omitDimensions: new Set<string>([
-	'EducationalAttainment',
-	'9ThTo12ThGradeNoDiploma',
-	'BachelorOfScienceOrTechnologyOrEngineeringOrMathematics',
-    ]),
-    additions: {}
+  ignorePrefix: 'Count_Person',
+  omitDimensions: new Set<string>([
+    'EducationalAttainment',
+    '9ThTo12ThGradeNoDiploma',
+    'BachelorOfScienceOrTechnologyOrEngineeringOrMathematics'
+  ]),
+  additions: {}
 } as DcidFilter
 
 const dimension2Category = {}
 const annotatedDimensions = new Set<string>()
 
-
 Object.keys(Categories).forEach((cat) => {
-    const values = Categories[cat]
-    values.forEach((dim) => {
-        dimension2Category[dim] = cat
-	annotatedDimensions.add(`${cat}:${dim}`)
-    })
+  const values = Categories[cat]
+  values.forEach((dim) => {
+    dimension2Category[dim] = cat
+    annotatedDimensions.add(`${cat}:${dim}`)
+  })
 })
 // Because we're using timeseries, we'll need to create a set of all of the available
 // DCIDs that include each year. There may be keys that don't exist in some years
@@ -36,17 +34,17 @@ const dcids = []
 const dcids_set = new Set()
 
 for (const date in DCIDS_VALUES) {
-    const keys = DCIDS_VALUES[date]
-    keys.forEach((id) => {
-	dcids_set.add(id)
-    })
+  const keys = DCIDS_VALUES[date]
+  keys.forEach((id) => {
+    dcids_set.add(id)
+  })
 }
 dcids_set.forEach((id) => {
-    // AsianOrPacificIslander is the sum of both Asian AND OtherPacificIslander
-    if (id.match(/AsianOrPacificIslander/g) !== null) {
-	return
-    }
-    dcids.push(new Dcid(id, filter, dimension2Category))
+  // AsianOrPacificIslander is the sum of both Asian AND OtherPacificIslander
+  if (id.match(/AsianOrPacificIslander/g) !== null) {
+    return
+  }
+  dcids.push(new Dcid(id, filter, dimension2Category))
 })
 
 // If we're querying both
@@ -60,20 +58,22 @@ dcids_set.forEach((id) => {
 const categoryDependencies: [string, string][] = []
 
 class Base {
-    protected categoryDependencies: [string, string][] = categoryDependencies
-    protected dcids: Array<Dcid | TsDcid> = dcids
-    protected annotatedDimensions: Set<string> = annotatedDimensions
+  protected categoryDependencies: [string, string][] = categoryDependencies
+  protected dcids: Array<Dcid | TsDcid> = dcids
+  protected annotatedDimensions: Set<string> = annotatedDimensions
 }
 
 export class Query_values extends Base {
-    constructor() {
-	super()
-    }
-    query(...queries: Array<Query>): QueryResult {
-	return query2dcids(this.dcids,
-			   Categories,
-			   this.categoryDependencies,
-			   this.annotatedDimensions,
-			   ...queries)
-    }
+  constructor() {
+    super()
+  }
+  query(...queries: Array<Query>): QueryResult {
+    return query2dcids(
+      this.dcids,
+      Categories,
+      this.categoryDependencies,
+      this.annotatedDimensions,
+      ...queries
+    )
+  }
 }

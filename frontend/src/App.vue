@@ -21,10 +21,10 @@ body {
 }
 
 div#container {
-display:flex;
-flex-direction:column;
-width: 100vw;
-overflow-x:auto;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  overflow-x: auto;
 }
 </style>
 
@@ -36,7 +36,7 @@ export default {
     track() {
       this.$gtag.screenview({
         app_name: 'App',
-        screen_name: 'Main screen',
+        screen_name: 'Main screen'
       })
     }
   }
