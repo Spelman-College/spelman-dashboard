@@ -6,40 +6,43 @@ import { ref, onMounted } from 'vue'
 const sid = import.meta.env.VITE_ORGANIZATIONS_CONTENT_SHEET_ID
 
 const StoriesURI = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`
-const rows = ref([]);
+const rows = ref([])
 
 onMounted(() => {
-  const pout = getData(StoriesURI);
+  const pout = getData(StoriesURI)
   pout.then((data) => {
-	  rows.value = data;
-	 })
-});
-
+    rows.value = data
+  })
+})
 </script>
 
 <template>
   <h2>Changemaking Organizations</h2>
-  <p>Spotlighting organizations dedicated to the advancement of<br />
-    Black women in STEM</p>
+  <p>
+    Spotlighting organizations dedicated to the advancement of<br />
+    Black women in STEM
+  </p>
   <div id="outer">
     <img id="splash" src="/gettyimages-679531922-170667a.jpg" />
     <img id="dots" src="/dots.svg" />
     <div id="splash-text">
       <div id="splash-text-headnote">List of organizations</div>
       <div id="splash-text-header">Changemaking Organizations</div>
-      <div id="splash-text-body">These organizations are at the forefront of championing diversity, equity, and inclusion,
-        and they actively work to create opportunities, resources, and networks for Black women pursuing careers in STEM
-        disciplines.<br /><br />
+      <div id="splash-text-body">
+        These organizations are at the forefront of championing diversity, equity, and inclusion,
+        and they actively work to create opportunities, resources, and networks for Black women
+        pursuing careers in STEM disciplines.<br /><br />
 
-        By showcasing these organizations, the aim is to shed light on their impactful initiatives, inspire others to get
-        involved, and foster a more inclusive and diverse future in STEM.</div>
+        By showcasing these organizations, the aim is to shed light on their impactful initiatives,
+        inspire others to get involved, and foster a more inclusive and diverse future in STEM.
+      </div>
     </div>
   </div>
 
   <AccordionPanel v-for="org in rows" :key="org.name">
     <template #header>
       <div class="logo-container">
-        <img class="logo" :src="org.imgSrc">
+        <img class="logo" :src="org.imgSrc" />
       </div>
       <div>
         <div class="name">{{ org.name }}</div>

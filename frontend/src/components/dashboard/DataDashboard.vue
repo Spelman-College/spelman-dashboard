@@ -1,11 +1,10 @@
 <script setup lang="ts">
- import  Demo from './data/Demo.vue'
+import Demo from './data/Demo.vue'
 
- import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
- import '../../../node_modules/primeflex/primeflex.css'
+import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
+import '../../../node_modules/primeflex/primeflex.css'
 
- const props = defineProps(['dataset', 'view'])
-
+const props = defineProps(['dataset', 'view'])
 </script>
 
 <template>
@@ -15,5 +14,7 @@
             <p class="temp-title">This is a preset demo view.</p>
         </div>
     </div>
+  </div>
+</template>
 
 </template>

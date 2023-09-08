@@ -9,8 +9,7 @@ function onClick(event) {
   if (!panel.style.maxHeight) {
     panel.style.maxHeight = `${panel.scrollHeight}px`
     iconIsExpand.value = false
-  }
-  else {
+  } else {
     panel.style.maxHeight = null
     iconIsExpand.value = true
   }

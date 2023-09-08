@@ -1,5 +1,6 @@
 export const DCIDS_PCT: { [key: string]: string[] } = {
-  "2021": ['Percent_Male_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree',
+  '2021': [
+    'Percent_Male_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree',
     'Percent_Male_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
     'Percent_Male_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree',
     'Percent_Female_In_Count_Student_Science_Or_Engineering_Or_Health_MastersDegreeOrDoctorateDegree',
@@ -91,6 +92,6 @@ export const DCIDS_PCT: { [key: string]: string[] } = {
     'Percent_Female_Citizen_UnknownEthnicity_UnknownRace_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree',
     'Percent_Female_VisaHolder_UnknownEthnicity_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegreeOrDoctorateDegree',
     'Percent_Female_VisaHolder_UnknownEthnicity_In_Count_Student_ScienceOrEngineeringOrHealth_MastersDegree',
-    'Percent_Female_VisaHolder_UnknownEthnicity_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree',
+    'Percent_Female_VisaHolder_UnknownEthnicity_In_Count_Student_ScienceOrEngineeringOrHealth_DoctorateDegree'
   ]
 }

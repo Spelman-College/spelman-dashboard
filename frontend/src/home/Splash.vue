@@ -16,8 +16,8 @@ function goToData() {
         Futures
       </h1>
       <p>
-        Amplifying the stories and impact of Black women in STEM
-        through data, insights, and advocacy
+        Amplifying the stories and impact of Black women in STEM through data, insights, and
+        advocacy
       </p>
       <button @click="goToData">Visit the Data Dashboard</button>
     </div>

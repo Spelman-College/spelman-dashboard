@@ -1,4 +1,3 @@
-
 export const Female = 'Female'
 export const Male = 'Male'
 
@@ -8,14 +7,14 @@ export const age_65OrMoreYears = '65OrMoreYears'
 
 export const BachelorOfEducationMajor = 'BachelorOfEducationMajor'
 export const BachelorOfScienceAndEngineeringMajor = 'BachelorOfScienceAndEngineeringMajor'
-export const BachelorOfScienceAndEngineeringRelatedMajor = 'BachelorOfScienceAndEngineeringRelatedMajor'
+export const BachelorOfScienceAndEngineeringRelatedMajor =
+  'BachelorOfScienceAndEngineeringRelatedMajor'
 export const BachelorOfArtsHumanitiesAndOtherMajor = 'BachelorOfArtsHumanitiesAndOtherMajor'
 export const BachelorOfBusinessMajor = 'BachelorOfBusinessMajor'
 
-
 export const Dimension2Text = {}
-Dimension2Text[Male] = 'Men'
-Dimension2Text[Female] = 'Women'
+Dimension2Text[Male] = 'Male'
+Dimension2Text[Female] = 'Female'
 
 Dimension2Text[age_25To39Years] = '25 to 39'
 Dimension2Text[age_40To64Years] = '40 to 64'

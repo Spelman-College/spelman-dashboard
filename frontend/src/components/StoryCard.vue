@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, h, useSlots } from 'vue';
+import { computed, h, useSlots } from 'vue'
 
 const props = defineProps({
   imgSrc: String,
@@ -8,22 +8,33 @@ const props = defineProps({
 })
 
 const remWidth = computed(() => {
-  return `${props.width}rem`;
+  return `${props.width}rem`
 })
 const pWidth = computed(() => {
-  if (props.width !== undefined)
-    return `${+props.width - 4}rem`;
+  if (props.width !== undefined) return `${+props.width - 4}rem`
 })
 
 const slots = useSlots()
 const storyString = slots.story?.()[0].children
 const professionString = slots.profession?.()[0].children
-let professionStringLength = professionString?.length;
-let storyStringLength = storyString?.length;
+let professionStringLength = professionString?.length
+let storyStringLength = storyString?.length
 const maxStoryLength = 100
 const maxProfessionLength = 44
-const profession = () => h('p', {}, professionStringLength > maxProfessionLength ? `${professionString?.slice(0, maxProfessionLength)}...` : professionString)
-const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyString?.slice(0, maxStoryLength)}...` : storyString)
+const profession = () =>
+  h(
+    'p',
+    {},
+    professionStringLength > maxProfessionLength
+      ? `${professionString?.slice(0, maxProfessionLength)}...`
+      : professionString
+  )
+const story = () =>
+  h(
+    'p',
+    {},
+    storyStringLength > maxStoryLength ? `${storyString?.slice(0, maxStoryLength)}...` : storyString
+  )
 </script>
 <template>
   <Card>
@@ -32,17 +43,17 @@ const story = () => h('p', {}, storyStringLength > maxStoryLength ? `${storyStri
     </template>
     <template #title>
       <h1>
-        <slot name="name"></slot><br>
-        <profession style="color: #101115; font-size: 26px; font-family: 'Noto Sans Mono';"/>
+        <slot name="name"></slot><br />
+        <profession style="color: #101115; font-size: 26px; font-family: 'Noto Sans Mono'" />
       </h1>
     </template>
     <template #content>
       <p>
-        <story style="position:absolute; margin-bottom: 5.31;"/>
+        <story style="position: absolute; margin-bottom: 5.31" />
       </p>
     </template>
     <template #footer>
-      <div style="margin-top:2rem; margin-bottom: 2.81rem;">
+      <div style="margin-top: 2rem; margin-bottom: 2.81rem">
         <slot name="linkText"></slot>
       </div>
     </template>

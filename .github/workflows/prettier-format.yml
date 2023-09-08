@@ -8,6 +8,8 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,8 +21,10 @@ jobs:
           node-version: lts/*
       - name: Install packages
         run: npm ci
+        working-directory: ./frontend
       - name: Format files
         run: npm run format
+        working-directory: ./frontend
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
