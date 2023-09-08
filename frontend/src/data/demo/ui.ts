@@ -33,16 +33,19 @@ export const dashboardFilters = [
      {
 	 name: 'Gender',
 	 id: 'gender',
+     alias: dims.Dimension2Text,
 	 options: [...genderDomain]
      },
      {
 	 name: 'Age Group',
 	 id: 'age',
+     alias: dims.Dimension2Text,
 	 options: [...ageDomain],
      },
     {
 	 name: 'College Major',
 	 id: 'major',
+     alias: dims.Dimension2Text,
 	 options: [...majorDomain]
      }
  ]

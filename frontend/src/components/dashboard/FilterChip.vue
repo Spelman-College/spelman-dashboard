@@ -16,7 +16,12 @@ const props = defineProps({
     selected: {
         type: Array<string>,
         required: false
+    },
+    alias:{
+        type:Object as () => { [key: string]: string },
+        required: false
     }
+
 })
 
 const emit = defineEmits(['updateFilter'])
@@ -74,8 +79,9 @@ function search() {
 }
 
 function searchFilter(op: string) {
-    op = op.toLowerCase()
-    return searchString.value === '' || op.includes(searchString.value.toLowerCase())
+    let alias = mapOption(op)
+    alias = alias.toLowerCase()
+    return searchString.value === '' || alias.includes(searchString.value.toLowerCase())
 }
 //Text for the filter-chip to display
 const filterChipText = computed(() => {
@@ -85,12 +91,15 @@ const filterChipText = computed(() => {
   if (numSelected === totalOptions) {
     return 'All'; // Display 'All' when all of the options are selected
   } else if (numSelected === 1) {
-    return selected.value[0]; // Display the selected item when only one is selected
+    return mapOption(selected.value[0]); // Display the selected item when only one is selected
   } else {
     return `${numSelected} of ${totalOptions} selected`; // Display 'x of total selected' when multiple items are selected
   }
 });
-
+//takes option key and returns alias, ie "BachelorOfEducationMajor" => "Education"
+function mapOption(op: string){
+    return props.alias[op]
+}
 </script>
 
 <template>
@@ -123,7 +132,7 @@ const filterChipText = computed(() => {
                     <label class="chip-dropdown-checkbox">
                         <input type="checkbox" :id=option :value=option v-model=selected />
                         <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
-                        {{ option }}
+                        {{ mapOption(option) }}
                     </label>
                 </div>
             </div>
