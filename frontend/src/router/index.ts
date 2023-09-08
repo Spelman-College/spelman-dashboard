@@ -69,7 +69,7 @@ const router = createRouter({
     {
       path: '/data-dashboard',
       name: 'dataDashboard',
-      component: DataDashboardView,
+      redirect: '/data-dashboard/explore/default'
     },
     {
       path: '/data-dashboard/:view/:dataset',
