@@ -2,7 +2,7 @@
 import { ref, watchEffect } from 'vue'
 import * as Plot from '@observablehq/plot'
 import PlotFigure from './PlotFigure.vue'
-
+import CompareRadio from '../CompareRadio.vue'
 import FilterChip from '../FilterChip.vue'
 
 import { SeriesClient, BulkClient } from '../../../data/dc/client'
@@ -147,26 +147,18 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
     }
   }
 }
+
+ const changeCompare = (val: string) => {
+   compare.value = val
+ }
+
 </script>
 
 <template>
-  <div class="">
-    <div v-if="true" class="flex flex-wrap gap-3 filter-text">
-      <span class="filter-text">Compare</span>
-      <div class="flex align-items-center">
-        <RadioButton v-model="compare" inputId="genderRadio" name="gender" value="gender" />
-        <label for="genderRadio" class="ml-2">Gender</label>
-      </div>
-      <div class="flex align-items-center">
-        <RadioButton v-model="compare" inputId="ageRadio" name="age" value="age" />
-        <label for="ageRadio" class="ml-2">Age Group</label>
-      </div>
-      <div class="flex align-items-center">
-        <RadioButton v-model="compare" inputId="majorRadio" name="major" value="major" />
-        <label for="majorRadio" class="ml-2">College Major</label>
-      </div>
-    </div>
-  </div>
+  <CompareRadio
+  :options="[{id: 'gender', name: 'Gender'}, {id: 'age', name: 'Age Group'}, {id: 'major', name: 'College Major'}]"
+  @change-compare=changeCompare
+  />
   <div class="filters" :key="compare">
     <div class="filter-text">Filters</div>
     <FilterChip
@@ -255,12 +247,6 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
   margin: 1rem 0;
 }
 
-.filter-text {
-  color: #ffffff;
-  font-family: 'Noto Sans Mono';
-  font-size: 0.875rem;
-  font-weight: 700;
-}
 .data-dashboard-plot {
   color: black;
   border-radius: 8px;

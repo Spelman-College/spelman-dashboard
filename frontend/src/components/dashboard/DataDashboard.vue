@@ -15,3 +15,12 @@ const props = defineProps(['dataset', 'view'])
     </div>
   </div>
 </template>
+
+<style scoped>
+:deep(.filter-text) {
+  color: #ffffff;
+  font-family: 'Noto Sans Mono';
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+</style>
