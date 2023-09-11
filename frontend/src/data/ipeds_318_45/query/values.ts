@@ -1,7 +1,7 @@
-import type { CategoryType, DcidFilter } from  "../../queries/dcid"
-import { Dcid } from "../../queries/dcid"
-import type { QueryResult } from "../../queries/query"
-import { Query, query2dcids } from "../../queries/query"
+import type { CategoryType, DcidFilter } from '../../queries/dcid'
+import { Dcid } from '../../queries/dcid'
+import type { QueryResult } from '../../queries/query'
+import { Query, query2dcids } from '../../queries/query'
 import { DCIDS_VALUES } from '../dcids/values'
 import { Categories } from '../categories/values'
 
@@ -17,11 +17,10 @@ const filter: DcidFilter = {
   ]),
   additions: {
     // This represents the summary statistic for education.
-
   },
   fragment_additions: {
     // This fragment represents the summary statistic for education.
-    'EducationalAttainmentCollegeGraduate': ['education:']
+    EducationalAttainmentCollegeGraduate: ['education:']
   }
 } as DcidFilter
 

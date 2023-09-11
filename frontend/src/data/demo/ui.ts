@@ -49,5 +49,5 @@ export const dashboardFilters = [
 ]
 
 export async function download(client: DcClientBulk, filename: string): Promise<string> {
-    return downloadDataset(client, DCIDS, filename)
+  return downloadDataset(client, DCIDS, filename)
 }

@@ -60,7 +60,6 @@ export class QuerySet {
     categoryDependencies: [string, string][],
     ...queries: Query[]
   ) {
-
     this.queries = queries
     this.fullQueries = []
     this.fullCategories = new Set<string>()
@@ -71,7 +70,6 @@ export class QuerySet {
     this.annotatedDimensions = {}
 
     Object.keys(allCategories).forEach((cat) => {
-
       const dimensions: Set<string> = this.allCategories[cat] as Set<string>
       dimensions.forEach((dim) => {
         let annotated = this.annotatedDimensions[cat]
@@ -87,10 +85,14 @@ export class QuerySet {
     const remaining = new Set([...Object.keys(this.allCategories)])
     this.queries.forEach((q) => {
       remaining.delete(q.category)
-      const containsAllDimensions = setsUtil.setEqual(q.dimensions,
-                                                      this.annotatedDimensions[q.category]
+      const containsAllDimensions = setsUtil.setEqual(
+        q.dimensions,
+        this.annotatedDimensions[q.category]
       )
-      if (q.dimensions.size == 0 || (containsAllDimensions && this.allCategories[q.category].size != 1)) {
+      if (
+        q.dimensions.size == 0 ||
+        (containsAllDimensions && this.allCategories[q.category].size != 1)
+      ) {
         this.fullQueries.push(q)
         this.fullCategories.add(q.category)
         return
@@ -124,12 +126,11 @@ export class QuerySet {
       }
       // Does the target category include a query for partial dimensions?
       if (this.partialCategories.has(target)) {
-
         // Is the dependency being queried via a subset of all it's dimensions?
         if (this.partialCategories.has(dependency)) {
           // We can skip.
           return
-        };
+        }
         // The dependency is either missing or being assumed to query all dimensions.
 
         // We need to EXPLICITLY query all of the keys for the dependency.
@@ -149,7 +150,6 @@ export class QuerySet {
       // There are no subset dependents for this query category. Now let's
       // check if this query includes all dimensions for this category.
       if (this.fullCategories.has(q.category) && this.allCategories[q.category].size != 1) {
-
         // Add the generic key for all dimensions, this will prevent returning each
         // dimension in the category.
         const substitute = new Query(q.category, '')
@@ -168,9 +168,11 @@ export class QuerySet {
   }
 }
 
-export const validateQueries = (categories: CategoryType,
-                                annotatedDimensions: Set<string>,
-                                ...queries: Array<Query>): string => {
+export const validateQueries = (
+  categories: CategoryType,
+  annotatedDimensions: Set<string>,
+  ...queries: Array<Query>
+): string => {
   const catNames = new Set<string>()
   const includesAllDimensions = new Set<string>()
   try {
@@ -210,35 +212,37 @@ export const validateQueries = (categories: CategoryType,
   return ''
 }
 
-export const query2dcids = (dcids: Array<Dcid>,
-                            categories: CategoryType,
-                            categoryDependencies: [string, string][],
-			    annotatedDimensions: Set<string>,
-			    ...queries: Query[]): QueryResult => {
-			      const err = validateQueries(categories, annotatedDimensions, ...queries)
-			      if (err != '') {
-				return { error: err } as QueryResult
-			      }
-			      const qs = new QuerySet(categories, categoryDependencies, ...queries)
+export const query2dcids = (
+  dcids: Array<Dcid>,
+  categories: CategoryType,
+  categoryDependencies: [string, string][],
+  annotatedDimensions: Set<string>,
+  ...queries: Query[]
+): QueryResult => {
+  const err = validateQueries(categories, annotatedDimensions, ...queries)
+  if (err != '') {
+    return { error: err } as QueryResult
+  }
+  const qs = new QuerySet(categories, categoryDependencies, ...queries)
 
-                              const out = new Array<string>()
-                              qs.compile().forEach((queryDimensions) => {
-                                //console.log('queryDimensions', queryDimensions)
-                                dcids.forEach((dcid) => {
-                                  // console.log(dcid.dimensions)
-                                  const intersection = setsUtil.setIntersection(dcid.dimensions, queryDimensions)
-                                  //console.log('dcid.dimensions', dcid.dimensions)
-                                  //console.log('intersection', intersection)
-                                  //console.log('queryDimensions', queryDimensions)
+  const out = new Array<string>()
+  qs.compile().forEach((queryDimensions) => {
+    //console.log('queryDimensions', queryDimensions)
+    dcids.forEach((dcid) => {
+      // console.log(dcid.dimensions)
+      const intersection = setsUtil.setIntersection(dcid.dimensions, queryDimensions)
+      //console.log('dcid.dimensions', dcid.dimensions)
+      //console.log('intersection', intersection)
+      //console.log('queryDimensions', queryDimensions)
 
-                                  if (setsUtil.setEqual(queryDimensions, intersection)) {
-                                    out.push(dcid.dcid)
-                                  }
-                                })
-                              })
-                              //console.log('out', out)
-                              return { 'results': out } as QueryResult
-                            }
+      if (setsUtil.setEqual(queryDimensions, intersection)) {
+        out.push(dcid.dcid)
+      }
+    })
+  })
+  //console.log('out', out)
+  return { results: out } as QueryResult
+}
 
 // A QueryCompare accepts a category to compare, a Queryable class, and
 // a Map<string(a category dimension), Array<Query>> for plotting/comparing.

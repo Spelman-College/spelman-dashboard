@@ -1,11 +1,8 @@
 import * as dims from '../../queries/dimensions'
 
 export const Categories = {
-  'gender': new Set<string>([
-    dims.Male,
-    dims.Female,
-  ]),
-  'ethnicity': new Set<string>([
+  gender: new Set<string>([dims.Male, dims.Female]),
+  ethnicity: new Set<string>([
     dims.HispanicOrLatino,
     dims.AmericanIndianOrAlaskaNativeAlone,
     dims.Black,
@@ -20,7 +17,7 @@ export const Categories = {
     // Total for this category is reported, including this data.
     dims.NonUSResident
   ]),
-  'education': new Set<string>([
+  education: new Set<string>([
     dims.EducationalAttainment9ThTo12ThGradeNoDiploma,
     dims.EducationalAttainmentAssociatesDegree,
     dims.EducationalAttainmentBachelorsDegree,
@@ -28,6 +25,6 @@ export const Categories = {
     // filter it out and add the summary dimension `education:`.
     // dims.EducationalAttainmentCollegeGraduate,
     dims.EducationalAttainmentDoctorateDegree,
-    dims.EducationalAttainmentMastersDegree,
-  ]),
+    dims.EducationalAttainmentMastersDegree
+  ])
 }

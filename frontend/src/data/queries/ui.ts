@@ -12,13 +12,12 @@ export const datasets = [
   demoMeta,
   ipedsMeta,
   {
-    name: "Second Demo example",
-    source: "Fix Me!",
+    name: 'Second Demo example',
+    source: 'Fix Me!',
     variables: ['Gender', 'Age', 'Major'],
-    year: "2015 - 2019",
-    path: "demo-2"
-  },
-
+    year: '2015 - 2019',
+    path: 'demo-2'
+  }
 ]
 
 export const presets = [
@@ -76,7 +75,8 @@ export const queryDcidIntersection = (
 export const applyCompareQuery = (
   dataset: Queryable,
   compareCategory: string,
-  categoryMap: Map<string, Array<string>>): Map<string, Array<string>> => {
+  categoryMap: Map<string, Array<string>>
+): Map<string, Array<string>> => {
   const queryMap = expandCompares(compareCategory, categoryMap)
   const qc = new QueryCompare(compareCategory, dataset, queryMap)
   const err = qc.validate()
@@ -169,15 +169,19 @@ export const getVarsString = (vars: Array<string>, maxChars: number): string => 
   return joinedString
 }
 
-export async function downloadDataset(client: DcClientBulk, dcids: string[], filename: string): Promise<string> {
-    const res = await client.getTimeseries(dcids)
-    if (res === undefined) {
-	return 'error querying data commons'
-    }
-    const rows = blobs2Csv(res)
-    if (rows.error != undefined ) {
-	return `error formatting data: ${rows.error}`
-    }
-    await downloadCSV(rows.rows, filename)
-    return ''
+export async function downloadDataset(
+  client: DcClientBulk,
+  dcids: string[],
+  filename: string
+): Promise<string> {
+  const res = await client.getTimeseries(dcids)
+  if (res === undefined) {
+    return 'error querying data commons'
+  }
+  const rows = blobs2Csv(res)
+  if (rows.error != undefined) {
+    return `error formatting data: ${rows.error}`
+  }
+  await downloadCSV(rows.rows, filename)
+  return ''
 }

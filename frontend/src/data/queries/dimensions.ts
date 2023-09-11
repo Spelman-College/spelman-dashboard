@@ -28,7 +28,8 @@ Dimension2Text[BachelorOfScienceAndEngineeringRelatedMajor] = 'Science and Engin
 Dimension2Text[BachelorOfArtsHumanitiesAndOtherMajor] = 'Arts, Humanities and Other'
 Dimension2Text[BachelorOfBusinessMajor] = 'Business'
 
-export const EducationalAttainment9ThTo12ThGradeNoDiploma = 'EducationalAttainment9ThTo12ThGradeNoDiploma'
+export const EducationalAttainment9ThTo12ThGradeNoDiploma =
+  'EducationalAttainment9ThTo12ThGradeNoDiploma'
 export const EducationalAttainmentAssociatesDegree = 'EducationalAttainmentAssociatesDegree'
 export const EducationalAttainmentBachelorsDegree = 'EducationalAttainmentBachelorsDegree'
 // export const EducationalAttainmentCollegeGraduate = 'EducationalAttainmentCollegeGraduate'
@@ -43,12 +44,12 @@ Dimension2Text[EducationalAttainmentMastersDegree] = 'Master Degree'
 // Used in
 // - ipeds_318_45
 export const EDUCATIONAL_ATTAINMENT = [
-    EducationalAttainment9ThTo12ThGradeNoDiploma,
-    EducationalAttainmentAssociatesDegree,
-    EducationalAttainmentBachelorsDegree,
-//    EducationalAttainmentCollegeGraduate,
-    EducationalAttainmentDoctorateDegree,
-    EducationalAttainmentMastersDegree
+  EducationalAttainment9ThTo12ThGradeNoDiploma,
+  EducationalAttainmentAssociatesDegree,
+  EducationalAttainmentBachelorsDegree,
+  //    EducationalAttainmentCollegeGraduate,
+  EducationalAttainmentDoctorateDegree,
+  EducationalAttainmentMastersDegree
 ]
 
 // Ethnicity/Race

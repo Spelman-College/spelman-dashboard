@@ -1,33 +1,38 @@
 import { describe, expect, test } from '@jest/globals'
 import { Query_values } from './values'
 import { Query } from '../../queries/query'
-import  * as d  from '../../queries/dimensions'
+import * as d from '../../queries/dimensions'
 
 const ipeds: Query_values = new Query_values()
 
 const male = new Query('gender', d.Male)
 const all_genders = new Query('gender', d.Male, d.Female)
-const all_ethnicities = new Query('ethnicity',
-                                  d.AmericanIndianOrAlaskaNativeAlone,
-                                  d.Asian,
-                                  d.Black,
-                                  d.HispanicOrLatino,
-                                  d.HawaiianNativeOrPacificIslander,
-                                  d.TwoOrMoreRaces,
-                                  d.WhiteAlone,
-                                  d.NonUSResident,
-                                 )
-const all_edu = new Query('education',
-                          d.EducationalAttainment9ThTo12ThGradeNoDiploma,
-                          d.EducationalAttainmentAssociatesDegree,
-                          d.EducationalAttainmentBachelorsDegree,
-                          d.EducationalAttainmentDoctorateDegree,
-                          d.EducationalAttainmentMastersDegree,
-                         )
+const all_ethnicities = new Query(
+  'ethnicity',
+  d.AmericanIndianOrAlaskaNativeAlone,
+  d.Asian,
+  d.Black,
+  d.HispanicOrLatino,
+  d.HawaiianNativeOrPacificIslander,
+  d.TwoOrMoreRaces,
+  d.WhiteAlone,
+  d.NonUSResident
+)
+const all_edu = new Query(
+  'education',
+  d.EducationalAttainment9ThTo12ThGradeNoDiploma,
+  d.EducationalAttainmentAssociatesDegree,
+  d.EducationalAttainmentBachelorsDegree,
+  d.EducationalAttainmentDoctorateDegree,
+  d.EducationalAttainmentMastersDegree
+)
 const hispanic = new Query('ethnicity', d.HispanicOrLatino)
 const associates_degree = new Query('education', d.EducationalAttainmentAssociatesDegree)
-const grad = new Query('education', d.EducationalAttainmentDoctorateDegree,
-                       d.EducationalAttainmentMastersDegree)
+const grad = new Query(
+  'education',
+  d.EducationalAttainmentDoctorateDegree,
+  d.EducationalAttainmentMastersDegree
+)
 
 const highschool = new Query('education', d.EducationalAttainment9ThTo12ThGradeNoDiploma)
 describe('ipeds_318_45 query single dimenions that are not reported alone', () => {
@@ -73,20 +78,20 @@ describe('ipeds_318_45 query pairs of dimensions', () => {
   test('query highschool no diploma and hispanic', () => {
     const out = ipeds.query(highschool, hispanic)
     expect(out.results).toEqual([
-      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainment9ThTo12ThGradeNoDiploma_HispanicOrLatino',
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainment9ThTo12ThGradeNoDiploma_HispanicOrLatino'
     ])
   })
   test('query gender and associates degree', () => {
     const out = ipeds.query(associates_degree, male)
     expect(out.results).toEqual([
-      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentAssociatesDegree_Male',
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentAssociatesDegree_Male'
     ])
   })
 
   test('query ethnicity and associates degree', () => {
     const out = ipeds.query(associates_degree, hispanic)
     expect(out.results).toEqual([
-      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentAssociatesDegree_HispanicOrLatino',
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentAssociatesDegree_HispanicOrLatino'
     ])
   })
 

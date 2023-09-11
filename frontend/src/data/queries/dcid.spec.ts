@@ -1,24 +1,16 @@
 import { describe, expect, test } from '@jest/globals'
-import {
-  Dcid,
-  DcidFilter,
-} from './dcid.ts'
-
-
+import { Dcid, DcidFilter } from './dcid.ts'
 
 describe('Dcid', () => {
-
-
-
   test('constructor', () => {
     const dcidOne = 'ignore_this_dimOne_dimTwo_dimThree'
     const dim2CatOne = {
-      'dimOne': 'fancy',
-      'dimTwo': 'fancy',
-      'dimThree': 'regular'
+      dimOne: 'fancy',
+      dimTwo: 'fancy',
+      dimThree: 'regular'
     }
     const filterOne = {
-      ignorePrefix: 'ignore_this',
+      ignorePrefix: 'ignore_this'
     } as DcidFilter
 
     const dcid = new Dcid(dcidOne, filterOne, dim2CatOne)
@@ -34,14 +26,14 @@ describe('Dcid', () => {
   test('fragment_additions', () => {
     const dcidTwo = 'dimOne_dimTwo_summaryStatFour'
     const dim2CatTwo = {
-      'dimOne': 'fancy',
-      'dimTwo': 'fancy',
-      'dimThree': 'regular' // This exists for illustration only.
+      dimOne: 'fancy',
+      dimTwo: 'fancy',
+      dimThree: 'regular' // This exists for illustration only.
     }
     const filterTwo = {
       omitDimensions: new Set(['summaryStatFour']),
       fragmentAdditions: {
-        'summaryStatFour': ['regular:']
+        summaryStatFour: ['regular:']
       }
     } as DcidFilter
     const dcid = new Dcid(dcidTwo, filterTwo, dim2CatTwo)
@@ -51,6 +43,5 @@ describe('Dcid', () => {
     expect(dcid.dimensions.has('fancy:dimOne')).toEqual(true)
     expect(dcid.dimensions.has('fancy:dimTwo')).toEqual(true)
     expect(dcid.dimensions.has('regular:')).toEqual(true)
-
   })
 })
