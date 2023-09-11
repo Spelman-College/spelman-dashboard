@@ -148,16 +148,19 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
   }
 }
 
- const changeCompare = (val: string) => {
-   compare.value = val
- }
-
+const changeCompare = (val: string) => {
+  compare.value = val
+}
 </script>
 
 <template>
   <CompareRadio
-  :options="[{id: 'gender', name: 'Gender'}, {id: 'age', name: 'Age Group'}, {id: 'major', name: 'College Major'}]"
-  @change-compare=changeCompare
+    :options="[
+      { id: 'gender', name: 'Gender' },
+      { id: 'age', name: 'Age Group' },
+      { id: 'major', name: 'College Major' }
+    ]"
+    @change-compare="changeCompare"
   />
   <div class="filters" :key="compare">
     <div class="filter-text">Filters</div>
