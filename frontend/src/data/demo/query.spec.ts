@@ -1,22 +1,23 @@
 import { describe, expect, test } from '@jest/globals'
 import { Query_demo } from './query'
 import { Query } from '../queries/query'
+import * as d from '../queries/dimensions'
 
 const demo = new Query_demo()
 
-const female = new Query('gender', 'Female')
-const male = new Query('gender', 'Male')
-const male_female = new Query('gender', 'Male', 'Female')
+const female = new Query('gender', d.Female)
+const male = new Query('gender', d.Male)
+const male_female = new Query('gender', d.Male, d.Female)
 
-const twenty_to_39 = new Query('age', '25To39Years')
+const twenty_to_39 = new Query('age', d.age_25To39Years)
 const all_majors = new Query(
   'major',
-  'BachelorOfEducationMajor',
-  'BachelorOfScienceAndEngineeringMajor',
-  'BachelorOfArtsHumanitiesAndOtherMajor',
-  'BachelorOfBusinessMajor'
+  d.BachelorOfEducationMajor,
+  d.BachelorOfScienceAndEngineeringMajor,
+  d.BachelorOfArtsHumanitiesAndOtherMajor,
+  d.BachelorOfBusinessMajor
 )
-const education = new Query('major', 'BachelorOfEducationMajor')
+const education = new Query('major', d.BachelorOfEducationMajor)
 describe('demo query', () => {
   test('test dependency', () => {
     let out = demo.query(female, twenty_to_39)
