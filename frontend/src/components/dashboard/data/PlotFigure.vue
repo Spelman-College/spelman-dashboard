@@ -75,12 +75,12 @@ function getPlotOptions(plotType, data) {
 }
 
 const oDefaultConfig = getPlotOptions(plotType, data);
-const plotHTML = ref(Plot.plot(oDefaultConfig).outerHTML);
+const plotHTML = ref(Plot.plot({...oDefaultConfig, width: 1000}).outerHTML);
 
  // get plot options for the current plot type
  watch(plotType, (newPlotType) => {
       const oConfig = getPlotOptions(newPlotType, data);
-      plotHTML.value = Plot.plot(oConfig).outerHTML;
+      plotHTML.value = Plot.plot({...oConfig, width: 1000}).outerHTML;
 
     });
 
