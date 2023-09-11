@@ -54,7 +54,7 @@ export async function download(client: DcClientBulk, filename: string): Promise<
 }
 
 export const compareOptions = [
-      { id: 'gender', name: 'Gender' },
-      { id: 'race', name: 'Race/Ethnicity' },
-      { id: 'education', name: 'Educational Attainment' }
-    ]
+  { id: 'gender', name: 'Gender' },
+  { id: 'race', name: 'Race/Ethnicity' },
+  { id: 'education', name: 'Educational Attainment' }
+]

@@ -15,8 +15,8 @@ import {
   datasetMeta,
   dashboardFilters,
   download as ipedsDownload,
-   datasetDownloadFilename,
-   compareOptions
+  datasetDownloadFilename,
+  compareOptions
 } from '../../../data/ipeds_318_45/ui/values'
 import { Query_values } from '../../../data/ipeds_318_45/query/values'
 
@@ -146,17 +146,15 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       break
     }
   }
- }
+}
 
- const changeCompare = (val: string) => {
+const changeCompare = (val: string) => {
   compare.value = val
 }
 </script>
 
 <template>
-  <CompareRadio :options="compareOptions"
-    @change-compare="changeCompare"
-  />
+  <CompareRadio :options="compareOptions" @change-compare="changeCompare" />
   <div class="filters" :key="compare">
     <div class="filter-text">Filters</div>
     <FilterChip

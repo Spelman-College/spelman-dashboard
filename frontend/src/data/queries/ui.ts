@@ -190,8 +190,6 @@ export async function downloadDataset(
   return ''
 }
 
-
-
 // Used to test UI loading elements
 const delay = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms))

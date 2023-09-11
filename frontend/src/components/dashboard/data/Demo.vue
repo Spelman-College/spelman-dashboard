@@ -155,10 +155,7 @@ const changeCompare = (val: string) => {
 </script>
 
 <template>
-  <CompareRadio
-    :options="compareOptions"
-    @change-compare="changeCompare"
-  />
+  <CompareRadio :options="compareOptions" @change-compare="changeCompare" />
   <div class="filters" :key="compare">
     <div class="filter-text">Filters</div>
     <FilterChip
@@ -173,7 +170,12 @@ const changeCompare = (val: string) => {
   </div>
 
   <div class="data-dashboard-plot">
-    <PlotHeader v-if="tableItems.length > 0" :downloadFunc="download" :loading="loading_download" :title="datasetMeta.name" />
+    <PlotHeader
+      v-if="tableItems.length > 0"
+      :downloadFunc="download"
+      :loading="loading_download"
+      :title="datasetMeta.name"
+    />
 
     <!-- <div>{{  }}</div> -->
     <div v-if="true" class="plot">
