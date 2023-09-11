@@ -1,8 +1,7 @@
 import * as dims from '../../queries/dimensions'
 import { dcids_set } from '../query/values'
 import type { DcClientBulk } from '../../dc/client'
-import { blobs2Csv } from '../../dc/client'
-import { downloadCSV } from '../../dc/download'
+import { downloadDataset } from '../../queries/ui'
 
 export const datasetDownloadFilename =
   'Distribution_STEM_degrees_certificates_postsecondary_institutions_race_ethnicity_degree_certificate_sex_2011-12_thru_2020-21'
@@ -53,3 +52,9 @@ export const dashboardFilters = [
 export async function download(client: DcClientBulk, filename: string): Promise<string> {
   return downloadDataset(client, dcids_set, filename)
 }
+
+export const compareOptions = [
+  { id: 'gender', name: 'Gender' },
+  { id: 'race', name: 'Race/Ethnicity' },
+  { id: 'education', name: 'Educational Attainment' }
+]
