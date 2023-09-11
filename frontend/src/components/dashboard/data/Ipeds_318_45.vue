@@ -2,8 +2,9 @@
 import { ref, watchEffect } from 'vue'
 import * as Plot from '@observablehq/plot'
 import PlotFigure from './PlotFigure.vue'
-
+import PlotHeader from '../PlotHeader.vue'
 import FilterChip from '../FilterChip.vue'
+import CompareRadio from '../CompareRadio.vue'
 
 import { SeriesClient, BulkClient } from '../../../data/dc/client'
 
@@ -14,7 +15,8 @@ import {
   datasetMeta,
   dashboardFilters,
   download as ipedsDownload,
-  datasetDownloadFilename
+   datasetDownloadFilename,
+   compareOptions
 } from '../../../data/ipeds_318_45/ui/values'
 import { Query_values } from '../../../data/ipeds_318_45/query/values'
 
@@ -48,7 +50,7 @@ const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
 
-async function download(items: Array<Map>) {
+async function download() {
   loading_download.value = true
 
   const err = await ipedsDownload(bulkClient, datasetDownloadFilename)
@@ -144,27 +146,17 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       break
     }
   }
+ }
+
+ const changeCompare = (val: string) => {
+  compare.value = val
 }
 </script>
 
 <template>
-  <div class="">
-    <div v-if="true" class="flex flex-wrap gap-3 filter-text">
-      <span class="filter-text">Compare</span>
-      <div class="flex align-items-center">
-        <RadioButton v-model="compare" inputId="genderRadio" name="gender" value="gender" />
-        <label for="genderRadio" class="ml-2">Gender</label>
-      </div>
-      <div class="flex align-items-center">
-        <RadioButton v-model="compare" inputId="raceRadio" name="race" value="race" />
-        <label for="raceRadio" class="ml-2">Ethnicity/Race</label>
-      </div>
-      <div class="flex align-items-center">
-        <RadioButton v-model="compare" inputId="majorRadio" name="education" value="education" />
-        <label for="majorRadio" class="ml-2">Educational Attainment</label>
-      </div>
-    </div>
-  </div>
+  <CompareRadio :options="compareOptions"
+    @change-compare="changeCompare"
+  />
   <div class="filters" :key="compare">
     <div class="filter-text">Filters</div>
     <FilterChip
@@ -178,19 +170,14 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
     >
   </div>
 
-  <div class="data-dashboard-plot">
-    <Button
-      v-if="tableItems.length > 0"
-      label="Download CSV"
-      @click="download(tableItems)"
-      :loading="loading_download"
-    />
-  </div>
-  <div class="data-dashboard">
-    <div class="title">
-      {{ datasetMeta.name }}
-    </div>
+  <PlotHeader
+    v-if="tableItems.length > 0"
+    :downloadFunc="download"
+    :loading="loading_download"
+    :title="datasetMeta.name"
+  />
 
+  <div class="data-dashboard">
     <div v-if="true" class="plot">
       <PlotFigure
         v-if="tableItems.length > 0"

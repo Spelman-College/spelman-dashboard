@@ -18,7 +18,6 @@ const props = defineProps({
 // Select the first option.
 const compare = ref(props.options[0].id)
 watch(compare, () => {
-  console.log('changeCompare', compare.value)
   emit('changeCompare', compare.value)
 })
 </script>

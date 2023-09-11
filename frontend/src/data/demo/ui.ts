@@ -3,7 +3,6 @@ import { downloadDataset } from '../../data/queries/ui'
 import { DCIDS } from './dcids'
 import type { DcClientBulk } from '../dc/client'
 import { blobs2Csv } from '../dc/client'
-import { downloadCSV } from '../dc/download'
 
 export const datasetDownloadFilename =
   'Field_of_bachelors_degree_for_first_major_American_Community_Survey_2019'
@@ -51,3 +50,9 @@ export const dashboardFilters = [
 export async function download(client: DcClientBulk, filename: string): Promise<string> {
   return downloadDataset(client, DCIDS, filename)
 }
+
+export const compareOptions = [
+      { id: 'gender', name: 'Gender' },
+      { id: 'age', name: 'Age Group' },
+      { id: 'major', name: 'College Major' }
+    ]
