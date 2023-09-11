@@ -50,6 +50,8 @@ const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
 
+const plotType = ref('bar')
+
 async function download(items: Array<Map>) {
   loading_download.value = true
 
@@ -151,6 +153,9 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 const changeCompare = (val: string) => {
   compare.value = val
 }
+const updatePlotType = (newPlotType: string) => {
+  plotType.value = newPlotType
+}
 </script>
 
 <template>
@@ -183,9 +188,26 @@ const changeCompare = (val: string) => {
     <div class="data-type-and-download-container">
       <div class="plot-text choose-data-type">
         <div class="data-type-text">Data type</div>
-        <div class="plot-button choose-bar"><span class="material-icons">bar_chart</span></div>
-        <div class="plot-button choose-line"><span class="material-icons">timeline</span></div>
-        <div class="plot-button choose-pie"><span class="material-icons">pie_chart</span></div>
+        <div
+          @click="updatePlotType('bar')"
+          class="plot-button choose-bar"
+          :class="{ active: plotType === 'bar' }"
+        >
+          <span class="material-icons">bar_chart</span>
+        </div>
+        <div
+          @click="updatePlotType('line')"
+          class="plot-button choose-line"
+          :class="{ active: plotType === 'line' }"
+        >
+          <span class="material-icons">timeline</span>
+        </div>
+        <div
+          class="plot-button unavailable choose-pie"
+          :class="{ active: plotType === 'pie' }"
+        >
+          <span class="material-icons">pie_chart_outline</span>
+        </div>
       </div>
       <div class="csv-download-container">
         <div class="plot-text">Download data</div>
@@ -200,40 +222,14 @@ const changeCompare = (val: string) => {
         </div>
       </div>
     </div>
-    <!-- <div>{{ datasetMeta.name }}</div> -->
+<!-- <div>{{ datasetMeta.name }}</div> -->
     <div v-if="true" class="plot">
       <PlotFigure
         v-if="tableItems.length > 0"
-        :options="{
-          x: {
-            axis: null,
-            tickFormat: '',
-            type: 'band'
-          },
-          y: {
-            tickFormat: 's',
-            grid: true
-          },
-          fx: {
-            label: null
-          },
-          color: {
-            domain: colorDomain,
-            legend: true
-          },
-          marks: [
-            Plot.barY(tableItems, {
-              x: 'key',
-              y: 'value',
-              fx: 'date',
-              fill: 'key',
-              sort: {
-                x: null
-              }
-            }),
-            Plot.ruleY([0])
-          ]
-        }"
+        :plotType="plotType"
+        :datasetMetaName="datasetMeta.name"
+        :tableItems="tableItems"
+        :colorDomain="colorDomain"
       >
       </PlotFigure>
     </div>
@@ -250,6 +246,12 @@ const changeCompare = (val: string) => {
   margin: 1rem 0;
 }
 
+.filter-text {
+  color: #ffffff;
+  font-family: 'Noto Sans Mono';
+  font-size: 0.875rem;
+  font-weight: 700;
+}
 .data-dashboard-plot {
   color: black;
   border-radius: 8px;
@@ -280,7 +282,7 @@ const changeCompare = (val: string) => {
 }
 .csv {
   color: #1a73e8;
-  font-family: Google Sans Mono;
+  font-family: Noto Sans Mono;
   font-size: 12px;
 }
 .csv-download-container {
@@ -304,7 +306,14 @@ const changeCompare = (val: string) => {
   gap: 8px;
   border-radius: 4px;
   border: 1px solid #bdc1c6;
+}
+
+.plot-button.active {
   background: #ececec;
+}
+.plot-button.unavailable{
+  color: #bdc1c6;
+  border: 1px solid #ececec;
 }
 .plot-text {
   font-family: 'Noto Sans Mono';
