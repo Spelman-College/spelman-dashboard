@@ -163,6 +163,7 @@ export class QuerySet {
 
   compile(): Array<Set<string>> {
     const dimensions = this.selectQueryDimensions()
+    // console.log('dimensions', dimensions)
     return setsUtil.setsProduct(...dimensions)
   }
 }
@@ -216,7 +217,7 @@ export const query2dcids = (
   categories: CategoryType,
   categoryDependencies: [string, string][],
   annotatedDimensions: Set<string>,
-  ...queries: Array<Query>
+  ...queries: Query[]
 ): QueryResult => {
   const err = validateQueries(categories, annotatedDimensions, ...queries)
   if (err != '') {
@@ -226,13 +227,20 @@ export const query2dcids = (
 
   const out = new Array<string>()
   qs.compile().forEach((queryDimensions) => {
+    //console.log('queryDimensions', queryDimensions)
     dcids.forEach((dcid) => {
+      // console.log(dcid.dimensions)
       const intersection = setsUtil.setIntersection(dcid.dimensions, queryDimensions)
+      //console.log('dcid.dimensions', dcid.dimensions)
+      //console.log('intersection', intersection)
+      //console.log('queryDimensions', queryDimensions)
+
       if (setsUtil.setEqual(queryDimensions, intersection)) {
         out.push(dcid.dcid)
       }
     })
   })
+  //console.log('out', out)
   return { results: out } as QueryResult
 }
 
@@ -254,7 +262,6 @@ export class QueryCompare {
     this.queries = queries
     this.category = category
     this.queryable = queryable
-
     if (this.queryable.categories()[category] === undefined) {
       throw new Error(`category missing from queries: ${category}`)
     }

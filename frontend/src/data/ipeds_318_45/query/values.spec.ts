@@ -1,42 +1,61 @@
 import { describe, expect, test } from '@jest/globals'
 import { Query_values } from './values'
 import { Query } from '../../queries/query'
+import * as d from '../../queries/dimensions'
 
 const ipeds: Query_values = new Query_values()
 
-const male = new Query('gender', 'Male')
-const all_genders = new Query('gender', 'Male', 'Female')
+const male = new Query('gender', d.Male)
+const all_genders = new Query('gender', d.Male, d.Female)
 const all_ethnicities = new Query(
   'ethnicity',
-  'AmericanIndianOrAlaskaNativeAlone',
-  'Asian',
-  'Black',
-  'HispanicOrLatino',
-  'HawaiianNativeOrPacificIslander',
-  'TwoOrMoreRaces',
-  'WhiteAlone',
-  'NonUSResident'
+  d.AmericanIndianOrAlaskaNativeAlone,
+  d.Asian,
+  d.Black,
+  d.HispanicOrLatino,
+  d.HawaiianNativeOrPacificIslander,
+  d.TwoOrMoreRaces,
+  d.WhiteAlone,
+  d.NonUSResident
 )
-
-const hispanic = new Query('ethnicity', 'HispanicOrLatino')
-const associates_degree = new Query('education', 'EducationalAttainmentAssociatesDegree')
+const all_edu = new Query(
+  'education',
+  d.EducationalAttainment9ThTo12ThGradeNoDiploma,
+  d.EducationalAttainmentAssociatesDegree,
+  d.EducationalAttainmentBachelorsDegree,
+  d.EducationalAttainmentDoctorateDegree,
+  d.EducationalAttainmentMastersDegree
+)
+const hispanic = new Query('ethnicity', d.HispanicOrLatino)
+const associates_degree = new Query('education', d.EducationalAttainmentAssociatesDegree)
 const grad = new Query(
   'education',
-  'EducationalAttainmentDoctorateDegree',
-  'EducationalAttainmentMastersDegree'
+  d.EducationalAttainmentDoctorateDegree,
+  d.EducationalAttainmentMastersDegree
 )
 
-const highschool = new Query('education', 'EducationalAttainment9ThTo12ThGradeNoDiploma')
-
+const highschool = new Query('education', d.EducationalAttainment9ThTo12ThGradeNoDiploma)
+describe('ipeds_318_45 query single dimenions that are not reported alone', () => {
+  test('query gender and explicit everything', () => {
+    const out = ipeds.query(male, all_ethnicities, all_edu)
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_Male'
+    ])
+  })
+})
 describe('ipeds_318_45 query single dimenions that are not reported alone', () => {
   test('query single category gender', () => {
     const out = ipeds.query(male)
-    expect(out.results).toEqual([])
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_Male'
+    ])
   })
 
   test('query single category ethnicity', () => {
     const out = ipeds.query(hispanic)
-    expect(out.results).toEqual([])
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_HispanicOrLatino'
+    ])
   })
 })
 describe('ipeds_318_45 query single dimension that is expected to return a value', () => {
@@ -78,7 +97,23 @@ describe('ipeds_318_45 query pairs of dimensions', () => {
 
   test('query ethnicity and gender alone returns no values', () => {
     const out = ipeds.query(hispanic, male)
-    expect(out.results).toEqual([])
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_HispanicOrLatino_Male'
+    ])
+  })
+
+  test('query ethnicity and associates degree', () => {
+    const out = ipeds.query(associates_degree, hispanic)
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentAssociatesDegree_HispanicOrLatino'
+    ])
+  })
+
+  test('query ethnicity and gender alone returns summary statistic', () => {
+    const out = ipeds.query(hispanic, male)
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_HispanicOrLatino_Male'
+    ])
   })
 })
 

@@ -22,7 +22,7 @@ const props = defineProps({
     required: true
   },
   filterName: {
-    type: Array<string>,
+    type: String,
     required: true
   }
 })

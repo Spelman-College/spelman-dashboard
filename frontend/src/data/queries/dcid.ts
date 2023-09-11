@@ -8,6 +8,13 @@ export type DcidFilter = {
 
   // This is a mapping of DCID to an array of dimensions in the form of `${category}:${dimension}`.
   additions: { [key: string]: Array<string> }
+
+  // This is a mapping of dimension to an array of category dimensions
+  // in the form of `${category}:${dimension}`. The use case is when a dimension explicitly
+  // represents a summary statistic. Often a DCID summary statistic omits all dimensions from a
+  // category; some DCIDs include an explicit summary dimension- in this case, we ignore it
+  // as a dimension and add the (empty)summary dimension for a category, which is `<category>:`.
+  fragment_additions: { [key: string]: Array<string> }
 }
 
 export class DataCommonsIdentifier {
@@ -29,21 +36,34 @@ export class Dcid extends DataCommonsIdentifier {
     super(dcid, filter, dim2cat)
 
     let key = this.dcid
-    if (this.filter.ignorePrefix != '' && key.startsWith(this.filter.ignorePrefix)) {
+    if (
+      this.filter.ignorePrefix !== undefined &&
+      this.filter.ignorePrefix != '' &&
+      key.startsWith(this.filter.ignorePrefix)
+    ) {
       key = key.slice(this.filter.ignorePrefix.length)
     }
     if (key.startsWith('_')) {
       key = key.slice(1)
     }
-
     const sdims = key.split('_')
     const unUsedCats = new Set<string>(Object.values(this.dim2cat))
 
     sdims.forEach((dim) => {
+      if (this.filter.fragment_additions !== undefined) {
+        const additions = this.filter.fragment_additions[dim]
+        if (additions !== undefined) {
+          additions.forEach((_dim) => {
+            this.dimensions.add(_dim)
+            const unused = _dim.split(':')
+            unUsedCats.delete(unused[0])
+          })
+        }
+      }
       if (dim == '') {
         return
       }
-      if (this.filter.omitDimensions.has(dim)) {
+      if (this.filter.omitDimensions !== undefined && this.filter.omitDimensions.has(dim)) {
         return
       }
 

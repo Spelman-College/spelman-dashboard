@@ -1,12 +1,16 @@
+import type { DcClientBulk } from '../dc/client'
 import type Queryable from './query'
 import { Query, expandCompares, QueryCompare } from './query'
 
 import { formatPlot } from './plotting'
 import type DcClient from '../dc/client'
 
-import { datasetMeta as demoMeta } from '../../data/demo/ui'
+import { datasetMeta as demoMeta } from '../demo/ui'
+import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
+
 export const datasets = [
   demoMeta,
+  ipedsMeta,
   {
     name: 'Second Demo example',
     source: 'Fix Me!',
@@ -72,7 +76,7 @@ export const applyCompareQuery = (
   dataset: Queryable,
   compareCategory: string,
   categoryMap: Map<string, Array<string>>
-): Array<Array<string>> => {
+): Map<string, Array<string>> => {
   const queryMap = expandCompares(compareCategory, categoryMap)
   const qc = new QueryCompare(compareCategory, dataset, queryMap)
   const err = qc.validate()
@@ -163,4 +167,21 @@ export const getVarsString = (vars: Array<string>, maxChars: number): string => 
   if (countRemoved !== 0) joinedString += `, +${countRemoved} more`
 
   return joinedString
+}
+
+export async function downloadDataset(
+  client: DcClientBulk,
+  dcids: string[],
+  filename: string
+): Promise<string> {
+  const res = await client.getTimeseries(dcids)
+  if (res === undefined) {
+    return 'error querying data commons'
+  }
+  const rows = blobs2Csv(res)
+  if (rows.error != undefined) {
+    return `error formatting data: ${rows.error}`
+  }
+  await downloadCSV(rows.rows, filename)
+  return ''
 }
