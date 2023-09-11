@@ -5,12 +5,10 @@ const props = defineProps({
 </script>
 <template>
   <div id="explore-card">
-    <div class="circle">
-      <img :src="imgSrc" />
-    </div>
-    <h1>
+
+  
       <slot name="header"></slot>
-    </h1>
+ 
     <div class="body">
       <slot name="text"></slot>
     </div>
@@ -32,16 +30,6 @@ const props = defineProps({
   padding: 2rem;
   width: 26.75rem;
   height: 40.6875rem;
-}
-
-#explore-card .circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 7.3125rem;
-  height: 7.3125rem;
-  border-radius: 50%;
-  background: #ffffff;
 }
 
 #explore-card h1 {

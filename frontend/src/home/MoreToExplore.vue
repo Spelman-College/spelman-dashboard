@@ -3,21 +3,18 @@ import ExploreCard from '@/components/ExploreCard.vue'
 
 const cards = [
   {
-    imgSrc: "/data_dashboard_icon.svg",
-    header: "Data Dashboard",
-    text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
-    link: "Explore data dashboard"
-  },
-  {
-    imgSrc: "/articles_icon.svg",
+    imgSrc: "/spelman_google_illustrations_articles_mobile_blue_bg.png",
     header: "Articles",
-    text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
     link: "Read articles"
   },
   {
-    imgSrc: "/news_icon.svg",
+    imgSrc: "/spelman_google_illustrations_data_dashboard_blue_bg.png",
+    header: "Data Dashboard",
+    link: "Explore data dashboard"
+  },
+  {
+    imgSrc: "/spelman_google_illustrations_spelman_woman_news_blue_bg.png",
     header: "News",
-    text: "See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format",
     link: "Get the latest news"
   }
 ]
@@ -29,10 +26,7 @@ const cards = [
   <div class="explore-cards">
     <ExploreCard v-for="card in cards" :v-key="card.header" :imgSrc="card.imgSrc">
       <template #header>
-        {{ card.header }}
-      </template>
-      <template #text>
-        {{ card.text }}
+          <img :src="card.imgSrc" />
       </template>
       <template #link>
         {{ card.link }}
