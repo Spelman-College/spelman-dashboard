@@ -2,10 +2,10 @@ export const Categories = {
   gender: new Set<string>(['Male', 'Female']),
   ethnicity: new Set<string>([
     'HispanicOrLatino',
-    'OtherPacificIslander',
+    'NativeHawaiianOrOtherPacificIslanderAlone',
     'AmericanIndianOrAlaskaNative',
     'Asian',
-    'Black',
+    'BlackOrAfricanAmericanAlone',
     'TwoOrMoreRaces',
     'WhiteAlone'
   ]),
