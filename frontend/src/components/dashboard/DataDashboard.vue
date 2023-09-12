@@ -73,7 +73,7 @@ const props = defineProps(['dataset', 'view'])
 }
 :deep(.csv) {
   color: #1a73e8;
-  font-family: Google Sans Mono;
+  font-family: Noto Sans Mono;
   font-size: 12px;
 }
 :deep(.csv-download-container) {
@@ -99,6 +99,12 @@ const props = defineProps(['dataset', 'view'])
   border: 1px solid #bdc1c6;
   background: #ececec;
 }
+:deep(.plot-button.unavailable) {
+  background: white;
+  color: #bdc1c6;
+  border: 1px solid #ececec;
+}
+
 :deep(.plot-text) {
   font-family: 'Noto Sans Mono';
   font-size: 12px;
