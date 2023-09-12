@@ -27,7 +27,7 @@ Object.keys(Categories).forEach((cat) => {
 // dates in the response; another way of saying this is that any key will return all years
 // so we're collecting just the unique set of keys.
 const dcids = []
-const dcids_set = new Set()
+export const dcids_set = new Set()
 
 for (const date in DCIDS) {
   const keys = DCIDS[date]
