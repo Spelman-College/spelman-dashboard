@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { onMounted, ref, watch, nextTick, inject, computed } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 const emit = defineEmits(['changeCompare'])
 const props = defineProps({
@@ -17,7 +17,7 @@ const props = defineProps({
 
 // Select the first option.
 const compare = ref(props.options[0].id)
-watch(compare, () => {
+watchEffect(() => {
   emit('changeCompare', compare.value)
 })
 </script>

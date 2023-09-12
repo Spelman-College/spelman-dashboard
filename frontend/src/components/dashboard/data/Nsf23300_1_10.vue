@@ -11,14 +11,14 @@ import { SeriesClient, BulkClient } from '../../../data/dc/client'
 import {
   genderDomain,
   raceDomain,
-  eduDomain,
+  citizenDomain,
   datasetMeta,
   dashboardFilters,
-  download as ipedsDownload,
+  download as Download,
   datasetDownloadFilename,
   compareOptions
-} from '../../../data/ipeds_318_45/ui/values'
-import { Query_values } from '../../../data/ipeds_318_45/query/values'
+} from '../../../data/nsf23300_1_10/ui'
+import { Query_nsf23300_1_10 } from '../../../data/nsf23300_1_10/query'
 
 import { Query, QueryCompare, expandCompares } from '../../../data/queries/query'
 import { reduceIntersection } from '../../../data/queries/plotting'
@@ -37,44 +37,34 @@ const dcClient: SeriesClient = new SeriesClient(
   'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 )
 const bulkClient = new BulkClient('country/USA', 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI')
-const dataset = new Query_values()
+const dataset = new Query_nsf23300_1_10()
 const loading_download = ref(false)
 
 const genderQuery = ref([])
 const raceQuery = ref([])
-const eduQuery = ref([])
+const citizenQuery = ref([])
 
 const filters = dashboardFilters
 
 const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
-
+ console.log('rendering')
 async function download() {
   loading_download.value = true
 
-  const err = await ipedsDownload(bulkClient, datasetDownloadFilename)
+  const err = await Download(bulkClient, datasetDownloadFilename)
   if (err != '') {
     throw new Error(`error downloading csv data: ${err}`)
   }
   loading_download.value = false
 }
 
-watchEffect(() => {
+ watchEffect(() => {
   genderQuery.value = [...genderDomain]
   raceQuery.value = [...raceDomain]
-  eduQuery.value = [...eduDomain]
-
-  if (compare.value == 'gender') {
-    colorDomain.value = [...genderDomain]
-  }
-  if (compare.value == 'race') {
-    colorDomain.value = [...raceDomain]
-  }
-  if (compare.value == 'education') {
-    colorDomain.value = [...eduDomain]
-  }
-})
+  citizenQuery.value = [...citizenDomain]
+ })
 
 const renderCategory = (
   category: string,
@@ -83,9 +73,12 @@ const renderCategory = (
 ) => {
   if (dimensions.length > 1) {
     const dcids = applyCompareQuery(dataset, category, catMap)
+    console.log(dcids)
     const pout = getCompareData(dcClient, dcids)
     pout.then((tmpOut) => {
+      console.log(tmpOut)
       const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
+      console.log(reduced)
       tableItems.value = reduced
     })
     return
@@ -96,32 +89,42 @@ const renderCategory = (
   })
 }
 
-watchEffect(() => {
-  if (genderQuery.value.length == 0 && raceQuery.value.length == 0 && eduQuery.value.length == 0) {
+ watchEffect(() => {
+   console.log('watchEffect, renderCategory')
+  if (
+    genderQuery.value.length == 0 &&
+    raceQuery.value.length == 0 &&
+    citizenQuery.value.length == 0
+  ) {
     tableItems.value = []
     return
   }
+
   const catMap = {
     gender: genderQuery.value,
     ethnicity: raceQuery.value,
-    education: eduQuery.value
+    citizenship: citizenQuery.value
   }
 
-  switch (compare.value) {
-    case 'gender': {
+   switch (compare.value) {
+
+     case 'gender': {
+       colorDomain.value = [...genderDomain]
       renderCategory(compare.value, genderQuery.value, catMap)
       break
     }
-    case 'race': {
+     case 'race': {
+          colorDomain.value = [...raceDomain]
       renderCategory('ethnicity', raceQuery.value, catMap)
       break
     }
-    case 'education': {
-      renderCategory(compare.value, eduQuery.value, catMap)
+     case 'citizenship': {
+          colorDomain.value = [...citizenDomain]
+      renderCategory(compare.value, citizenQuery.value, catMap)
       break
     }
     default: {
-      throw new Error(`got ${compare.value}, expected gender, race, or education`)
+      throw new Error(`got ${compare.value}, expected gender, race, or citizenship`)
       break
     }
   }
@@ -137,18 +140,19 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       raceQuery.value = [...activeFilters]
       break
     }
-    case 'education': {
-      eduQuery.value = [...activeFilters]
+    case 'citizenship': {
+      citizenQuery.value = [...activeFilters]
       break
     }
     default: {
-      throw new Error(`got ${filterId}, expected gender, race, or education`)
+      throw new Error(`got ${filterId}, expected gender, race, or citizenship`)
       break
     }
   }
 }
 
-const changeCompare = (val: string) => {
+ const changeCompare = (val: string) => {
+   console.log(val)
   compare.value = val
 }
 </script>
