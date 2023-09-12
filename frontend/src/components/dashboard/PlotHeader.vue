@@ -10,9 +10,9 @@ const props = defineProps(['downloadFunc', 'loading', 'title'])
   <div class="data-type-and-download-container">
     <div class="plot-text choose-data-type">
       <div class="data-type-text">Data type</div>
-      <div class="plot-button choose-bar"><span class="material-icons">bar_chart</span></div>
-      <div class="plot-button choose-line"><span class="material-icons">timeline</span></div>
-      <div class="plot-button choose-pie"><span class="material-icons">pie_chart</span></div>
+      <div class="plot-button"><span class="material-icons">bar_chart</span></div>
+      <div class="plot-button unavailable"><span class="material-icons">timeline</span></div>
+      <div class="plot-button unavailable"><span class="material-icons">pie_chart_outline</span></div>
     </div>
     <div class="csv-download-container">
       <div class="plot-text">Download data</div>
