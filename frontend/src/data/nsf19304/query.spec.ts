@@ -6,7 +6,11 @@ import { Query } from '../queries/query'
 const nsf19304 = new Query_nsf19304()
 
 const asian = new Query('ethnicity', 'Asian')
-const black_asian = new Query('ethnicity', 'BlackOrAfricanAmericanAloneOrAfricanAmericanAlone', 'Asian')
+const black_asian = new Query(
+  'ethnicity',
+  'BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
+  'Asian'
+)
 const life_science = new Query('occupation', 'SOCLifeScientistsOccupation')
 const female = new Query('gender', 'Female')
 const tenured = new Query('tenure', 'Tenured')
