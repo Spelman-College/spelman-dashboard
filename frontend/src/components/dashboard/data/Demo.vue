@@ -196,9 +196,9 @@ const changeCompare = (val: string) => {
           },
           color: {
             domain: colorDomain,
-          // Can update categoricalColors variable with a custom color range (ex. range: categoricalColors)
-          // or use a scheme, e.g.: scheme:'Reds'            
-            scheme:'Blues',
+            // Can update categoricalColors variable with a custom color range (ex. range: categoricalColors)
+            // or use a scheme, e.g.: scheme:'Reds'
+            scheme: 'Blues'
           },
           marks: [
             Plot.barY(tableItems, {
@@ -214,7 +214,7 @@ const changeCompare = (val: string) => {
           ]
         }"
       >
-            </PlotFigure>
-       </div>
-     </div>
+      </PlotFigure>
+    </div>
+  </div>
 </template>
