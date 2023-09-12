@@ -50,6 +50,8 @@ const filters = dashboardFilters
 const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
+// Can add a custom color palette here, in the order they'll appear
+// const categorialColors = ['#96bdff',"#e0ebff",'#B6D1FF', '#2d394c', '#7897CC', '#3C4C66', '#1E2633', '#A1C4FF', '7897CC']
 
 async function download() {
   loading_download.value = true
@@ -176,8 +178,6 @@ const changeCompare = (val: string) => {
       :loading="loading_download"
       :title="datasetMeta.name"
     />
-
-    <!-- <div>{{  }}</div> -->
     <div v-if="true" class="plot">
       <PlotFigure
         v-if="tableItems.length > 0"
@@ -196,7 +196,9 @@ const changeCompare = (val: string) => {
           },
           color: {
             domain: colorDomain,
-            legend: true
+          // Can update categoricalColors variable with a custom color range (ex. range: categoricalColors)
+          // or use a scheme, e.g.: scheme:'Reds'            
+            scheme:'Blues',
           },
           marks: [
             Plot.barY(tableItems, {
@@ -212,7 +214,7 @@ const changeCompare = (val: string) => {
           ]
         }"
       >
-      </PlotFigure>
-    </div>
-  </div>
+            </PlotFigure>
+       </div>
+     </div>
 </template>
