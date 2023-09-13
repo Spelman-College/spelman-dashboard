@@ -2,20 +2,21 @@ import { describe, expect, test } from '@jest/globals'
 import { Query_nsf19304 } from './query'
 import { Categories } from './categories'
 import { Query } from '../queries/query'
+import * as dims from '../queries/dimensions'
 
 const nsf19304 = new Query_nsf19304()
 
 const asian = new Query('ethnicity', 'Asian')
-const black_asian = new Query('ethnicity', 'BlackOrAfricanAmericanAlone', 'Asian')
-const life_science = new Query('occupation', 'SOCLifeScientistsOccupation')
-const female = new Query('gender', 'Female')
-const tenured = new Query('tenure', 'Tenured')
-const male = new Query('gender', 'Male')
-const male_female = new Query('gender', 'Male', 'Female')
+const black_asian = new Query('ethnicity', dims.BlackOrAfricanAmericanAlone, dims.Asian)
+const life_science = new Query('occupation', dims.SOCLifeScientistsOccupation)
+const female = new Query('gender', dims.Female)
+const tenured = new Query('tenure', dims.Tenured)
+const male = new Query('gender', dims.Male)
+const male_female = new Query('gender', dims.Male, dims.Female)
 const occupations_a = new Query(
   'occupation',
-  'SOCLifeScientistsOccupation',
-  'SOCMathematicalScienceOccupation'
+  dims.SOCLifeScientistsOccupation,
+  dims.SOCMathematicalScienceOccupation
 )
 const all_ethnicities = new Query('ethnicity', ...Categories['ethnicity'])
 
