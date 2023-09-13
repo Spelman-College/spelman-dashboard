@@ -174,10 +174,8 @@ const changeCompare = (val: string) => {
       v-if="tableItems.length > 0"
       :downloadFunc="download"
       :loading="loading_download"
-      :title="datasetMeta.name"
+      :title="datasetMeta.source"
     />
-
-    <!-- <div>{{  }}</div> -->
     <div v-if="true" class="plot">
       <PlotFigure
         v-if="tableItems.length > 0"
@@ -196,7 +194,8 @@ const changeCompare = (val: string) => {
           },
           color: {
             domain: colorDomain,
-            legend: true
+            legend: true,
+            range: plotColors
           },
           marks: [
             Plot.barY(tableItems, {

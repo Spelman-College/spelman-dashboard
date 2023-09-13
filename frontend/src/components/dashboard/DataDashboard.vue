@@ -2,6 +2,9 @@
 import Demo from './data/Demo.vue'
 import Ipeds_318_45 from './data/Ipeds_318_45.vue'
 
+import Nsf23300_1_10 from './data/Nsf23300_1_10.vue'
+import { datasetMeta as nsf23300_1_10Meta } from '../../data/nsf23300_1_10/ui'
+
 import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
 import '../../../node_modules/primeflex/primeflex.css'
 
@@ -12,6 +15,7 @@ const props = defineProps(['dataset', 'view'])
   <div class="data-dashboard">
     <Demo v-if="props.dataset == 'demo' && props.view == 'explore'" />
     <Ipeds_318_45 v-if="props.dataset == 'ipeds-318-45' && props.view == 'explore'" />
+    <Nsf23300_1_10 v-if="props.dataset == nsf23300_1_10Meta.path && props.view == 'explore'" />
     <div v-if="props.dataset == 'demo-preset' && props.view == 'preset'">
       <p class="title">This is a preset demo view.</p>
     </div>
@@ -73,7 +77,7 @@ const props = defineProps(['dataset', 'view'])
 }
 :deep(.csv) {
   color: #1a73e8;
-  font-family: Google Sans Mono;
+  font-family: Noto Sans Mono;
   font-size: 12px;
 }
 :deep(.csv-download-container) {
@@ -99,6 +103,12 @@ const props = defineProps(['dataset', 'view'])
   border: 1px solid #bdc1c6;
   background: #ececec;
 }
+:deep(.plot-button.unavailable) {
+  background: white;
+  color: #bdc1c6;
+  border: 1px solid #ececec;
+}
+
 :deep(.plot-text) {
   font-family: 'Noto Sans Mono';
   font-size: 12px;
