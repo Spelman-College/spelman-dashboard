@@ -51,7 +51,10 @@ console.log(dcids)
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = [['ethnicity', 'gender'], ['citizenship', 'gender']]
+const categoryDependencies: [string, string][] = [
+  ['ethnicity', 'gender'],
+  ['citizenship', 'gender']
+]
 
 class Base {
   protected categoryDependencies: [string, string][] = categoryDependencies

@@ -1,7 +1,7 @@
 import * as dims from '../queries/dimensions'
 
 export const Categories = {
-  'ethnicity': new Set<string>([
+  ethnicity: new Set<string>([
     dims.AmericanIndianOrAlaskaNativeAlone,
     dims.Asian,
     dims.BlackOrAfricanAmericanAlone,
@@ -11,6 +11,6 @@ export const Categories = {
     dims.UnknownRace,
     dims.WhiteAlone
   ]),
-  'citizenship': new Set<string>([dims.Citizen, dims.CitizenshipUnknown, dims.VisaHolder]),
-  'gender': new Set<string>([dims.Male, dims.Female])
+  citizenship: new Set<string>([dims.Citizen, dims.CitizenshipUnknown, dims.VisaHolder]),
+  gender: new Set<string>([dims.Male, dims.Female])
 }

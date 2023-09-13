@@ -24,13 +24,9 @@ export const raceDomain = [
   dims.TwoOrMoreRaces,
   dims.UnknownEthnicity,
   dims.UnknownRace,
-  dims.WhiteAlone,
+  dims.WhiteAlone
 ]
-export const citizenDomain = [
-  dims.Citizen,
-  dims.CitizenshipUnknown,
-  dims.VisaHolder
-]
+export const citizenDomain = [dims.Citizen, dims.CitizenshipUnknown, dims.VisaHolder]
 
 export const dashboardFilters = [
   {

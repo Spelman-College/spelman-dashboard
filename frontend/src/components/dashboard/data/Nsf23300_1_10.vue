@@ -49,7 +49,7 @@ const filters = dashboardFilters
 const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
- console.log('rendering')
+console.log('rendering')
 async function download() {
   loading_download.value = true
 
@@ -60,11 +60,11 @@ async function download() {
   loading_download.value = false
 }
 
- watchEffect(() => {
+watchEffect(() => {
   genderQuery.value = [...genderDomain]
   raceQuery.value = [...raceDomain]
   citizenQuery.value = [...citizenDomain]
- })
+})
 
 const renderCategory = (
   category: string,
@@ -89,8 +89,8 @@ const renderCategory = (
   })
 }
 
- watchEffect(() => {
-   console.log('watchEffect, renderCategory')
+watchEffect(() => {
+  console.log('watchEffect, renderCategory')
   if (
     genderQuery.value.length == 0 &&
     raceQuery.value.length == 0 &&
@@ -106,20 +106,19 @@ const renderCategory = (
     citizenship: citizenQuery.value
   }
 
-   switch (compare.value) {
-
-     case 'gender': {
-       colorDomain.value = [...genderDomain]
+  switch (compare.value) {
+    case 'gender': {
+      colorDomain.value = [...genderDomain]
       renderCategory(compare.value, genderQuery.value, catMap)
       break
     }
-     case 'race': {
-          colorDomain.value = [...raceDomain]
+    case 'race': {
+      colorDomain.value = [...raceDomain]
       renderCategory('ethnicity', raceQuery.value, catMap)
       break
     }
-     case 'citizenship': {
-          colorDomain.value = [...citizenDomain]
+    case 'citizenship': {
+      colorDomain.value = [...citizenDomain]
       renderCategory(compare.value, citizenQuery.value, catMap)
       break
     }
@@ -151,8 +150,8 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
   }
 }
 
- const changeCompare = (val: string) => {
-   console.log(val)
+const changeCompare = (val: string) => {
+  console.log(val)
   compare.value = val
 }
 </script>
@@ -199,7 +198,7 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
           color: {
             domain: colorDomain,
             legend: true,
-	    range: plotColors,
+            range: plotColors
           },
           marks: [
             Plot.barY(tableItems, {

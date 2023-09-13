@@ -195,7 +195,7 @@ const changeCompare = (val: string) => {
           color: {
             domain: colorDomain,
             legend: true,
-	    range: plotColors,
+            range: plotColors
           },
           marks: [
             Plot.barY(tableItems, {

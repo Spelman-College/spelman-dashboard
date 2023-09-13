@@ -19,7 +19,7 @@ describe('demo query nsf23300-1-10', () => {
     expect(out.error).toEqual(undefined)
     expect(out.results).toEqual([
       'Count_Person_Citizen_EducationalAttainmentDoctorateDegree_Male',
-      'Count_Person_Citizen_EducationalAttainmentDoctorateDegree_Female',
+      'Count_Person_Citizen_EducationalAttainmentDoctorateDegree_Female'
     ])
   })
 
@@ -28,7 +28,7 @@ describe('demo query nsf23300-1-10', () => {
     expect(out.error).toEqual(undefined)
     expect(out.results).toEqual([
       'Count_Person_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Male_Asian',
-      'Count_Person_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Asian',
+      'Count_Person_EducationalAttainmentDoctorateDegree_NotHispanicOrLatino_Female_Asian'
     ])
   })
 
