@@ -3,7 +3,7 @@
     <div id="mission-header">Our Goals</div>
     <div id="blurb">
       It is envisioned that the platform will<br />
-      provide data that will empower users<br />
+      provide robust data that will empower users<br />
       with valuable insights, foster inclusivity,<br />
       and inspire positive change within the STEM community.
     </div>
@@ -19,7 +19,7 @@
 #mission-header {
   color: #acf0ff;
   text-align: center;
-  font-family: Google Sans;
+  font-family: Noto Sans;
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 500;

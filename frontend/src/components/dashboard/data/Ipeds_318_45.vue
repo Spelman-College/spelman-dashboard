@@ -23,6 +23,7 @@ import { Query_values } from '../../../data/ipeds_318_45/query/values'
 import { Query, QueryCompare, expandCompares } from '../../../data/queries/query'
 import { reduceIntersection } from '../../../data/queries/plotting'
 import {
+  renderCategory,
   applyCompareQuery,
   getCompareData,
   getSingleDimension,
@@ -64,37 +65,7 @@ watchEffect(() => {
   genderQuery.value = [...genderDomain]
   raceQuery.value = [...raceDomain]
   eduQuery.value = [...eduDomain]
-
-  if (compare.value == 'gender') {
-    colorDomain.value = [...genderDomain]
-  }
-  if (compare.value == 'race') {
-    colorDomain.value = [...raceDomain]
-  }
-  if (compare.value == 'education') {
-    colorDomain.value = [...eduDomain]
-  }
 })
-
-const renderCategory = (
-  category: string,
-  dimensions: string[],
-  catMap: Map<string, Array<string>>
-) => {
-  if (dimensions.length > 1) {
-    const dcids = applyCompareQuery(dataset, category, catMap)
-    const pout = getCompareData(dcClient, dcids)
-    pout.then((tmpOut) => {
-      const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-      tableItems.value = reduced
-    })
-    return
-  }
-  const out = getSingleDimension(dataset, dcClient, catMap, dimensions[0])
-  out.then((data) => {
-    tableItems.value = data
-  })
-}
 
 watchEffect(() => {
   if (genderQuery.value.length == 0 && raceQuery.value.length == 0 && eduQuery.value.length == 0) {
@@ -109,15 +80,18 @@ watchEffect(() => {
 
   switch (compare.value) {
     case 'gender': {
-      renderCategory(compare.value, genderQuery.value, catMap)
+      colorDomain.value = [...genderDomain]
+      renderCategory(dcClient, dataset, tableItems, compare.value, genderQuery.value, catMap)
       break
     }
     case 'race': {
-      renderCategory('ethnicity', raceQuery.value, catMap)
+      colorDomain.value = [...raceDomain]
+      renderCategory(dcClient, dataset, tableItems, 'ethnicity', raceQuery.value, catMap)
       break
     }
     case 'education': {
-      renderCategory(compare.value, eduQuery.value, catMap)
+      colorDomain.value = [...eduDomain]
+      renderCategory(dcClient, dataset, tableItems, compare.value, eduQuery.value, catMap)
       break
     }
     default: {

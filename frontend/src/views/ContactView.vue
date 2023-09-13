@@ -9,18 +9,13 @@
       <div class="ornament">
         <img src="/dots.svg" alt="dots-ornament" id="dots" />
       </div>
-      Questions or Comments? Email us at
-      <div class="email">email@spelman.edu</div>
-      <br /><br />
-      <span class="contact-text">
-        <span class="material-symbols-rounded">pin_drop</span>
-        <br />
-        Lorem ipsum dolor sit amet, consectuer adipiscing elit, sed do eiusmod
-        <br /><br />
-        <span class="material-icons">call</span>
-        <br />
-        (222) 222-2222
-      </span>
+        The virtual hub was developed in
+        parternship between Spelman's Center
+        of Excellent for Minority Women in
+        STEM and Google.org.
+        <br><br>
+        To contact us email at: 
+        <div class="email">coe-mws@spelman.edu</div>
     </div>
   </div>
 </template>
@@ -83,15 +78,7 @@
   flex-shrink: 0;
 }
 
-.contact-text {
-  color: #000;
-  font-family: IBM Plex Mono, monospace;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem; /* 125% */
-}
-.contact-text .material-symbols-rounded {
-  margin-left: 0;
+.text {
+  display: flex;
 }
 </style>

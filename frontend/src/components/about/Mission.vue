@@ -1,9 +1,9 @@
 <template>
   <div class="mission-container">
-    <div id="mission-header">Our Mission</div>
+    <div id="mission-header-text">Our Mission</div>
     <div id="blurb">
-      To be the eminent [platform] for the generation and dissemination of data that informs
-      narratives from and about Black women in STEM.
+      To be the eminent [platform/virtual hub] for the generation and dissemination of data that informs
+      narratives/research from and about Black women in STEM.
     </div>
     <div class="swiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
   </div>
@@ -14,10 +14,10 @@
   display: flex;
 }
 
-#mission-header {
+#mission-header-text {
   color: #acf0ff;
   text-align: center;
-  font-family: Google Sans;
+  font-family: 'Noto Sans';
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 500;

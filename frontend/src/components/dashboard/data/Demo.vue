@@ -23,8 +23,9 @@ import {
 import { Query_demo } from '../../../data/demo/query'
 
 import { Query, QueryCompare, expandCompares } from '../../../data/queries/query'
-import { reduceIntersection } from '../../../data/queries/plotting'
+
 import {
+  renderCategory,
   applyCompareQuery,
   getCompareData,
   getSingleDimension,
@@ -65,37 +66,7 @@ watchEffect(() => {
   genderQuery.value = [...genderDomain]
   ageQuery.value = [...ageDomain]
   majorQuery.value = [...majorDomain]
-
-  if (compare.value == 'gender') {
-    colorDomain.value = [...genderDomain]
-  }
-  if (compare.value == 'age') {
-    colorDomain.value = [...ageDomain]
-  }
-  if (compare.value == 'major') {
-    colorDomain.value = [...majorDomain]
-  }
 })
-
-const renderCategory = (
-  category: string,
-  dimensions: string[],
-  catMap: Map<string, Array<string>>
-) => {
-  if (dimensions.length > 1) {
-    const dcids = applyCompareQuery(dataset, category, catMap)
-    const pout = getCompareData(dcClient, dcids)
-    pout.then((tmpOut) => {
-      const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-      tableItems.value = reduced
-    })
-    return
-  }
-  const out = getSingleDimension(dataset, dcClient, catMap, dimensions[0])
-  out.then((data) => {
-    tableItems.value = data
-  })
-}
 
 watchEffect(() => {
   if (genderQuery.value.length == 0 && ageQuery.value.length == 0 && majorQuery.value.length == 0) {
@@ -110,15 +81,18 @@ watchEffect(() => {
 
   switch (compare.value) {
     case 'gender': {
-      renderCategory(compare.value, genderQuery.value, catMap)
+      colorDomain.value = [...genderDomain]
+      renderCategory(dcClient, dataset, tableItems, compare.value, genderQuery.value, catMap)
       break
     }
     case 'age': {
-      renderCategory(compare.value, ageQuery.value, catMap)
+      colorDomain.value = [...ageDomain]
+      renderCategory(dcClient, dataset, tableItems, compare.value, ageQuery.value, catMap)
       break
     }
     case 'major': {
-      renderCategory(compare.value, majorQuery.value, catMap)
+      colorDomain.value = [...majorDomain]
+      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap)
       break
     }
     default: {

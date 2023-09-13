@@ -16,13 +16,20 @@ function goToFAQ() {
     </div>
     <div class="info">
       <div id="contact">
-        <div>Address goes here</div>
-        <div>(222) 222-2222</div>
-        <div>xyz@coe.org</div>
+        <div>The virtual hub was developed in partnership between
+          <br>Spelman's Center of Excellence for Minority Women in
+          <br>STEM and Google.org. To contact us, email at:</div>
+        <br>
+        <div class="email">
+          <span class="material-symbols-rounded">
+            mail
+          </span>coe-mws@spelman.edu
+        </div>
       </div>
       <div id="misc">
-        <div>@ 2023-2-24</div>
-        <div>Privacy &mdash; Terms</div>
+        <div>© 2023-2024</div>
+        <div>Terms of Use and <br> Privacy Policy</div>
+        <br>
         <div class="footer-links" @click="goToFAQ">FAQ</div>
       </div>
     </div>
@@ -57,6 +64,16 @@ function goToFAQ() {
   gap: 4rem;
 }
 
+.email {
+  text-decoration: underline;
+}
+
+.material-symbols-rounded {
+  color: white;
+  margin-left: 0rem;
+  margin-right: 1.19rem;
+}
+
 #contact {
   font-size: 12px;
 }
@@ -67,5 +84,7 @@ function goToFAQ() {
 
 .footer-links {
   cursor: pointer;
+  color: #4fdfff;
+  font-weight: 700;
 }
 </style>

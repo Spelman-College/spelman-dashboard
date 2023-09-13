@@ -13,15 +13,17 @@ import TeamStories from '@/about/TeamStories.vue'
   <div class="view gradient">
     <Mission></Mission>
   </div>
-  <div class="view vision-parent">
-    <Vision></Vision>
+  <div class="view team-stories-parent">
+    <TeamStories></TeamStories>
   </div>
   <div class="view gradient">
     <Goal></Goal>
   </div>
-  <div class="view team-stories-parent">
-    <TeamStories></TeamStories>
+  <div class="view vision-parent">
+    <Vision></Vision>
   </div>
+
+
 </template>
 
 <style scoped>

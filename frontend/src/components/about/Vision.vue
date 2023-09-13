@@ -1,7 +1,7 @@
 <template>
   <div id="outer">
-    ] <img id="stripes" src="/stripes.svg" />
-    <img id="splash-image" src="/gettyimages-1439945572-1024x1024.jpg" />
+    <img id="stripes" src="/stripes.svg" />
+    <img id="splash-image" src="/AdobeStock_571805352.jpeg" style="object-position: left top" />
     <div id="splash-text">
       <div id="splash-text-header">Our Vision</div>
       <div id="splash-text-body">An international [platform] [showcasing] Black Women in STEM</div>
@@ -16,7 +16,7 @@ img {
 }
 
 div#outer {
-  height: 40rem;
+  display: flex;
 }
 
 div#splash-text {
@@ -53,7 +53,7 @@ div#image-grid {
   color: #22262b;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-  font-family: Google Sans;
+  font-family: Noto Sans;
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 500;
