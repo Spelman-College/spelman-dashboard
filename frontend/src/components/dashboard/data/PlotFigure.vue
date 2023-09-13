@@ -7,5 +7,5 @@ const props = defineProps({
 </script>
 
 <template>
-  <div v-html="Plot.plot(props.options).outerHTML" />
+  <div v-html="Plot.plot({ ...props.options, width: 1200 }).outerHTML" />
 </template>
