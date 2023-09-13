@@ -12,9 +12,11 @@ import type DcClient from '../dc/client'
 import { datasetMeta as demoMeta } from '../demo/ui'
 import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 
+const demo = demoMeta
+const ipeds = ipedsMeta
 export const datasets = [
-  demoMeta,
-  ipedsMeta,
+  demo,
+  ipeds,
   {
     name: 'Second Demo example',
     source: 'Fix Me!',
