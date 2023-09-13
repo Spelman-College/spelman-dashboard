@@ -67,7 +67,6 @@ watchEffect(() => {
   citizenQuery.value = [...citizenDomain]
 })
 
-
 watchEffect(() => {
   if (
     genderQuery.value.length == 0 &&

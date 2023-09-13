@@ -1,4 +1,4 @@
-import type  Ref from 'vue'
+import type Ref from 'vue'
 import { Parser } from '@json2csv/plainjs'
 
 import type { SeriesClient, DcClientBulk } from '../dc/client'
@@ -7,10 +7,7 @@ import { BulkClient, blobs2Csv } from '../dc/client'
 import type Queryable from './query'
 import { Query, expandCompares, QueryCompare } from './query'
 
-import {
-  formatPlot,
-  reduceIntersection
-} from './plotting'
+import { formatPlot, reduceIntersection } from './plotting'
 import type DcClient from '../dc/client'
 
 import { datasetMeta as demoMeta } from '../demo/ui'
@@ -154,7 +151,6 @@ export const renderCategory = (
     tableRef.value = data
   })
 }
-
 
 export const getRawCompareData = async (
   client: DcClient,

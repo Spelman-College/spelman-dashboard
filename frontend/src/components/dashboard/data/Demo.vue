@@ -24,7 +24,7 @@ import { Query_demo } from '../../../data/demo/query'
 
 import { Query, QueryCompare, expandCompares } from '../../../data/queries/query'
 
- import {
+import {
   renderCategory,
   applyCompareQuery,
   getCompareData,
@@ -67,7 +67,6 @@ watchEffect(() => {
   ageQuery.value = [...ageDomain]
   majorQuery.value = [...majorDomain]
 })
-
 
 watchEffect(() => {
   if (genderQuery.value.length == 0 && ageQuery.value.length == 0 && majorQuery.value.length == 0) {
