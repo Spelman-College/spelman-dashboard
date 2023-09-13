@@ -23,6 +23,7 @@ import { Query_nsf23300_1_10 } from '../../../data/nsf23300_1_10/query'
 import { Query, QueryCompare, expandCompares } from '../../../data/queries/query'
 import { reduceIntersection } from '../../../data/queries/plotting'
 import {
+  renderCategory,
   applyCompareQuery,
   getCompareData,
   getSingleDimension,
@@ -49,7 +50,7 @@ const filters = dashboardFilters
 const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
-console.log('rendering')
+
 async function download() {
   loading_download.value = true
 
@@ -66,31 +67,8 @@ watchEffect(() => {
   citizenQuery.value = [...citizenDomain]
 })
 
-const renderCategory = (
-  category: string,
-  dimensions: string[],
-  catMap: Map<string, Array<string>>
-) => {
-  if (dimensions.length > 1) {
-    const dcids = applyCompareQuery(dataset, category, catMap)
-    console.log(dcids)
-    const pout = getCompareData(dcClient, dcids)
-    pout.then((tmpOut) => {
-      console.log(tmpOut)
-      const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-      console.log(reduced)
-      tableItems.value = reduced
-    })
-    return
-  }
-  const out = getSingleDimension(dataset, dcClient, catMap, dimensions[0])
-  out.then((data) => {
-    tableItems.value = data
-  })
-}
 
 watchEffect(() => {
-  console.log('watchEffect, renderCategory')
   if (
     genderQuery.value.length == 0 &&
     raceQuery.value.length == 0 &&
@@ -109,17 +87,17 @@ watchEffect(() => {
   switch (compare.value) {
     case 'gender': {
       colorDomain.value = [...genderDomain]
-      renderCategory(compare.value, genderQuery.value, catMap)
+      renderCategory(dcClient, dataset, tableItems, compare.value, genderQuery.value, catMap)
       break
     }
     case 'race': {
       colorDomain.value = [...raceDomain]
-      renderCategory('ethnicity', raceQuery.value, catMap)
+      renderCategory(dcClient, dataset, tableItems, 'ethnicity', raceQuery.value, catMap)
       break
     }
     case 'citizenship': {
       colorDomain.value = [...citizenDomain]
-      renderCategory(compare.value, citizenQuery.value, catMap)
+      renderCategory(dcClient, dataset, tableItems, compare.value, citizenQuery.value, catMap)
       break
     }
     default: {
@@ -151,7 +129,6 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 }
 
 const changeCompare = (val: string) => {
-  console.log(val)
   compare.value = val
 }
 </script>

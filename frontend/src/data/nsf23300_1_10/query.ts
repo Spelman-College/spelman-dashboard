@@ -21,8 +21,7 @@ Object.keys(Categories).forEach((cat) => {
     annotatedDimensions.add(`${cat}:${dim}`)
   })
 })
-console.log(annotatedDimensions)
-console.log(dimension2Category)
+
 // Because we're using timeseries, we'll need to create a set of all of the available
 // DCIDs that include each year. There may be keys that don't exist in some years
 // that do exist in other years. Since we're collecting the unique set of all years,
@@ -42,7 +41,6 @@ for (const date in DCIDS) {
 dcids_set.forEach((id) => {
   dcids.push(new Dcid(id, filter, dimension2Category))
 })
-console.log(dcids)
 // If we're querying both
 // 1. a subset of enthicity dimensions, and
 // 2. all gender dimensions
