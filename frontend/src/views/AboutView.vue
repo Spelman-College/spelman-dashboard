@@ -22,8 +22,6 @@ import TeamStories from '@/about/TeamStories.vue'
   <div class="view vision-parent">
     <Vision></Vision>
   </div>
-
-
 </template>
 
 <style scoped>
