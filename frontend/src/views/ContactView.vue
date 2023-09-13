@@ -9,13 +9,11 @@
       <div class="ornament">
         <img src="/dots.svg" alt="dots-ornament" id="dots" />
       </div>
-        The virtual hub was developed in
-        parternship between Spelman's Center
-        of Excellent for Minority Women in
-        STEM and Google.org.
-        <br><br>
-        To contact us email at: 
-        <div class="email">coe-mws@spelman.edu</div>
+      The virtual hub was developed in parternship between Spelman's Center of Excellent for
+      Minority Women in STEM and Google.org.
+      <br /><br />
+      To contact us email at:
+      <div class="email">coe-mws@spelman.edu</div>
     </div>
   </div>
 </template>

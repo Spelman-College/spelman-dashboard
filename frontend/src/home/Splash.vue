@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
@@ -9,15 +9,15 @@ function goToData() {
 const featuredWomen = [
   {
     imgSrc: '/homepage_carousel/dr_corbett.png',
-    text: 'Dr. Kizzmekia Corbett, Assistant Professor of Immunology',
+    text: 'Dr. Kizzmekia Corbett, Assistant Professor of Immunology'
   },
-  { 
+  {
     imgSrc: '/homepage_carousel/janina_jeff.jpeg',
-    text: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina',
+    text: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina'
   },
   {
     imgSrc: '/homepage_carousel/stacey_dixon.png',
-    text: 'Dr. Stacey Dixon, Principal Deputy Director of US National Intelligence',
+    text: 'Dr. Stacey Dixon, Principal Deputy Director of US National Intelligence'
   }
 ]
 
@@ -33,7 +33,6 @@ function nextImage() {
     currentIndex.value = 0
   }
 }
-
 </script>
 
 <template>
@@ -53,7 +52,7 @@ function nextImage() {
     <div id="splash-graphics">
       <div class="image">
         <img :src="featuredWomen[currentIndex].imgSrc" alt="" id="splash-image" />
-        <button class="hero-image-text">{{featuredWomen[currentIndex].text}}</button>
+        <button class="hero-image-text">{{ featuredWomen[currentIndex].text }}</button>
         <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
         <div id="plusses">
           <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
@@ -69,12 +68,10 @@ function nextImage() {
           ></div>
         </div>
       </div>
-      <div class="next-hero" @click='nextImage'>
+      <div class="next-hero" @click="nextImage">
         <span class="next-hero-arrow material-symbols-rounded">arrow_forward_ios</span>
       </div>
     </div>
-    
-
   </div>
 </template>
 
@@ -94,61 +91,61 @@ function nextImage() {
 }
 #splash-graphics {
   position: relative;
-  display:flex;
+  display: flex;
   top: 10rem;
   /* Temporary fix to prevent swiggly red from going over title text
    - update margin-left once mobile view is designed */
   margin-left: 6rem;
-  margin-right:1rem;
+  margin-right: 1rem;
 }
 
 #splash-image {
   width: 31.5rem;
-flex-shrink: 0;
-border-radius:100%
+  flex-shrink: 0;
+  border-radius: 100%;
 }
-.next-hero{
-  display:flex;
-  align-items:center;
-  height:31.5rem;
+.next-hero {
+  display: flex;
+  align-items: center;
+  height: 31.5rem;
 }
-.next-hero-arrow{
-  color:white;
-  font-size:3rem;
-  margin-left:1rem;
+.next-hero-arrow {
+  color: white;
+  font-size: 3rem;
+  margin-left: 1rem;
 }
-.hero-image-text{
-display: flex;
-width: 489px;
-height: 48px;
-padding: 10px 20px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-flex-shrink: 0;
-border-radius: 100px;
-background: #FFFCEA;
-border:none;
-position:relative;
-bottom:1.75rem;
-font-size: 16px;
-font-weight: 500;
-line-height: 150%; /* 24px */
+.hero-image-text {
+  display: flex;
+  width: 489px;
+  height: 48px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #fffcea;
+  border: none;
+  position: relative;
+  bottom: 1.75rem;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
 }
-.carousel-buttons{
-  display:flex;
-  justify-content:center;
+.carousel-buttons {
+  display: flex;
+  justify-content: center;
   gap: 12px;
 }
-.carousel-button{
+.carousel-button {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
   border-radius: 10.5px;
   background: black;
 }
-.carousel-button.active{
-  background: #FFFCEA;
+.carousel-button.active {
+  background: #fffcea;
 }
 
 #swiggly-red {
@@ -166,8 +163,7 @@ line-height: 150%; /* 24px */
 .plus-icon {
   position: absolute;
   width: 1.8rem;
-  fill:#FFE89B;
-
+  fill: #ffe89b;
 }
 
 #plus-icon-2 {

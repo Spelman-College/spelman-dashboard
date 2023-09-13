@@ -16,20 +16,22 @@ function goToFAQ() {
     </div>
     <div class="info">
       <div id="contact">
-        <div>The virtual hub was developed in partnership between
-          <br>Spelman's Center of Excellence for Minority Women in
-          <br>STEM and Google.org. To contact us, email at:</div>
-        <br>
+        <div>
+          The virtual hub was developed in partnership between <br />Spelman's Center of Excellence
+          for Minority Women in <br />STEM and Google.org. To contact us, email at:
+        </div>
+        <br />
         <div class="email">
-          <span class="material-symbols-rounded">
-            mail
-          </span>coe-mws@spelman.edu
+          <span class="material-symbols-rounded"> mail </span>coe-mws@spelman.edu
         </div>
       </div>
       <div id="misc">
         <div>© 2023-2024</div>
-        <div>Terms of Use and <br> Privacy Policy</div>
-        <br>
+        <div>
+          Terms of Use and <br />
+          Privacy Policy
+        </div>
+        <br />
         <div class="footer-links" @click="goToFAQ">FAQ</div>
       </div>
     </div>
