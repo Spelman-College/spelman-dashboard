@@ -4,7 +4,7 @@ const props = defineProps(['downloadFunc', 'loading', 'title'])
 
 <template>
   <div class="title-container">
-    <div class="title source">{{ props.title }}</div>
+    <div class="title source">Source: {{ props.title }}</div>
   </div>
 
   <div class="data-type-and-download-container">
