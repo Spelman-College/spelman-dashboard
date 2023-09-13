@@ -53,7 +53,7 @@ div#image-grid {
   color: #22262b;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-  font-family: Google Sans;
+  font-family: Noto Sans;
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 500;
