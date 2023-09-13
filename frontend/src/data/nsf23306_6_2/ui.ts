@@ -25,7 +25,7 @@ export const raceDomain = [
   dims.TwoOrMoreRaces,
   dims.NonUSResident
 ]
-export const majorOccupation = [
+export const majorOccupationDomain = [
     dims.BiologicalAgriculturalOtherLifeScientists,
     dims.ComputerAndMathematicalScientists,
     dims.PhysicalAndRelatedScientists,
@@ -53,7 +53,7 @@ export const dashboardFilters = [
         name: 'Major Occupation',
         id: 'occupation',
         alias: dims.Dimension2Text,
-        options: [...majorOccupation]
+        options: [...majorOccupationDomain]
     }
 ]
 

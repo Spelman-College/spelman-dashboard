@@ -1,22 +1,24 @@
+import * as dims from '../queries/dimensions'
+
 export const Categories = {
-  ethnicity: new Set<string>([
-    'AmericanIndianOrAlaskaNative',
-    'Asian',
-    'BlackOrAfricanAmericanAlone',
-    'HispanicOrLatino',
-    'OtherPacificIslander',
-    'TwoOrMoreRaces',
-    'WhiteAlone'
+  race: new Set<string>([
+    dims.AmericanIndianOrAlaskaNative,
+    dims.Asian,
+    dims.BlackOrAfricanAmericanAlone,
+    dims.HispanicOrLatino,
+    dims.OtherPacificIslander,
+    dims.TwoOrMoreRaces,
+    dims.WhiteAlone
   ]),
-  gender: new Set<string>(['Male', 'Female']),
+  sex: new Set<string>([dims.Male, dims.Female]),
   occupation: new Set<string>([
-    'SOCComputerMathematicalOccupation',
-    'SOCEngineersOccupation',
-    'SOCLifeScientistsOccupation',
-    'SOCPhysicalScientistsOccupation',
-    'SOCSocialScientistsRelatedWorkersOccupation',
-    'ScienceAndEngineeringOccupation',
-    'ScienceAndEngineeringRelatedOccupation',
-    'NonScienceAndEngineeringOccupation'
+    dims.SOCComputerMathematicalOccupation,
+    dims.SOCEngineersOccupation,
+    dims.SOCLifeScientistsOccupation,
+    dims.SOCPhysicalScientistsOccupation,
+    dims.SOCSocialScientistsRelatedWorkersOccupation,
+    dims.ScienceAndEngineeringOccupation,
+    dims.ScienceAndEngineeringRelatedOccupation,
+    dims.NonScienceAndEngineeringOccupation
   ])
 }
