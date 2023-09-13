@@ -56,8 +56,8 @@ const cards = [
 
 <style scoped>
 .explore-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 1rem;
+ display:flex;
+ justify-content: flex-start;
+ gap: 1rem;
 }
 </style>

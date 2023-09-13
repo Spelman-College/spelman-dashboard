@@ -32,7 +32,7 @@ const props = defineProps({
   box-shadow: 0 4px 20px 0 #292929;
   padding: 0;
   margin:0;
-  width: 26.75rem;
+  min-width: 26.75rem;
 }
 
 .explore-card-top {
