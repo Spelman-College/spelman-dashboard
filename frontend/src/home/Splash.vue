@@ -1,10 +1,39 @@
 <script setup lang="ts">
+import {ref} from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function goToData() {
   router.push({ name: 'dataDashboard' })
 }
+const featuredWomen = [
+  {
+    imgSrc: '/homepage_carousel/dr_corbett.png',
+    text: 'Dr. Kizzmekia Corbett, Assistant Professor of Immunology',
+  },
+  { 
+    imgSrc: '/homepage_carousel/janina_jeff.jpeg',
+    text: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina',
+  },
+  {
+    imgSrc: '/homepage_carousel/stacey_dixon.png',
+    text: 'Dr. Stacey Dixon, Principal Deputy Director of US National Intelligence',
+  }
+]
+
+const currentIndex = ref(0)
+
+function changeActiveImage(index) {
+  currentIndex.value = index
+}
+function nextImage() {
+  currentIndex.value += 1
+  // Reset to zero at end of featuredWomen array
+  if (currentIndex.value >= featuredWomen.length) {
+    currentIndex.value = 0
+  }
+}
+
 </script>
 
 <template>
@@ -22,14 +51,30 @@ function goToData() {
       <button @click="goToData">Visit the Data Dashboard</button>
     </div>
     <div id="splash-graphics">
-      <img src="/splash.png" alt="" id="splash-image" />
-      <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
-      <div id="plusses">
-        <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
-        <img src="/plus_icon_2.svg" alt="" class="plus-icon" id="plus-icon-2" />
-        <img src="/plus_icon_3.svg" alt="" class="plus-icon" id="plus-icon-3" />
+      <div class="image">
+        <img :src="featuredWomen[currentIndex].imgSrc" alt="" id="splash-image" />
+        <button class="hero-image-text">{{featuredWomen[currentIndex].text}}</button>
+        <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
+        <div id="plusses">
+          <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
+          <img src="/plus_icon_2.svg" alt="" class="plus-icon" id="plus-icon-2" />
+          <img src="/plus_icon_3.svg" alt="" class="plus-icon" id="plus-icon-3" />
+        </div>
+        <div class="carousel-buttons">
+          <div
+            v-for="(button, index) in featuredWomen"
+            :key="index"
+            @click="changeActiveImage(index)"
+            :class="{ 'carousel-button': true, active: index === currentIndex }"
+          ></div>
+        </div>
+      </div>
+      <div class="next-hero" @click='nextImage'>
+        <span class="next-hero-arrow material-symbols-rounded">arrow_forward_ios</span>
       </div>
     </div>
+    
+
   </div>
 </template>
 
@@ -49,14 +94,61 @@ function goToData() {
 }
 #splash-graphics {
   position: relative;
+  display:flex;
   top: 10rem;
   /* Temporary fix to prevent swiggly red from going over title text
    - update margin-left once mobile view is designed */
   margin-left: 6rem;
+  margin-right:1rem;
 }
 
 #splash-image {
-  width: 30rem;
+  width: 31.5rem;
+flex-shrink: 0;
+border-radius:100%
+}
+.next-hero{
+  display:flex;
+  align-items:center;
+  height:31.5rem;
+}
+.next-hero-arrow{
+  color:white;
+  font-size:3rem;
+  margin-left:1rem;
+}
+.hero-image-text{
+display: flex;
+width: 489px;
+height: 48px;
+padding: 10px 20px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-shrink: 0;
+border-radius: 100px;
+background: #FFFCEA;
+border:none;
+position:relative;
+bottom:1.75rem;
+font-size: 16px;
+font-weight: 500;
+line-height: 150%; /* 24px */
+}
+.carousel-buttons{
+  display:flex;
+  justify-content:center;
+  gap: 12px;
+}
+.carousel-button{
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border-radius: 10.5px;
+  background: black;
+}
+.carousel-button.active{
+  background: #FFFCEA;
 }
 
 #swiggly-red {
@@ -74,6 +166,8 @@ function goToData() {
 .plus-icon {
   position: absolute;
   width: 1.8rem;
+  fill:#FFE89B;
+
 }
 
 #plus-icon-2 {
