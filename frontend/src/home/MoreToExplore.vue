@@ -14,13 +14,13 @@ const cards = [
     imgSrc: '/spelman_google_illustrations_no_border_article_blue_bg.png',
     header: 'Articles',
     link: 'Read articles',
-    routeName:null
+    routeName: null
   },
   {
     imgSrc: '/spelman_google_illustrations_no_border_data_dashboard_blue_bg.png',
     header: 'Data Dashboard',
     link: 'Explore data dashboard',
-    routeName:'dataDashboard'
+    routeName: 'dataDashboard'
   },
   {
     imgSrc: '/spelman_google_illustrations_no_border_spelman_woman_news_blue_bg.png',
@@ -46,8 +46,8 @@ const cards = [
       </template>
       <template #link>
         <a @click="switchPage(card.routeName)">
-        {{ card.link }}
-        <span class="material-symbols-rounded">arrow_right_alt</span>
+          {{ card.link }}
+          <span class="material-symbols-rounded">arrow_right_alt</span>
         </a>
       </template>
     </ExploreCard>
@@ -56,8 +56,8 @@ const cards = [
 
 <style scoped>
 .explore-cards {
- display:flex;
- justify-content: flex-start;
- gap: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 </style>

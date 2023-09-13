@@ -1,14 +1,13 @@
 <script setup lang="ts">
-
 const props = defineProps({
-  imgSrc: String,
+  imgSrc: String
 })
 </script>
 <template>
   <div id="explore-card">
-      <div class="explore-card-top">
-        <img :src="imgSrc" class="illustration"/>
-      </div>
+    <div class="explore-card-top">
+      <img :src="imgSrc" class="illustration" />
+    </div>
     <div class="explore-card-bottom">
       <h1>
         <slot name="header"></slot>
@@ -17,7 +16,7 @@ const props = defineProps({
         <slot name="text"></slot>
       </div>
       <div class="link" id="link">
-          <slot name="link"></slot>
+        <slot name="link"></slot>
       </div>
     </div>
   </div>
@@ -31,7 +30,7 @@ const props = defineProps({
   border-radius: 1.25rem;
   box-shadow: 0 4px 20px 0 #292929;
   padding: 0;
-  margin:0;
+  margin: 0;
   min-width: 26.75rem;
 }
 
@@ -42,10 +41,10 @@ const props = defineProps({
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
-.explore-card-bottom{
+.explore-card-bottom {
   padding: 2rem;
 }
-.illustration{
+.illustration {
   width: 100%;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
@@ -53,7 +52,7 @@ const props = defineProps({
 #explore-card h1 {
   font-size: 1.625rem;
   letter-spacing: revert;
-  margin:0;
+  margin: 0;
 }
 
 #explore-card .link {
