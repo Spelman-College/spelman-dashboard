@@ -1,7 +1,7 @@
 <template>
   <div id="outer">
     ] <img id="stripes" src="/stripes.svg" />
-    <img id="splash-image" src="/AdobeStock_571805352.jpeg" />
+    <img id="splash-image" src="/AdobeStock_571805352.jpeg" style="object-position: left top;"/>
     <div id="splash-text">
       <div id="splash-text-header">Our Vision</div>
       <div id="splash-text-body">An international [platform] [showcasing] Black Women in STEM</div>
