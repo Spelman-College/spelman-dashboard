@@ -83,3 +83,13 @@ export const VisaHolder = 'VisaHolder'
 Dimension2Text[Citizen] = 'Citizen'
 Dimension2Text[CitizenshipUnknown] = 'Citizenship Unknown'
 Dimension2Text[VisaHolder] = 'Visa Holder'
+
+// Major Occupations
+export const BiologicalAgriculturalOtherLifeScientists = 'Biological, agricultural, and other life scientists'
+export const ComputerAndMathematicalScientists = 'Computer and mathematical scientists'
+export const PhysicalAndRelatedScientists = 'Physical and related scientists'
+export const SocialAndRelatedScientists = 'Social and related scientists'
+export const Engineers = 'Engineers'
+export const SAndERelatedOccupations = 'S&E-related occupations'
+export const NonSAndEOccupations = 'Non-S&E occupations'
+export const SAndEOccupations = 'S&E occupations'
