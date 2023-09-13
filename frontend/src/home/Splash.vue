@@ -9,15 +9,23 @@ function goToData() {
 const featuredWomen = [
   {
     imgSrc: '/homepage_carousel/dr_corbett.png',
-    text: 'Dr. Kizzmekia Corbett, Assistant Professor of Immunology'
+    personName: 'Dr. Kizzmekia Corbett',
+    shortDescription: 'Dr. Kizzmekia Corbett, Assistant Professor of Immunology',
+    longDescription: "Assistant Professor of Immunology and Infectious Diseases at Harvard T.H. Chan School of Public Health.",
   },
   {
     imgSrc: '/homepage_carousel/janina_jeff.jpeg',
-    text: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina'
+    personName: 'Dr. Janina Jeff',
+    shortDescription: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina',
+    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+
   },
   {
     imgSrc: '/homepage_carousel/stacey_dixon.png',
-    text: 'Dr. Stacey Dixon, Principal Deputy Director of US National Intelligence'
+    personName: 'Dr. Stacey Dixon',
+    shortDescription: 'Dr. Stacey Dixon, Principal Deputy Director of US National Intelligence',
+    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+
   }
 ]
 
@@ -38,21 +46,22 @@ function nextImage() {
 <template>
   <div class="flex-container">
     <div class="title-and-link">
-      <h1>
+      <h1 class="responsive-title">
         Breaking Boundaries<br />
         and Transforming<br />
         Futures
       </h1>
-      <p>
+      <p class="description-text">
         Amplifying the stories and impact of Black women in STEM through data, insights, and
         advocacy
       </p>
+      <div class="trailblazer-text">Spelman College honors STEM Trailblazer this month, <span class="font-bold">{{ featuredWomen[currentIndex].personName }}</span>, {{featuredWomen[currentIndex].longDescription}} <a class="featured-link-text" @click="">Learn more about her</a>.</div>
       <button @click="goToData">Visit the Data Dashboard</button>
     </div>
     <div id="splash-graphics">
       <div class="image">
         <img :src="featuredWomen[currentIndex].imgSrc" alt="" id="splash-image" />
-        <button class="hero-image-text">{{ featuredWomen[currentIndex].text }}</button>
+        <button class="hero-image-text">{{ featuredWomen[currentIndex].shortDescription }}</button>
         <img src="/swiggly_red_FF6454.svg" alt="" id="swiggly-red" />
         <div id="plusses">
           <img src="/plus_icon_1.svg" alt="" class="plus-icon" id="plus-icon-1" />
@@ -78,6 +87,15 @@ function nextImage() {
 <style scoped>
 @import '/homepage.css';
 
+.responsive-title {
+  white-space: nowrap;
+}
+@media (max-width: 1000px) {
+  .responsive-title {
+    white-space: normal;
+  }
+}
+
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -89,6 +107,32 @@ function nextImage() {
 .title-and-link p {
   font-size: 1.5rem;
 }
+.description-text{
+  font-size: 24px;
+}
+.trailblazer-text {
+  width: 428px;
+  color: #FFF;
+font-family: 'Noto Sans', sans-serif;
+font-size: 16px;
+font-style: italic;
+line-height: 24px; /* 150% */
+letter-spacing: 0.25px;
+margin-bottom:40px;
+}
+.font-bold{
+  font:bold;
+}
+.featured-link-text{
+  color: #ACF0FF;
+font-size: 16px;
+font-style: italic;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0.25px;
+text-decoration-line: underline;
+}
+
 #splash-graphics {
   position: relative;
   display: flex;
@@ -150,27 +194,26 @@ function nextImage() {
 
 #swiggly-red {
   position: absolute;
-  top: 5rem;
+  top: 6rem;
   left: -7rem;
   width: 17rem;
 }
 
 #plusses {
   position: absolute;
-  top: 1rem;
+  top: 2rem;
 }
 
 .plus-icon {
   position: absolute;
   width: 1.8rem;
-  fill: #ffe89b;
 }
 
 #plus-icon-2 {
-  left: 25rem;
+  left: 28rem;
 }
 
 #plus-icon-3 {
-  top: 23rem;
+  top: 24rem;
 }
 </style>
