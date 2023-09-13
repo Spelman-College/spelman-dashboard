@@ -3,7 +3,6 @@ import Splash from '@/components/about/Splash.vue'
 import Mission from '@/components/about/Mission.vue'
 import Vision from '@/components/about/Vision.vue'
 import Goal from '@/components/about/Goal.vue'
-import Partners from '@/components/about/Partners.vue'
 import TeamStories from '@/about/TeamStories.vue'
 </script>
 
@@ -22,9 +21,6 @@ import TeamStories from '@/about/TeamStories.vue'
   </div>
   <div class="view vision-parent">
     <Vision></Vision>
-  </div>
-  <div class="view">
-    <Partners></Partners>
   </div>
 
 

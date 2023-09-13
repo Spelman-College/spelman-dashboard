@@ -1,6 +1,6 @@
 <template>
   <div id="outer">
-    ] <img id="stripes" src="/stripes.svg" />
+    <img id="stripes" src="/stripes.svg" />
     <img id="splash-image" src="/AdobeStock_571805352.jpeg" style="object-position: left top" />
     <div id="splash-text">
       <div id="splash-text-header">Our Vision</div>
@@ -16,7 +16,7 @@ img {
 }
 
 div#outer {
-  height: 40rem;
+  display: flex;
 }
 
 div#splash-text {
