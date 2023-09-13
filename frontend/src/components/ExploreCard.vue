@@ -1,23 +1,24 @@
 <script setup lang="ts">
+
 const props = defineProps({
-  imgSrc: String
+  imgSrc: String,
 })
 </script>
 <template>
   <div id="explore-card">
-    <div class="circle">
-      <img :src="imgSrc" />
-    </div>
-    <h1>
-      <slot name="header"></slot>
-    </h1>
-    <div class="body">
-      <slot name="text"></slot>
-    </div>
-    <div class="link" id="link">
-      <a>
-        <slot name="link"></slot><span class="material-symbols-rounded">arrow_right_alt</span>
-      </a>
+      <div class="explore-card-top">
+        <img :src="imgSrc" class="illustration"/>
+      </div>
+    <div class="explore-card-bottom">
+      <h1>
+        <slot name="header"></slot>
+      </h1>
+      <div class="body">
+        <slot name="text"></slot>
+      </div>
+      <div class="link" id="link">
+          <slot name="link"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -29,24 +30,30 @@ const props = defineProps({
   border: 1px solid #5d6267;
   border-radius: 1.25rem;
   box-shadow: 0 4px 20px 0 #292929;
-  padding: 2rem;
+  padding: 0;
+  margin:0;
   width: 26.75rem;
-  height: 40.6875rem;
 }
 
-#explore-card .circle {
+.explore-card-top {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 7.3125rem;
-  height: 7.3125rem;
-  border-radius: 50%;
-  background: #ffffff;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 }
-
+.explore-card-bottom{
+  padding: 2rem;
+}
+.illustration{
+  width: 100%;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
 #explore-card h1 {
   font-size: 1.625rem;
   letter-spacing: revert;
+  margin:0;
 }
 
 #explore-card .link {
@@ -55,10 +62,8 @@ const props = defineProps({
 }
 
 #explore-card .body {
-  color: #ffffff;
-  font-family: 'Roboto';
+  font-family: 'Noto Sans Mono';
   font-size: 1.3125rem;
-  width: 22.5625rem;
 }
 
 #link a {

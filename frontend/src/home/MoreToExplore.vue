@@ -1,24 +1,32 @@
 <script setup lang="ts">
 import ExploreCard from '@/components/ExploreCard.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+function switchPage(routeName: string | null) {
+  if (routeName) {
+    router.push({ name: routeName })
+  }
+}
 
 const cards = [
   {
-    imgSrc: '/data_dashboard_icon.svg',
-    header: 'Data Dashboard',
-    text: 'See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format',
-    link: 'Explore data dashboard'
-  },
-  {
-    imgSrc: '/articles_icon.svg',
+    imgSrc: '/spelman_google_illustrations_no_border_article_blue_bg.png',
     header: 'Articles',
-    text: 'See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format',
-    link: 'Read articles'
+    link: 'Read articles',
+    routeName:null
   },
   {
-    imgSrc: '/news_icon.svg',
+    imgSrc: '/spelman_google_illustrations_no_border_data_dashboard_blue_bg.png',
+    header: 'Data Dashboard',
+    link: 'Explore data dashboard',
+    routeName:'dataDashboard'
+  },
+  {
+    imgSrc: '/spelman_google_illustrations_no_border_spelman_woman_news_blue_bg.png',
     header: 'News',
-    text: 'See the comprehensive and informative data dashboard, presenting data in a visually engaging and digestible format',
-    link: 'Get the latest news'
+    link: 'Get the latest news',
+    routeName: null
   }
 ]
 </script>
@@ -37,7 +45,10 @@ const cards = [
         {{ card.text }}
       </template>
       <template #link>
+        <a @click="switchPage(card.routeName)">
         {{ card.link }}
+        <span class="material-symbols-rounded">arrow_right_alt</span>
+        </a>
       </template>
     </ExploreCard>
   </div>
