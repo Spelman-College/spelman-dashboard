@@ -1,12 +1,13 @@
+import type Ref from 'vue'
 import { Parser } from '@json2csv/plainjs'
 
-import type { DcClientBulk } from '../dc/client'
+import type { SeriesClient, DcClientBulk } from '../dc/client'
 import { BulkClient, blobs2Csv } from '../dc/client'
 
 import type Queryable from './query'
 import { Query, expandCompares, QueryCompare } from './query'
 
-import { formatPlot } from './plotting'
+import { formatPlot, reduceIntersection } from './plotting'
 import type DcClient from '../dc/client'
 
 import { datasetMeta as demoMeta } from '../demo/ui'
@@ -126,6 +127,29 @@ export const getSingleDimension = async (
     out.push(...formatted)
   }
   return out
+}
+
+export const renderCategory = (
+  dcClient: SeriesClient,
+  dataset: Queryable,
+  tableRef: Ref<Array>,
+  category: string,
+  dimensions: string[],
+  catMap: Map<string, Array<string>>
+) => {
+  if (dimensions.length > 1) {
+    const dcids = applyCompareQuery(dataset, category, catMap)
+    const pout = getCompareData(dcClient, dcids)
+    pout.then((tmpOut) => {
+      const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
+      tableRef.value = reduced
+    })
+    return
+  }
+  const out = getSingleDimension(dataset, dcClient, catMap, dimensions[0])
+  out.then((data) => {
+    tableRef.value = data
+  })
 }
 
 export const getRawCompareData = async (
