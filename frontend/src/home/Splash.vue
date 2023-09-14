@@ -15,7 +15,7 @@ const featuredWomen = [
       'Assistant Professor of Immunology and Infectious Diseases at Harvard T.H. Chan School of Public Health.'
   },
   {
-    imgSrc: '/homepage_carousel/janina_jeff.jpeg',
+    imgSrc: '/homepage_carousel/janina_jeff.png',
     personName: 'Dr. Janina Jeff',
     shortDescription: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina',
     longDescription:
@@ -93,15 +93,6 @@ function nextImage() {
 <style scoped>
 @import '/homepage.css';
 
-.responsive-title {
-  white-space: nowrap;
-}
-@media (max-width: 1000px) {
-  .responsive-title {
-    white-space: normal;
-  }
-}
-
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -145,7 +136,7 @@ function nextImage() {
   top: 10rem;
   /* Temporary fix to prevent swiggly red from going over title text
    - update margin-left once mobile view is designed */
-  margin-left: 6rem;
+  margin-left: 8rem;
   margin-right: 1rem;
 }
 
