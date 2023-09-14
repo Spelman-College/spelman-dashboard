@@ -90,6 +90,9 @@ watchEffect(() => {
     }
 
     const catMap = {
+        age: ageQuery.value,
+        occupation: occupationQuery.value,
+        disability: disabilityQuery.value,
         gender: genderQuery.value,
         ethnicity: raceQuery.value,
         citizenship: citizenQuery.value
