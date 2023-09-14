@@ -185,7 +185,9 @@ const changeCompare = (val: string) => {
               anchor: 'left',
               label: datasetMeta.name,
               labelAnchor: 'center',
-              ticks: []
+              labelOffset:70,
+              tickFormat: 's',
+              marginLeft: 80
             }),
             Plot.ruleY([0])
           ]
