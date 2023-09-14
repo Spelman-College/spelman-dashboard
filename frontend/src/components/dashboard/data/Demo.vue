@@ -7,7 +7,6 @@ import FilterChip from '../FilterChip.vue'
 import PlotHeader from '../PlotHeader.vue'
 
 import { SeriesClient, BulkClient } from '../../../data/dc/client'
-import { downloadCSV } from '../../../data/dc/download'
 
 import {
   genderDomain,
