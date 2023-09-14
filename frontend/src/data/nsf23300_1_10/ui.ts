@@ -9,6 +9,7 @@ export const datasetDownloadFilename =
 export const datasetMeta = {
   fullName:"",
   name: 'Research doctorate recipients, by gender, ethnicity, race, and citizenship status.',
+  axisLabel: "Research doctorate recipients",
   source: 'National Center for Science and Engineering Statistics, Survey of Earned Doctorates.',
   variables: ['Gender', 'Citizenship', 'Race/Ethnicity'],
   year: '2011 - 2021',

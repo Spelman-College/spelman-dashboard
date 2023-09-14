@@ -189,7 +189,7 @@ const changeCompare = (val: string) => {
             Plot.ruleY([0]),
             Plot.axisY({
               anchor: 'left',
-              label: datasetMeta.name,
+              label: datasetMeta.axisLabel,
               labelAnchor: 'center',
               labelOffset:70,
               tickFormat: 's',
