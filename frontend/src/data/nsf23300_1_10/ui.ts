@@ -7,6 +7,7 @@ export const datasetDownloadFilename =
   'female_research_doctorate_recipients_by_ethnicity_race_and_citizenship_status'
 
 export const datasetMeta = {
+  fullName:"",
   name: 'Research doctorate recipients, by gender, ethnicity, race, and citizenship status.',
   source: 'National Center for Science and Engineering Statistics, Survey of Earned Doctorates.',
   variables: ['Gender', 'Citizenship', 'Race/Ethnicity'],
