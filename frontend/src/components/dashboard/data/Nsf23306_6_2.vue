@@ -9,8 +9,8 @@ import CompareRadio from '../CompareRadio.vue'
 import { SeriesClient, BulkClient } from '../../../data/dc/client'
 
 import {
-  sexDomain,
-  raceDomain,
+  genderDomain,
+  ethnicityDomain,
   occupationDomain,
   datasetMeta,
   dashboardFilters,
@@ -41,13 +41,13 @@ const bulkClient = new BulkClient('country/USA', 'AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAn
 const dataset = new Query_nsf23306_6_2()
 const loading_download = ref(false)
 
-const sexQuery = ref([])
-const raceQuery = ref([])
+const genderQuery = ref([])
+const ethnicityQuery = ref([])
 const occupationQuery = ref([])
 
 const filters = dashboardFilters
 
-const compare = ref('sex')
+const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
 
@@ -62,15 +62,15 @@ async function download() {
 }
 
 watchEffect(() => {
-  sexQuery.value = [...sexDomain]
-  raceQuery.value = [...raceDomain]
+  genderQuery.value = [...genderDomain]
+  ethnicityQuery.value = [...ethnicityDomain]
   occupationQuery.value = [...occupationDomain]
 })
 
 watchEffect(() => {
   if (
-    sexQuery.value.length == 0 &&
-    raceQuery.value.length == 0 &&
+    genderQuery.value.length == 0 &&
+    ethnicityQuery.value.length == 0 &&
     occupationQuery.value.length == 0
   ) {
     tableItems.value = []
@@ -78,20 +78,20 @@ watchEffect(() => {
   }
 
   const catMap = {
-    sex: sexQuery.value,
-    race: raceQuery.value,
+    gender: genderQuery.value,
+    ethnicity: ethnicityQuery.value,
     occupation: occupationQuery.value
   }
 
   switch (compare.value) {
-    case 'sex': {
-      colorDomain.value = [...sexDomain]
-      renderCategory(dcClient, dataset, tableItems, 'sex', sexQuery.value, catMap)
+    case 'gender': {
+      colorDomain.value = [...genderDomain]
+      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap)
       break
     }
-    case 'race': {
-      colorDomain.value = [...raceDomain]
-      renderCategory(dcClient, dataset, tableItems, 'ethnicity', raceQuery.value, catMap)
+    case 'ethnicity': {
+      colorDomain.value = [...ethnicityDomain]
+      renderCategory(dcClient, dataset, tableItems, 'ethnicity', ethnicityQuery.value, catMap)
       break
     }
     case 'occupation': {
@@ -100,7 +100,7 @@ watchEffect(() => {
       break
     }
     default: {
-      throw new Error(`got ${compare.value}, expected sex, race, or major occupation`)
+      throw new Error(`got ${compare.value}, expected gender, ethnicity, or major occupation`)
       break
     }
   }
@@ -108,12 +108,12 @@ watchEffect(() => {
 
 const updateFilter = (filterId: string, activeFilters: Array<string>) => {
   switch (filterId) {
-    case 'sex': {
-      sexQuery.value = [...activeFilters]
+    case 'gender': {
+      genderQuery.value = [...activeFilters]
       break
     }
-    case 'race': {
-      raceQuery.value = [...activeFilters]
+    case 'ethnicity': {
+      ethnicityQuery.value = [...activeFilters]
       break
     }
     case 'occupation': {
@@ -121,7 +121,7 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       break
     }
     default: {
-      throw new Error(`got ${filterId}, expected sex, race, or major occupation`)
+      throw new Error(`got ${filterId}, expected gender, ethnicity, or major occupation`)
       break
     }
   }

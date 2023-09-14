@@ -8,14 +8,14 @@ export const datasetDownloadFilename = 'Employed_college_graduates_by_sex_race_e
 export const datasetMeta = {
     name: 'Employed college graduates, by sex, ace, ethnicity, and major occupation: 2003-2021',
     source: 'National Center for Science and Engineering Statistics, National Survey of College Graduates.',
-    variables: ['Sex', 'Race', 'Major Occupation'],
+    variables: ['Gender', 'Race/Ethnicity', 'Major Occupation'],
     year: '2003 - 2021',
     path: 'nsf23306-6-2'
 }
 
 // Please don't mutate these or the plot will break. When assigning these, make a copy.
-export const sexDomain = dims.GENDERS
-export const raceDomain = [
+export const genderDomain = dims.GENDERS
+export const ethnicityDomain = [
   dims.HispanicOrLatino,
   dims.AmericanIndianOrAlaskaNativeAlone,
   dims.Asian,
@@ -38,16 +38,16 @@ export const occupationDomain = [
 
 export const dashboardFilters = [
     {
-        name: 'Sex',
-        id: 'sex',
+        name: 'Gender',
+        id: 'gender',
         alias: dims.Dimension2Text,
-        options: [...sexDomain]
+        options: [...genderDomain]
     },
     {
         name: 'Race/Ethnicity',
-        id: 'race',
+        id: 'ethnicity',
         alias: dims.Dimension2Text,
-        options: [...raceDomain]
+        options: [...ethnicityDomain]
     },
     {
         name: 'Major Occupation',
@@ -62,7 +62,7 @@ export async function download(client: DcClientBulk, filename: string): Promise<
 }
 
 export const compareOptions = [
-    { id: 'sex', name: 'Sex' },
-    { id: 'race', name: 'Race/Ethnicity' },
+    { id: 'gender', name: 'Gender' },
+    { id: 'ethnicity', name: 'Race/Ethnicity' },
     { id: 'occupation', name: 'Major Occupation' }
 ]
