@@ -11,21 +11,22 @@ const featuredWomen = [
     imgSrc: '/homepage_carousel/dr_corbett.png',
     personName: 'Dr. Kizzmekia Corbett',
     shortDescription: 'Dr. Kizzmekia Corbett, Assistant Professor of Immunology',
-    longDescription: "Assistant Professor of Immunology and Infectious Diseases at Harvard T.H. Chan School of Public Health.",
+    longDescription:
+      'Assistant Professor of Immunology and Infectious Diseases at Harvard T.H. Chan School of Public Health.'
   },
   {
     imgSrc: '/homepage_carousel/janina_jeff.png',
     personName: 'Dr. Janina Jeff',
     shortDescription: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina',
-    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-
+    longDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
   {
     imgSrc: '/homepage_carousel/stacey_dixon.png',
     personName: 'Dr. Stacey Dixon',
     shortDescription: 'Dr. Stacey Dixon, Principal Deputy Director of US National Intelligence',
-    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-
+    longDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }
 ]
 
@@ -55,7 +56,12 @@ function nextImage() {
         Amplifying the stories and impact of Black women in STEM through data, insights, and
         advocacy
       </p>
-      <div class="trailblazer-text">Spelman College honors STEM Trailblazer this month, <span class="font-bold">{{ featuredWomen[currentIndex].personName }}</span>, {{featuredWomen[currentIndex].longDescription}} <a class="featured-link-text" @click="">Learn more about her</a>.</div>
+      <div class="trailblazer-text">
+        Spelman College honors STEM Trailblazer this month,
+        <span class="font-bold">{{ featuredWomen[currentIndex].personName }}</span
+        >, {{ featuredWomen[currentIndex].longDescription }}
+        <a class="featured-link-text" @click="">Learn more about her</a>.
+      </div>
       <button @click="goToData">Visit the Data Dashboard</button>
     </div>
     <div id="splash-graphics">
@@ -98,30 +104,30 @@ function nextImage() {
 .title-and-link p {
   font-size: 1.5rem;
 }
-.description-text{
+.description-text {
   font-size: 24px;
 }
 .trailblazer-text {
   width: 428px;
-  color: #FFF;
-font-family: 'Noto Sans', sans-serif;
-font-size: 16px;
-font-style: italic;
-line-height: 24px; /* 150% */
-letter-spacing: 0.25px;
-margin-bottom:40px;
+  color: #fff;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.25px;
+  margin-bottom: 40px;
 }
-.font-bold{
-  font:bold;
+.font-bold {
+  font: bold;
 }
-.featured-link-text{
-  color: #ACF0FF;
-font-size: 16px;
-font-style: italic;
-font-weight: 400;
-line-height: 24px;
-letter-spacing: 0.25px;
-text-decoration-line: underline;
+.featured-link-text {
+  color: #acf0ff;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  text-decoration-line: underline;
 }
 
 #splash-graphics {
