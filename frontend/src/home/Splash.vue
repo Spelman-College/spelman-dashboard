@@ -15,7 +15,7 @@ const featuredWomen = [
       'Assistant Professor of Immunology and Infectious Diseases at Harvard T.H. Chan School of Public Health.'
   },
   {
-    imgSrc: '/homepage_carousel/janina_jeff.jpeg',
+    imgSrc: '/homepage_carousel/janina_jeff.png',
     personName: 'Dr. Janina Jeff',
     shortDescription: 'Dr. Janina Jeff, Geneticist and Senior Scientist at Illumina',
     longDescription:
