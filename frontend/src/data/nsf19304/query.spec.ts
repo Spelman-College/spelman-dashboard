@@ -8,7 +8,7 @@ const nsf19304 = new Query_nsf19304()
 const asian = new Query('ethnicity', 'Asian')
 const black_asian = new Query(
   'ethnicity',
-  'BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
+  'BlackOrAfricanAmericanAlone',
   'Asian'
 )
 const life_science = new Query('occupation', 'SOCLifeScientistsOccupation')
@@ -51,8 +51,8 @@ describe('nsf19304 query subset of subset dependent category', () => {
     out = nsf19304.query(black_asian)
     expect(out.error).toEqual(undefined)
     expect(out.results).toEqual([
-      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
-      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
+      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_BlackOrAfricanAmericanAlone',
+      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_BlackOrAfricanAmericanAlone',
       'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_Asian',
       'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_Asian'
     ])
@@ -60,12 +60,12 @@ describe('nsf19304 query subset of subset dependent category', () => {
     out = nsf19304.query(occupations_a, black_asian)
     expect(out.error).toEqual(undefined)
     expect(out.results).toEqual([
-      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_SOCLifeScientistsOccupation_BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
-      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_SOCLifeScientistsOccupation_BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
+      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_SOCLifeScientistsOccupation_BlackOrAfricanAmericanAlone',
+      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_SOCLifeScientistsOccupation_BlackOrAfricanAmericanAlone',
       'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_SOCLifeScientistsOccupation_Asian',
       'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_SOCLifeScientistsOccupation_Asian',
-      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_SOCMathematicalScienceOccupation_BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
-      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_SOCMathematicalScienceOccupation_BlackOrAfricanAmericanAloneOrAfricanAmericanAlone',
+      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_SOCMathematicalScienceOccupation_BlackOrAfricanAmericanAlone',
+      'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_SOCMathematicalScienceOccupation_BlackOrAfricanAmericanAlone',
       'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Male_SOCMathematicalScienceOccupation_Asian',
       'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree_UniversityAndCollegeTeacher_Female_SOCMathematicalScienceOccupation_Asian'
     ])
