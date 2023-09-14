@@ -23,7 +23,7 @@ Object.keys(Categories).forEach((cat) => {
   })
 })
 
-const dcids = []
+export const dcids = []
 DCIDS.forEach((id) => {
   dcids.push(new Dcid(id, filter, dimension2Category))
 })
