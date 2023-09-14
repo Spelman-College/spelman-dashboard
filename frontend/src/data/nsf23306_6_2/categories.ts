@@ -8,7 +8,11 @@ export const Categories = {
     dims.HispanicOrLatino,
     dims.OtherPacificIslander,
     dims.TwoOrMoreRaces,
-    dims.WhiteAlone
+    dims.WhiteAlone,
+    dims.AmericanIndianOrAlaskaNativeAlone,
+    dims.Black,
+    dims.HawaiianNativeOrPacificIslander,
+    dims.NonUSResident,
   ]),
   sex: new Set<string>([dims.Male, dims.Female]),
   occupation: new Set<string>([
@@ -19,6 +23,6 @@ export const Categories = {
     dims.SOCSocialScientistsRelatedWorkersOccupation,
     dims.ScienceAndEngineeringOccupation,
     dims.ScienceAndEngineeringRelatedOccupation,
-    dims.NonScienceAndEngineeringOccupation
+    dims.NonScienceAndEngineeringOccupation,
   ])
 }

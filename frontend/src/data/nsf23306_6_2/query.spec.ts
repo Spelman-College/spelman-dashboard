@@ -5,22 +5,22 @@ import { Categories } from './categories'
 
 const demo = new Query_nsf23306_6_2()
 
-const asian_black = new Query('ethnicity', 'Asian', 'BlackOrAfricanAmericanAlone')
+const asian_black = new Query('race', 'Asian', 'BlackOrAfricanAmericanAlone')
 const occupations = new Query(
   'occupation',
   'SOCLifeScientistsOccupation',
   'SOCComputerMathematicalOccupation'
 )
 
-const asian = new Query('ethnicity', 'Asian')
-const female = new Query('gender', 'Female')
+const asian = new Query('race', 'Asian')
+const female = new Query('sex', 'Female')
 const engineer = new Query('occupation', 'SOCEngineersOccupation')
 
-const all_genders = Categories['gender']
+const all_genders = Categories['sex']
 
 const all_occupations = Categories['occupation']
 
-const all_ethnicities = Categories['ethnicity']
+const all_ethnicities = Categories['race']
 
 describe('demo query', () => {
   test('test 2 ethnicities', () => {
@@ -71,7 +71,7 @@ describe('demo query', () => {
   })
   test('test each ethnicity', () => {
     all_ethnicities.forEach((ethnicity) => {
-      let query = new Query('ethnicity', ethnicity)
+      let query = new Query('race', ethnicity)
       let out = demo.query(query)
       expect(out.results).toEqual([
         'Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Employed_'.concat(ethnicity)
@@ -80,7 +80,7 @@ describe('demo query', () => {
   })
   test('test each gender', () => {
     all_genders.forEach((gender) => {
-      let query = new Query('gender', gender)
+      let query = new Query('sex', gender)
       let out = demo.query(query)
       expect(out.results).toEqual([
         'Count_Person_EducationalAttainmentBachelorsDegreeOrHigher_Employed_'.concat(gender)

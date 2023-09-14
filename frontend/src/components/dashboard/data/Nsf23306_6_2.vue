@@ -11,7 +11,7 @@ import { SeriesClient, BulkClient } from '../../../data/dc/client'
 import {
   sexDomain,
   raceDomain,
-  majorOccupationDomain,
+  occupationDomain,
   datasetMeta,
   dashboardFilters,
   download as Download,
@@ -43,7 +43,7 @@ const loading_download = ref(false)
 
 const sexQuery = ref([])
 const raceQuery = ref([])
-const majorOccupationQuery = ref([])
+const occupationQuery = ref([])
 
 const filters = dashboardFilters
 
@@ -64,14 +64,14 @@ async function download() {
 watchEffect(() => {
   sexQuery.value = [...sexDomain]
   raceQuery.value = [...raceDomain]
-  majorOccupationQuery.value = [...majorOccupationDomain]
+  occupationQuery.value = [...occupationDomain]
 })
 
 watchEffect(() => {
   if (
     sexQuery.value.length == 0 &&
     raceQuery.value.length == 0 &&
-    majorOccupationQuery.value.length == 0
+    occupationQuery.value.length == 0
   ) {
     tableItems.value = []
     return
@@ -80,7 +80,7 @@ watchEffect(() => {
   const catMap = {
     sex: sexQuery.value,
     race: raceQuery.value,
-    majorOccupation: majorOccupationQuery.value
+    occupation: occupationQuery.value
   }
 
   switch (compare.value) {
@@ -94,9 +94,9 @@ watchEffect(() => {
       renderCategory(dcClient, dataset, tableItems, 'ethnicity', raceQuery.value, catMap)
       break
     }
-    case 'majorOccupation': {
-      colorDomain.value = [...majorOccupationDomain]
-      renderCategory(dcClient, dataset, tableItems, compare.value, majorOccupationQuery.value, catMap)
+    case 'occupation': {
+      colorDomain.value = [...occupationDomain]
+      renderCategory(dcClient, dataset, tableItems, compare.value, occupationQuery.value, catMap)
       break
     }
     default: {
@@ -116,8 +116,8 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       raceQuery.value = [...activeFilters]
       break
     }
-    case 'majorOccupation': {
-      majorOccupationQuery.value = [...activeFilters]
+    case 'occupation': {
+      occupationQuery.value = [...activeFilters]
       break
     }
     default: {
