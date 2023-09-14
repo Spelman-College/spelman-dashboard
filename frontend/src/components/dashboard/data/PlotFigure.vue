@@ -12,7 +12,7 @@ const props = defineProps({
       Plot.plot({
         ...props.options,
         width: 1200,
-        style: { fontSize: 11, fontFamily: 'Noto Sans Mono', color: '#444746' }
+        style: { fontSize: 15, fontFamily: 'Noto Sans', color: '#444746' }
       }).outerHTML
     "
   />
