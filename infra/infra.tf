@@ -109,6 +109,7 @@ resource "aws_iam_group_membership" "admins" {
     aws_iam_user.chasecummings.name,
     aws_iam_user.mattcs.name,
     aws_iam_user.drumsound.name,
+    aws_iam_user.claraamenyo.name
   ]
   group = aws_iam_group.admins.name
 }
@@ -396,6 +397,14 @@ resource "aws_iam_user_policy_attachment" "terriadavis_change_password" {
   policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
 }
 
+resource "aws_iam_user" "claraamenyo" {
+  name = "claraamenyo"
+}
+
+resource "aws_iam_user_policy_attachment" "claraamenyo_change_password" {
+  user       = aws_iam_user.claraamenyo.name
+  policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
+}
 
 resource "aws_iam_user" "terraform" {
   name = "terraform"
