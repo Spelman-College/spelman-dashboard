@@ -191,12 +191,12 @@ const changeCompare = (val: string) => {
               anchor: 'left',
               label: datasetMeta.axisLabel,
               labelAnchor: 'center',
-              labelOffset:70,
+              labelOffset: 70,
               tickFormat: 's',
               marginLeft: 80
-            }),
+            })
           ]
-          }"
+        }"
       >
       </PlotFigure>
     </div>

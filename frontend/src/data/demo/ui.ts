@@ -10,7 +10,7 @@ export const datasetDownloadFilename =
 export const datasetMeta = {
   fullName: 'Field of bachelor’s degree for first major American Community Survey 2019',
   name: "Bachelor's degree recipients by gender, age, and college major",
-  axisLabel:"Bachelor's degree recipients",
+  axisLabel: "Bachelor's degree recipients",
   source: 'U.S. Census Bureau, American Community Survey 5-Year Estimate (2019)',
   variables: ['Gender', 'Age', 'Major'],
   year: '2015 - 2019',
