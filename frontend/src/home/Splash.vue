@@ -87,15 +87,6 @@ function nextImage() {
 <style scoped>
 @import '/homepage.css';
 
-.responsive-title {
-  white-space: nowrap;
-}
-@media (max-width: 1000px) {
-  .responsive-title {
-    white-space: normal;
-  }
-}
-
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -139,7 +130,7 @@ text-decoration-line: underline;
   top: 10rem;
   /* Temporary fix to prevent swiggly red from going over title text
    - update margin-left once mobile view is designed */
-  margin-left: 6rem;
+  margin-left: 8rem;
   margin-right: 1rem;
 }
 
