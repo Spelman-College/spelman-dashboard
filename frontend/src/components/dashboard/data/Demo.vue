@@ -156,7 +156,7 @@ const changeCompare = (val: string) => {
           x: {
             axis: null,
             tickFormat: '',
-            type: 'band',
+            type: 'band'
           },
           y: {
             tickFormat: 's',
@@ -168,7 +168,7 @@ const changeCompare = (val: string) => {
           color: {
             domain: colorDomain,
             legend: true,
-            range: plotColors,
+            range: plotColors
           },
           marks: [
             Plot.barY(tableItems, {
@@ -185,7 +185,7 @@ const changeCompare = (val: string) => {
               anchor: 'left',
               label: datasetMeta.name,
               labelAnchor: 'center',
-              labelOffset:70,
+              labelOffset: 70,
               tickFormat: 's',
               marginLeft: 80
             }),
