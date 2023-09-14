@@ -6,7 +6,7 @@ import { Categories } from './categories'
 const filter: DcidFilter = {
   ignorePrefix:
     'Count_Person_ScienceAndEngineeringRelatedMajor_EducationalAttainmentDoctorateDegree',
-  omitDimensions: new Set<string>(['UniversityOrCollegeTeacher'])
+  omitDimensions: new Set<string>(['UniversityAndCollegeTeacher'])
 } as DcidFilter
 
 const dimension2Category = {}
