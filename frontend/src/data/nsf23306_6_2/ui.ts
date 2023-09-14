@@ -7,8 +7,8 @@ export const datasetDownloadFilename = 'Employed_college_graduates_by_sex_race_e
 
 export const datasetMeta = {
     name: 'Employed college graduates, by sex, ace, ethnicity, and major occupation: 2003-2021',
-    source: 'Fix Me!',
-    variables: ['Sex', 'Race', 'Ethnicity', 'Major Occupation'],
+    source: 'National Center for Science and Engineering Statistics, National Survey of College Graduates.',
+    variables: ['Sex', 'Race', 'Major Occupation'],
     year: '2003 - 2021',
     path: 'nsf23306-6-2'
 }
@@ -26,14 +26,14 @@ export const raceDomain = [
   dims.NonUSResident
 ]
 export const occupationDomain = [
-    dims.BiologicalAgriculturalOtherLifeScientists,
-    dims.ComputerAndMathematicalScientists,
-    dims.PhysicalAndRelatedScientists,
-    dims.SocialAndRelatedScientists,
-    dims.Engineers,
-    dims.SAndERelatedOccupations,
-    dims.NonSAndEOccupations,
-    dims.SAndEOccupations
+    dims.SOCComputerMathematicalOccupation,
+    dims.SOCEngineersOccupation,
+    dims.SOCLifeScientistsOccupation,
+    dims.SOCPhysicalScientistsOccupation,
+    dims.SOCSocialScientistsRelatedWorkersOccupation,
+    dims.ScienceAndEngineeringOccupation,
+    dims.ScienceAndEngineeringRelatedOccupation,
+    dims.NonScienceAndEngineeringOccupation,
 ]
 
 export const dashboardFilters = [
