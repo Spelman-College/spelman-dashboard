@@ -55,7 +55,7 @@ resource "aws_amplify_app" "spelman_dashboard_frontend" {
   }
 
   custom_rule {
-    source = "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>"
+    source = "</^[^.]+$|\\.(?!(css|gif|ico|jpg|jpeg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>"
     status = "200"
     target = "/index.html"
   }
