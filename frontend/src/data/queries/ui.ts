@@ -18,16 +18,8 @@ const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
 export const datasets = [
-  demo,
   ipeds,
   nsf23300_1_10,
-  {
-    name: 'Second Demo example',
-    source: 'Fix Me!',
-    variables: ['Gender', 'Age', 'Major'],
-    year: '2015 - 2019',
-    path: 'demo-2'
-  }
 ]
 
 export const presets = [
