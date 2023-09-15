@@ -92,9 +92,8 @@ function handleClick(name: String | null) {
         @click="handleClick(option.name)"
       >
         <div class="name-source-vars-container">
-          <div class="name-source font-semibold">
-            <div class="name">{{ option.name }}</div>
-            <div class="source">{{ option.source }}</div>
+          <div class="name-source font-bold">
+           {{ option.name }} | {{ option.source }}
           </div>
           <div class="vars">Variables: {{ getVarsString(option.variables) }}</div>
         </div>
@@ -150,6 +149,7 @@ function handleClick(name: String | null) {
   box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
   height: 265px;
   overflow: auto;
+  min-width: 100%;
 }
 
 .dropdown-option {
@@ -159,6 +159,7 @@ function handleClick(name: String | null) {
   letter-spacing: 0.0125rem;
   padding: 1rem;
   gap: 3rem;
+ 
 }
 
 .dropdown-option:first-child {
@@ -176,6 +177,9 @@ function handleClick(name: String | null) {
 .name-source-vars-container {
   font-family: 'Noto Sans Display';
   color: #3c4043;
+  display:flex;
+  flex-direction: column;
+  gap:.25rem;
 }
 
 .name-source {
@@ -184,20 +188,15 @@ function handleClick(name: String | null) {
   display: flex;
   flex-direction: column;
 }
-.name {
-  margin-bottom: 0.4rem;
-  color: #1967d2;
-}
-.source,
+
+
 .vars {
   color: #80868b;
   font-weight: 400;
   font-size: 0.75rem;
   font-weight: 400;
 }
-.source {
-  margin-bottom: 0.2rem;
-}
+
 .year {
   font-family: 'Roboto';
   font-size: 0.875rem;
