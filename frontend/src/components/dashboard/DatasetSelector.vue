@@ -203,7 +203,7 @@ function handleClick(name: String | null) {
   font-size: 0.875rem;
   color: #80868b;
   font-weight: 400;
-  min-width: 80px;
+  min-width: 150px;
   text-align: right;
   align-self: flex-start;
   line-height: 1.5rem;
