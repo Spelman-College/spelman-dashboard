@@ -186,7 +186,15 @@ const changeCompare = (val: string) => {
                 x: null
               }
             }),
-            Plot.ruleY([0])
+            Plot.ruleY([0]),
+            Plot.axisY({
+              anchor: 'left',
+              label: datasetMeta.axisLabel,
+              labelAnchor: 'center',
+              labelOffset: 70,
+              tickFormat: 's',
+              marginLeft: 80
+            })
           ]
         }"
       >
