@@ -5,7 +5,7 @@ import Ipeds_318_45 from './data/Ipeds_318_45.vue'
 import Nsf23300_1_10 from './data/Nsf23300_1_10.vue'
 import Nsf23306_4_2 from './data/nsf23306_4_2.vue'
 import { datasetMeta as nsf23300_1_10Meta } from '../../data/nsf23300_1_10/ui'
-import { datasetMeta as nsf23306_4_2Meta } from '../../data/nsf23300_1_10/ui'
+import { datasetMeta as nsf23306_4_2Meta } from '../../data/nsf23306_4_2/ui'
 
 import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
 import '../../../node_modules/primeflex/primeflex.css'

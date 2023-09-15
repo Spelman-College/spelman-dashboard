@@ -42,6 +42,10 @@ export class Query_nsf23306 extends Base {
   constructor() {
     super()
   }
+  categories(): CategoryType {
+    return Categories
+  }
+  
   query(...queries: Array<Query>): QueryResult {
     return query2dcids(
       this.dcids,

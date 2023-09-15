@@ -109,9 +109,9 @@ watchEffect(() => {
             renderCategory(dcClient, dataset, tableItems, compare.value, genderQuery.value, catMap)
             break
         }
-        case 'race': {
+        case 'ethnicity': {
             colorDomain.value = [...raceDomain]
-            renderCategory(dcClient, dataset, tableItems, 'ethnicity', raceQuery.value, catMap)
+            renderCategory(dcClient, dataset, tableItems, compare.value, raceQuery.value, catMap)
             break
         }
         case 'disability': {
@@ -142,7 +142,7 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
             genderQuery.value = [...activeFilters]
             break
         }
-        case 'race': {
+        case 'ethnicity': {
             raceQuery.value = [...activeFilters]
             break
         }

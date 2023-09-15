@@ -11,7 +11,7 @@ export const datasetMeta = {
     name: 'Median annual salaries of full-time employed college graduates, by sex, major occupation, age, ethnicity, race, disability status, and citizenship status.',
     source: 'National Center for Science and Engineering Statistics, Survey of College Graduates.',
     variables: ['Age', 'Occupation', 'Disability Status', 'Gender', 'Citizenship', 'Race/Ethnicity'],
-    year: '2021',
+    year: '2017 - 2021',
     path: 'nsf23306_4_2'
 }
 
