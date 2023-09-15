@@ -147,7 +147,7 @@ function handleClick(name: String | null) {
   background-color: #ffffff;
   border-radius: 0.25rem;
   box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  height: 265px;
+  max-height: 300px;
   overflow: auto;
   min-width: 100%;
 }
@@ -157,7 +157,7 @@ function handleClick(name: String | null) {
   justify-content: space-between;
   align-items: center;
   letter-spacing: 0.0125rem;
-  padding: 1rem;
+  padding: .5rem;
   gap: 3rem;
  
 }
