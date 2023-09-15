@@ -83,7 +83,6 @@ watchEffect(() => {
     citizenship: citizenQuery.value
   }
 
-
   switch (compare.value) {
     case 'gender': {
       colorDomain.value = [...genderDomain]
