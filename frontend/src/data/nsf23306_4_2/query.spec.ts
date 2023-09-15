@@ -1,30 +1,31 @@
 import { describe, expect, test } from '@jest/globals'
 import { Query_nsf23306 } from './query'
 import { Query } from '../queries/query'
+import * as dims from '../queries/dimensions'
 
 const nsf23306 = new Query_nsf23306()
 
-const asian = new Query('ethnicity', 'Asian')
-const black_asian = new Query('ethnicity', 'BlackOrAfricanAmericanAlone', 'Asian')
+const asian = new Query('ethnicity', dims.Asian)
+const black_asian = new Query('ethnicity', dims.BlackOrAfricanAmericanAlone, dims.Asian)
 
-const female = new Query('gender', 'Female')
-const male = new Query('gender', 'Male')
-const male_female = new Query('gender', 'Male', 'Female')
+const female = new Query('gender', dims.Female)
+const male = new Query('gender', dims.Male)
+const male_female = new Query('gender', dims.Male, dims.Female)
 
-const disability = new Query('disability', 'WithDisability')
-const no_disability = new Query('disability', 'NoDisability')
+const disability = new Query('disability', dims.WithDisability)
+const no_disability = new Query('disability', dims.NoDisability)
 
 const eng_phsysci = new Query(
   'occupation',
-  'SOCEngineersOccupation',
-  'SOCPhysicalScientistsOccupation'
+  dims.SOCEngineersOccupation,
+  dims.SOCPhysicalScientistsOccupation
 )
-const eng = new Query('occupation', 'SOCEngineersOccupation')
+const eng = new Query('occupation', dims.SOCEngineersOccupation)
 
-const citizen = new Query('citizenship', 'Citizen')
+const citizen = new Query('citizenship', dims.Citizen)
 
-const twenty_nine_under = new Query('age', '29OrLessYears')
-const thirty_nine_under = new Query('age', '29OrLessYears', '30To39Years')
+const twenty_nine_under = new Query('age', dims.age_29orLessyears)
+const thirty_nine_under = new Query('age', dims.age_29orLessyears, dims.age_30to39Years)
 describe('nsf23306 query keys', () => {
   test('query incompatible dimensions: disability AND ethnicity return no results', () => {
     let out = nsf23306.query(disability, asian)

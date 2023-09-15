@@ -1,5 +1,7 @@
-import { Dcid, DcidFilter, CategoryType } from '../queries/dcid'
-import { Query, QueryResult, query2dcids } from '../queries/query'
+import { Dcid } from '../queries/dcid'
+import type { DcidFilter, CategoryType } from '../queries/dcid'
+import type { QueryResult } from '../queries/query'
+import { Query, query2dcids } from '../queries/query'
 import { DCIDS } from './dcids'
 import { Categories } from './categories'
 
@@ -23,7 +25,7 @@ Object.keys(Categories).forEach((cat) => {
   })
 })
 
-const dcids = []
+export const dcids = []
 DCIDS.forEach((id) => {
   dcids.push(new Dcid(id, filter, dimension2Category))
 })
@@ -40,6 +42,10 @@ export class Query_nsf23306 extends Base {
   constructor() {
     super()
   }
+  categories(): CategoryType {
+    return Categories
+  }
+
   query(...queries: Array<Query>): QueryResult {
     return query2dcids(
       this.dcids,

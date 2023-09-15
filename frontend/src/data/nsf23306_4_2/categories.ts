@@ -1,25 +1,32 @@
+import * as dims from '../queries/dimensions'
+
 export const Categories = {
-  age: new Set<string>(['29OrLessYears', '30To39Years', '40To49Years', '50To75Years']),
+  age: new Set<string>([
+    dims.age_29orLessyears,
+    dims.age_30to39Years,
+    dims.age_40to49Years,
+    dims.age_50To75Years
+  ]),
   ethnicity: new Set<string>([
-    'AmericanIndianOrAlaskaNativeAlone',
-    'Asian',
-    'BlackOrAfricanAmericanAlone',
-    'HispanicOrLatino',
-    'NativeHawaiianOrOtherPacificIslanderAlone',
-    'TwoOrMoreRaces',
-    'WhiteAlone'
+    dims.AmericanIndianOrAlaskaNativeAlone,
+    dims.Asian,
+    dims.BlackOrAfricanAmericanAlone,
+    dims.HispanicOrLatino,
+    dims.NativeHawaiianOrOtherPacificIslanderAlone,
+    dims.TwoOrMoreRaces,
+    dims.WhiteAlone
   ]),
   occupation: new Set<string>([
-    'SOCBiologicalScientistsAllOtherOccupation',
-    'SOCComputerMathematicalOccupation',
-    'SOCEngineersOccupation',
-    'SOCPhysicalScientistsOccupation',
-    'SOCSocialScientistsRelatedWorkersOccupation',
-    'ScienceAndEngineeringOccupation',
-    'ScienceAndEngineeringRelatedOccupation',
-    'NonScienceAndEngineeringOccupation'
+    dims.SOCBiologicalScientistsAllOtherOccupation,
+    dims.SOCComputerMathematicalOccupation,
+    dims.SOCEngineersOccupation,
+    dims.SOCPhysicalScientistsOccupation,
+    dims.SOCSocialScientistsRelatedWorkersOccupation,
+    dims.ScienceAndEngineeringOccupation,
+    dims.ScienceAndEngineeringRelatedOccupation,
+    dims.NonScienceAndEngineeringOccupation
   ]),
-  disability: new Set<string>(['NoDisability', 'WithDisability']),
-  citizenship: new Set<string>(['Citizen', 'NotAUSCitizen']),
-  gender: new Set<string>(['Female', 'Male'])
+  disability: new Set<string>([dims.NoDisability, dims.WithDisability]),
+  citizenship: new Set<string>([dims.Citizen, dims.NotAUSCitizen]),
+  gender: new Set<string>([dims.Male, dims.Female])
 }
