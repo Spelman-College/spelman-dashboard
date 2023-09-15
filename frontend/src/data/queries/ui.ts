@@ -17,10 +17,7 @@ import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
 const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
-export const datasets = [
-  ipeds,
-  nsf23300_1_10,
-]
+export const datasets = [ipeds, nsf23300_1_10]
 
 export const presets = [
   { name: 'Demo preset for testing the dashboard', path: 'demo-preset' },
