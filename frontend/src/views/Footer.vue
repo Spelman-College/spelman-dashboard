@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
 function goToFAQ() {
   router.push({ name: 'FAQ' })
@@ -16,13 +16,22 @@ function goToFAQ() {
     </div>
     <div class="info">
       <div id="contact">
-        <div>Address goes here</div>
-        <div>(222) 222-2222</div>
-        <div>xyz@coe.org</div>
+        <div>
+          The virtual hub was developed in partnership between <br />Spelman's Center of Excellence
+          for Minority Women in <br />STEM and Google.org. To contact us, email at:
+        </div>
+        <br />
+        <div class="email">
+          <span class="material-symbols-rounded"> mail </span>coe-mws@spelman.edu
+        </div>
       </div>
       <div id="misc">
-        <div>@ 2023-2-24</div>
-        <div>Privacy &mdash; Terms</div>
+        <div>© 2023-2024</div>
+        <div>
+          Terms of Use and <br />
+          Privacy Policy
+        </div>
+        <br />
         <div class="footer-links" @click="goToFAQ">FAQ</div>
       </div>
     </div>
@@ -32,9 +41,9 @@ function goToFAQ() {
 <style scoped>
 #footer {
   background-color: #000000;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 2rem 6rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 3rem;
   font-family: 'Noto Sans', sans-serif;
   margin-top: 4rem;
 }
@@ -54,6 +63,17 @@ function goToFAQ() {
   color: #dcdcdc;
   align-items: center;
   justify-content: space-between;
+  gap: 4rem;
+}
+
+.email {
+  text-decoration: underline;
+}
+
+.material-symbols-rounded {
+  color: white;
+  margin-left: 0rem;
+  margin-right: 1.19rem;
 }
 
 #contact {
@@ -61,11 +81,12 @@ function goToFAQ() {
 }
 
 #misc {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .footer-links {
   cursor: pointer;
+  color: #4fdfff;
+  font-weight: 700;
 }
-  
 </style>

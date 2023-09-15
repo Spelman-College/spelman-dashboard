@@ -1,29 +1,27 @@
-import { Dcid, TsDcid, DcidFilter, CategoryType } from "../queries/dcid"
-import { Query, QueryResult, query2dcids } from "../queries/query"
+import type { CategoryType, DcidFilter } from '../queries/dcid'
+import { Dcid } from '../queries/dcid'
+import { Query, query2dcids } from '../queries/query'
+import type QueryResult from '../queries/query'
 import { DCIDS } from './dcids'
 import { Categories } from './categories'
 
 const filter: DcidFilter = {
-    ignorePrefix: 'Count_Person',
-    omitDimensions: new Set<string>([
-	'EducationalAttainmentDoctorateDegree',
-	'Female',
-	'NotHispanicOrLatino',
-    ]),
-    additions: {}
+  ignorePrefix: 'Count_Person',
+  omitDimensions: new Set<string>(['EducationalAttainmentDoctorateDegree', 'NotHispanicOrLatino']),
+  additions: {}
 } as DcidFilter
 
 const dimension2Category = {}
 const annotatedDimensions = new Set<string>()
 
-
 Object.keys(Categories).forEach((cat) => {
-    const values = Categories[cat]
-    values.forEach((dim) => {
-        dimension2Category[dim] = cat
-	annotatedDimensions.add(`${cat}:${dim}`)
-    })
+  const values = Categories[cat]
+  values.forEach((dim) => {
+    dimension2Category[dim] = cat
+    annotatedDimensions.add(`${cat}:${dim}`)
+  })
 })
+
 // Because we're using timeseries, we'll need to create a set of all of the available
 // DCIDs that include each year. There may be keys that don't exist in some years
 // that do exist in other years. Since we're collecting the unique set of all years,
@@ -32,18 +30,17 @@ Object.keys(Categories).forEach((cat) => {
 // dates in the response; another way of saying this is that any key will return all years
 // so we're collecting just the unique set of keys.
 const dcids = []
-const dcids_set = new Set()
+export const dcids_set = new Set()
 
 for (const date in DCIDS) {
-    const keys = DCIDS[date]
-    keys.forEach((id) => {
-	dcids_set.add(id)
-    })
+  const keys = DCIDS[date]
+  keys.forEach((id) => {
+    dcids_set.add(id)
+  })
 }
 dcids_set.forEach((id) => {
-    dcids.push(new Dcid(id, filter, dimension2Category))
+  dcids.push(new Dcid(id, filter, dimension2Category))
 })
-
 // If we're querying both
 // 1. a subset of enthicity dimensions, and
 // 2. all gender dimensions
@@ -52,23 +49,31 @@ dcids_set.forEach((id) => {
 // ethnicity metric that includes all genders.
 // EXAMPLE:
 // const categoryDependencies: [string, string][] = [['ethnicity', 'gender']]
-const categoryDependencies: [string, string][] = []
+const categoryDependencies: [string, string][] = [
+  ['ethnicity', 'gender'],
+  ['citizenship', 'gender']
+]
 
 class Base {
-    protected categoryDependencies: [string, string][] = categoryDependencies
-    protected dcids: Array<Dcid | TsDcid> = dcids
-    protected annotatedDimensions: Set<string> = annotatedDimensions
+  protected categoryDependencies: [string, string][] = categoryDependencies
+  protected dcids: Array<Dcid> = dcids
+  protected annotatedDimensions: Set<string> = annotatedDimensions
 }
 
 export class Query_nsf23300_1_10 extends Base {
-    constructor() {
-	super()
-    }
-    query(...queries: Array<Query>): QueryResult {
-	return query2dcids(this.dcids,
-			   Categories,
-			   this.categoryDependencies,
-			   this.annotatedDimensions,
-			   ...queries)
-    }
+  constructor() {
+    super()
+  }
+  categories(): CategoryType {
+    return Categories
+  }
+  query(...queries: Array<Query>): QueryResult {
+    return query2dcids(
+      this.dcids,
+      Categories,
+      this.categoryDependencies,
+      this.annotatedDimensions,
+      ...queries
+    )
+  }
 }

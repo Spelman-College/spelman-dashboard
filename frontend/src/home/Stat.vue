@@ -1,44 +1,54 @@
 <template>
   <h2>Learn about the impact</h2>
-  <div id="outer">
+  <div id="outer-stat">
     <div id="percent">
       <span class="big-percent">2.9</span>
       <span class="big-percent">%</span>
-      <div id="percent-blurb">In 2021, only 2.9% of the STEM<br> workforce in the
-        United States<br> are Black women.</div>
+      <div id="percent-blurb">
+        In 2021, only 2.9% of the STEM workforce in the United States are Black women.
+      </div>
       <div id="squiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
       <p id="footnote">
-        Explore the commitment to increasing<br />
-        representation, improving access to<br />
-        resources and strengthening<br />
-        community partnerships.</p>
+        Explore the commitment to increasing representation, improving access to resources and
+        strengthening community partnerships.
+      </p>
     </div>
     <div id="bullet-points">
       <div class="bullet-point">
         <span class="material-icons circle">diversity_2</span>
-        <p>Increasing representation and <br />
-          visibility</p>
+        <p>
+          Increasing representation and <br />
+          visibility
+        </p>
       </div>
       <div class="bullet-point">
         <span class="material-icons circle">published_with_changes</span>
-        <p>Improving access to resources and <br />
-          opportunities</p>
+        <p>
+          Improving access to resources and <br />
+          opportunities
+        </p>
       </div>
       <div class="bullet-point">
         <span class="material-icons circle">rocket_launch</span>
-        <p>Strengthening community<br />
-          partnerships</p>
+        <p>
+          Strengthening community<br />
+          partnerships
+        </p>
       </div>
       <div class="bullet-point">
         <span class="material-icons link">link</span>
-        <p><a id="source" href="https://ncses.nsf.gov/pubs/nsf23315/report/science-and-engineering-degrees-earned">Source:
-            NSF Science
-            and Engineering Degrees Earned Report</a></p>
+        <p>
+          <a
+            id="source"
+            href="https://ncses.nsf.gov/pubs/nsf23315/report/science-and-engineering-degrees-earned"
+            >Source: NSF Science and Engineering Degrees Earned Report</a
+          >
+        </p>
       </div>
     </div>
   </div>
   <div id="link">
-    <a href="">Learn more <span class="material-symbols-outlined">arrow_right_alt</span></a>
+    <a href="">Learn more <span class="material-symbols-rounded">arrow_right_alt</span></a>
   </div>
 </template>
 
@@ -49,20 +59,24 @@
   color: #4fdfff;
 }
 
-#outer {
+#outer-stat {
   display: flex;
+  /* Adjust here depending on final layout */
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 #percent-blurb {
   margin-bottom: 0;
   font-family: 'Noto Sans Mono';
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-align: left;
+  max-width: 750px;
 }
 
 #squiggle {
@@ -90,7 +104,7 @@
 }
 
 #bullet-points {
-  margin: 0 4rem;
+  margin-right: 4rem;
 }
 
 .bullet-point {
@@ -102,6 +116,7 @@
 .bullet-point p {
   margin: 0 0 0 2em;
   font-size: 1.6875rem;
+  width: auto;
 }
 
 .bullet-point span {
@@ -111,6 +126,8 @@
 }
 
 .bullet-point span.circle {
+  display: flex;
+  flex-shrink: 0;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -125,17 +142,20 @@
   color: #ffffff;
 }
 
-#link .material-symbols-outlined {
+#link .material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
   color: #4fdfff;
   margin-left: 0.81rem;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 #source {
   font-size: 1rem;
+  text-decoration: underline;
   color: #ffffff;
+  display: flex;
+  max-width: 400px;
 }
 </style>

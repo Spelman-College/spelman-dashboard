@@ -13,19 +13,23 @@ import TeamStories from '@/about/TeamStories.vue'
   <div class="view gradient">
     <Mission></Mission>
   </div>
-  <div class="view">
-    <Vision></Vision>
+  <div class="view team-stories-parent">
+    <TeamStories></TeamStories>
   </div>
   <div class="view gradient">
     <Goal></Goal>
   </div>
-  <div class="view">
-    <TeamStories></TeamStories>
+  <div class="view vision-parent">
+    <Vision></Vision>
   </div>
 </template>
 
 <style scoped>
+.team-stories-parent {
+  display: flex;
+  justify-content: center;
+}
 div.gradient {
-  background: linear-gradient(180deg, rgba(34, 38, 43, 0.00) 0%, #181818 100%);
+  background: linear-gradient(180deg, rgba(34, 38, 43, 0) 0%, #181818 100%);
 }
 </style>

@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="card-and-arrow-container">
@@ -11,12 +9,19 @@
       <img src="/data_dashboard_welcome_icon.svg" />
       <div class="header">Welcome to the data dashboard</div>
       <div class="paragraph">Select a dataset in the drop-down menu above.</div>
-      <div class="paragraph">Use the toggle on the top left of the page to switch between Explore Data mode and Preset
-        Chart
-        mode.</div>
-      <div class="paragraph">Toggle to Explore Data to tailor datasets using filters and create custom charts.</div>
-      <div class="paragraph">Or, toggle to Preset Charts to see charts with key statistics highlighted.</div>
-      <div class="footer">Need more help? Check out the comprehensive <a href="/faq">FAQ page</a>.</div>
+      <div class="paragraph">
+        Use the toggle on the top left of the page to switch between Explore Data mode and Preset
+        Chart mode.
+      </div>
+      <div class="paragraph">
+        Toggle to Explore Data to tailor datasets using filters and create custom charts.
+      </div>
+      <div class="paragraph">
+        Or, toggle to Preset Charts to see charts with key statistics highlighted.
+      </div>
+      <div class="footer">
+        Need more help? Check out the comprehensive <a href="/faq">FAQ page</a>.
+      </div>
     </div>
     <div class="arrow-right">
       <img src="/arrow_right.svg" />
@@ -27,6 +32,7 @@
 <style scoped>
 .card-and-arrow-container {
   display: flex;
+  justify-content: center;
 }
 
 .card {
@@ -38,13 +44,13 @@
   border-radius: 0.5rem;
 }
 
-.card>img {
+.card > img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.card>.header {
+.card > .header {
   margin: 2rem 0;
   color: #202124;
   text-align: center;
@@ -52,7 +58,7 @@
   font-size: 1.375rem;
 }
 
-.card>.paragraph {
+.card > .paragraph {
   margin: 1rem 0;
   color: #3c4043;
   font-family: 'Roboto';
@@ -60,7 +66,7 @@
   letter-spacing: 0.00625rem;
 }
 
-.card>.footer {
+.card > .footer {
   margin: 1rem 0;
   color: #3c4043;
   font-family: 'Roboto';
@@ -68,7 +74,7 @@
   letter-spacing: 0.00625rem;
 }
 
-.card>.footer>a {
+.card > .footer > a {
   font-family: inherit;
   font-size: inherit;
   letter-spacing: inherit;
@@ -81,6 +87,6 @@
 }
 
 .arrow-right {
-  margin-top: -4rem;
+  margin-top: -2rem;
 }
 </style>

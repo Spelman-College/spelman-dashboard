@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-const router = useRouter();
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 function goToAbout() {
   router.push({ name: 'about' })
@@ -12,14 +12,18 @@ function goToResources() {
   router.push({ name: 'resources' })
 }
 function goToData() {
-  router.push({ name: 'data' })
+  router.push({ name: 'dataDashboard' })
 }
 function goToHome() {
   router.push({ name: 'home' })
 }
 
 function showDataDashboardAsButton(): boolean {
-  return router?.currentRoute.value.name ? !['home', 'dataDashboard'].includes(router.currentRoute.value.name.toString()) : true
+  return router?.currentRoute.value.name
+    ? !['home', 'dataDashboard', 'dataDashboardView'].includes(
+        router.currentRoute.value.name.toString()
+      )
+    : true
 }
 </script>
 
@@ -29,10 +33,21 @@ function showDataDashboardAsButton(): boolean {
     <span class="header-links" id="about" @click="goToAbout">About</span>
     <span class="header-links" id="resources" @click="goToResources">Resources</span>
     <span class="header-links" id="contact" @click="goToContact">Contact</span>
-    <span class="header-links" id="data-dashboard" @click="goToData" v-if="!showDataDashboardAsButton()">Data
-      Dashboard</span>
-    <button id="data-dashboard" class="header-links" @click="goToData" v-if="showDataDashboardAsButton()">Data
-      Dashboard</button>
+    <span
+      class="header-links"
+      id="data-dashboard"
+      @click="goToData"
+      v-if="!showDataDashboardAsButton()"
+      >Data Dashboard</span
+    >
+    <button
+      id="data-dashboard"
+      class="header-links"
+      @click="goToData"
+      v-if="showDataDashboardAsButton()"
+    >
+      Data Dashboard
+    </button>
   </div>
 </template>
 
@@ -40,10 +55,10 @@ function showDataDashboardAsButton(): boolean {
 #header {
   display: flex;
   height: 2.5rem;
-  padding: 2rem;
+  padding: 2rem 3.5rem;
   color: #a7d7ed;
   background-color: #181818;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 

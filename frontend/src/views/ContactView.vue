@@ -1,26 +1,19 @@
 <template>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
   <div class="grid-container">
     <div id="backdrop"></div>
     <div id="curtain">
       <div class="ornament">
-         <img src="/dots.svg" alt="dots-ornament" id="dots"/>
+        <img src="/dots.svg" alt="dots-ornament" id="dots" />
       </div>
-        Questions or Comments?
-        Email us at <div class="email">email@spelman.edu</div>
-        <br><br>
-        <span class="contact-text">
-          <span class="material-symbols-outlined">pin_drop</span>
-          <br>
-          Lorem ipsum dolor sit
-          amet, consectuer
-          adipiscing elit, sed do
-          eiusmod
-          <br><br>
-          <span class="material-icons" >call</span>
-          <br>
-          (222) 222-2222
-     </span>
+      The virtual hub was developed in parternship between Spelman's Center of Excellent for
+      Minority Women in STEM and Google.org.
+      <br /><br />
+      To contact us email at:
+      <div class="email">coe-mws@spelman.edu</div>
     </div>
   </div>
 </template>
@@ -30,7 +23,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
 .white-background {
-  background: #FFF;
+  background: #fff;
   width: 44.98269rem;
   height: 55.98488rem;
   flex-shrink: 0;
@@ -41,19 +34,24 @@
   text-decoration-line: underline;
 }
 
-.grid-container { display: grid; }
+.grid-container {
+  display: grid;
+}
 /* 'curtain' grid item is placed over the 'backdrop' grid item */
-#backdrop, #curtain { grid-area: 1/1; }
+#backdrop,
+#curtain {
+  grid-area: 1/1;
+}
 
-#backdrop { 
-  background: #FFF;
+#backdrop {
+  background: #fff;
   width: 44.98269rem;
   height: 55.98488rem;
   flex-shrink: 0;
   margin-left: 45rem;
 }
- 
-#curtain { 
+
+#curtain {
   width: 24.74294rem;
 
   color: #000;
@@ -66,24 +64,19 @@
 
   margin-left: 58.77rem;
   margin-top: 6.56rem;
- }
+}
 
 .ornament {
   position: absolute;
   top: 10.5rem;
-  left: 44.0rem;
+  left: 44rem;
 
   width: 15.15381rem;
   height: 15.15381rem;
   flex-shrink: 0;
- }
+}
 
-.contact-text {
-  color: #000;
-  font-family: IBM Plex Mono, monospace;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem; /* 125% */
+.text {
+  display: flex;
 }
 </style>

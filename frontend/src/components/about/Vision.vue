@@ -1,12 +1,12 @@
 <template>
   <div id="outer">
-]   <img id="stripes" src="/stripes.svg" />
-    <img id="splash-image" src="/gettyimages-1439945572-1024x1024.jpg" />
+    <img id="stripes" src="/stripes.svg" />
+    <img id="splash-image" src="/AdobeStock_571805352.jpeg" style="object-position: left top" />
     <div id="splash-text">
       <div id="splash-text-header">Our Vision</div>
       <div id="splash-text-body">An international [platform] [showcasing] Black Women in STEM</div>
-      <div id="swiggle-vision-card"><img src="/swiggly_line_ACF0FF.svg" /></div>  
-      </div>
+      <div id="swiggle-vision-card"><img src="/swiggly_line_ACF0FF.svg" /></div>
+    </div>
   </div>
 </template>
 
@@ -16,11 +16,11 @@ img {
 }
 
 div#outer {
-  height: 40rem;
+  display: flex;
 }
 
 div#splash-text {
-  background: linear-gradient(180deg, #28D6FF 0%, #0094FF 100%);
+  background: linear-gradient(180deg, #28d6ff 0%, #0094ff 100%);
   border-radius: 2.5rem 0rem 0rem 2.5rem;
   box-shadow: 13px 11px 22px 0px #1f1f1f;
   backdrop-filter: blur(30px);
@@ -33,13 +33,13 @@ div#splash-text {
 }
 
 /* TODO */
-div#image-grid{
-  margin-top:3rem;
+div#image-grid {
+  margin-top: 3rem;
   margin-bottom: 26rem;
 }
 
 #splash-text-body {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   font-family: Noto Sans;
@@ -50,10 +50,10 @@ div#image-grid{
 }
 
 #splash-text-header {
-  color: #22262B;
+  color: #22262b;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-  font-family: Google Sans;
+  font-family: Noto Sans;
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 500;
@@ -67,7 +67,7 @@ img#splash-image {
   height: 41.4375rem;
   object-fit: cover;
   border-radius: 0rem 2.5rem 2.5rem 0rem;
-  box-shadow: 13px 11px 22px 0px rgba(31, 31, 31, 0.50);
+  box-shadow: 13px 11px 22px 0px rgba(31, 31, 31, 0.5);
   margin-left: 41.94rem;
   margin-top: 9.44rem;
 }
@@ -82,7 +82,7 @@ img#stripes {
 }
 
 #building-vision-header {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Google Sans;
   font-size: 1.875rem;
@@ -100,5 +100,4 @@ img#stripes {
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
   object-fit: cover;
 }
-
 </style>

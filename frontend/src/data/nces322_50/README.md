@@ -1,4 +1,4 @@
-# Enrollment statistics on degree-granting historically Black colleges and universities, by control and level of 	Bachelor's degrees conferred to females by postsecondary institutions, by race/ethnicity and field of study: Academic years 2010 through 2021
+# Enrollment statistics on degree-granting historically Black colleges and universities, by control and level of Bachelor's degrees conferred to females by postsecondary institutions, by race/ethnicity and field of study: Academic years 2010 through 2021
 
 Source URI [https://nces.ed.gov/programs/digest/d22/tables/dt22_322.50.asp](https://nces.ed.gov/programs/digest/d22/tables/dt22_322.50.asp)
 

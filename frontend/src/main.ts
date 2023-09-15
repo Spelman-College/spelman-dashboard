@@ -1,22 +1,22 @@
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config';
+import PrimeVue from 'primevue/config'
 import App from './App.vue'
 import router from './router'
 
-import Button from 'primevue/button';
-import Card from 'primevue/card';
-import Carousel from 'primevue/carousel';
-import Column from 'primevue/column';
-import DataTable from 'primevue/datatable';
-import RadioButton from 'primevue/radiobutton';
-import MultiSelect from 'primevue/multiselect';
-import Dropdown from 'primevue/dropdown';
+import Button from 'primevue/button'
+import Card from 'primevue/card'
+import Carousel from 'primevue/carousel'
+import Column from 'primevue/column'
+import DataTable from 'primevue/datatable'
+import RadioButton from 'primevue/radiobutton'
+import MultiSelect from 'primevue/multiselect'
+import Dropdown from 'primevue/dropdown'
 import ToggleButton from 'primevue/togglebutton'
-import Skeleton from 'primevue/skeleton';
-import TabPanel from 'primevue/tabpanel';
-import TabView from 'primevue/tabview';
-import Tree from 'primevue/tree';
-import VueGtag from "vue-gtag";
+import Skeleton from 'primevue/skeleton'
+import TabPanel from 'primevue/tabpanel'
+import TabView from 'primevue/tabview'
+import Tree from 'primevue/tree'
+import VueGtag from 'vue-gtag'
 
 const app = createApp(App)
 app.use(PrimeVue)
@@ -35,6 +35,6 @@ app.component('TabPanel', TabPanel)
 app.component('TabView', TabView)
 app.component('Tree', Tree)
 app.use(VueGtag, {
-  config: { id: "G-30X50JL2XS" }
+  config: { id: 'G-30X50JL2XS' }
 })
 app.mount('#app')

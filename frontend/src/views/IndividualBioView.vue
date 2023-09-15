@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import Stories from '@/about/TeamStories.vue'
-import { useRoute, useRouter } from 'vue-router';
-import { ref, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+import { ref, onMounted, watch } from 'vue'
 import bios from '@/about/bios'
 
-const route = useRoute();
-const thisStory = ref([]);
-
+const route = useRoute()
+const thisStory = ref([])
 
 onMounted(() => {
-  thisStory.value = bios[parseInt(route.params.id)]; 
-});
-
-watch(route, () => { 
-  thisStory.value = bios[parseInt(route.params.id)]; 
-  console.log(thisStory.value)
+  thisStory.value = bios[parseInt(route.params.id)]
 })
 
+watch(route, () => {
+  thisStory.value = bios[parseInt(route.params.id)]
+  console.log(thisStory.value)
+})
 </script>
 
 <template>
   <div class="view">
-    <router-link id="back-button" class="material-icons" :to="{ name: 'bios' }">chevron_left</router-link>
+    <router-link id="back-button" class="material-symbols-rounded" :to="{ name: 'bios' }"
+      >chevron_left</router-link
+    >
     <div class="side-by-side">
       <div>
         <img class="profile-img" :src="thisStory.imgSrc" />
@@ -42,9 +42,9 @@ watch(route, () => {
 #back-button {
   font-size: 2.5rem;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  margin-left: 0;
 }
-
 .side-by-side {
   display: grid;
   grid-template-columns: 1fr 2fr;

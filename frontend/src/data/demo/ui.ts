@@ -1,67 +1,61 @@
 import * as dims from '../../data/queries/dimensions'
+import { downloadDataset } from '../../data/queries/ui'
+import { DCIDS } from './dcids'
+import type { DcClientBulk } from '../dc/client'
+import { blobs2Csv } from '../dc/client'
 
-export const datasetTitle = "FIELD OF BACHELOR'S DEGREE FOR FIRST MAJOR American Community Survey; 2019: ACS 5-Year Estimates Bachelor's Degree by gender."
+export const datasetDownloadFilename =
+  'Field_of_bachelors_degree_for_first_major_American_Community_Survey_2019'
 
-export const genderOptions = [
-     {
-	 value: dims.Male,
-	 label: dims.Dimension2Text[dims.Male]
-     },
-     {
-	 value: dims.Female,
-	 label: dims.Dimension2Text[dims.Female]
-     }
- ]
+export const datasetMeta = {
+  fullName: 'Field of bachelor’s degree for first major American Community Survey 2019',
+  fullSource: 'U.S. Census Bureau, American Community Survey 5-Year Estimate (2019)',
+  name: "Bachelor's degree conferred by field",
+  axisLabel: "Bachelor's degree recipients",
+  source: 'U.S. Census Bureau, American Community Survey',
+  variables: ['Gender', 'Age', 'Major'],
+  year: '2015 - 2019',
+  path: 'demo'
+}
 
-export const ageOptions = [
-     {
-	 value: dims.age_25To39Years,
-	 label: dims.Dimension2Text[dims.age_25To39Years]
-     },
-     {
-	 value: dims.age_40To64Years,
-	 label: dims.Dimension2Text[dims.age_40To64Years]
-     },
-     {
-	 value: dims.age_65OrMoreYears,
-	 label: dims.Dimension2Text[dims.age_65OrMoreYears]
-     },
- ]
-
-export const majorOptions  = [
-    {
-	value: dims.BachelorOfEducationMajor,
-	label: dims.Dimension2Text[dims.BachelorOfEducationMajor]
-    },
-    {
-	value: dims.BachelorOfScienceAndEngineeringMajor,
-	label: dims.Dimension2Text[dims.BachelorOfScienceAndEngineeringMajor]
-    },
-    {
-	value: dims.BachelorOfScienceAndEngineeringRelatedMajor,
-	label: dims.Dimension2Text[dims.BachelorOfScienceAndEngineeringRelatedMajor]
-    },
-    {
-	value: dims.BachelorOfArtsHumanitiesAndOtherMajor,
-	label: dims.Dimension2Text[dims.BachelorOfArtsHumanitiesAndOtherMajor]
-    },
-    {
-	value: dims.BachelorOfBusinessMajor,
-	label: dims.Dimension2Text[dims.BachelorOfBusinessMajor]
-    }
+// Please don't mutate these or the plot will break. When assigning these, make a copy.
+export const genderDomain = [dims.Female, dims.Male]
+export const ageDomain = [dims.age_25To39Years, dims.age_40To64Years, dims.age_65OrMoreYears]
+export const majorDomain = [
+  dims.BachelorOfEducationMajor,
+  dims.BachelorOfScienceAndEngineeringMajor,
+  dims.BachelorOfScienceAndEngineeringRelatedMajor,
+  dims.BachelorOfArtsHumanitiesAndOtherMajor,
+  dims.BachelorOfBusinessMajor
 ]
 
- // Please don't mutate these or the plot will break. When assigning these, make a copy.
-export const genderDomain = [dims.Male, dims.Female]
-export const ageDomain = [
-     dims.age_25To39Years,
-     dims.age_40To64Years,
-     dims.age_65OrMoreYears
- ]
-export const majorDomain = [
-     dims.BachelorOfEducationMajor,
-     dims.BachelorOfScienceAndEngineeringMajor,
-     dims.BachelorOfScienceAndEngineeringRelatedMajor,
-     dims.BachelorOfArtsHumanitiesAndOtherMajor,
-     dims.BachelorOfBusinessMajor,
- ]
+export const dashboardFilters = [
+  {
+    name: 'Gender',
+    id: 'gender',
+    alias: dims.Dimension2Text,
+    options: [...genderDomain]
+  },
+  {
+    name: 'Age Group',
+    id: 'age',
+    alias: dims.Dimension2Text,
+    options: [...ageDomain]
+  },
+  {
+    name: 'College Major',
+    id: 'major',
+    alias: dims.Dimension2Text,
+    options: [...majorDomain]
+  }
+]
+
+export async function download(client: DcClientBulk, filename: string): Promise<string> {
+  return downloadDataset(client, DCIDS, filename)
+}
+
+export const compareOptions = [
+  { id: 'gender', name: 'Gender' },
+  { id: 'age', name: 'Age Group' },
+  { id: 'major', name: 'College Major' }
+]

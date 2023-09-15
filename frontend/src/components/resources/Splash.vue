@@ -2,17 +2,19 @@
   <div id="outer">
     <img id="dots" src="/dots.svg" />
     <img id="stripes" src="/stripes.svg" />
-    <img id="splash-image" src="/gettyimages-1405307215-1024x1024.jpg" />
+    <img id="splash-image" src="/AdobeStock_498725277.jpeg" />
     <div id="splash-text">
       <div id="splash-text-headnote">Black Women in STEM</div>
       <div id="splash-text-header">Empowering Black Women in STEM: Your Resource Hub</div>
-      <div id="splash-text-body">Welcome to our Resource Page of [Name]!<br /><br />
+      <div id="splash-text-body">
+        Welcome to our Resource Page of [Name]!<br /><br />
 
-        We are thrilled to present this collection of resources dedicated to empowering and celebrating the achievements
-        of Black women in the fields of Science, Technology, Engineering, and Mathematics (STEM).<br /><br />
+        We are thrilled to present this collection of resources dedicated to empowering and
+        celebrating the achievements of Black women in the fields of Science, Technology,
+        Engineering, and Mathematics (STEM).<br /><br />
 
-        Our mission is to provide a platform that showcases the remarkable contributions, stories, and accomplishments of
-        Black women in STEM.
+        Our mission is to provide a platform that showcases the remarkable contributions, stories,
+        and accomplishments of Black women in STEM.
       </div>
     </div>
   </div>
@@ -49,7 +51,7 @@ div#splash-text {
 }
 
 #splash-text-headnote {
-  color: #FF6454;
+  color: #ff6454;
   font-family: Noto Sans Display;
   font-size: 1.125rem;
   font-weight: 500;

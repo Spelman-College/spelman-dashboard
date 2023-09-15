@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import TeamStoryCard from '@/components/TeamStoryCard.vue'
 import bios from '@/about/bios.ts'
-
 </script>
 
 <template>
@@ -11,10 +10,20 @@ import bios from '@/about/bios.ts'
   </div>
 
   <div class="story-card-grid">
-    <TeamStoryCard v-for="(story, index) in bios" :v-key="story.name" :imgSrc="story.imgSrc" :alt="story.name" width="20">
+    <TeamStoryCard
+      v-for="(story, index) in bios"
+      :v-key="story.name"
+      :imgSrc="story.imgSrc"
+      :alt="story.name"
+      width="20"
+    >
       <template #name>{{ story.name }}</template>
       <template #story>{{ story.story }}</template>
-      <template #linkText><router-link :to="{path: '/bios/' + index}">Read her story<span class="material-symbols-outlined">arrow_right_alt</span></router-link></template>
+      <template #linkText
+        ><router-link :to="{ path: '/bios/' + index }"
+          >Read her story<span class="material-symbols-rounded">arrow_right_alt</span></router-link
+        ></template
+      >
     </TeamStoryCard>
   </div>
 </template>
@@ -29,6 +38,7 @@ div.story-card-grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
   margin-bottom: 12rem;
+  margin-left: 3rem;
 }
 
 /* 'Read Her Story' link' */
@@ -37,7 +47,7 @@ a {
   margin-bottom: 2.81rem;
   box-sizing: content-box;
 
-  color: #313B49;
+  color: #313b49;
   font-size: 1.3125rem;
   font-style: normal;
   font-weight: 700;
@@ -50,13 +60,12 @@ a {
   white-space: nowrap;
 }
 
-.material-symbols-outlined {
+.material-symbols-rounded {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
-  color: #313B49;
+  color: #313b49;
   margin-left: 0.81rem;
-  vertical-align:middle;
+  vertical-align: middle;
 }
-
 </style>
