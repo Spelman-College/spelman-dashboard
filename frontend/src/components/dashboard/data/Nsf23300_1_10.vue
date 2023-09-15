@@ -83,9 +83,6 @@ watchEffect(() => {
     citizenship: citizenQuery.value
   }
 
-  genderQuery.value = [...genderDomain]
-  raceQuery.value = [...raceDomain]
-  citizenQuery.value = [...citizenDomain]
 
   switch (compare.value) {
     case 'gender': {
@@ -132,6 +129,9 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 }
 
 const changeCompare = (val: string) => {
+  genderQuery.value = [...genderDomain]
+  raceQuery.value = [...raceDomain]
+  citizenQuery.value = [...citizenDomain]
   compare.value = val
 }
 </script>
