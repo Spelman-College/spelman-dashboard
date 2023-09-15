@@ -13,7 +13,7 @@ import type DcClient from '../dc/client'
 import { datasetMeta as demoMeta } from '../demo/ui'
 import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
-import { datasetMeta as nsf23306_4_2Meta } from  '../nsf23306_4_2/ui'
+import { datasetMeta as nsf23306_4_2Meta } from '../nsf23306_4_2/ui'
 
 const demo = demoMeta
 const ipeds = ipedsMeta

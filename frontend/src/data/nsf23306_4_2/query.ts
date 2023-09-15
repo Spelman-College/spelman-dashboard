@@ -1,6 +1,6 @@
 import { Dcid } from '../queries/dcid'
-import type {DcidFilter, CategoryType } from '../queries/dcid'
-import type {QueryResult} from '../queries/query'
+import type { DcidFilter, CategoryType } from '../queries/dcid'
+import type { QueryResult } from '../queries/query'
 import { Query, query2dcids } from '../queries/query'
 import { DCIDS } from './dcids'
 import { Categories } from './categories'
@@ -45,7 +45,7 @@ export class Query_nsf23306 extends Base {
   categories(): CategoryType {
     return Categories
   }
-  
+
   query(...queries: Array<Query>): QueryResult {
     return query2dcids(
       this.dcids,
