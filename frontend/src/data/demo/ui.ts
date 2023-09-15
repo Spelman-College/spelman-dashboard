@@ -12,7 +12,7 @@ export const datasetMeta = {
   fullSource: 'U.S. Census Bureau, American Community Survey 5-Year Estimate (2019)',
   name: "Bachelor's degree conferred by field",
   axisLabel: "Bachelor's degree recipients",
-  source: 'U.S. Census Bureau, American Community Survey 5-Year Estimate',
+  source: 'U.S. Census Bureau, American Community Survey',
   variables: ['Gender', 'Age', 'Major'],
   year: '2015 - 2019',
   path: 'demo'
