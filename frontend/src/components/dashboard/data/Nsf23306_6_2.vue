@@ -128,6 +128,9 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 }
 
 const changeCompare = (val: string) => {
+  genderQuery.value = [...genderDomain]
+  ethnicityQuery.value = [...ethnicityDomain]
+  occupationQuery.value = [...occupationDomain]
   compare.value = val
 }
 </script>
