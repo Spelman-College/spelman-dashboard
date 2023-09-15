@@ -2,6 +2,7 @@ import * as dims from '../queries/dimensions'
 import { dcids_set } from './query'
 import type { DcClientBulk } from '../dc/client'
 import { downloadDataset } from '../queries/ui'
+import { Categories } from './categories'
 
 export const datasetDownloadFilename = 'Employed_college_graduates_by_sex_race_ethnicity_and_major_occupation_2003_thru_2021'
 
@@ -15,26 +16,8 @@ export const datasetMeta = {
 
 // Please don't mutate these or the plot will break. When assigning these, make a copy.
 export const genderDomain = dims.GENDERS
-export const ethnicityDomain = [
-  dims.HispanicOrLatino,
-  dims.AmericanIndianOrAlaskaNativeAlone,
-  dims.Asian,
-  dims.Black,
-  dims.HawaiianNativeOrPacificIslander,
-  dims.WhiteAlone,
-  dims.TwoOrMoreRaces,
-  dims.NonUSResident
-]
-export const occupationDomain = [
-    dims.SOCComputerMathematicalOccupation,
-    dims.SOCEngineersOccupation,
-    dims.SOCLifeScientistsOccupation,
-    dims.SOCPhysicalScientistsOccupation,
-    dims.SOCSocialScientistsRelatedWorkersOccupation,
-    dims.ScienceAndEngineeringOccupation,
-    dims.ScienceAndEngineeringRelatedOccupation,
-    dims.NonScienceAndEngineeringOccupation,
-]
+export const ethnicityDomain = [...Categories['ethnicity']]
+export const occupationDomain = [...Categories['occupation']]
 
 export const dashboardFilters = [
     {

@@ -9,10 +9,6 @@ export const Categories = {
     dims.OtherPacificIslander,
     dims.TwoOrMoreRaces,
     dims.WhiteAlone,
-    dims.AmericanIndianOrAlaskaNativeAlone,
-    dims.Black,
-    dims.HawaiianNativeOrPacificIslander,
-    dims.NonUSResident,
   ]),
   gender: new Set<string>([dims.Male, dims.Female]),
   occupation: new Set<string>([
