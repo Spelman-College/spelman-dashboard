@@ -148,8 +148,8 @@ function handleClick(name: String | null) {
   background-color: #ffffff;
   border-radius: 0.25rem;
   box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  height:250px;
-  overflow:auto;
+  height: 250px;
+  overflow: auto;
 }
 
 .dropdown-option {
@@ -158,7 +158,7 @@ function handleClick(name: String | null) {
   align-items: center;
   letter-spacing: 0.0125rem;
   padding: 1rem;
-  gap:3rem;
+  gap: 3rem;
 }
 
 .dropdown-option:first-child {
@@ -181,29 +181,31 @@ function handleClick(name: String | null) {
 .name-source {
   font-size: 0.875rem;
   font-weight: 500;
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
-.name{
-  margin-bottom:.4rem;
-  color:#1967d2;
+.name {
+  margin-bottom: 0.4rem;
+  color: #1967d2;
 }
-.source, .vars{
-  color:#80868b;
+.source,
+.vars {
+  color: #80868b;
   font-weight: 400;
   font-size: 0.75rem;
-  font-weight:400;
+  font-weight: 400;
 }
-.source{
-  margin-bottom:.2rem;
+.source {
+  margin-bottom: 0.2rem;
 }
 .year {
   font-family: 'Roboto';
   font-size: 0.875rem;
   color: #80868b;
   font-weight: 400;
-  min-width:80px;
-  text-align:right;
+  min-width: 80px;
+  text-align: right;
   align-self: flex-start;
-line-height: 1.5rem;  }
+  line-height: 1.5rem;
+}
 </style>
