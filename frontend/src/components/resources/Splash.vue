@@ -2,7 +2,7 @@
   <div id="outer">
     <img id="dots" src="/dots.svg" />
     <img id="stripes" src="/stripes.svg" />
-    <img id="splash-image" src="/gettyimages-1405307215-1024x1024.jpg" />
+    <img id="splash-image" src="/AdobeStock_498725277.jpeg" />
     <div id="splash-text">
       <div id="splash-text-headnote">Black Women in STEM</div>
       <div id="splash-text-header">Empowering Black Women in STEM: Your Resource Hub</div>

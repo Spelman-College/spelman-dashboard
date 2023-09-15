@@ -23,7 +23,7 @@ onMounted(() => {
     Black women in STEM
   </p>
   <div id="outer">
-    <img id="splash" src="/gettyimages-679531922-170667a.jpg" />
+    <img id="splash" src="/AdobeStock_477511572.jpeg" />
     <img id="dots" src="/dots.svg" />
     <div id="splash-text">
       <div id="splash-text-headnote">List of organizations</div>
