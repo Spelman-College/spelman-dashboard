@@ -55,7 +55,7 @@ resource "aws_amplify_app" "spelman_dashboard_frontend" {
   }
 
   custom_rule {
-    source = "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>"
+    source = "</^[^.]+$|\\.(?!(css|gif|ico|jpg|jpeg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>"
     status = "200"
     target = "/index.html"
   }
@@ -109,6 +109,7 @@ resource "aws_iam_group_membership" "admins" {
     aws_iam_user.chasecummings.name,
     aws_iam_user.mattcs.name,
     aws_iam_user.drumsound.name,
+    aws_iam_user.claraamenyo.name
   ]
   group = aws_iam_group.admins.name
 }
@@ -396,6 +397,14 @@ resource "aws_iam_user_policy_attachment" "terriadavis_change_password" {
   policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
 }
 
+resource "aws_iam_user" "claraamenyo" {
+  name = "claraamenyo"
+}
+
+resource "aws_iam_user_policy_attachment" "claraamenyo_change_password" {
+  user       = aws_iam_user.claraamenyo.name
+  policy_arn = "arn:aws:iam::aws:policy/IAMUserChangePassword"
+}
 
 resource "aws_iam_user" "terraform" {
   name = "terraform"
