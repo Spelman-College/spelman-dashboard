@@ -92,9 +92,7 @@ function handleClick(name: String | null) {
         @click="handleClick(option.name)"
       >
         <div class="name-source-vars-container">
-          <div class="name-source font-bold">
-           {{ option.name }} | {{ option.source }}
-          </div>
+          <div class="name-source font-bold">{{ option.name }} | {{ option.source }}</div>
           <div class="vars">Variables: {{ getVarsString(option.variables) }}</div>
         </div>
         <div class="year">{{ option.year }}</div>
@@ -157,9 +155,8 @@ function handleClick(name: String | null) {
   justify-content: space-between;
   align-items: center;
   letter-spacing: 0.0125rem;
-  padding: .5rem;
+  padding: 0.5rem;
   gap: 3rem;
- 
 }
 
 .dropdown-option:first-child {
@@ -177,9 +174,9 @@ function handleClick(name: String | null) {
 .name-source-vars-container {
   font-family: 'Noto Sans Display';
   color: #3c4043;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  gap:.25rem;
+  gap: 0.25rem;
 }
 
 .name-source {
@@ -188,7 +185,6 @@ function handleClick(name: String | null) {
   display: flex;
   flex-direction: column;
 }
-
 
 .vars {
   color: #80868b;

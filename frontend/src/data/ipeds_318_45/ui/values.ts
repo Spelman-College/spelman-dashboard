@@ -9,10 +9,11 @@ export const datasetDownloadFilename =
 export const datasetMeta = {
   fullName:
     'Number and percentage distribution of science, technology, engineering, and mathematics (STEM) degrees/certificates conferred by postsecondary institutions, by race/ ethnicity, level of degree/certificate, and sex of student',
-  fullSource:'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS), Fall 2011 through Fall 2020, Completions component.',
+  fullSource:
+    'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS), Fall 2011 through Fall 2020, Completions component.',
   name: 'STEM degrees conferred by level',
   axisLabel: 'STEM degrees',
-  source:'IPEDS',  
+  source: 'IPEDS',
   variables: ['Gender', 'Educational Attainment', 'Race/Ethnicity'],
   year: '2011-12 - 2020-21',
   path: 'ipeds-318-45'
