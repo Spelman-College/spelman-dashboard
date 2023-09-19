@@ -44,6 +44,9 @@ const loading_download = ref(false)
 const genderQuery = ref([])
 const raceQuery = ref([])
 const citizenQuery = ref([])
+  genderQuery.value = [...genderDomain]
+  raceQuery.value = [...raceDomain]
+  citizenQuery.value = [...citizenDomain]
 
 const filters = dashboardFilters
 
@@ -61,11 +64,6 @@ async function download() {
   loading_download.value = false
 }
 
-watchEffect(() => {
-  genderQuery.value = [...genderDomain]
-  raceQuery.value = [...raceDomain]
-  citizenQuery.value = [...citizenDomain]
-})
 
 watchEffect(() => {
   if (
