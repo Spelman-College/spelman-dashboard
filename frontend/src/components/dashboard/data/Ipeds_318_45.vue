@@ -44,9 +44,9 @@ const loading_download = ref(false)
 const genderQuery = ref([])
 const raceQuery = ref([])
 const eduQuery = ref([])
-  genderQuery.value = [...genderDomain]
-  raceQuery.value = [...raceDomain]
- eduQuery.value = [...eduDomain]
+genderQuery.value = [...genderDomain]
+raceQuery.value = [...raceDomain]
+eduQuery.value = [...eduDomain]
 
 const filters = dashboardFilters
 
