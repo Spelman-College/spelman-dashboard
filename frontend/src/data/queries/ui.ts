@@ -66,7 +66,7 @@ export const queryDcidIntersection = (
   const response = dataset.query(...queries)
 
   if (response.error !== undefined) {
-    throw new Error(`Error querying dataset with categoryMap "${categoryMap}": ${response.error}`)
+    throw new Error(`Error querying dataset with categoryMap "${JSON.stringify(categoryMap)}": ${response.error}`)
   }
   return response.results
 }
