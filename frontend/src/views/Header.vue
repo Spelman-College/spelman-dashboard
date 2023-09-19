@@ -61,7 +61,17 @@ function showDataDashboardAsButton(): boolean {
   justify-content: space-between;
   align-items: center;
 }
-
+#header::before{
+  content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #181818;
+    height: 4.5rem;
+    z-index:-1;
+}
 .header-links {
   margin: 0 2rem;
   font-family: 'Noto Sans Mono';

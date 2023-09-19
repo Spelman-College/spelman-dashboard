@@ -47,7 +47,16 @@ function goToFAQ() {
   font-family: 'Noto Sans', sans-serif;
   margin-top: 4rem;
 }
-
+#footer::before{
+  content: "";
+   position: absolute;
+   margin-top: -2rem;
+   left: 0;
+   width: 100%;
+   background-color: #000000;
+   height: 10rem;
+   z-index:-1;
+}
 #logo {
   margin: 0 2rem 0 0;
 }

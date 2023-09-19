@@ -24,7 +24,9 @@ div#container {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  overflow-x: auto;
+  justify-content: space-between;
+  height:100vh;
+  max-width:1600px;
 }
 </style>
 
