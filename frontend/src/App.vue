@@ -25,8 +25,8 @@ div#container {
   flex-direction: column;
   width: 100vw;
   justify-content: space-between;
-  height:100vh;
-  max-width:1600px;
+  height: 100vh;
+  max-width: 1600px;
 }
 </style>
 

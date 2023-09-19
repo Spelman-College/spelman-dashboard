@@ -91,7 +91,7 @@ const page = ref(0)
 <style>
 @import '/homepage.css';
 .carousel-container {
-  max-width:1600px;
+  max-width: 1600px;
   min-width: 90rem;
 }
 .carousel-nav {
