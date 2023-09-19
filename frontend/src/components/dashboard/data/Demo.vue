@@ -44,7 +44,9 @@ const loading_download = ref(false)
 const genderQuery = ref([])
 const ageQuery = ref([])
 const majorQuery = ref([])
-
+genderQuery.value = [...genderDomain]
+ageQuery.value = [...ageDomain]
+majorQuery.value = [...majorDomain]
 const filters = dashboardFilters
 
 const compare = ref('gender')
@@ -60,12 +62,6 @@ async function download() {
   }
   loading_download.value = false
 }
-
-watchEffect(() => {
-  genderQuery.value = [...genderDomain]
-  ageQuery.value = [...ageDomain]
-  majorQuery.value = [...majorDomain]
-})
 
 watchEffect(() => {
   if (genderQuery.value.length == 0 && ageQuery.value.length == 0 && majorQuery.value.length == 0) {
@@ -123,6 +119,9 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 }
 
 const changeCompare = (val: string) => {
+  genderQuery.value = [...genderDomain]
+  ageQuery.value = [...ageDomain]
+  majorQuery.value = [...majorDomain]
   compare.value = val
 }
 </script>
