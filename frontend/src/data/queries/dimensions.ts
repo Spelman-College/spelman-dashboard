@@ -1,5 +1,11 @@
 export const Dimension2Text = {}
 
+//// Generic
+// Placeholder is meant to act as a pseudo dimension. Each use case will need
+// to define their own version of
+export const Placeholder = 'Placeholder'
+
+
 // Gender
 export const Female = 'Female'
 export const Male = 'Male'
@@ -83,3 +89,14 @@ export const VisaHolder = 'VisaHolder'
 Dimension2Text[Citizen] = 'Citizen'
 Dimension2Text[CitizenshipUnknown] = 'Citizenship Unknown'
 Dimension2Text[VisaHolder] = 'Visa Holder'
+
+// Colleges
+export const FourYear = 'FourYear'
+export const TwoYear = 'TwoYear'
+Dimension2Text[FourYear] = 'Four Year'
+Dimension2Text[TwoYear] = 'Two Year'
+
+export const EnrolledInPublicCollegeOrGraduateSchool = 'EnrolledInPublicCollegeOrGraduateSchool'
+export const EnrolledInPrivateCollegeOrGraduateSchool = 'EnrolledInPrivateCollegeOrGraduateSchool'
+Dimension2Text[EnrolledInPublicCollegeOrGraduateSchool] = 'Enrolled in Public College or Graduate School'
+Dimension2Text[EnrolledInPrivateCollegeOrGraduateSchool] = 'Enrolled in Private College or Graduate School'

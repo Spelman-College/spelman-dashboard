@@ -13,11 +13,12 @@ import type DcClient from '../dc/client'
 import { datasetMeta as demoMeta } from '../demo/ui'
 import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
+import { datasetMeta as nsf313_30Meta } from '../nsf313_30/ui'
 
 const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
-export const datasets = [ipeds, nsf23300_1_10]
+export const datasets = [ipeds, nsf23300_1_10, nsf313_30Meta]
 
 export const presets = [
   { name: 'Demo preset for testing the dashboard', path: 'demo-preset' },
@@ -66,7 +67,7 @@ export const queryDcidIntersection = (
   const response = dataset.query(...queries)
 
   if (response.error !== undefined) {
-    throw new Error(`Error querying dataset with categoryMap "${categoryMap}": ${response.error}`)
+    throw new Error(`Error querying dataset with categoryMap "${JSON.stringify(categoryMap)}": ${response.error}`)
   }
   return response.results
 }
