@@ -1,4 +1,7 @@
 #!/bin/bash
+## REQUIRED:
+# Set the environment variable DCKEY to the Data Commons API key
+# for the respective environment prod or autopush.
 
 ## Using prod by default.
 # Use autopush if second argument is not given.
