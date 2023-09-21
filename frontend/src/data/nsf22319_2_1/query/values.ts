@@ -1,5 +1,7 @@
-import { Dcid, TsDcid, DcidFilter, CategoryType } from '../../queries/dcid'
-import { Query, QueryResult, query2dcids } from '../../queries/query'
+import type {DcidFilter, CategoryType } from '../../queries/query'
+import { Dcid } from '../../queries/dcid'
+import type QueryResult from '../../queries/query'
+import { Query, query2dcids } from '../../queries/query'
 import { DCIDS_VALUES } from '../dcids/values'
 import { Categories } from '../categories/values'
 
@@ -40,7 +42,7 @@ Object.keys(Categories).forEach((cat) => {
 // dates in the response; another way of saying this is that any key will return all years
 // so we're collecting just the unique set of keys.
 const dcids = []
-const dcids_set = new Set()
+export const dcids_set = new Set()
 
 for (const date in DCIDS_VALUES) {
   const keys = DCIDS_VALUES[date]
@@ -66,9 +68,12 @@ class Base {
   protected categoryDependencies: [string, string][] = categoryDependencies
   protected dcids: Array<Dcid | TsDcid> = dcids
   protected annotatedDimensions: Set<string> = annotatedDimensions
+  categories() {
+    return Categories
+  }
 }
 
-export class Query_nsf23313_2_1_values extends Base {
+export class Query_nsf22319_2_1_values extends Base {
   constructor() {
     super()
   }

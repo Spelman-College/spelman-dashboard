@@ -5,6 +5,10 @@ import Ipeds_318_45 from './data/Ipeds_318_45.vue'
 import Nsf23300_1_10 from './data/Nsf23300_1_10.vue'
 import { datasetMeta as nsf23300_1_10Meta } from '../../data/nsf23300_1_10/ui'
 
+import nsf22319_2_1 from './data/Nsf22319_2_1.vue'
+import { datasetMeta as nsf22319_2_1Meta } from '../../data/nsf22319_2_1/ui/values'
+
+
 import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
 import '../../../node_modules/primeflex/primeflex.css'
 
@@ -16,6 +20,7 @@ const props = defineProps(['dataset', 'view'])
     <Demo v-if="props.dataset == 'demo' && props.view == 'explore'" />
     <Ipeds_318_45 v-if="props.dataset == 'ipeds-318-45' && props.view == 'explore'" />
     <Nsf23300_1_10 v-if="props.dataset == nsf23300_1_10Meta.path && props.view == 'explore'" />
+    <nsf22319_2_1 v-if="props.dataset == nsf22319_2_1Meta.path && props.view == 'explore'" />
     <div v-if="props.dataset == 'demo-preset' && props.view == 'preset'">
       <p class="title">This is a preset demo view.</p>
     </div>

@@ -24,6 +24,6 @@ This holds mapping of categories to their associated dimensions.
 
 Exports a class that can be used to query data using 1 or more `Query` classes.
 
-`ts.ts`: exports `Query_nsf23313_2_1_pct` for querying the `pct` data.
+`ts.ts`: exports `Query_nsf22319_2_1_pct` for querying the `pct` data.
 
-`values.ts`: exports `Query_nsf23313_2_1_values` for querying the `values` data.
+`values.ts`: exports `Query_nsf22319_2_1_values` for querying the `values` data.
