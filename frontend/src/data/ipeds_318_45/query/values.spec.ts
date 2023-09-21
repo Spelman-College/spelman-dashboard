@@ -49,9 +49,6 @@ describe('ipeds_318_45 query single dimenions that are not reported alone', () =
       'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_Male'
     ])
   })
-
-
-
 })
 describe('ipeds_318_45 query single dimenions that are not reported alone', () => {
   test('query single category gender', () => {

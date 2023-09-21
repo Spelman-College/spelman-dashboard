@@ -8,7 +8,7 @@ export type DcidFilter = {
 
   // We'll check if any dimension is in this set before adding it to the set index for
   // this Dcid object.
-  omitDimensions: Set<string>;
+  omitDimensions: Set<string>
 
   // This is a mapping of DCID to an array of dimensions in the form of `${category}:${dimension}`.
   // We use this to add additional dimensions to the DCID's set index.
@@ -19,7 +19,7 @@ export type DcidFilter = {
 export class DataCommonsIdentifier {
   dcid: string
   dimensions: Set<string>
-    dim2cat: { [key: string]: string }
+  dim2cat: { [key: string]: string }
   filter: DcidFilter
 
   constructor(dcid: string, filter: DcidFilter, dim2cat: { [key: string]: string }) {
@@ -37,8 +37,8 @@ export class Dcid extends DataCommonsIdentifier {
     let key = this.dcid
     if (
       this.filter.ignorePrefix !== undefined &&
-        this.filter.ignorePrefix != '' &&
-        key.startsWith(this.filter.ignorePrefix)
+      this.filter.ignorePrefix != '' &&
+      key.startsWith(this.filter.ignorePrefix)
     ) {
       key = key.slice(this.filter.ignorePrefix.length)
     }

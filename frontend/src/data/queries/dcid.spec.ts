@@ -31,7 +31,7 @@ describe('Dcid', () => {
       summaryStatFour: 'regular'
     }
     const filterTwo = {
-      omitDimensions: new Set(['summaryStatFour']),
+      omitDimensions: new Set(['summaryStatFour'])
     } as DcidFilter
     const dcid = new Dcid(dcidTwo, filterTwo, dim2CatTwo)
     expect(dcid.dcid).toEqual(dcidTwo)
