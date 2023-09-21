@@ -3,24 +3,23 @@ export type CategoryType = {
 }
 
 export type DcidFilter = {
+  // We'll left trim this string when processing the DCID.
   ignorePrefix: string
-  omitDimensions: Set<string>
+
+  // We'll check if any dimension is in this set before adding it to the set index for
+  // this Dcid object.
+  omitDimensions: Set<string>;
 
   // This is a mapping of DCID to an array of dimensions in the form of `${category}:${dimension}`.
+  // We use this to add additional dimensions to the DCID's set index.
   additions: { [key: string]: Array<string> }
-
-  // This is a mapping of dimension to an array of category dimensions
-  // in the form of `${category}:${dimension}`. The use case is when a dimension explicitly
-  // represents a summary statistic. Often a DCID summary statistic omits all dimensions from a
-  // category; some DCIDs include an explicit summary dimension- in this case, we ignore it
-  // as a dimension and add the (empty)summary dimension for a category, which is `<category>:`.
-  fragment_additions: { [key: string]: Array<string> }
 }
 
+// Used as a base class for Dcid.
 export class DataCommonsIdentifier {
   dcid: string
   dimensions: Set<string>
-  dim2cat: { [key: string]: string }
+    dim2cat: { [key: string]: string }
   filter: DcidFilter
 
   constructor(dcid: string, filter: DcidFilter, dim2cat: { [key: string]: string }) {
@@ -38,8 +37,8 @@ export class Dcid extends DataCommonsIdentifier {
     let key = this.dcid
     if (
       this.filter.ignorePrefix !== undefined &&
-      this.filter.ignorePrefix != '' &&
-      key.startsWith(this.filter.ignorePrefix)
+        this.filter.ignorePrefix != '' &&
+        key.startsWith(this.filter.ignorePrefix)
     ) {
       key = key.slice(this.filter.ignorePrefix.length)
     }
@@ -47,19 +46,12 @@ export class Dcid extends DataCommonsIdentifier {
       key = key.slice(1)
     }
     const sdims = key.split('_')
+
+    // We'll keep track of the unused categories from the set of all available
+    // categories.
     const unUsedCats = new Set<string>(Object.values(this.dim2cat))
 
     sdims.forEach((dim) => {
-      if (this.filter.fragment_additions !== undefined) {
-        const additions = this.filter.fragment_additions[dim]
-        if (additions !== undefined) {
-          additions.forEach((_dim) => {
-            this.dimensions.add(_dim)
-            const unused = _dim.split(':')
-            unUsedCats.delete(unused[0])
-          })
-        }
-      }
       if (dim == '') {
         return
       }
@@ -76,7 +68,8 @@ export class Dcid extends DataCommonsIdentifier {
       unUsedCats.delete(cat)
       this.dimensions.add(`${cat}:${dim}`)
     })
-    // Unused categories in the DCID imply that all dimensions from that category
+
+    // By default, unused categories in the DCID imply that all dimensions from that category
     // are summed in this DCID/metric. We add the key that is a shortcut for
     // all dimensions of a category; this prevents us from querying ALL dimensions
     // in the category, when we generate a query for missing categories.

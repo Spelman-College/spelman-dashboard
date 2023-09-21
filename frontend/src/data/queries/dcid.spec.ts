@@ -23,18 +23,15 @@ describe('Dcid', () => {
     }
   })
 
-  test('fragment_additions', () => {
+  test('Ignoring explict dimension adds the "all dimensions for this category" dimension to the index.', () => {
     const dcidTwo = 'dimOne_dimTwo_summaryStatFour'
     const dim2CatTwo = {
       dimOne: 'fancy',
       dimTwo: 'fancy',
-      dimThree: 'regular' // This exists for illustration only.
+      summaryStatFour: 'regular'
     }
     const filterTwo = {
       omitDimensions: new Set(['summaryStatFour']),
-      fragmentAdditions: {
-        summaryStatFour: ['regular:']
-      }
     } as DcidFilter
     const dcid = new Dcid(dcidTwo, filterTwo, dim2CatTwo)
     expect(dcid.dcid).toEqual(dcidTwo)
