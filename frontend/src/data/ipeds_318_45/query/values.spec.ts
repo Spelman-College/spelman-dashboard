@@ -42,6 +42,13 @@ describe('ipeds_318_45 query single dimenions that are not reported alone', () =
       'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_Male'
     ])
   })
+
+  test('query gender and all ethnicities. notice that we return the explicit summary statistic which is in place of/appears to be a dimension', () => {
+    const out = ipeds.query(male, all_ethnicities)
+    expect(out.results).toEqual([
+      'Count_Person_BachelorOfScienceOrTechnologyOrEngineeringOrMathematics_EducationalAttainmentCollegeGraduate_Male'
+    ])
+  })
 })
 describe('ipeds_318_45 query single dimenions that are not reported alone', () => {
   test('query single category gender', () => {

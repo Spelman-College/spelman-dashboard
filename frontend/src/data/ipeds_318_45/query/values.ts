@@ -12,16 +12,11 @@ const filter: DcidFilter = {
     '9ThTo12ThGradeNoDiploma',
     'BachelorOfScienceOrTechnologyOrEngineeringOrMathematics',
 
-    // Explicit summary statistic in the DCID location of EducationalAttainment
+    // Explicit summary statistic in the DCID location of EducationalAttainment.
+    // We ignore this, and by default we'll add the `education:` tag to the DCIDs
+    // set index.
     'EducationalAttainmentCollegeGraduate'
-  ]),
-  additions: {
-    // This represents the summary statistic for education.
-  },
-  fragment_additions: {
-    // This fragment represents the summary statistic for education.
-    EducationalAttainmentCollegeGraduate: ['education:']
-  }
+  ])
 } as DcidFilter
 
 const dimension2Category = {}
