@@ -1,4 +1,4 @@
-import type {DcidFilter, CategoryType } from '../../queries/query'
+import type { DcidFilter, CategoryType } from '../../queries/query'
 import { Dcid } from '../../queries/dcid'
 import type QueryResult from '../../queries/query'
 import { Query, query2dcids } from '../../queries/query'

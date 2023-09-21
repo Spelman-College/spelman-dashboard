@@ -8,7 +8,6 @@ import { datasetMeta as nsf23300_1_10Meta } from '../../data/nsf23300_1_10/ui'
 import nsf22319_2_1 from './data/Nsf22319_2_1.vue'
 import { datasetMeta as nsf22319_2_1Meta } from '../../data/nsf22319_2_1/ui/values'
 
-
 import '../../../node_modules/primevue/resources/themes/md-light-indigo/theme.css'
 import '../../../node_modules/primeflex/primeflex.css'
 

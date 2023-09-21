@@ -4,13 +4,16 @@ import type { DcClientBulk } from '../../dc/client'
 import { downloadDataset } from '../../queries/ui'
 import { Categories } from '../categories/values'
 
-export const datasetDownloadFilename = 'Demographic_characteristics_of_graduate_students_postdoctoral_appointees_and_doctorate-holding_nonfaculty_researchers_in_science_engineering_and_health'
+export const datasetDownloadFilename =
+  'Demographic_characteristics_of_graduate_students_postdoctoral_appointees_and_doctorate-holding_nonfaculty_researchers_in_science_engineering_and_health'
 
-const name = 'Demographic characteristics of graduate students, postdoctoral appointees, and doctorate-holding nonfaculty researchers in science, engineering, and health'
+const name =
+  'Demographic characteristics of graduate students, postdoctoral appointees, and doctorate-holding nonfaculty researchers in science, engineering, and health'
 export const datasetMeta = {
   fullName: name,
   name: name,
-  fullSource: 'Survey of Graduate Students and Postdoctorates in Science and Engineering (GSS) 2021',
+  fullSource:
+    'Survey of Graduate Students and Postdoctorates in Science and Engineering (GSS) 2021',
   source: 'GSS',
   variables: ['Gender', 'Race/Ethnicity', 'Education', 'Citizenship'],
   year: 'Fall 2020',
@@ -22,7 +25,6 @@ export const genderDomain = [...Categories['gender']]
 export const raceDomain = [...Categories['race']]
 export const eduDomain = [...Categories['education']]
 export const citizenDomain = [...Categories['citizenship']]
-
 
 export const dashboardFilters = [
   {
