@@ -26,6 +26,7 @@ onMounted(() => {
   </div>
 
   <div class="story-card-grid">
+    <!-- If image does not appear, confirm that hosted_image_link is populated in the spreadsheet. This col automatically transofrms the contents of the google_drive_link col into a parseable link. -->
     <StoryCard
       v-for="(story, index) in rows"
       :v-key="story.name"
