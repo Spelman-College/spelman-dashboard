@@ -50,7 +50,6 @@ const changeView = (v) => {
 </template>
 
 <style>
-
 .dashboard-parent-container {
   padding: 2rem 3rem;
 }
