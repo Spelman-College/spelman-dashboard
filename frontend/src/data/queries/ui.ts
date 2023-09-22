@@ -126,38 +126,7 @@ export const renderCategory = (
   })
 }
 
-export const getRawCompareData = async (
-  client: DcClient,
-  dcidMap: Map<string, Array<string>>
-): Array<Object> => {
-  const results = []
-  for (const dim in dcidMap) {
-    const dcidList = dcidMap[dim]
-    for (const idx in dcidList) {
-      const dcid = dcidList[idx]
-      const values = await client.getData(dcidList[idx])
-      const formatted = formatPlot(values, 'dcid', dcid)
-      results.push(...formatted)
-    }
-  }
-  return results
-}
 
-export const asDownload = async (
-  dataset: Queryable,
-  client: DcClient,
-  category: string,
-  dimensions: string[],
-  catMap: Map<string, Array<string>>
-) => {
-  if (dimensions.length > 1) {
-    const dcids = applyCompareQuery(dataset, category, catMap)
-    const pout = await getRawCompareData(client, dcids)
-    return pout
-  }
-  const out = await getSingleDimension(dataset, client, catMap, dimensions[0])
-  return out
-}
 
 // getVarsString will format and truncate an array of variables.
 export const getVarsString = (vars: Array<string>, maxChars: number): string => {

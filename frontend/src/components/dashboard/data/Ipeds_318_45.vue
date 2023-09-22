@@ -27,7 +27,6 @@ import {
   applyCompareQuery,
   getCompareData,
   getSingleDimension,
-  asDownload,
   plotColors
 } from '../../../data/queries/ui'
 
