@@ -46,6 +46,8 @@ const dropdownShowing = inject<Ref<String>>('dropdownShowing')
 
 const warningShowing = ref(false)
 
+let warningTimerId: number
+
 onMounted(() => (filteredOptions.value = [...props.options]))
 
 function doSelectAll() {
@@ -58,16 +60,17 @@ function doSelectAll() {
 watch(selected, () => {
   if (selected.value.length == 0) {
     // Ensure at least 1 filter.
-    showWarning()
-    nextTick(() => {
-      selected.value = [lastSelected.value]
-    })
+    selected.value = [lastSelected.value]
+    nextTick(showWarning)
     return
   } else if (selected.value.length == 1) {
     lastSelected.value = selected.value[0]
+    showWarning(false)
   } else {
     lastSelected.value = ''
+    showWarning(false)
   }
+
   emit('updateFilter', props.id, selected.value)
   if (selected.value.length == props.options.length) {
     allSelected.value = true
@@ -107,12 +110,14 @@ function mapOption(op: string) {
   return props.alias[op]
 }
 
-function showWarning() {
-  warningShowing.value = true
+function showWarning(show: boolean = true) {
+  warningShowing.value = show
   // This timing must match the length of the animation in .chip-dropdowm-warning.
-  setTimeout(() => {
-    warningShowing.value = false
-  }, 3500)
+  if (show)
+    warningTimerId = window.setTimeout(() => {
+      warningShowing.value = false
+    }, 3500)
+  else if (warningTimerId) window.clearTimeout(warningTimerId)
 }
 </script>
 
