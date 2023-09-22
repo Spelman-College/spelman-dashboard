@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watchEffect, watch } from 'vue'
-import { datasets, presets, views, selectDsView } from '../../data/queries/ui'
+import { datasets, presets, views } from '../../data/queries/ui'
 
 import DatasetSelector from '@/components/dashboard/DatasetSelector.vue'
 import PresetExploreToggle from '@/components/dashboard/PresetExploreToggle.vue'

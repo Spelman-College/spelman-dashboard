@@ -32,23 +32,6 @@ export const views = [
 
 export const plotColors = ['#FF6454', '#FF971E', '#04C899', '#4FDFFF', '#FFDC69']
 
-export const selectDsView = (view: string, dsPath: string): { [key: string]: string } => {
-  let selected = { error: 'not found' }
-  if (view == 'explore') {
-    datasets.forEach((s) => {
-      if (s.path == dsPath) {
-        selected = s
-      }
-    })
-  } else if (view == 'preset') {
-    presets.forEach((s) => {
-      if (s.path == dsPath) {
-        selected = s
-      }
-    })
-  }
-  return selected
-}
 
 // Useful only for a single category query.
 export const queryDcidIntersection = (
