@@ -44,6 +44,8 @@ const allSelected = ref(true)
 
 const dropdownShowing = inject<Ref<String>>('dropdownShowing')
 
+const warningShowing = ref(false)
+
 onMounted(() => (filteredOptions.value = [...props.options]))
 
 function doSelectAll() {
@@ -56,6 +58,7 @@ function doSelectAll() {
 watch(selected, () => {
   if (selected.value.length == 0) {
     // Ensure at least 1 filter.
+    showWarning()
     nextTick(() => {
       selected.value = [lastSelected.value]
     })
@@ -102,6 +105,14 @@ const filterChipText = computed(() => {
 //takes option key and returns alias, ie "BachelorOfEducationMajor" => "Education"
 function mapOption(op: string) {
   return props.alias[op]
+}
+
+function showWarning() {
+  warningShowing.value = true
+  // This timing must match the length of the animation in .chip-dropdowm-warning.
+  setTimeout(() => {
+    warningShowing.value = false
+  }, 3500)
 }
 </script>
 
@@ -157,6 +168,9 @@ function mapOption(op: string) {
             <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
             {{ mapOption(option) }}
           </label>
+        </div>
+        <div class="chip-dropdown-warning" v-if="warningShowing">
+          At least one filter item must be selected.
         </div>
       </div>
     </div>
@@ -312,5 +326,22 @@ function mapOption(op: string) {
   font-family: 'Roboto';
   font-size: 0.875rem;
   font-weight: 700;
+}
+
+.chip-dropdown-warning {
+  margin: 0.5rem 1.3175rem 1rem 1.3175rem;
+  font-family: 'Roboto';
+  font-weight: 700;
+  color: #ff0000;
+  animation: 0.5s fadeout 3s;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 </style>
