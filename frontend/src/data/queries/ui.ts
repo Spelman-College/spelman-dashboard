@@ -41,7 +41,6 @@ export const views = [
 
 export const plotColors = ['#FF6454', '#FF971E', '#04C899', '#4FDFFF', '#FFDC69']
 
-
 // Useful only for a single category query.
 export const queryDcidIntersection = (
   dataset: Queryable,
@@ -171,7 +170,6 @@ export const getVarsString = (vars: Array<string>, maxChars: number): string => 
 
   return joinedString
 }
-
 
 // downloadDataset is a wrapper function that takes an array of DCIDs and
 // helps the client download the data as a CSV.
