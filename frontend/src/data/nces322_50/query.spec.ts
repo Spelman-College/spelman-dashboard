@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals'
 import { Query_nces322_50 } from './query'
 import { Query } from '../queries/query'
-import { Categories } from './categories'
+import { Categories } from './categories/pct'
 
 const demo = new Query_nces322_50()
 
