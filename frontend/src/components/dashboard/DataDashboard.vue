@@ -2,6 +2,9 @@
 import Demo from './data/Demo.vue'
 import Ipeds_318_45 from './data/Ipeds_318_45.vue'
 
+import NCES_332_50 from './data/Nces332_50.vue'
+import { datasetMeta as  nces_332_50Meta } from '../../data/nces322_50/ui'
+
 import Nsf23300_1_10 from './data/Nsf23300_1_10.vue'
 import { datasetMeta as nsf23300_1_10Meta } from '../../data/nsf23300_1_10/ui'
 
@@ -16,6 +19,7 @@ const props = defineProps(['dataset', 'view'])
     <Demo v-if="props.dataset == 'demo' && props.view == 'explore'" />
     <Ipeds_318_45 v-if="props.dataset == 'ipeds-318-45' && props.view == 'explore'" />
     <Nsf23300_1_10 v-if="props.dataset == nsf23300_1_10Meta.path && props.view == 'explore'" />
+    <NCES_332_50 v-if="props.dataset == nces_332_50Meta.path && props.view == 'explore'" />
     <div v-if="props.dataset == 'demo-preset' && props.view == 'preset'">
       <p class="title">This is a preset demo view.</p>
     </div>
