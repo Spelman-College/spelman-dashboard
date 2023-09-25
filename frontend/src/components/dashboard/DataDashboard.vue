@@ -3,7 +3,7 @@ import Demo from './data/Demo.vue'
 import Ipeds_318_45 from './data/Ipeds_318_45.vue'
 
 import NCES_332_50 from './data/Nces332_50.vue'
-import { datasetMeta as  nces_332_50Meta } from '../../data/nces322_50/ui'
+import { datasetMeta as nces_332_50Meta } from '../../data/nces322_50/ui'
 
 import Nsf23300_1_10 from './data/Nsf23300_1_10.vue'
 import { datasetMeta as nsf23300_1_10Meta } from '../../data/nsf23300_1_10/ui'

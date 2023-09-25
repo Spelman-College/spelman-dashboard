@@ -20,10 +20,7 @@ import {
 } from '../../../data/nces322_50/ui'
 import { Query_nces322_50 } from '../../../data/nces322_50/query'
 
-import {
-  renderCategory,
-  plotColors
-} from '../../../data/queries/ui'
+import { renderCategory, plotColors } from '../../../data/queries/ui'
 
 const dcClient: SeriesClient = new SeriesClient(
   'country/USA',
@@ -189,7 +186,7 @@ const changeCompare = (val: string) => {
               labelOffset: 70,
               tickFormat: 's',
               marginLeft: 80
-            }),
+            })
           ]
         }"
       >

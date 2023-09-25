@@ -5,22 +5,21 @@ import { downloadDataset } from '../queries/ui'
 import { Categories } from './categories/pct'
 
 export const datasetDownloadFilename =
-'Bachelors_degrees_conferred_by_postsecondary_institutions_by_race/ethnicity_and_field_of_study_2010_thru_2020'
+  'Bachelors_degrees_conferred_by_postsecondary_institutions_by_race/ethnicity_and_field_of_study_2010_thru_2020'
 
 export const datasetMeta = {
   fullName:
-  '	Bachelor\'s degrees conferred by postsecondary institutions, by gender, race/ethnicity, and field of study',
+    "	Bachelor's degrees conferred by postsecondary institutions, by gender, race/ethnicity, and field of study",
   fullSource:
-  'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS)',
-  name: 'Bachelor\'s degrees conferred by postsecondary institutitions',
-  axisLabel: 'Bachelor\'s degrees conferred',
+    'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS)',
+  name: "Bachelor's degrees conferred by postsecondary institutitions",
+  axisLabel: "Bachelor's degrees conferred",
   source: 'IPEDS',
   variables: ['Gender', 'Race/Ethnicity', 'Major'],
   //2010-2011 through 2019-2020
   year: '2010 - 2020',
   path: 'nces332-50'
 }
-
 
 // Please don't mutate these or the plot will break. When assigning these, make a copy.
 export const genderDomain = [...Categories['gender']]
@@ -51,7 +50,7 @@ export const dashboardFilters = [
     options: [...raceDomain]
   },
   {
-    name: 'Bachelor\'s Degree Major',
+    name: "Bachelor's Degree Major",
     id: 'bachelorsDegreeMajor',
     alias: dims.Dimension2Text,
     options: [...majorDomain]
@@ -65,5 +64,5 @@ export async function download(client: DcClientBulk, filename: string): Promise<
 export const compareOptions = [
   { id: 'gender', name: 'Gender' },
   { id: 'race', name: 'Race/Ethnicity' },
-  { id: 'bachelorsDegreeMajor', name: 'Major' },
+  { id: 'bachelorsDegreeMajor', name: 'Major' }
 ]
