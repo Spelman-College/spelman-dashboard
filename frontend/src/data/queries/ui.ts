@@ -13,11 +13,13 @@ import type DcClient from '../dc/client'
 import { datasetMeta as demoMeta } from '../demo/ui'
 import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
+import { datasetMeta as nces332_50Meta } from '../nces322_50/ui'
 
 const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
-export const datasets = [ipeds, nsf23300_1_10]
+const nces332_50 = nces332_50Meta
+export const datasets = [ipeds, nsf23300_1_10,nces332_50]
 
 export const presets = [
   { name: 'Demo preset for testing the dashboard', path: 'demo-preset' },
