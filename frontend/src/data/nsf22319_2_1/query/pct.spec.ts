@@ -1,8 +1,8 @@
 import { describe, expect, test } from '@jest/globals'
-import { Query_nsf23313_2_1_pct } from './pct'
+import { Query_nsf22319_2_1_pct } from './pct'
 import { Query } from '../../queries/query'
 
-const data: Query_nsf23313_2_1_pct = new Query_nsf23313_2_1_pct()
+const data: Query_nsf22319_2_1_pct = new Query_nsf22319_2_1_pct()
 
 const male = new Query('gender', 'Male')
 const female = new Query('gender', 'Female')
@@ -15,7 +15,7 @@ const notknown = new Query('race', 'UnknownRace')
 const citizen = new Query('citizenship', 'Citizen')
 const visa = new Query('citizenship', 'VisaHolder')
 
-describe('nsf23313_2_1 query single dimenions that are not reported alone', () => {
+describe('nsf22319_2_1 query single dimenions that are not reported alone', () => {
   test('query single category gender', () => {
     const out = data.query(male)
     expect(out.results).toEqual([
@@ -30,7 +30,7 @@ describe('nsf23313_2_1 query single dimenions that are not reported alone', () =
     ])
   })
 })
-describe('nsf23313_2_1 query single dimension that is expected to return a value', () => {
+describe('nsf22319_2_1 query single dimension that is expected to return a value', () => {
   test('query single category masters degree', () => {
     const out = data.query(masters_degree)
     expect(out.results).toEqual([])
@@ -58,7 +58,7 @@ describe('nsf23313_2_1 query single dimension that is expected to return a value
   })
 })
 
-describe('nsf23313_2_1 query 2 categories', () => {
+describe('nsf22319_2_1 query 2 categories', () => {
   test('query black  citizens', () => {
     const out = data.query(citizen, black)
     expect(out.results).toEqual([
@@ -81,7 +81,7 @@ describe('nsf23313_2_1 query 2 categories', () => {
   })
 })
 
-describe('nsf23313_2_1 query additions', () => {
+describe('nsf22319_2_1 query additions', () => {
   test('query single category gender', () => {
     const out = data.query(female, notknown, masters_degree)
     expect(out.results).toEqual([

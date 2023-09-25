@@ -40,7 +40,14 @@ Dimension2Text[EducationalAttainmentAssociatesDegree] = "Associate's Degree"
 Dimension2Text[EducationalAttainmentBachelorsDegree] = "Bachelor's Degree"
 // Dimension2Text[EducationalAttainmentCollegeGraduate] = 'College Graduate'
 Dimension2Text[EducationalAttainmentDoctorateDegree] = 'Docorate Degree'
-Dimension2Text[EducationalAttainmentMastersDegree] = 'Master Degree'
+Dimension2Text[EducationalAttainmentMastersDegree] = "Master's Degree"
+
+// Used in nsf23313_2_1
+export const MastersDegree = 'MastersDegree'
+export const DoctorateDegree = 'DoctorateDegree'
+Dimension2Text[MastersDegree] = "Master's Degree"
+Dimension2Text[DoctorateDegree] = 'Doctorate Degree'
+
 // Used in
 // - ipeds_318_45
 export const EDUCATIONAL_ATTAINMENT = [
@@ -61,6 +68,7 @@ export const TwoOrMoreRaces = 'TwoOrMoreRaces'
 export const WhiteAlone = 'WhiteAlone'
 export const Asian = 'Asian'
 export const HawaiianNativeOrPacificIslander = 'HawaiianNativeOrPacificIslander'
+export const NativeHawaiianOrOtherPacificIslanderAlone = 'NativeHawaiianOrOtherPacificIslanderAlone'
 export const NonUSResident = 'NonUSResident'
 export const UnknownRace = 'UnknownRace'
 export const UnknownEthnicity = 'UnknownEthnicity'
@@ -72,6 +80,8 @@ Dimension2Text[TwoOrMoreRaces] = 'Two or more races'
 Dimension2Text[WhiteAlone] = 'White alone'
 Dimension2Text[Asian] = 'Asian'
 Dimension2Text[HawaiianNativeOrPacificIslander] = 'Hawaiian Native or Pacific Islander'
+Dimension2Text[NativeHawaiianOrOtherPacificIslanderAlone] =
+  'Native Hawaiian or other Pacific Islander alone'
 Dimension2Text[NonUSResident] = 'Non-US Resident'
 Dimension2Text[UnknownRace] = 'Unknown Race'
 Dimension2Text[UnknownEthnicity] = 'Unknown Ethnicity'
