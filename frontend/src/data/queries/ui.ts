@@ -22,11 +22,11 @@ const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
 const nces332_50 = nces332_50Meta
-export const datasets = [ipeds, nsf23300_1_10,nces332_50]
+
 
 // datasets is the object that gets shown in the UI when the 'explore datasets' option
 // is selected in the view selector.
-export const datasets = [ipeds, nsf23300_1_10]
+export const datasets = [ipeds, nsf23300_1_10,nces332_50]
 
 // presets is the object that gets shown in the UI when the 'review charts' option
 // is selected in the view selector.
