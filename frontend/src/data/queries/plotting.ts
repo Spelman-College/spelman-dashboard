@@ -1,3 +1,5 @@
+// This contains utility functions for adding metadata to results returned from Data Commons.
+
 // formatPlot will add a key/value pair to each Object in `data`. This is used to annotate data
 // dimensions when plotting.
 export const formatPlot = (
@@ -14,6 +16,7 @@ export const formatPlot = (
   return out
 }
 
+// keyFromKeys will create a composite string(key) from the keys/values of an object.
 export const keyFromKeys = (o: Object, ...keys: string[]): string => {
   const skeys = keys.sort()
   let newKey = ''
@@ -27,7 +30,7 @@ export const keyFromKeys = (o: Object, ...keys: string[]): string => {
   return newKey
 }
 
-// reduceIntersection will add all values with the `addName` key IFF each value for key
+// reduceIntersection will add all values with the `addName` argument, IFF each value for key
 // in `keyNames` matches any other objects values.
 // The order of the data is not considered and may be ordered randomly.
 export const reduceIntersection = (

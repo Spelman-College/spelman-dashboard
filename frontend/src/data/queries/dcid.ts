@@ -17,9 +17,16 @@ export type DcidFilter = {
 
 // Used as a base class for Dcid.
 export class DataCommonsIdentifier {
+  // Holds the string used to query Data Commons API
   dcid: string
+
+  // This is what is compared to when we compile a QuerySet object. If there is an intersection
+  // of this set with the QuerySet object, we'll match the parent query with this DCID.
   dimensions: Set<string>
+
+  // This is a mapping of dimension to category for each dimension.
   dim2cat: { [key: string]: string }
+
   filter: DcidFilter
 
   constructor(dcid: string, filter: DcidFilter, dim2cat: { [key: string]: string }) {
