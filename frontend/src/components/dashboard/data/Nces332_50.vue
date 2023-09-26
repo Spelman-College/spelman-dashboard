@@ -12,6 +12,7 @@ import {
   genderDomain,
   raceDomain,
   majorDomain,
+  yearDomain,
   datasetMeta,
   dashboardFilters,
   download as Download,
@@ -36,6 +37,7 @@ const loading_download = ref(false)
 const genderQuery = ref([])
 const raceQuery = ref([])
 const majorQuery = ref([])
+const yearQuery = ref([])
 
 const filters = dashboardFilters
 
@@ -57,12 +59,14 @@ watchEffect(() => {
   genderQuery.value = [...genderDomain]
   raceQuery.value = [...raceDomain]
   majorQuery.value = [...majorDomain]
+  yearQuery.value = [...yearDomain]
 })
 
 watchEffect(() => {
   if (
     genderQuery.value.length == 0 &&
     raceQuery.value.length == 0 &&
+    yearQuery.value.length == 0 &&
     majorQuery.value.length == 0
   ) {
     tableItems.value = []
@@ -78,17 +82,17 @@ watchEffect(() => {
   switch (compare.value) {
     case 'gender': {
       colorDomain.value = [...genderDomain]
-      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap)
+      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap,yearQuery.value)
       break
     }
     case 'race': {
       colorDomain.value = [...raceDomain]
-      renderCategory(dcClient, dataset, tableItems, 'race', raceQuery.value, catMap)
+      renderCategory(dcClient, dataset, tableItems, 'race', raceQuery.value, catMap,yearQuery.value)
       break
     }
     case 'bachelorsDegreeMajor': {
       colorDomain.value = [...majorDomain]
-      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap)
+      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap,yearQuery.value)
       break
     }
     default: {
@@ -112,6 +116,10 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
       majorQuery.value = [...activeFilters]
       break
     }
+    case 'year': {
+      yearQuery.value = [...activeFilters]
+      break
+    }
     default: {
       throw new Error(`got ${filterId}, expected gender, race, or major`)
       break
@@ -123,6 +131,7 @@ const changeCompare = (val: string) => {
   genderQuery.value = [...genderDomain]
   raceQuery.value = [...raceDomain]
   majorQuery.value = [...majorDomain]
+  yearQuery.value = [...yearDomain]
   compare.value = val
 }
 </script>

@@ -53,3 +53,13 @@ export const reduceIntersection = (
   }
   return reduced
 }
+
+export const filterByYear = (tableObj:Array, yearQuery: string[]) => {
+  if (!yearQuery){
+    return tableObj
+  }
+  else{
+    const filtered = tableObj.filter(item => yearQuery.includes(item.date))
+    return filtered
+  }
+}

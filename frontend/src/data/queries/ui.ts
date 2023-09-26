@@ -7,7 +7,7 @@ import { BulkClient, blobs2Csv } from '../dc/client'
 import type Queryable from './query'
 import { Query, expandCompares, QueryCompare } from './query'
 
-import { formatPlot, reduceIntersection } from './plotting'
+import { formatPlot, reduceIntersection, filterByYear } from './plotting'
 import type DcClient from '../dc/client'
 
 import { datasetMeta as demoMeta } from '../demo/ui'
@@ -137,7 +137,8 @@ export const renderCategory = (
   tableRef: Ref<Array>,
   category: string,
   dimensions: string[],
-  catMap: Map<string, Array<string>>
+  catMap: Map<string, Array<string>>,
+  yearQuery?:Array<string>
 ) => {
   if (dimensions.length > 1) {
     // We're comparing multiple dimensions, side-by-side in a plot, so we'll want to
@@ -148,7 +149,8 @@ export const renderCategory = (
     pout.then((tmpOut) => {
       // Sum the common values, if there were multiple DCIDs per dimension in our query.
       const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-      tableRef.value = reduced
+      const filtered = filterByYear(reduced, yearQuery)
+      tableRef.value = filtered
     })
     return
   }
