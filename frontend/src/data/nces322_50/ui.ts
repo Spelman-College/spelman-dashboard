@@ -12,7 +12,7 @@ export const datasetMeta = {
   '	Bachelor\'s degrees conferred by postsecondary institutions, by gender, race/ethnicity, and field of study',
   fullSource:
   'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS)',
-  name: 'Bachelor\'s degrees conferred by postsecondary institutitions',
+  name: 'Bachelor\'s degrees conferred by postsecondary institutions',
   axisLabel: 'Bachelor\'s degrees conferred',
   source: 'IPEDS',
   variables: ['Gender', 'Race/Ethnicity', 'Major'],
@@ -52,7 +52,7 @@ export const dashboardFilters = [
     options: [...raceDomain]
   },
   {
-    name: 'Bachelor\'s Degree Major',
+    name: 'College Major',
     id: 'bachelorsDegreeMajor',
     alias: dims.Dimension2Text,
     options: [...majorDomain]
@@ -84,5 +84,5 @@ export async function download(client: DcClientBulk, filename: string): Promise<
 export const compareOptions = [
   { id: 'gender', name: 'Gender' },
   { id: 'race', name: 'Race/Ethnicity' },
-  { id: 'bachelorsDegreeMajor', name: 'Major' },
+  { id: 'bachelorsDegreeMajor', name: 'College Major' },
 ]
