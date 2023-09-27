@@ -282,7 +282,7 @@ function showWarning(show: boolean = true) {
 
 .chip-dropdown-options-container::-webkit-scrollbar-track {
   /* background: #f1f1f1; */
-  background:white;
+  background: white;
 }
 .chip-dropdown-options-container::-webkit-scrollbar-thumb {
   background: #e2e2e2;

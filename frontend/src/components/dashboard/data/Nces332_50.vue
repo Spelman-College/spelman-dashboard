@@ -205,7 +205,7 @@ const changeCompare = (val: string) => {
               labelOffset: 70,
               tickFormat: 's',
               marginLeft: 80
-            }),
+            })
           ]
         }"
       >

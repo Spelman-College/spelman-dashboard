@@ -221,4 +221,3 @@ export async function downloadCSV(data: Array<Map>, filename: string) {
     console.log(err)
   }
 }
-
