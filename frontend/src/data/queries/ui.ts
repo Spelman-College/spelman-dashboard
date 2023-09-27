@@ -135,7 +135,7 @@ export const renderCategory = (
   category: string,
   dimensions: string[],
   catMap: Map<string, Array<string>>,
-  yearQuery?:Array<string>,
+  yearQuery?: Array<string>,
   plainText?: Boolean
 ) => {
   if (dimensions.length > 1) {
@@ -149,7 +149,7 @@ export const renderCategory = (
       const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
       const filtered = filterByYear(reduced, yearQuery)
       //temp check until the colorDomain for all of the datasets references the aliases instead of the DCIDs (to allow for plain text legends)
-      const tableData = plainText ? filteredToText(filtered) : filtered;
+      const tableData = plainText ? filteredToText(filtered) : filtered
       tableRef.value = tableData
     })
     return

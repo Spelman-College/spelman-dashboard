@@ -20,7 +20,7 @@ import {
   compareOptions
 } from '../../../data/nces322_50/ui'
 import { Query_nces322_50 } from '../../../data/nces322_50/query'
-import {Dimension2Text} from '../../../data/queries/dimensions'
+import { Dimension2Text } from '../../../data/queries/dimensions'
 
 import { renderCategory, plotColors } from '../../../data/queries/ui'
 
@@ -89,17 +89,44 @@ watchEffect(() => {
   switch (compare.value) {
     case 'gender': {
       colorDomain.value = [...genderAliases]
-      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap,yearQuery.value,true)
+      renderCategory(
+        dcClient,
+        dataset,
+        tableItems,
+        'gender',
+        genderQuery.value,
+        catMap,
+        yearQuery.value,
+        true
+      )
       break
     }
     case 'race': {
       colorDomain.value = [...raceAliases]
-      renderCategory(dcClient, dataset, tableItems, 'race', raceQuery.value, catMap,yearQuery.value,true)
+      renderCategory(
+        dcClient,
+        dataset,
+        tableItems,
+        'race',
+        raceQuery.value,
+        catMap,
+        yearQuery.value,
+        true
+      )
       break
     }
     case 'bachelorsDegreeMajor': {
       colorDomain.value = [...majorAliases]
-      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap,yearQuery.value,true)
+      renderCategory(
+        dcClient,
+        dataset,
+        tableItems,
+        compare.value,
+        majorQuery.value,
+        catMap,
+        yearQuery.value,
+        true
+      )
       break
     }
     default: {
