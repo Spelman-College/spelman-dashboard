@@ -5,15 +5,15 @@ import { downloadDataset } from '../queries/ui'
 import { Categories } from './categories/pct'
 
 export const datasetDownloadFilename =
-'Bachelors_degrees_conferred_by_postsecondary_institutions_by_race/ethnicity_and_field_of_study_2010_thru_2020'
+  'Bachelors_degrees_conferred_by_postsecondary_institutions_by_race/ethnicity_and_field_of_study_2010_thru_2020'
 
 export const datasetMeta = {
   fullName:
-  '	Bachelor\'s degrees conferred by postsecondary institutions, by gender, race/ethnicity, and field of study',
+    "	Bachelor's degrees conferred by postsecondary institutions, by gender, race/ethnicity, and field of study",
   fullSource:
-  'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS)',
-  name: 'Bachelor\'s degrees conferred by postsecondary institutions',
-  axisLabel: 'Bachelor\'s degrees conferred',
+    'U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS)',
+  name: "Bachelor's degrees conferred by postsecondary institutitions",
+  axisLabel: "Bachelor's degrees conferred",
   source: 'IPEDS',
   variables: ['Gender', 'Race/Ethnicity', 'Major'],
   //2010-2011 through 2019-2020
