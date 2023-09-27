@@ -79,17 +79,41 @@ watchEffect(() => {
   switch (compare.value) {
     case 'gender': {
       colorDomain.value = [...genderDomain]
-      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap,yearQuery.value)
+      renderCategory(
+        dcClient,
+        dataset,
+        tableItems,
+        'gender',
+        genderQuery.value,
+        catMap,
+        yearQuery.value
+      )
       break
     }
     case 'race': {
       colorDomain.value = [...raceDomain]
-      renderCategory(dcClient, dataset, tableItems, 'race', raceQuery.value, catMap,yearQuery.value)
+      renderCategory(
+        dcClient,
+        dataset,
+        tableItems,
+        'race',
+        raceQuery.value,
+        catMap,
+        yearQuery.value
+      )
       break
     }
     case 'bachelorsDegreeMajor': {
       colorDomain.value = [...majorDomain]
-      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap,yearQuery.value)
+      renderCategory(
+        dcClient,
+        dataset,
+        tableItems,
+        compare.value,
+        majorQuery.value,
+        catMap,
+        yearQuery.value
+      )
       break
     }
     default: {

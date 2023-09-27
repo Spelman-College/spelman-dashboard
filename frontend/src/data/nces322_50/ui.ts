@@ -21,7 +21,6 @@ export const datasetMeta = {
   path: 'nces332-50'
 }
 
-
 // Please don't mutate these or the plot will break. When assigning these, make a copy.
 export const genderDomain = [...Categories['gender']]
 //'AsianOrPacificIslander' not plotted as it's a sum of 'Asian' and 'HawaiianNativeOrPacificIslander'
@@ -36,7 +35,19 @@ export const raceDomain = [
   dims.NonUSResident
 ]
 export const majorDomain = [...Categories['bachelorsDegreeMajor']]
-export const yearDomain = ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+export const yearDomain = [
+  '2010',
+  '2011',
+  '2012',
+  '2013',
+  '2014',
+  '2015',
+  '2016',
+  '2017',
+  '2018',
+  '2019',
+  '2020'
+]
 
 export const dashboardFilters = [
   {
@@ -73,7 +84,19 @@ export const dashboardFilters = [
       2019: '2019',
       2020: '2020'
     },
-    options: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+    options: [
+      '2010',
+      '2011',
+      '2012',
+      '2013',
+      '2014',
+      '2015',
+      '2016',
+      '2017',
+      '2018',
+      '2019',
+      '2020'
+    ]
   }
 ]
 
@@ -84,5 +107,5 @@ export async function download(client: DcClientBulk, filename: string): Promise<
 export const compareOptions = [
   { id: 'gender', name: 'Gender' },
   { id: 'race', name: 'Race/Ethnicity' },
-  { id: 'bachelorsDegreeMajor', name: 'College Major' },
+  { id: 'bachelorsDegreeMajor', name: 'College Major' }
 ]

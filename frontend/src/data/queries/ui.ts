@@ -135,7 +135,7 @@ export const renderCategory = (
   category: string,
   dimensions: string[],
   catMap: Map<string, Array<string>>,
-  yearQuery?:Array<string>
+  yearQuery?: Array<string>
 ) => {
   if (dimensions.length > 1) {
     // We're comparing multiple dimensions, side-by-side in a plot, so we'll want to
