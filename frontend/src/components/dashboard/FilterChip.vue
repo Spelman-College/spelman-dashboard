@@ -167,15 +167,17 @@ function showWarning(show: boolean = true) {
             Select all
           </label>
         </div>
-        <div v-for="option in filteredOptions">
-          <label class="chip-dropdown-checkbox">
-            <input type="checkbox" :id="option" :value="option" v-model="selected" />
-            <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
-            {{ mapOption(option) }}
-          </label>
-        </div>
-        <div class="chip-dropdown-warning" v-if="warningShowing">
-          At least one filter item must be selected.
+        <div class="chip-dropdown-options-container">
+          <div v-for="option in filteredOptions">
+            <label class="chip-dropdown-checkbox">
+              <input type="checkbox" :id="option" :value="option" v-model="selected" />
+              <span class="chip-dropdown-checkbox-check material-icons">checkmark</span>
+              {{ mapOption(option) }}
+            </label>
+          </div>
+          <div class="chip-dropdown-warning" v-if="warningShowing">
+            At least one filter item must be selected.
+          </div>
         </div>
       </div>
     </div>
@@ -270,6 +272,24 @@ function showWarning(show: boolean = true) {
   font-weight: 500;
 }
 
+.chip-dropdown-options-container {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+.chip-dropdown-options-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chip-dropdown-options-container::-webkit-scrollbar-track {
+  /* background: #f1f1f1; */
+  background: white;
+}
+.chip-dropdown-options-container::-webkit-scrollbar-thumb {
+  background: #e2e2e2;
+}
+.chip-dropdown-options-container::-webkit-scrollbar-thumb:hover {
+  background: #a8c7fa;
+}
 .chip-dropdown-checkbox {
   position: relative;
   padding: 0.5rem 1rem;

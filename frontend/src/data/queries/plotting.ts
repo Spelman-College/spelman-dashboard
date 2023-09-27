@@ -1,4 +1,6 @@
-// This contains utility functions for adding metadata to results returned from Data Commons.
+// This file contains utility functions for adding metadata to results returned from Data Commons.
+
+import { Dimension2Text } from './dimensions'
 
 // formatPlot will add a key/value pair to each Object in `data`. This is used to annotate data
 // dimensions when plotting.
@@ -52,4 +54,25 @@ export const reduceIntersection = (
     reduced.push(o[key])
   }
   return reduced
+}
+
+export const filterByYear = (tableObj: Array, yearQuery: string[]) => {
+  if (!yearQuery) {
+    return tableObj
+  } else {
+    const filtered = tableObj.filter((item) => yearQuery.includes(item.date))
+    return filtered
+  }
+}
+// Changes table keys from DCIDs to plain text after they've been queried,
+// for better legend readbility
+export const filteredToText = (tableObj: Array) => {
+  const plainTextTable = tableObj.reduce((acc, item) => {
+    if (Dimension2Text[item.key]) {
+      item.key = Dimension2Text[item.key]
+    }
+    acc.push(item)
+    return acc
+  }, [])
+  return plainTextTable
 }

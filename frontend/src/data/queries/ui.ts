@@ -7,12 +7,13 @@ import { BulkClient, blobs2Csv } from '../dc/client'
 import type Queryable from './query'
 import { Query, expandCompares, QueryCompare } from './query'
 
-import { formatPlot, reduceIntersection } from './plotting'
+import { formatPlot, reduceIntersection, filterByYear, filteredToText } from './plotting'
 import type DcClient from '../dc/client'
 
 import { datasetMeta as demoMeta } from '../demo/ui'
 import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
+import { datasetMeta as nces332_50Meta } from '../nces322_50/ui'
 
 // These variables need to be created, due to what appears to be a dependency bug when typescript
 // compiles to JS. If we don't create these intermediate vars, we get an error about uninstantiated
@@ -20,10 +21,11 @@ import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
 const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
+const nces332_50 = nces332_50Meta
 
 // datasets is the object that gets shown in the UI when the 'explore datasets' option
 // is selected in the view selector.
-export const datasets = [ipeds, nsf23300_1_10]
+export const datasets = [ipeds, nsf23300_1_10, nces332_50]
 
 // presets is the object that gets shown in the UI when the 'review charts' option
 // is selected in the view selector.
@@ -132,7 +134,9 @@ export const renderCategory = (
   tableRef: Ref<Array>,
   category: string,
   dimensions: string[],
-  catMap: Map<string, Array<string>>
+  catMap: Map<string, Array<string>>,
+  yearQuery?: Array<string>,
+  plainText?: Boolean
 ) => {
   if (dimensions.length > 1) {
     // We're comparing multiple dimensions, side-by-side in a plot, so we'll want to
@@ -143,7 +147,10 @@ export const renderCategory = (
     pout.then((tmpOut) => {
       // Sum the common values, if there were multiple DCIDs per dimension in our query.
       const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
-      tableRef.value = reduced
+      const filtered = filterByYear(reduced, yearQuery)
+      //temp check until the colorDomain for all of the datasets references the aliases instead of the DCIDs (to allow for plain text legends)
+      const tableData = plainText ? filteredToText(filtered) : filtered
+      tableRef.value = tableData
     })
     return
   }
