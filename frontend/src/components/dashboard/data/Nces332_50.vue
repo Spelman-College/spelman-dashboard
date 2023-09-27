@@ -20,6 +20,7 @@ import {
   compareOptions
 } from '../../../data/nces322_50/ui'
 import { Query_nces322_50 } from '../../../data/nces322_50/query'
+import {Dimension2Text} from '../../../data/queries/dimensions'
 
 import { renderCategory, plotColors } from '../../../data/queries/ui'
 
@@ -41,6 +42,15 @@ const filters = dashboardFilters
 const compare = ref('gender')
 const tableItems = ref([])
 const colorDomain = ref([])
+
+//takes array of DCIDs and returns plain text aliases, ie ["BachelorOfEducationMajor"] => ["Education"]
+function mapAlias(arr: string[]) {
+  const aliases = arr.map((val) => Dimension2Text[val])
+  return aliases
+}
+const genderAliases = mapAlias(genderDomain)
+const raceAliases = mapAlias(raceDomain)
+const majorAliases = mapAlias(majorDomain)
 
 async function download() {
   loading_download.value = true
@@ -78,18 +88,18 @@ watchEffect(() => {
 
   switch (compare.value) {
     case 'gender': {
-      colorDomain.value = [...genderDomain]
-      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap,yearQuery.value)
+      colorDomain.value = [...genderAliases]
+      renderCategory(dcClient, dataset, tableItems, 'gender', genderQuery.value, catMap,yearQuery.value,true)
       break
     }
     case 'race': {
-      colorDomain.value = [...raceDomain]
-      renderCategory(dcClient, dataset, tableItems, 'race', raceQuery.value, catMap,yearQuery.value)
+      colorDomain.value = [...raceAliases]
+      renderCategory(dcClient, dataset, tableItems, 'race', raceQuery.value, catMap,yearQuery.value,true)
       break
     }
     case 'bachelorsDegreeMajor': {
-      colorDomain.value = [...majorDomain]
-      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap,yearQuery.value)
+      colorDomain.value = [...majorAliases]
+      renderCategory(dcClient, dataset, tableItems, compare.value, majorQuery.value, catMap,yearQuery.value,true)
       break
     }
     default: {
@@ -195,7 +205,7 @@ const changeCompare = (val: string) => {
               labelOffset: 70,
               tickFormat: 's',
               marginLeft: 80
-            })
+            }),
           ]
         }"
       >

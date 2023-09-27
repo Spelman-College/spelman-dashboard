@@ -7,7 +7,7 @@ import { BulkClient, blobs2Csv } from '../dc/client'
 import type Queryable from './query'
 import { Query, expandCompares, QueryCompare } from './query'
 
-import { formatPlot, reduceIntersection, filterByYear } from './plotting'
+import { formatPlot, reduceIntersection, filterByYear, filteredToText } from './plotting'
 import type DcClient from '../dc/client'
 
 import { datasetMeta as demoMeta } from '../demo/ui'
@@ -135,7 +135,8 @@ export const renderCategory = (
   category: string,
   dimensions: string[],
   catMap: Map<string, Array<string>>,
-  yearQuery?:Array<string>
+  yearQuery?:Array<string>,
+  plainText?: Boolean
 ) => {
   if (dimensions.length > 1) {
     // We're comparing multiple dimensions, side-by-side in a plot, so we'll want to
@@ -147,7 +148,9 @@ export const renderCategory = (
       // Sum the common values, if there were multiple DCIDs per dimension in our query.
       const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
       const filtered = filterByYear(reduced, yearQuery)
-      tableRef.value = filtered
+      //temp check until the colorDomain for all of the datasets references the aliases instead of the DCIDs (to allow for plain text legends)
+      const tableData = plainText ? filteredToText(filtered) : filtered;
+      tableRef.value = tableData
     })
     return
   }
@@ -218,3 +221,4 @@ export async function downloadCSV(data: Array<Map>, filename: string) {
     console.log(err)
   }
 }
+
