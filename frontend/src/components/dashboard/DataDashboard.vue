@@ -87,6 +87,7 @@ const props = defineProps(['dataset', 'view'])
   color: #1a73e8;
   font-family: Noto Sans Mono;
   font-size: 12px;
+  cursor: pointer;
 }
 :deep(.csv-download-container) {
   display: flex;
@@ -110,11 +111,14 @@ const props = defineProps(['dataset', 'view'])
   border-radius: 4px;
   border: 1px solid #bdc1c6;
   background: #ececec;
+  cursor: pointer;
+  user-select: none;
 }
 :deep(.plot-button.unavailable) {
   background: white;
   color: #bdc1c6;
   border: 1px solid #ececec;
+  cursor: unset;
 }
 
 :deep(.plot-text) {
