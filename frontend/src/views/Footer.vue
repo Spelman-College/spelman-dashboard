@@ -97,6 +97,6 @@ function goToFAQ() {
   cursor: pointer;
   color: #4fdfff;
   font-weight: 700;
-  font-size:18px;
+  font-size: 18px;
 }
 </style>
