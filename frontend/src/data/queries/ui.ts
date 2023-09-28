@@ -182,7 +182,6 @@ export const getVarsString = (vars: Array<string>, maxChars: number): string => 
   return joinedString
 }
 
-
 // downloadDataset is a wrapper function that takes an array of DCIDs and
 // helps the client download the data as a CSV.
 export async function downloadDataset(
