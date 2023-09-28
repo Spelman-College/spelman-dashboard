@@ -1,5 +1,7 @@
-import { Dcid, DcidFilter, CategoryType } from '../queries/dcid'
-import { Query, QueryResult, query2dcids } from '../queries/query'
+import type { CategoryType, DcidFilter } from '../queries/dcid'
+import { Dcid } from '../queries/dcid'
+import type { QueryResult } from '../queries/query'
+import { Query, query2dcids } from '../queries/query'
 import { DCIDS } from './dcids'
 import { Categories } from './categories'
 
@@ -22,6 +24,11 @@ Object.keys(Categories).forEach((cat) => {
 
 const dcids = []
 DCIDS.forEach((id) => {
+  // See https://github.com/Spelman-College/spelman-dashboard/issues/238
+  // We are skipping this sub-summary statistic in the 'occupations' category.
+  if (id.match(/ScienceAndEngineeringOccupation/g) !== null) {
+    return
+  }
   dcids.push(new Dcid(id, filter, dimension2Category))
 })
 
@@ -37,6 +44,9 @@ class Base {
   protected categoryDependencies: [string, string][] = categoryDependencies
   protected dcids: Array<Dcid> = dcids
   protected annotatedDimensions: Set<string> = annotatedDimensions
+  categories() {
+    return Categories
+  }
 }
 
 export class Query_nsf19304 extends Base {
