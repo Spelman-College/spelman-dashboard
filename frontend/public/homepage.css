@@ -43,6 +43,7 @@ a {
   font-size: 1.3125rem;
   font-weight: 700;
   text-decoration: none;
+  cursor: pointer;
 }
 
 button {
