@@ -17,7 +17,7 @@ export const Categories = {
     dims.SOCLifeScientistsOccupation,
     dims.SOCPhysicalScientistsOccupation,
     dims.SOCSocialScientistsRelatedWorkersOccupation,
-    dims.ScienceAndEngineeringOccupation,
+    // dims.ScienceAndEngineeringOccupation,
     dims.ScienceAndEngineeringRelatedOccupation,
     dims.NonScienceAndEngineeringOccupation
   ])
