@@ -27,7 +27,6 @@ import {
   applyCompareQuery,
   getCompareData,
   getSingleDimension,
-  asDownload,
   plotColors
 } from '../../../data/queries/ui'
 
@@ -44,6 +43,9 @@ const loading_download = ref(false)
 const genderQuery = ref([])
 const raceQuery = ref([])
 const eduQuery = ref([])
+genderQuery.value = [...genderDomain]
+raceQuery.value = [...raceDomain]
+eduQuery.value = [...eduDomain]
 
 const filters = dashboardFilters
 
@@ -60,12 +62,6 @@ async function download() {
   }
   loading_download.value = false
 }
-
-watchEffect(() => {
-  genderQuery.value = [...genderDomain]
-  raceQuery.value = [...raceDomain]
-  eduQuery.value = [...eduDomain]
-})
 
 watchEffect(() => {
   if (genderQuery.value.length == 0 && raceQuery.value.length == 0 && eduQuery.value.length == 0) {
@@ -123,6 +119,9 @@ const updateFilter = (filterId: string, activeFilters: Array<string>) => {
 }
 
 const changeCompare = (val: string) => {
+  genderQuery.value = [...genderDomain]
+  raceQuery.value = [...raceDomain]
+  eduQuery.value = [...eduDomain]
   compare.value = val
 }
 </script>

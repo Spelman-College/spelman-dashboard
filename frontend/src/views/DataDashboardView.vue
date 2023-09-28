@@ -29,7 +29,7 @@ const changeView = (v) => {
 </script>
 
 <template>
-  <div class="view">
+  <div class="view dashboard-view">
     <div class="dd-header">
       <PresetExploreSelector
         :dataset="route.params.dataset"

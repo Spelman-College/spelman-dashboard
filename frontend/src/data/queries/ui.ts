@@ -15,42 +15,30 @@ import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
 import { datasetMeta as nsf23306_6_2Meta } from '../nsf23306_6_2/ui'
 
+// These variables need to be created, due to what appears to be a dependency bug when typescript
+// compiles to JS. If we don't create these intermediate vars, we get an error about uninstantiated
+// variables.
 const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
 const nsf23306_6_2 = nsf23306_6_2Meta
 export const datasets = [ipeds, nsf23300_1_10, nsf23306_6_2]
 
+// presets is the object that gets shown in the UI when the 'review charts' option
+// is selected in the view selector.
 export const presets = [
   { name: 'Demo preset for testing the dashboard', path: 'demo-preset' },
   { name: 'Preset that does not exist yet', path: 'nope-preset' },
   { name: 'Another Preset that does not exist yet', path: 'nope2-preset' }
 ]
 
+// views is the object that determines the view selector text and path.
 export const views = [
   { name: 'Open explore', path: 'explore', deactivate: false },
   { name: 'Data preset', path: 'preset', deactivate: false }
 ]
 
 export const plotColors = ['#FF6454', '#FF971E', '#04C899', '#4FDFFF', '#FFDC69']
-
-export const selectDsView = (view: string, dsPath: string): { [key: string]: string } => {
-  let selected = { error: 'not found' }
-  if (view == 'explore') {
-    datasets.forEach((s) => {
-      if (s.path == dsPath) {
-        selected = s
-      }
-    })
-  } else if (view == 'preset') {
-    presets.forEach((s) => {
-      if (s.path == dsPath) {
-        selected = s
-      }
-    })
-  }
-  return selected
-}
 
 // Useful only for a single category query.
 export const queryDcidIntersection = (
@@ -68,11 +56,14 @@ export const queryDcidIntersection = (
   const response = dataset.query(...queries)
 
   if (response.error !== undefined) {
-    throw new Error(`Error querying dataset for "${category}" category: ${response.error}`)
+    throw new Error(
+      `Error querying dataset with categoryMap "${JSON.stringify(categoryMap)}": ${response.error}`
+    )
   }
   return response.results
 }
 
+// applyCompareQuery is a wrapper function for instantiating and invoking QueryCompare logic.
 export const applyCompareQuery = (
   dataset: Queryable,
   compareCategory: string,
@@ -87,6 +78,8 @@ export const applyCompareQuery = (
   return qc.compile()
 }
 
+// getCompareData is a wrapper function that calls the Data Commons API and adds
+// metadata to the results for comparing/plotting.
 export const getCompareData = async (
   client: DcClient,
   dcidMap: Map<string, Array<string>>
@@ -94,8 +87,8 @@ export const getCompareData = async (
   const results = []
   for (const dim in dcidMap) {
     const dcidList = dcidMap[dim]
-    for (const dcid in dcidList) {
-      const values = await client.getData(dcidList[dcid])
+    for (const idx in dcidList) {
+      const values = await client.getData(dcidList[idx])
       const formatted = formatPlot(values, 'key', dim)
       results.push(...formatted)
     }
@@ -103,6 +96,8 @@ export const getCompareData = async (
   return results
 }
 
+// getCompareData is a wrapper function that calls the Data Commons API and adds
+// metadata to the results for plotting.
 export const getSingleDimension = async (
   dataset: Queryable,
   client: DcClient,
@@ -120,6 +115,16 @@ export const getSingleDimension = async (
   return out
 }
 
+// renderCategory multiplies a query(set of dimensions for other categories) across a target
+// category's dimension(s) and reduces the results, as needed.
+//
+// An example is that we have a gender category that we want to compare and a total query
+// that includes occupation and salary. Since we're comparing each gender dimension side-by-side,
+// for each dimension, in this case Male and Female, we'll
+//   1. Add the query for the other categories, in this example occupation and salary, and
+//      get the DCID(s).
+//   3. Get the data for the DCID(s) from Data Commons.
+//   4. Sum common values, if there were multiple DCIDs returned from step 1.
 export const renderCategory = (
   dcClient: SeriesClient,
   dataset: Queryable,
@@ -129,9 +134,13 @@ export const renderCategory = (
   catMap: Map<string, Array<string>>
 ) => {
   if (dimensions.length > 1) {
+    // We're comparing multiple dimensions, side-by-side in a plot, so we'll want to
+    // get the DCIDs that match the query
     const dcids = applyCompareQuery(dataset, category, catMap)
+    // Get data from Data Commons.
     const pout = getCompareData(dcClient, dcids)
     pout.then((tmpOut) => {
+      // Sum the common values, if there were multiple DCIDs per dimension in our query.
       const reduced = reduceIntersection(tmpOut, 'value', 'key', 'date')
       tableRef.value = reduced
     })
@@ -143,40 +152,8 @@ export const renderCategory = (
   })
 }
 
-export const getRawCompareData = async (
-  client: DcClient,
-  dcidMap: Map<string, Array<string>>
-): Array<Object> => {
-  const results = []
-  for (const dim in dcidMap) {
-    const dcidList = dcidMap[dim]
-    for (const idx in dcidList) {
-      const dcid = dcidList[idx]
-      const values = await client.getData(dcidList[idx])
-      const formatted = formatPlot(values, 'dcid', dcid)
-      results.push(...formatted)
-    }
-  }
-  return results
-}
-
-export const asDownload = async (
-  dataset: Queryable,
-  client: DcClient,
-  category: string,
-  dimensions: string[],
-  catMap: Map<string, Array<string>>
-) => {
-  if (dimensions.length > 1) {
-    const dcids = applyCompareQuery(dataset, category, catMap)
-    const pout = await getRawCompareData(client, dcids)
-    return pout
-  }
-  const out = await getSingleDimension(dataset, client, catMap, dimensions[0])
-  return out
-}
-
-// getVarsString will format and truncate an array of variables.
+// getVarsString will format and truncate an array of variable names to be displayed
+// in an HTML element. The goal is to limit the text that is shown in the HTML element.
 export const getVarsString = (vars: Array<string>, maxChars: number): string => {
   var joinedString = vars.join(', ')
 
@@ -193,6 +170,8 @@ export const getVarsString = (vars: Array<string>, maxChars: number): string => 
   return joinedString
 }
 
+// downloadDataset is a wrapper function that takes an array of DCIDs and
+// helps the client download the data as a CSV.
 export async function downloadDataset(
   client: DcClientBulk,
   dcids: string[],
@@ -210,11 +189,13 @@ export async function downloadDataset(
   return ''
 }
 
-// Used to test UI loading elements
+// delay is used to test UI loading elements
 const delay = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+// downloadCSV is used to create both the CSV object and HTML component that allows a user to
+// download a CSV from an event- like an onclick handler.
 export async function downloadCSV(data: Array<Map>, filename: string) {
   //// Used to test UI loading elements while download is occurring.
   // await delay(1000)

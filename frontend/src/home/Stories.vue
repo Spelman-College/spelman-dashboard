@@ -91,7 +91,7 @@ const page = ref(0)
 <style>
 @import '/homepage.css';
 .carousel-container {
-  width: 100vw;
+  max-width: 1600px;
   min-width: 90rem;
 }
 .carousel-nav {
@@ -100,7 +100,6 @@ const page = ref(0)
   margin-right: 5em;
   margin-bottom: 4em;
   padding-right: 4rem;
-  width: 100%;
 }
 .carousel-all {
   display: flex;
@@ -113,7 +112,6 @@ const page = ref(0)
   margin-left: 2em;
 }
 .carousel-parent {
-  width: 100vw;
   min-width: 90rem;
 }
 

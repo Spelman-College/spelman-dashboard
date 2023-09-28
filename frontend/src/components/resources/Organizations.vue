@@ -14,6 +14,16 @@ onMounted(() => {
     rows.value = data
   })
 })
+
+function addUrlProtocolIfNeeded(url: string) {
+  const regex = /^(?:https:\/\/|http:\/\/)/
+  return regex.test(url) ? url : '//' + url
+}
+
+function removeUrlPrefixes(url: string) {
+  const regex = /^(?:https:\/\/|http:\/\/|www\.)+/
+  return url.replace(regex, '')
+}
 </script>
 
 <template>
@@ -46,7 +56,7 @@ onMounted(() => {
       </div>
       <div>
         <div class="name">{{ org.name }}</div>
-        <a :href="org.formatted_url" class="url">{{ org.url }}</a>
+        <a :href="addUrlProtocolIfNeeded(org.url)" class="url">{{ removeUrlPrefixes(org.url) }}</a>
       </div>
     </template>
     <template #body>

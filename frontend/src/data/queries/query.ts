@@ -168,6 +168,9 @@ export class QuerySet {
   }
 }
 
+// validateQueries checks that the given queries make sense to query
+// a DCID index. The idea is to sanity check the query and throw and error,
+// instead of returning no results from an unrelated or malformed query.
 export const validateQueries = (
   categories: CategoryType,
   annotatedDimensions: Set<string>,
@@ -177,17 +180,24 @@ export const validateQueries = (
   const includesAllDimensions = new Set<string>()
   try {
     queries.forEach((query) => {
+      // Check for duplicated categories.
       if (catNames.has(query.category)) {
         throw new Error(`query has duplicate category: ${query.category}`)
       }
       catNames.add(query.category)
+
+      // Check for non-existent categories.
       const catDimensions = categories[query.category]
       if (catDimensions === undefined) {
         throw new Error(`unknown category: ${query.category}`)
       }
+
+      // Check for missing dimensions.
       if (query.dimensions.size == 0) {
         throw new Error(`missing dimensions for category query: ${query.category}`)
       }
+
+      // Check for unrelated dimensions- that are not in this category.
       const intersected = setsUtil.setIntersection(annotatedDimensions, query.dimensions)
       if (!setsUtil.setEqual(intersected, query.dimensions)) {
         const diff = setsUtil.setDifference(query.dimensions, annotatedDimensions)
@@ -212,6 +222,9 @@ export const validateQueries = (
   return ''
 }
 
+// query2dcids is a wrapper function that takes an array of Query objects(and other things),
+// and returns a QueryResult object. It performs validation
+// and creates the QuerySet object.
 export const query2dcids = (
   dcids: Array<Dcid>,
   categories: CategoryType,
