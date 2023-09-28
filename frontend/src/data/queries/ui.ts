@@ -13,6 +13,7 @@ import type DcClient from '../dc/client'
 import { datasetMeta as demoMeta } from '../demo/ui'
 import { datasetMeta as ipedsMeta } from '../ipeds_318_45/ui/values'
 import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
+import { datasetMeta as nsf23306_6_2Meta } from '../nsf23306_6_2/ui'
 
 // These variables need to be created, due to what appears to be a dependency bug when typescript
 // compiles to JS. If we don't create these intermediate vars, we get an error about uninstantiated
@@ -20,10 +21,8 @@ import { datasetMeta as nsf23300_1_10Meta } from '../nsf23300_1_10/ui'
 const demo = demoMeta
 const ipeds = ipedsMeta
 const nsf23300_1_10 = nsf23300_1_10Meta
-
-// datasets is the object that gets shown in the UI when the 'explore datasets' option
-// is selected in the view selector.
-export const datasets = [ipeds, nsf23300_1_10]
+const nsf23306_6_2 = nsf23306_6_2Meta
+export const datasets = [ipeds, nsf23300_1_10, nsf23306_6_2]
 
 // presets is the object that gets shown in the UI when the 'review charts' option
 // is selected in the view selector.
