@@ -8,7 +8,7 @@ export const datasetDownloadFilename =
   'Employed_college_graduates_by_sex_race_ethnicity_and_major_occupation_2003_thru_2021'
 
 export const datasetMeta = {
-  name: 'Employed college graduates, by sex, ace, ethnicity, and major occupation: 2003-2021',
+  name: 'Employed college graduates, by sex, race, ethnicity, and major occupation: 2003-2021',
   source:
     'National Center for Science and Engineering Statistics, National Survey of College Graduates.',
   variables: ['Gender', 'Race/Ethnicity', 'Major Occupation'],
