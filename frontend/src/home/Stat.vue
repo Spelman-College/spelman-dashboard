@@ -4,9 +4,7 @@
     <div id="percent">
       <span class="big-percent">2.9</span>
       <span class="big-percent">%</span>
-      <div id="percent-blurb">
-        In 2021, only 2.9% of the STEM workforce in the United States are Black women.
-      </div>
+      <div id="percent-blurb">Black women represent only 2.9% of the STEM workforce.</div>
       <div id="squiggle"><img src="/swiggly_line_ACF0FF.svg" /></div>
       <p id="footnote">
         Explore the commitment to increasing representation, improving access to resources and
