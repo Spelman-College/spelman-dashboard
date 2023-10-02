@@ -15,7 +15,7 @@ export const datasetMeta = {
   axisLabel: 'STEM degrees',
   source: 'IPEDS',
   variables: ['Gender', 'Educational Attainment', 'Race/Ethnicity'],
-  year: '2011-12 - 2020-21',
+  year: '2011 - 2021',
   path: 'ipeds-318-45'
 }
 
